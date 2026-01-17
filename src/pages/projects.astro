@@ -1,0 +1,121 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+// Project data - could be moved to content collections later
+const featuredProject = {
+  title: 'Brew Loyalty',
+  description: 'A mobile loyalty rewards app designed to help local coffee shops build lasting relationships with their customers through a modern, easy-to-use rewards system.',
+  problem: 'Local coffee shops struggle to compete with big chains that have sophisticated loyalty programs. Paper punch cards get lost, and generic solutions don\'t fit their brand.',
+  solution: 'A customizable mobile app that lets shops create their own branded loyalty experience, with easy QR scanning, push notifications, and analytics to understand customer behavior.',
+  technologies: ['React Native', 'TypeScript', 'Expo', 'Node.js', 'PostgreSQL'],
+  featured: true,
+};
+
+const projects = [
+  {
+    title: 'Personal Portfolio',
+    description: 'This very website! A clean, fast, and accessible portfolio built with modern web technologies.',
+    problem: 'Needed a professional online presence to showcase my work and writing.',
+    solution: 'Built a performant static site with Astro, featuring a custom design system, dark mode support, and optimized for SEO.',
+    technologies: ['Astro', 'TypeScript', 'Tailwind CSS'],
+    githubUrl: 'https://github.com/derekjensen/derekjensen.io',
+  },
+  {
+    title: 'Task Flow',
+    description: 'A minimalist task management app focused on helping users maintain flow state by reducing distractions.',
+    problem: 'Most todo apps are cluttered with features that break focus rather than enhance it.',
+    solution: 'A streamlined interface with keyboard shortcuts, time blocking, and a focus mode that hides everything except the current task.',
+    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
+    githubUrl: 'https://github.com/derekjensen/taskflow',
+  },
+  {
+    title: 'Weather Dashboard',
+    description: 'A beautiful weather app with detailed forecasts, interactive maps, and severe weather alerts.',
+    problem: 'Weather apps are either too simple or overwhelmingly complex with ads everywhere.',
+    solution: 'A clean, ad-free interface that surfaces the most important information first, with detailed data available on demand.',
+    technologies: ['React Native', 'TypeScript', 'Expo'],
+    liveUrl: 'https://weather.derekjensen.io',
+  },
+  {
+    title: 'API Starter Kit',
+    description: 'A production-ready Node.js API boilerplate with authentication, validation, and testing built-in.',
+    problem: 'Setting up a new API project involves a lot of repetitive boilerplate and configuration.',
+    solution: 'An opinionated starter kit that handles auth, error handling, logging, and testing out of the box so you can focus on business logic.',
+    technologies: ['Node.js', 'TypeScript', 'PostgreSQL', 'GraphQL'],
+    githubUrl: 'https://github.com/derekjensen/api-starter',
+  },
+];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Explore my portfolio of web and mobile development projects, including Brew Loyalty and other applications."
+>
+  <!-- Page Header -->
+  <section class="py-12 sm:py-16">
+    <div class="animate-in">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight">
+        Projects
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+        A collection of things I've built. From mobile apps to web platforms,
+        each project taught me something new.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Project -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-1">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+        Featured Project
+      </h2>
+      <ProjectCard {...featuredProject} />
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-2">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+        More Projects
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-3">
+      <div class="text-center">
+        <h2 class="text-2xl font-semibold text-neutral-900 mb-3">
+          Interested in Working Together?
+        </h2>
+        <p class="text-neutral-600 mb-6 max-w-md mx-auto">
+          I'm always open to discussing new projects and opportunities.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="mailto:hello@derekjensen.io" class="btn btn-primary">
+            Get in Touch
+          </a>
+          <a
+            href="https://github.com/derekjensen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            View GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
