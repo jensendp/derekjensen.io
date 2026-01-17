@@ -1,0 +1,79 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="w-full border-b border-gray-200">
+  <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+        Derek Jensen
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden sm:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'text-sm font-medium transition-colors',
+                currentPath === link.href
+                  ? 'text-blue-600'
+                  : 'text-gray-600 hover:text-gray-900',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="sm:hidden p-2 text-gray-600 hover:text-gray-900"
+        aria-label="Toggle menu"
+        id="mobile-menu-button"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <ul id="mobile-menu" class="hidden sm:hidden pb-4 space-y-2">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'block py-2 text-sm font-medium transition-colors',
+              currentPath === link.href
+                ? 'text-blue-600'
+                : 'text-gray-600 hover:text-gray-900',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  button?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

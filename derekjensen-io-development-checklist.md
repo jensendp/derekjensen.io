@@ -10,16 +10,16 @@
 - [x] Set up basic project structure (folders: components, layouts, pages, content, utils, styles)
 
 ### 1.2 Core Infrastructure
-- [ ] Create BaseLayout.astro with responsive structure
-- [ ] Create Header.astro component with navigation
-- [ ] Create Footer.astro component with social links
+- [x] Create BaseLayout.astro with responsive structure
+- [x] Create Header.astro component with navigation
+- [x] Create Footer.astro component with social links
 - [x] Set up Astro Content Collections for blog posts
 - [x] Set up Content Collections for projects
 - [x] Configure TypeScript paths for clean imports (@components, @layouts, etc.)
-- [ ] Add basic SEO configuration (meta tags helper)
-- [ ] Configure sitemap generation
-- [ ] Add robots.txt file
-- [ ] Set up syntax highlighting for code blocks (Shiki)
+- [x] Add basic SEO configuration (meta tags helper)
+- [x] Configure sitemap generation
+- [x] Add robots.txt file
+- [x] Set up syntax highlighting for code blocks (Shiki)
 
 ### 1.3 Design System
 - [ ] Define color palette in Tailwind config (include Brew Loyalty accent option)

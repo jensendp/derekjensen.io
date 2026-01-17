@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: {
+    publishedTime: Date;
+    modifiedTime?: Date;
+    author?: string;
+    tags?: string[];
+  };
+}
+
+const { title, description, image, article } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const schemaOrgWebsite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Derek Jensen',
+  url: Astro.site?.toString(),
+};
+
+const schemaOrgPerson = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Derek Jensen',
+  url: Astro.site?.toString(),
+  jobTitle: 'Software Engineer',
+  sameAs: [
+    'https://github.com/derekjensen',
+    'https://linkedin.com/in/derekjensen',
+    'https://twitter.com/derekjensen',
+  ],
+};
+
+const schemaOrgArticle = article
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: description,
+      image: image ? new URL(image, Astro.site).toString() : undefined,
+      datePublished: article.publishedTime.toISOString(),
+      dateModified: article.modifiedTime?.toISOString() || article.publishedTime.toISOString(),
+      author: {
+        '@type': 'Person',
+        name: article.author || 'Derek Jensen',
+      },
+      keywords: article.tags?.join(', '),
+    }
+  : null;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaOrgWebsite)} />
+<script type="application/ld+json" set:html={JSON.stringify(schemaOrgPerson)} />
+{schemaOrgArticle && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaOrgArticle)} />
+)}

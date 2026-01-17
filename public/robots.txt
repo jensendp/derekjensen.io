@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://derekjensen.io/sitemap-index.xml

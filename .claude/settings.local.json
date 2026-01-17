@@ -8,7 +8,8 @@
       "Bash(git branch:*)",
       "Bash(npm run build:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitialize Astro project with TypeScript and Tailwind CSS\n\nSet up the foundation for derekjensen.io personal site:\n- Astro with strict TypeScript configuration\n- Tailwind CSS v4 via Vite plugin\n- ESLint and Prettier with Astro support\n- Content collections for blog posts and projects\n- TypeScript path aliases for clean imports\n- Basic project folder structure\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitialize Astro project with TypeScript and Tailwind CSS\n\nSet up the foundation for derekjensen.io personal site:\n- Astro with strict TypeScript configuration\n- Tailwind CSS v4 via Vite plugin\n- ESLint and Prettier with Astro support\n- Content collections for blog posts and projects\n- TypeScript path aliases for clean imports\n- Basic project folder structure\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)"
     ]
   }
 }
