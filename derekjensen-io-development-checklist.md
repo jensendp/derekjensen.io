@@ -22,12 +22,12 @@
 - [x] Set up syntax highlighting for code blocks (Shiki)
 
 ### 1.3 Design System
-- [ ] Define color palette in Tailwind config (include Brew Loyalty accent option)
-- [ ] Set up typography scale using Tailwind
-- [ ] Configure responsive breakpoints
-- [ ] Create utility classes for common patterns
+- [x] Define color palette in Tailwind config (include Brew Loyalty accent option)
+- [x] Set up typography scale using Tailwind
+- [x] Configure responsive breakpoints
+- [x] Create utility classes for common patterns
 - [x] Set up global CSS file with custom styles
-- [ ] Add font configuration (Google Fonts or system fonts)
+- [x] Add font configuration (Google Fonts or system fonts)
 - [ ] Create spacing/sizing conventions documentation
 
 ## Phase 2: Core Pages (Week 2)

@@ -30,6 +30,14 @@ const canonical = canonicalUrl || Astro.url.href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Fonts - Inter for body, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
@@ -52,7 +60,7 @@ const canonical = canonicalUrl || Astro.url.href;
 
     <slot name="head" />
   </head>
-  <body class="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
+  <body class="min-h-screen flex flex-col">
     <Header />
     <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <slot />

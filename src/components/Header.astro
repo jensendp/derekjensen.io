@@ -9,10 +9,13 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="w-full border-b border-gray-200">
+<header class="w-full border-b border-neutral-200 bg-neutral-50/80 backdrop-blur-sm sticky top-0 z-50">
   <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+      <a
+        href="/"
+        class="text-xl font-semibold text-neutral-900 hover:text-primary-600 transition-colors duration-200"
+      >
         Derek Jensen
       </a>
 
@@ -23,13 +26,19 @@ const currentPath = Astro.url.pathname;
             <a
               href={link.href}
               class:list={[
-                'text-sm font-medium transition-colors',
+                'relative text-sm font-medium transition-colors duration-200 py-1',
                 currentPath === link.href
-                  ? 'text-blue-600'
-                  : 'text-gray-600 hover:text-gray-900',
+                  ? 'text-primary-600'
+                  : 'text-neutral-600 hover:text-neutral-900',
               ]}
             >
               {link.label}
+              <span
+                class:list={[
+                  'absolute -bottom-0.5 left-0 h-0.5 bg-primary-600 transition-all duration-200',
+                  currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full',
+                ]}
+              />
             </a>
           </li>
         ))}
@@ -38,42 +47,81 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button
         type="button"
-        class="sm:hidden p-2 text-gray-600 hover:text-gray-900"
+        class="sm:hidden p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md transition-colors duration-200"
         aria-label="Toggle menu"
+        aria-expanded="false"
         id="mobile-menu-button"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
 
     <!-- Mobile Navigation -->
-    <ul id="mobile-menu" class="hidden sm:hidden pb-4 space-y-2">
-      {navLinks.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class:list={[
-              'block py-2 text-sm font-medium transition-colors',
-              currentPath === link.href
-                ? 'text-blue-600'
-                : 'text-gray-600 hover:text-gray-900',
-            ]}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div id="mobile-menu" class="hidden sm:hidden overflow-hidden">
+      <ul class="pb-4 space-y-1">
+        {navLinks.map((link, index) => (
+          <li style={`animation-delay: ${index * 50}ms`} class="mobile-nav-item">
+            <a
+              href={link.href}
+              class:list={[
+                'block py-2.5 px-3 text-sm font-medium rounded-md transition-colors duration-200',
+                currentPath === link.href
+                  ? 'text-primary-600 bg-primary-50'
+                  : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </nav>
 </header>
+
+<style>
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #mobile-menu.open .mobile-nav-item {
+    animation: slideDown 0.2s ease-out forwards;
+  }
+</style>
 
 <script>
   const button = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
+  const menuIcon = button?.querySelector('.menu-icon');
+  const closeIcon = button?.querySelector('.close-icon');
 
   button?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    const isOpen = !menu?.classList.contains('hidden');
+
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('open');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      button.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.classList.remove('hidden');
+      menu?.classList.add('open');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      button.setAttribute('aria-expanded', 'true');
+    }
   });
 </script>
