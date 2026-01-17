@@ -1,106 +1,87 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import FeaturedProject from '@components/FeaturedProject.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+import AboutSnippet from '@components/AboutSnippet.astro';
+import ContactCTA from '@components/ContactCTA.astro';
+
+// Placeholder blog posts - will be replaced with actual content collection data
+const recentPosts = [
+  {
+    title: "Why I'm Building Brew Loyalty",
+    description: "The story behind building a loyalty rewards platform for local coffee shops.",
+    href: "/blog",
+    tags: ["React Native", "Startup"],
+  },
+  {
+    title: "My React Native Architecture Decisions",
+    description: "Technical deep-dive into the architecture choices for a production mobile app.",
+    href: "/blog",
+    tags: ["React Native", "Architecture"],
+  },
+];
 ---
 
 <BaseLayout title="Derek Jensen">
-  <section class="py-16 sm:py-24">
-    <!-- Hero Section -->
-    <div class="animate-in">
-      <p class="text-sm font-medium text-primary-600 mb-3">Software Engineer</p>
-      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight">
-        Hi, I'm Derek Jensen
-      </h1>
-      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed mb-8">
-        I build mobile applications and web experiences with a focus on clean code,
-        great user experience, and modern technologies like React Native and TypeScript.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a href="/projects" class="btn btn-primary">
-          View My Work
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-        <a href="/about" class="btn btn-secondary">
-          About Me
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Hero Section -->
+  <Hero
+    title="Hi, I'm Derek Jensen"
+    subtitle="Software Engineer"
+    description="I build mobile applications and web experiences with a focus on clean code, great user experience, and modern technologies like React Native and TypeScript."
+    primaryCta={{ text: "View My Work", href: "/projects" }}
+    secondaryCta={{ text: "About Me", href: "/about" }}
+  />
 
-  <!-- Featured Project Preview -->
+  <!-- Featured Project -->
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-1">
       <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
         Featured Project
       </h2>
-      <a href="/projects" class="block card p-6 hover-lift">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <h3 class="text-xl font-semibold text-neutral-900 mb-2">Brew Loyalty</h3>
-            <p class="text-neutral-600 mb-4">
-              A mobile loyalty rewards app for coffee shops, built with React Native
-              and a modern tech stack.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 text-xs font-medium bg-accent-100 text-accent-700 rounded-full">
-                React Native
-              </span>
-              <span class="px-2.5 py-1 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
-                TypeScript
-              </span>
-              <span class="px-2.5 py-1 text-xs font-medium bg-neutral-100 text-neutral-700 rounded-full">
-                Mobile
-              </span>
-            </div>
-          </div>
-          <svg class="w-5 h-5 text-neutral-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </a>
+      <FeaturedProject
+        title="Brew Loyalty"
+        description="A mobile loyalty rewards app for coffee shops, built with React Native and a modern tech stack. Helping local cafes build lasting customer relationships."
+        href="/projects"
+        technologies={["React Native", "TypeScript", "Node.js"]}
+        featured={true}
+      />
     </div>
   </section>
 
-  <!-- Recent Posts Preview -->
+  <!-- Recent Blog Posts -->
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-2">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider">
           Recent Writing
         </h2>
-        <a href="/blog" class="text-sm font-medium text-primary-600 hover:text-primary-700 link-underline">
+        <a
+          href="/blog"
+          class="text-sm font-medium text-primary-600 hover:text-primary-700 link-underline"
+        >
           View all posts
         </a>
       </div>
-      <div class="space-y-4">
-        <article class="group">
-          <a href="/blog" class="block py-3">
-            <div class="flex items-baseline justify-between gap-4">
-              <h3 class="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
-                Why I'm Building Brew Loyalty
-              </h3>
-              <time class="text-sm text-neutral-500 flex-shrink-0">Coming soon</time>
-            </div>
-            <p class="text-neutral-600 text-sm mt-1">
-              The story behind building a loyalty rewards platform for local coffee shops.
-            </p>
-          </a>
-        </article>
-        <article class="group">
-          <a href="/blog" class="block py-3">
-            <div class="flex items-baseline justify-between gap-4">
-              <h3 class="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
-                My React Native Architecture Decisions
-              </h3>
-              <time class="text-sm text-neutral-500 flex-shrink-0">Coming soon</time>
-            </div>
-            <p class="text-neutral-600 text-sm mt-1">
-              Technical deep-dive into the architecture choices for a production mobile app.
-            </p>
-          </a>
-        </article>
+      <div class="divide-y divide-neutral-100">
+        {recentPosts.map((post) => (
+          <BlogPostCard
+            title={post.title}
+            description={post.description}
+            href={post.href}
+            tags={post.tags}
+          />
+        ))}
       </div>
     </div>
   </section>
+
+  <!-- About Snippet -->
+  <AboutSnippet />
+
+  <!-- Contact CTA -->
+  <ContactCTA
+    heading="Let's Build Something Together"
+    description="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+  />
 </BaseLayout>

@@ -33,16 +33,16 @@
 ## Phase 2: Core Pages (Week 2)
 
 ### 2.1 Homepage (`/`)
-- [ ] Create index.astro page structure
-- [ ] Build Hero component with name, specialty, elevator pitch
-- [ ] Create FeaturedProject component for Brew Loyalty
-- [ ] Build BlogPostCard component
-- [ ] Add recent blog posts preview section (2-3 posts)
-- [ ] Create quick about snippet section
-- [ ] Add SocialLinks component with icons
-- [ ] Add contact CTAs
+- [x] Create index.astro page structure
+- [x] Build Hero component with name, specialty, elevator pitch
+- [x] Create FeaturedProject component for Brew Loyalty
+- [x] Build BlogPostCard component
+- [x] Add recent blog posts preview section (2-3 posts)
+- [x] Create quick about snippet section
+- [x] Add SocialLinks component with icons
+- [x] Add contact CTAs
 - [ ] Optimize images with lazy loading
-- [ ] Test mobile responsiveness
+- [x] Test mobile responsiveness
 
 ### 2.2 About Page (`/about`)
 - [ ] Create about.astro page
