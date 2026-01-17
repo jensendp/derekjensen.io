@@ -1,0 +1,113 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+import { getReadingTime } from '@utils/readingTime';
+
+// Get all non-draft blog posts, sorted by date
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get all unique tags
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Articles about React Native, mobile development, TypeScript, and building products."
+>
+  <!-- Page Header -->
+  <section class="py-12 sm:py-16">
+    <div class="animate-in">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight">
+        Blog
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+        Thoughts on mobile development, React Native, building products,
+        and lessons learned along the way.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tags Filter -->
+  {allTags.length > 0 && (
+    <section class="pb-8 animate-in delay-1">
+      <div class="flex flex-wrap gap-2">
+        <a
+          href="/blog"
+          class="px-3 py-1.5 text-sm font-medium bg-primary-100 text-primary-700 rounded-full"
+        >
+          All Posts
+        </a>
+        {allTags.map((tag) => (
+          <a
+            href={`/blog/tag/${tag.toLowerCase()}`}
+            class="px-3 py-1.5 text-sm font-medium bg-neutral-100 text-neutral-700 rounded-full hover:bg-neutral-200 transition-colors duration-200"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Blog Posts -->
+  <section class="py-8 border-t border-neutral-200">
+    <div class="animate-in delay-2">
+      {posts.length > 0 ? (
+        <div class="divide-y divide-neutral-100">
+          {posts.map((post) => (
+            <BlogPostCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.id}`}
+              pubDate={post.data.pubDate}
+              tags={post.data.tags}
+              readingTime={getReadingTime(post.body || '')}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-neutral-500 mb-4">No posts yet. Check back soon!</p>
+          <a href="/" class="text-primary-600 hover:text-primary-700 font-medium">
+            ← Back to home
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Newsletter CTA (optional) -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-3">
+      <div class="card p-8 text-center">
+        <h2 class="text-xl font-semibold text-neutral-900 mb-2">
+          Stay Updated
+        </h2>
+        <p class="text-neutral-600 mb-4 max-w-md mx-auto">
+          Follow along as I share what I'm learning about mobile development and building products.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a
+            href="https://twitter.com/derekjensen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            Follow on Twitter
+          </a>
+          <a href="/rss.xml" class="btn btn-secondary">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z" />
+            </svg>
+            RSS Feed
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

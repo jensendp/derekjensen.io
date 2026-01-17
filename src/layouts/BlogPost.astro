@@ -1,0 +1,151 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ShareButtons from '@components/ShareButtons.astro';
+import { formatDate, formatDateISO } from '@utils/readingTime';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  tags?: string[];
+  readingTime: string;
+  prevPost?: { slug: string; title: string };
+  nextPost?: { slug: string; title: string };
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author = 'Derek Jensen',
+  tags = [],
+  readingTime,
+  prevPost,
+  nextPost,
+} = Astro.props;
+
+const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="py-12 sm:py-16">
+    <!-- Article Header -->
+    <header class="mb-10 animate-in">
+      <div class="flex flex-wrap items-center gap-2 text-sm text-neutral-500 mb-4">
+        <time datetime={formatDateISO(pubDate)}>{formatDate(pubDate)}</time>
+        <span>·</span>
+        <span>{readingTime}</span>
+        {updatedDate && (
+          <>
+            <span>·</span>
+            <span>Updated <time datetime={formatDateISO(updatedDate)}>{formatDate(updatedDate)}</time></span>
+          </>
+        )}
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4 tracking-tight">
+        {title}
+      </h1>
+
+      <p class="text-xl text-neutral-600 leading-relaxed mb-6">
+        {description}
+      </p>
+
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {tags.map((tag) => (
+            <a
+              href={`/blog/tag/${tag.toLowerCase()}`}
+              class="px-3 py-1 text-sm font-medium bg-neutral-100 text-neutral-700 rounded-full hover:bg-neutral-200 transition-colors duration-200"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class="flex items-center justify-between pt-6 border-t border-neutral-200">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+            <span class="text-primary-700 font-semibold text-sm">
+              {author.split(' ').map(n => n[0]).join('')}
+            </span>
+          </div>
+          <div>
+            <p class="font-medium text-neutral-900">{author}</p>
+            <p class="text-sm text-neutral-500">Software Engineer</p>
+          </div>
+        </div>
+        <ShareButtons title={title} url={fullUrl} description={description} />
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="prose animate-in delay-1">
+      <slot />
+    </div>
+
+    <!-- Article Footer -->
+    <footer class="mt-12 pt-8 border-t border-neutral-200 animate-in delay-2">
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <div class="mb-8">
+          <h3 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-3">
+            Tagged with
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/blog/tag/${tag.toLowerCase()}`}
+                class="px-3 py-1 text-sm font-medium bg-neutral-100 text-neutral-700 rounded-full hover:bg-neutral-200 transition-colors duration-200"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Share -->
+      <div class="mb-8">
+        <h3 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-3">
+          Share this article
+        </h3>
+        <ShareButtons title={title} url={fullUrl} description={description} />
+      </div>
+
+      <!-- Prev/Next Navigation -->
+      {(prevPost || nextPost) && (
+        <nav class="grid sm:grid-cols-2 gap-4 pt-8 border-t border-neutral-200">
+          {prevPost ? (
+            <a
+              href={`/blog/${prevPost.slug}`}
+              class="group card p-4 hover:border-neutral-300"
+            >
+              <span class="text-sm text-neutral-500 mb-1 block">← Previous</span>
+              <span class="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
+                {prevPost.title}
+              </span>
+            </a>
+          ) : (
+            <div />
+          )}
+          {nextPost && (
+            <a
+              href={`/blog/${nextPost.slug}`}
+              class="group card p-4 hover:border-neutral-300 sm:text-right"
+            >
+              <span class="text-sm text-neutral-500 mb-1 block">Next →</span>
+              <span class="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
+                {nextPost.title}
+              </span>
+            </a>
+          )}
+        </nav>
+      )}
+    </footer>
+  </article>
+</BaseLayout>

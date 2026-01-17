@@ -68,17 +68,17 @@
 - [x] Test grid layout responsiveness
 
 ### 2.4 Blog Setup (`/blog`)
-- [ ] Create blog/index.astro for post listings
-- [ ] Create blog/[slug].astro for individual posts
-- [ ] Build BlogPost layout component
-- [ ] Add reading time estimation utility
-- [ ] Configure post metadata (date, tags, description, author)
-- [ ] Create tag filtering system
-- [ ] Add "Related Posts" suggestion logic
-- [ ] Create social sharing buttons component
-- [ ] Add prev/next post navigation
-- [ ] Style markdown content (headings, lists, code blocks, quotes)
-- [ ] Test blog post rendering
+- [x] Create blog/index.astro for post listings
+- [x] Create blog/[slug].astro for individual posts
+- [x] Build BlogPost layout component
+- [x] Add reading time estimation utility
+- [x] Configure post metadata (date, tags, description, author)
+- [x] Create tag filtering system
+- [x] Add "Related Posts" suggestion logic
+- [x] Create social sharing buttons component
+- [x] Add prev/next post navigation
+- [x] Style markdown content (headings, lists, code blocks, quotes)
+- [x] Test blog post rendering
 
 ## Phase 3: Content & Features (Week 3)
 

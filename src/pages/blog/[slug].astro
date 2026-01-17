@@ -1,0 +1,83 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogPost from '@layouts/BlogPost.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+import { getReadingTime } from '@utils/readingTime';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  // Sort posts by date for prev/next navigation
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return sortedPosts.map((post, index) => {
+    const prevPost = sortedPosts[index + 1];
+    const nextPost = sortedPosts[index - 1];
+
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        prevPost: prevPost
+          ? { slug: prevPost.id, title: prevPost.data.title }
+          : undefined,
+        nextPost: nextPost
+          ? { slug: nextPost.id, title: nextPost.data.title }
+          : undefined,
+      },
+    };
+  });
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+
+// Get related posts (same tags, excluding current post)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id)
+  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const readingTime = getReadingTime(post.body || '');
+---
+
+<BlogPost
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  author={post.data.author}
+  tags={post.data.tags}
+  readingTime={readingTime}
+  prevPost={prevPost}
+  nextPost={nextPost}
+>
+  <Content />
+</BlogPost>
+
+<!-- Related Posts -->
+{relatedPosts.length > 0 && (
+  <section class="py-12 border-t border-neutral-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+        Related Articles
+      </h2>
+      <div class="divide-y divide-neutral-100">
+        {relatedPosts.map((relatedPost) => (
+          <BlogPostCard
+            title={relatedPost.data.title}
+            description={relatedPost.data.description}
+            href={`/blog/${relatedPost.id}`}
+            pubDate={relatedPost.data.pubDate}
+            tags={relatedPost.data.tags}
+            readingTime={getReadingTime(relatedPost.body || '')}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+)}
