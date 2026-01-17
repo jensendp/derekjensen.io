@@ -1,0 +1,78 @@
+---
+interface Technology {
+  name: string;
+  icon?: string;
+  category: 'frontend' | 'backend' | 'mobile' | 'tools' | 'other';
+}
+
+interface Props {
+  technologies: Technology[];
+  showCategories?: boolean;
+}
+
+const { technologies, showCategories = true } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  frontend: 'Frontend',
+  backend: 'Backend',
+  mobile: 'Mobile',
+  tools: 'Tools & Infrastructure',
+  other: 'Other',
+};
+
+const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
+  frontend: { bg: 'bg-primary-50', text: 'text-primary-700', border: 'border-primary-200' },
+  backend: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
+  mobile: { bg: 'bg-accent-50', text: 'text-accent-700', border: 'border-accent-200' },
+  tools: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  other: { bg: 'bg-neutral-50', text: 'text-neutral-700', border: 'border-neutral-200' },
+};
+
+// Group technologies by category
+const grouped = technologies.reduce((acc, tech) => {
+  if (!acc[tech.category]) {
+    acc[tech.category] = [];
+  }
+  acc[tech.category].push(tech);
+  return acc;
+}, {} as Record<string, Technology[]>);
+
+const categories = Object.keys(grouped);
+---
+
+{showCategories ? (
+  <div class="space-y-6">
+    {categories.map((category) => (
+      <div>
+        <h4 class="text-sm font-medium text-neutral-500 mb-3">
+          {categoryLabels[category]}
+        </h4>
+        <div class="flex flex-wrap gap-2">
+          {grouped[category].map((tech) => {
+            const colors = categoryColors[tech.category];
+            return (
+              <span
+                class={`px-3 py-1.5 text-sm font-medium rounded-lg border ${colors.bg} ${colors.text} ${colors.border}`}
+              >
+                {tech.name}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div class="flex flex-wrap gap-2">
+    {technologies.map((tech) => {
+      const colors = categoryColors[tech.category];
+      return (
+        <span
+          class={`px-3 py-1.5 text-sm font-medium rounded-lg border ${colors.bg} ${colors.text} ${colors.border}`}
+        >
+          {tech.name}
+        </span>
+      );
+    })}
+  </div>
+)}
