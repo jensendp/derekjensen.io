@@ -17,7 +17,9 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
     <div class="mb-8 animate-in">
       <h1 class="mb-4">What I'm Doing Now</h1>
       <p class="text-neutral-500 text-sm">
-        Last updated: <time datetime={updatedDate.toISOString()}>{formattedDate}</time>
+        Last updated: <time datetime={updatedDate.toISOString()}
+          >{formattedDate}</time
+        >
       </p>
     </div>
 
@@ -25,7 +27,10 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
       <section>
         <h2>Work</h2>
         <p>
-          Currently focused on building and scaling mobile applications with React Native.
+          Currently focused on building and scaling the <a
+            href="https://gametime.co"
+            target="_blank">Gametime</a
+          > mobile application to provide amazing live experiences for our users.
           I'm working on improving app performance, implementing new features, and
           mentoring junior developers on the team.
         </p>
@@ -34,9 +39,10 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
       <section>
         <h2>Projects</h2>
         <p>
-          Building <strong>Brew Loyalty</strong> - a modern mobile app for coffee shop
-          loyalty programs using React Native, Expo, and Supabase. The goal is to create
-          a seamless experience for both coffee shops and their customers.
+          Building <strong>Brew Loyalty</strong> - a modern mobile app for breweries,
+          wineries, and coffee shop loyalty programs using React Native, Expo, and
+          Supabase. The goal is to create a seamless experience for both small local
+          businesses and their customers.
         </p>
       </section>
 
@@ -52,8 +58,8 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
       <section>
         <h2>Writing</h2>
         <p>
-          Publishing articles on React Native development, mobile architecture, and
-          lessons learned from building production apps. Check out my
+          Publishing articles on React Native development, mobile architecture,
+          and lessons learned from building production apps. Check out my
           <a href="/blog">blog</a> for the latest posts.
         </p>
       </section>
@@ -61,8 +67,9 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
       <section>
         <h2>Life</h2>
         <p>
-          Balancing work with family time, staying active, and enjoying good coffee.
-          Always looking for new coffee shops to try.
+          Balancing work with family time, staying active, and enjoying good
+          beer, coffee, and wine. Always looking for new local businesses to try
+          and support.
         </p>
       </section>
     </div>
@@ -72,9 +79,12 @@ const formattedDate = updatedDate.toLocaleDateString('en-US', {
         <strong>What's a "now page"?</strong>
       </p>
       <p class="text-sm text-neutral-500 mb-0">
-        This page is inspired by <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">nownownow.com</a>.
-        It's a living document that shows what I'm currently focused on, updated regularly to
-        reflect my priorities and projects.
+        This page is inspired by <a
+          href="https://nownownow.com/about"
+          target="_blank"
+          rel="noopener noreferrer">nownownow.com</a
+        >. It's a living document that shows what I'm currently focused on,
+        updated regularly to reflect my priorities and projects.
       </p>
     </div>
   </article>

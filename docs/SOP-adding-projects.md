@@ -36,14 +36,14 @@ Every project requires frontmatter at the top of the file. Copy this template:
 
 ```markdown
 ---
-title: "Your Project Name"
-description: "A brief description of what the project does (1-2 sentences)."
-problem: "What problem does this project solve?"
-solution: "How does your project solve the problem?"
-technologies: ["Tech1", "Tech2", "Tech3"]
-githubUrl: "https://github.com/username/repo"
-liveUrl: "https://your-project.com"
-image: "/images/projects/your-project.png"
+title: 'Your Project Name'
+description: 'A brief description of what the project does (1-2 sentences).'
+problem: 'What problem does this project solve?'
+solution: 'How does your project solve the problem?'
+technologies: ['Tech1', 'Tech2', 'Tech3']
+githubUrl: 'https://github.com/username/repo'
+liveUrl: 'https://your-project.com'
+image: '/images/projects/your-project.png'
 featured: false
 order: 10
 ---
@@ -51,43 +51,45 @@ order: 10
 
 ### Step 3: Frontmatter Fields Reference
 
-| Field | Required | Type | Description |
-|-------|----------|------|-------------|
-| `title` | Yes | String | Project name |
-| `description` | Yes | String | Brief summary (1-2 sentences) |
-| `problem` | No | String | The problem the project addresses |
-| `solution` | No | String | How the project solves the problem |
-| `technologies` | No | Array | List of technologies used (defaults to empty) |
-| `githubUrl` | No | URL | Link to GitHub repository |
-| `liveUrl` | No | URL | Link to live demo/production site |
-| `image` | No | String | Path to project screenshot |
-| `featured` | No | Boolean | Display as featured project (defaults to false) |
-| `order` | No | Number | Sort order for display (defaults to 0, lower = first) |
+| Field          | Required | Type    | Description                                           |
+| -------------- | -------- | ------- | ----------------------------------------------------- |
+| `title`        | Yes      | String  | Project name                                          |
+| `description`  | Yes      | String  | Brief summary (1-2 sentences)                         |
+| `problem`      | No       | String  | The problem the project addresses                     |
+| `solution`     | No       | String  | How the project solves the problem                    |
+| `technologies` | No       | Array   | List of technologies used (defaults to empty)         |
+| `githubUrl`    | No       | URL     | Link to GitHub repository                             |
+| `liveUrl`      | No       | URL     | Link to live demo/production site                     |
+| `image`        | No       | String  | Path to project screenshot                            |
+| `featured`     | No       | Boolean | Display as featured project (defaults to false)       |
+| `order`        | No       | Number  | Sort order for display (defaults to 0, lower = first) |
 
 ### Step 4: Example Project Files
 
 **Featured Project:**
+
 ```markdown
 ---
-title: "Brew Loyalty"
-description: "A mobile loyalty rewards app designed to help local coffee shops build lasting relationships with their customers."
-problem: "Local coffee shops struggle to compete with big chains that have sophisticated loyalty programs."
-solution: "A customizable mobile app that lets shops create their own branded loyalty experience."
-technologies: ["React Native", "TypeScript", "Expo", "Node.js", "PostgreSQL"]
+title: 'Brew Loyalty'
+description: 'A mobile loyalty rewards app designed to help local coffee shops build lasting relationships with their customers.'
+problem: 'Local coffee shops struggle to compete with big chains that have sophisticated loyalty programs.'
+solution: 'A customizable mobile app that lets shops create their own branded loyalty experience.'
+technologies: ['React Native', 'TypeScript', 'Expo', 'Node.js', 'PostgreSQL']
 featured: true
 order: 1
 ---
 ```
 
 **Regular Project:**
+
 ```markdown
 ---
-title: "Weather Dashboard"
-description: "A beautiful weather app with detailed forecasts and severe weather alerts."
-problem: "Weather apps are either too simple or overwhelmingly complex with ads everywhere."
-solution: "A clean, ad-free interface that surfaces the most important information first."
-technologies: ["React Native", "TypeScript", "Expo"]
-liveUrl: "https://weather.example.com"
+title: 'Weather Dashboard'
+description: 'A beautiful weather app with detailed forecasts and severe weather alerts.'
+problem: 'Weather apps are either too simple or overwhelmingly complex with ads everywhere.'
+solution: 'A clean, ad-free interface that surfaces the most important information first.'
+technologies: ['React Native', 'TypeScript', 'Expo']
+liveUrl: 'https://weather.example.com'
 featured: false
 order: 4
 ---
@@ -96,6 +98,7 @@ order: 4
 ### Step 5: Preview Locally
 
 1. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -116,6 +119,7 @@ order: 4
 ### Step 6: Build and Deploy
 
 1. Run the production build:
+
    ```bash
    npm run build
    ```
@@ -152,6 +156,7 @@ Projects are sorted by the `order` field (ascending). To reorder:
 3. Use gaps (e.g., 10, 20, 30) to make future insertions easier
 
 **Example ordering:**
+
 - Brew Loyalty: `order: 10` (first)
 - Portfolio: `order: 20` (second)
 - Task Flow: `order: 30` (third)
@@ -164,14 +169,15 @@ Projects are sorted by the `order` field (ascending). To reorder:
 
 Use consistent naming for technologies:
 
-| Category | Technologies |
-|----------|-------------|
-| Mobile | React Native, Expo, iOS, Android, Flutter |
+| Category | Technologies                                                |
+| -------- | ----------------------------------------------------------- |
+| Mobile   | React Native, Expo, iOS, Android, Flutter                   |
 | Frontend | React, TypeScript, JavaScript, Tailwind CSS, Next.js, Astro |
-| Backend | Node.js, Express, PostgreSQL, MongoDB, GraphQL, REST APIs |
-| Tools | Git, Docker, AWS, Firebase, Supabase |
+| Backend  | Node.js, Express, PostgreSQL, MongoDB, GraphQL, REST APIs   |
+| Tools    | Git, Docker, AWS, Firebase, Supabase                        |
 
 ### Tips
+
 - List technologies in order of importance/relevance
 - Aim for 3-6 technologies per project
 - Be specific (e.g., "PostgreSQL" not just "SQL")
@@ -182,17 +188,20 @@ Use consistent naming for technologies:
 ## Writing Guidelines
 
 ### Project Description
+
 - Keep to 1-2 sentences
 - Focus on what the project does and its value
 - Write for a broad audience (avoid jargon)
 
 ### Problem Statement
+
 - Start with the user's pain point
 - Be specific about who has this problem
 - **Good**: "Local coffee shops struggle to compete with chains that have sophisticated loyalty programs"
 - **Bad**: "I wanted to learn React Native"
 
 ### Solution Statement
+
 - Explain your approach clearly
 - Highlight what makes it unique
 - **Good**: "A customizable mobile app that lets shops create their own branded loyalty experience"
@@ -208,13 +217,14 @@ Use consistent naming for technologies:
    - Keep file size under 500KB (optimize if needed)
 
 2. Add to the public folder:
+
    ```
    public/images/projects/your-project.png
    ```
 
 3. Reference in frontmatter:
    ```yaml
-   image: "/images/projects/your-project.png"
+   image: '/images/projects/your-project.png'
    ```
 
 ---
@@ -256,6 +266,7 @@ const projects = defineCollection({
 ### Build Errors
 
 Common issues:
+
 - **Invalid URL**: `liveUrl` and `githubUrl` must be complete URLs (include `https://`)
 - **Missing quotes**: Strings with special characters need quotes
 - **Invalid YAML**: Check for proper indentation and syntax
@@ -314,14 +325,14 @@ src/
 
 ```markdown
 ---
-title: "Recipe Finder"
-description: "A mobile app that suggests recipes based on ingredients you have at home, reducing food waste."
+title: 'Recipe Finder'
+description: 'A mobile app that suggests recipes based on ingredients you have at home, reducing food waste.'
 problem: "People often throw away food because they don't know what to make with leftover ingredients."
-solution: "An AI-powered app that scans your fridge contents and suggests recipes with step-by-step instructions."
-technologies: ["React Native", "TypeScript", "OpenAI API", "Supabase"]
-liveUrl: "https://recipefinder.app"
-githubUrl: "https://github.com/derekjensen/recipe-finder"
-image: "/images/projects/recipe-finder.png"
+solution: 'An AI-powered app that scans your fridge contents and suggests recipes with step-by-step instructions.'
+technologies: ['React Native', 'TypeScript', 'OpenAI API', 'Supabase']
+liveUrl: 'https://recipefinder.app'
+githubUrl: 'https://github.com/jensendp/recipe-finder'
+image: '/images/projects/recipe-finder.png'
 featured: false
 order: 25
 ---
@@ -329,4 +340,4 @@ order: 25
 
 ---
 
-*Last Updated: January 20, 2026*
+_Last Updated: January 20, 2026_
