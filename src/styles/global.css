@@ -93,6 +93,52 @@
   --radius-xl: 1rem;
 }
 
+/* Dark mode overrides using CSS custom properties */
+html[data-theme="dark"] {
+  /* Primary colors adjusted for dark mode */
+  --color-primary-50: oklch(20% 0.06 250);
+  --color-primary-100: oklch(28% 0.08 250);
+  --color-primary-200: oklch(35% 0.12 250);
+  --color-primary-300: oklch(42% 0.16 250);
+  --color-primary-400: oklch(58% 0.18 250);
+  --color-primary-500: oklch(65% 0.18 250);
+  --color-primary-600: oklch(72% 0.16 250);
+  --color-primary-700: oklch(78% 0.12 250);
+  --color-primary-800: oklch(88% 0.08 250);
+  --color-primary-900: oklch(94% 0.04 250);
+  --color-primary-950: oklch(97% 0.02 250);
+
+  /* Accent colors for dark mode */
+  --color-accent-50: oklch(18% 0.04 35);
+  --color-accent-100: oklch(28% 0.06 40);
+  --color-accent-200: oklch(36% 0.08 45);
+  --color-accent-300: oklch(44% 0.10 50);
+  --color-accent-400: oklch(62% 0.14 60);
+  --color-accent-500: oklch(72% 0.14 65);
+  --color-accent-600: oklch(82% 0.12 70);
+  --color-accent-700: oklch(90% 0.08 75);
+  --color-accent-800: oklch(95% 0.04 75);
+  --color-accent-900: oklch(98% 0.02 75);
+
+  /* Neutral colors inverted for dark mode */
+  --color-neutral-50: oklch(14% 0.006 260);
+  --color-neutral-100: oklch(20% 0.008 260);
+  --color-neutral-200: oklch(28% 0.010 260);
+  --color-neutral-300: oklch(37% 0.012 260);
+  --color-neutral-400: oklch(55% 0.012 260);
+  --color-neutral-500: oklch(70% 0.010 260);
+  --color-neutral-600: oklch(86% 0.008 260);
+  --color-neutral-700: oklch(92% 0.005 260);
+  --color-neutral-800: oklch(96% 0.005 260);
+  --color-neutral-900: oklch(98% 0.005 260);
+  --color-neutral-950: oklch(99% 0.003 260);
+
+  /* Adjusted shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
 /* Keyframe animations */
 @keyframes fade-in {
   from {
@@ -248,6 +294,15 @@
   .card:hover {
     border-color: var(--color-neutral-300);
     box-shadow: var(--shadow-md);
+  }
+
+  html[data-theme="dark"] .card {
+    background-color: var(--color-neutral-100);
+    border-color: var(--color-neutral-200);
+  }
+
+  html[data-theme="dark"] .card:hover {
+    border-color: var(--color-neutral-300);
   }
 
   /* Button base styles */

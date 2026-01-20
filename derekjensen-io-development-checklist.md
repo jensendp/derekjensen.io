@@ -93,24 +93,24 @@
 - [ ] Source/create project images and screenshots
 
 ### 3.2 Enhanced Features
-- [ ] Set up RSS feed generation at /rss.xml
+- [x] Set up RSS feed generation at /rss.xml
 - [ ] Create Open Graph image generation for blog posts
-- [ ] Implement tag/category system for blog filtering
-- [ ] Add "Now" page (/now) with current focus
-- [ ] Create dark mode toggle functionality
-- [ ] Integrate analytics (Plausible/Fathom/Google Analytics)
-- [ ] Add view transitions (Astro feature)
-- [ ] Create custom 404 page
+- [x] Implement tag/category system for blog filtering
+- [x] Add "Now" page (/now) with current focus
+- [x] Create dark mode toggle functionality
+- [x] Integrate analytics (Plausible/Fathom/Google Analytics)
+- [x] Add view transitions (Astro feature)
+- [x] Create custom 404 page
 
 ### 3.3 SEO Optimization
 - [ ] Write unique meta descriptions for all pages
-- [ ] Add Schema.org structured data (Person, BlogPosting)
-- [ ] Configure canonical URLs for all pages
-- [ ] Generate and test XML sitemap
+- [x] Add Schema.org structured data (Person, BlogPosting, BreadcrumbList)
+- [x] Configure canonical URLs for all pages
+- [x] Generate and test XML sitemap
 - [ ] Optimize all images (WebP format, proper sizing)
 - [ ] Run Lighthouse audit (target 90+ performance)
-- [ ] Add Open Graph tags for social sharing
-- [ ] Add Twitter Card meta tags
+- [x] Add Open Graph tags for social sharing
+- [x] Add Twitter Card meta tags
 - [ ] Test social share previews
 
 ## Phase 4: Polish & Launch (Week 4)

@@ -1,9 +1,12 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Projects' },
   { href: '/blog', label: 'Blog' },
+  { href: '/now', label: 'Now' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -20,45 +23,51 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Desktop Navigation -->
-      <ul class="hidden sm:flex items-center gap-8">
-        {navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class:list={[
-                'relative text-sm font-medium transition-colors duration-200 py-1',
-                currentPath === link.href
-                  ? 'text-primary-600'
-                  : 'text-neutral-600 hover:text-neutral-900',
-              ]}
-            >
-              {link.label}
-              <span
+      <div class="hidden sm:flex items-center gap-6">
+        <ul class="flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
                 class:list={[
-                  'absolute -bottom-0.5 left-0 h-0.5 bg-primary-600 transition-all duration-200',
-                  currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full',
+                  'relative text-sm font-medium transition-colors duration-200 py-1',
+                  currentPath === link.href
+                    ? 'text-primary-600'
+                    : 'text-neutral-600 hover:text-neutral-900',
                 ]}
-              />
-            </a>
-          </li>
-        ))}
-      </ul>
+              >
+                {link.label}
+                <span
+                  class:list={[
+                    'absolute -bottom-0.5 left-0 h-0.5 bg-primary-600 transition-all duration-200',
+                    currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full',
+                  ]}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <ThemeToggle />
+      </div>
 
-      <!-- Mobile Menu Button -->
-      <button
-        type="button"
-        class="sm:hidden p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md transition-colors duration-200"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-        id="mobile-menu-button"
-      >
-        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <!-- Mobile Menu Button and Theme Toggle -->
+      <div class="sm:hidden flex items-center gap-2">
+        <ThemeToggle />
+        <button
+          type="button"
+          class="p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md transition-colors duration-200"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          id="mobile-menu-button"
+        >
+          <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Navigation -->
@@ -102,26 +111,51 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  const button = document.getElementById('mobile-menu-button');
-  const menu = document.getElementById('mobile-menu');
-  const menuIcon = button?.querySelector('.menu-icon');
-  const closeIcon = button?.querySelector('.close-icon');
+  let mobileMenuCleanup: (() => void) | null = null;
 
-  button?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-
-    if (isOpen) {
-      menu?.classList.add('hidden');
-      menu?.classList.remove('open');
-      menuIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      button.setAttribute('aria-expanded', 'false');
-    } else {
-      menu?.classList.remove('hidden');
-      menu?.classList.add('open');
-      menuIcon?.classList.add('hidden');
-      closeIcon?.classList.remove('hidden');
-      button.setAttribute('aria-expanded', 'true');
+  function setupMobileMenu() {
+    // Clean up previous listeners to prevent memory leaks
+    if (mobileMenuCleanup) {
+      mobileMenuCleanup();
+      mobileMenuCleanup = null;
     }
-  });
+
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = button?.querySelector('.menu-icon');
+    const closeIcon = button?.querySelector('.close-icon');
+
+    if (!button || !menu) return;
+
+    function toggleMenu() {
+      const isOpen = !menu.classList.contains('hidden');
+
+      if (isOpen) {
+        menu.classList.add('hidden');
+        menu.classList.remove('open');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.classList.remove('hidden');
+        menu.classList.add('open');
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    button.addEventListener('click', toggleMenu);
+
+    // Store cleanup function for next navigation
+    mobileMenuCleanup = () => {
+      button.removeEventListener('click', toggleMenu);
+    };
+  }
+
+  // Run on initial page load
+  setupMobileMenu();
+
+  // Re-run after view transitions
+  document.addEventListener('astro:page-load', setupMobileMenu);
 </script>

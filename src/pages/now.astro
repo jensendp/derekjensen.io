@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const updatedDate = new Date('2026-01-19');
+const formattedDate = updatedDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title="What I'm Doing Now"
+  description="What Derek Jensen is currently working on and focused on"
+>
+  <article class="prose mx-auto">
+    <div class="mb-8 animate-in">
+      <h1 class="mb-4">What I'm Doing Now</h1>
+      <p class="text-neutral-500 text-sm">
+        Last updated: <time datetime={updatedDate.toISOString()}>{formattedDate}</time>
+      </p>
+    </div>
+
+    <div class="space-y-6 animate-in delay-1">
+      <section>
+        <h2>Work</h2>
+        <p>
+          Currently focused on building and scaling mobile applications with React Native.
+          I'm working on improving app performance, implementing new features, and
+          mentoring junior developers on the team.
+        </p>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <p>
+          Building <strong>Brew Loyalty</strong> - a modern mobile app for coffee shop
+          loyalty programs using React Native, Expo, and Supabase. The goal is to create
+          a seamless experience for both coffee shops and their customers.
+        </p>
+      </section>
+
+      <section>
+        <h2>Learning</h2>
+        <ul>
+          <li>Diving deeper into Astro and modern web development patterns</li>
+          <li>Exploring advanced TypeScript patterns and type-safe APIs</li>
+          <li>Studying mobile app performance optimization techniques</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Writing</h2>
+        <p>
+          Publishing articles on React Native development, mobile architecture, and
+          lessons learned from building production apps. Check out my
+          <a href="/blog">blog</a> for the latest posts.
+        </p>
+      </section>
+
+      <section>
+        <h2>Life</h2>
+        <p>
+          Balancing work with family time, staying active, and enjoying good coffee.
+          Always looking for new coffee shops to try.
+        </p>
+      </section>
+    </div>
+
+    <div class="mt-12 p-6 bg-neutral-100 rounded-lg animate-in delay-2">
+      <p class="text-sm text-neutral-600 mb-2">
+        <strong>What's a "now page"?</strong>
+      </p>
+      <p class="text-sm text-neutral-500 mb-0">
+        This page is inspired by <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">nownownow.com</a>.
+        It's a living document that shows what I'm currently focused on, updated regularly to
+        reflect my priorities and projects.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

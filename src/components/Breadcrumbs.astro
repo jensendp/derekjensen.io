@@ -1,0 +1,53 @@
+---
+export interface Breadcrumb {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: Breadcrumb[];
+}
+
+const { items } = Astro.props;
+
+// Generate Schema.org BreadcrumbList
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    item: new URL(item.href, Astro.site).href,
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="mb-6">
+  <ol class="flex items-center gap-2 text-sm text-neutral-500">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-2">
+        {index > 0 && (
+          <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        )}
+        {index === items.length - 1 ? (
+          <span class="text-neutral-700 font-medium" aria-current="page">
+            {item.label}
+          </span>
+        ) : (
+          <a
+            href={item.href}
+            class="hover:text-primary-600 transition-colors duration-200"
+          >
+            {item.label}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<!-- Schema.org BreadcrumbList structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

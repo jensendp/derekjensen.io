@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ShareButtons from '@components/ShareButtons.astro';
 import { formatDate, formatDateISO } from '@utils/readingTime';
 
@@ -28,10 +29,20 @@ const {
 } = Astro.props;
 
 const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Build breadcrumb items
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: title, href: Astro.url.pathname },
+];
 ---
 
 <BaseLayout title={title} description={description}>
   <article class="py-12 sm:py-16">
+    <!-- Breadcrumbs -->
+    <Breadcrumbs items={breadcrumbItems} />
+
     <!-- Article Header -->
     <header class="mb-10 animate-in">
       <div class="flex flex-wrap items-center gap-2 text-sm text-neutral-500 mb-4">

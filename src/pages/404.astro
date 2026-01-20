@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - Page Not Found"
+  description="The page you're looking for doesn't exist."
+>
+  <div class="flex flex-col items-center justify-center min-h-[60vh] text-center animate-in">
+    <div class="mb-8">
+      <h1 class="text-6xl md:text-8xl font-bold text-neutral-900 mb-4">404</h1>
+      <p class="text-xl md:text-2xl text-neutral-600 mb-2">Page Not Found</p>
+      <p class="text-base text-neutral-500 max-w-md mx-auto">
+        Sorry, the page you're looking for doesn't exist or has been moved.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 animate-in delay-1">
+      <a href="/" class="btn btn-primary">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Go Home
+      </a>
+      <a href="/blog" class="btn btn-secondary">
+        Browse Blog
+      </a>
+    </div>
+
+    <div class="mt-12 text-sm text-neutral-400 animate-in delay-2">
+      <p>Lost? Here are some helpful links:</p>
+      <nav class="flex flex-wrap gap-4 justify-center mt-4">
+        <a href="/about" class="link-underline text-neutral-600 hover:text-primary-600">About</a>
+        <a href="/projects" class="link-underline text-neutral-600 hover:text-primary-600">Projects</a>
+        <a href="/blog" class="link-underline text-neutral-600 hover:text-primary-600">Blog</a>
+      </nav>
+    </div>
+  </div>
+</BaseLayout>
