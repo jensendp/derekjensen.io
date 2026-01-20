@@ -1,51 +1,16 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProjectCard from '@components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
 
-// Project data - could be moved to content collections later
-const featuredProject = {
-  title: 'Brew Loyalty',
-  description: 'A mobile loyalty rewards app designed to help local coffee shops build lasting relationships with their customers through a modern, easy-to-use rewards system.',
-  problem: 'Local coffee shops struggle to compete with big chains that have sophisticated loyalty programs. Paper punch cards get lost, and generic solutions don\'t fit their brand.',
-  solution: 'A customizable mobile app that lets shops create their own branded loyalty experience, with easy QR scanning, push notifications, and analytics to understand customer behavior.',
-  technologies: ['React Native', 'TypeScript', 'Expo', 'Node.js', 'PostgreSQL'],
-  featured: true,
-};
+// Fetch all projects from Content Collections
+const allProjects = await getCollection('projects');
 
-const projects = [
-  {
-    title: 'Personal Portfolio',
-    description: 'This very website! A clean, fast, and accessible portfolio built with modern web technologies.',
-    problem: 'Needed a professional online presence to showcase my work and writing.',
-    solution: 'Built a performant static site with Astro, featuring a custom design system, dark mode support, and optimized for SEO.',
-    technologies: ['Astro', 'TypeScript', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/derekjensen/derekjensen.io',
-  },
-  {
-    title: 'Task Flow',
-    description: 'A minimalist task management app focused on helping users maintain flow state by reducing distractions.',
-    problem: 'Most todo apps are cluttered with features that break focus rather than enhance it.',
-    solution: 'A streamlined interface with keyboard shortcuts, time blocking, and a focus mode that hides everything except the current task.',
-    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    githubUrl: 'https://github.com/derekjensen/taskflow',
-  },
-  {
-    title: 'Weather Dashboard',
-    description: 'A beautiful weather app with detailed forecasts, interactive maps, and severe weather alerts.',
-    problem: 'Weather apps are either too simple or overwhelmingly complex with ads everywhere.',
-    solution: 'A clean, ad-free interface that surfaces the most important information first, with detailed data available on demand.',
-    technologies: ['React Native', 'TypeScript', 'Expo'],
-    liveUrl: 'https://weather.derekjensen.io',
-  },
-  {
-    title: 'API Starter Kit',
-    description: 'A production-ready Node.js API boilerplate with authentication, validation, and testing built-in.',
-    problem: 'Setting up a new API project involves a lot of repetitive boilerplate and configuration.',
-    solution: 'An opinionated starter kit that handles auth, error handling, logging, and testing out of the box so you can focus on business logic.',
-    technologies: ['Node.js', 'TypeScript', 'PostgreSQL', 'GraphQL'],
-    githubUrl: 'https://github.com/derekjensen/api-starter',
-  },
-];
+// Separate featured project from others and sort by order
+const featuredProject = allProjects.find((p) => p.data.featured);
+const projects = allProjects
+  .filter((p) => !p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -66,28 +31,51 @@ const projects = [
   </section>
 
   <!-- Featured Project -->
-  <section class="py-12 border-t border-neutral-200">
-    <div class="animate-in delay-1">
-      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
-        Featured Project
-      </h2>
-      <ProjectCard {...featuredProject} />
-    </div>
-  </section>
+  {featuredProject && (
+    <section class="py-12 border-t border-neutral-200">
+      <div class="animate-in delay-1">
+        <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+          Featured Project
+        </h2>
+        <ProjectCard
+          title={featuredProject.data.title}
+          description={featuredProject.data.description}
+          problem={featuredProject.data.problem}
+          solution={featuredProject.data.solution}
+          technologies={featuredProject.data.technologies}
+          image={featuredProject.data.image}
+          liveUrl={featuredProject.data.liveUrl}
+          githubUrl={featuredProject.data.githubUrl}
+          featured={true}
+        />
+      </div>
+    </section>
+  )}
 
   <!-- Other Projects -->
-  <section class="py-12 border-t border-neutral-200">
-    <div class="animate-in delay-2">
-      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
-        More Projects
-      </h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <ProjectCard {...project} />
-        ))}
+  {projects.length > 0 && (
+    <section class="py-12 border-t border-neutral-200">
+      <div class="animate-in delay-2">
+        <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+          More Projects
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              problem={project.data.problem}
+              solution={project.data.solution}
+              technologies={project.data.technologies}
+              image={project.data.image}
+              liveUrl={project.data.liveUrl}
+              githubUrl={project.data.githubUrl}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- CTA Section -->
   <section class="py-12 border-t border-neutral-200">

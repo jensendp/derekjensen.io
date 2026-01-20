@@ -31,7 +31,7 @@ const schemaOrgPerson = {
   jobTitle: 'Software Engineer',
   sameAs: [
     'https://github.com/derekjensen',
-    'https://linkedin.com/in/derekjensen',
+    'https://www.linkedin.com/in/derek-jensen-8305a313',
     'https://twitter.com/derekjensen',
   ],
 };
@@ -44,7 +44,9 @@ const schemaOrgArticle = article
       description: description,
       image: image ? new URL(image, Astro.site).toString() : undefined,
       datePublished: article.publishedTime.toISOString(),
-      dateModified: article.modifiedTime?.toISOString() || article.publishedTime.toISOString(),
+      dateModified:
+        article.modifiedTime?.toISOString() ||
+        article.publishedTime.toISOString(),
       author: {
         '@type': 'Person',
         name: article.author || 'Derek Jensen',
@@ -54,8 +56,16 @@ const schemaOrgArticle = article
   : null;
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schemaOrgWebsite)} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schemaOrgWebsite)}
+/>
 <script type="application/ld+json" set:html={JSON.stringify(schemaOrgPerson)} />
-{schemaOrgArticle && (
-  <script type="application/ld+json" set:html={JSON.stringify(schemaOrgArticle)} />
-)}
+{
+  schemaOrgArticle && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schemaOrgArticle)}
+    />
+  )
+}
