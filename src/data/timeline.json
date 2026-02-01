@@ -1,0 +1,132 @@
+[
+  {
+    "year": "2025 - Present",
+    "title": "Gametime: Senior Mobile Engineer",
+    "description": "At Gametime I helped to enhance and maintain the Gametime mobile app, which is a ticketing platform focused on bringing the world together through shared experiences like theater, concerts, and sports events.",
+    "type": "career",
+    "tags": ["React Native", "Mobile", "TypeScript", "CI/CD", "AI"]
+  },
+  {
+    "year": "2024 - 2025",
+    "title": "ADL: Senior Mobile Engineer",
+    "description": "At ADL I helped to enhance and maintain the Alle mobile app, which is a loyalty application for products and services like Botox and Juvederm. I worked on implementing new features, fixing bugs, and delivering OTA updates.",
+    "type": "career",
+    "tags": [
+      "React Native",
+      "Expo",
+      "Mobile",
+      "JavaScript",
+      "CI/CD",
+      "OTA Updates"
+    ]
+  },
+  {
+    "year": "2023 - 2024",
+    "title": "Bittrex: Lead Mobile Engineer",
+    "description": "At Bittrex, I was hired to bring the React Native mobile app in house from a third-party vendor. Bittrex was a cryptocurrency exchange platform that required high security and reliability. I worked on implementing new features, fixing bugs, and improving the overall performance of the app.",
+    "type": "career",
+    "tags": [
+      "React Native",
+      "React",
+      "Expo",
+      "Mobile",
+      "Web",
+      "JavaScript",
+      "AWS",
+      "Microservices",
+      "Java",
+      "CI/CD"
+    ]
+  },
+  {
+    "year": "2021 - 2023",
+    "title": "Prisidio: Lead Mobile Engineer",
+    "description": "Joined a startup as the Lead Mobile Engineer to build the mobile app from scratch using React Native. Also worked closely with the Lead Web Engineer to ensure feature parity between mobile and web platforms. Implemented CI/CD pipelines using AWS services to streamline the deployment process.",
+    "type": "career",
+    "tags": [
+      "React Native",
+      "React",
+      "Expo",
+      "Mobile",
+      "Web",
+      "JavaScript",
+      "AWS",
+      "Microservices",
+      "Java",
+      "CI/CD",
+      "OTA Updates"
+    ]
+  },
+  {
+    "year": "2016 - 2021",
+    "title": "DocuSign: Senior Software Engineer",
+    "description": "Worked on the realestate transaction management platform, building new features and maintaining existing functionality. Focused on backend services and APIs. This is also the first time I got a taste of working on the frontend with ASP.NET MVC, Angular, and React. I also got a taste of professional mobile development with Objective-C, Java, and React Native.",
+    "type": "career",
+    "tags": [
+      "C#",
+      ".NET",
+      "ASP.NET",
+      "SQL Server",
+      "T-SQL",
+      "Web Services",
+      "REST",
+      "Angular",
+      "React",
+      "Objective-C",
+      "Java",
+      "React Native"
+    ]
+  },
+  {
+    "year": "2013 - 2019",
+    "title": "Envato: Instructor & Tutorial Author",
+    "description": "Wrote tutorials and taught courses on a wide variety of topics including mobile and web development.",
+    "type": "project",
+    "tags": [
+      "C#",
+      "JavaScript",
+      "iOS",
+      "Android",
+      "Web Development",
+      "Mobile Development"
+    ]
+  },
+  {
+    "year": "2010 - 2016",
+    "title": "Redbox: Software Engineer & Senior Software Engineer",
+    "description": "The first role that I was actually hired to write software. I worked on a variety of projects in the backend web services and database layers.",
+    "type": "career",
+    "tags": [
+      "C#",
+      ".NET",
+      "ASP.NET",
+      "SQL Server",
+      "T-SQL",
+      "WCF",
+      "Web Services",
+      "REST",
+      "SOAP"
+    ]
+  },
+  {
+    "year": "2002 - 2010",
+    "title": "Unisys: IT Consultant & .NET Developer",
+    "description": "My first role in tech was as an IT consultant specializing in installing Windows servers into large physical data centers. It was in this role that I identified an opportunity for using software to make our jobs faster. I chose to learn C# and build a desktop application to transfer 3 month projects to 3 weeks.",
+    "type": "career",
+    "tags": ["Consulting", "Windows Server", "C#", ".NET", "Winforms"]
+  },
+  {
+    "year": "2002",
+    "title": "ADT: Security Installation Tech",
+    "description": "For months I tried to find a job in tech but the job market was tough to break into after the dot com bubble burst. So I ended up working as a security installation technician. Installing alarms and cameras taught me patience and problem-solving skills.",
+    "type": "career",
+    "tags": ["Security", "Installation", "Problem Solving"]
+  },
+  {
+    "year": "2002",
+    "title": "Bradley University: College Graduation",
+    "description": "Heading out into the world with a degree in Computer Science. Excited to start a career in software development and make an impact. Little did I know what was ahead!",
+    "type": "learning",
+    "tags": []
+  }
+]

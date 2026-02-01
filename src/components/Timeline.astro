@@ -1,0 +1,193 @@
+---
+import timelineData from '../data/timeline.json';
+
+interface TimelineEntry {
+  year: string;
+  title: string;
+  description: string;
+  type: 'project' | 'career' | 'learning';
+  tags?: string[];
+}
+
+interface Props {
+  preview?: boolean;
+  previewCount?: number;
+  moreLink?: string;
+  moreLinkText?: string;
+}
+
+const {
+  preview = false,
+  previewCount = 2,
+  moreLink = '/about/timeline',
+  moreLinkText = 'View Full Timeline'
+} = Astro.props;
+
+const allEntries: TimelineEntry[] = timelineData;
+const entries = preview ? allEntries.slice(0, previewCount) : allEntries;
+
+// Type-specific styling
+const typeStyles = {
+  project: {
+    dot: 'bg-primary-500 ring-primary-100',
+    icon: 'text-primary-600',
+    badge: 'bg-primary-100 text-primary-700',
+  },
+  career: {
+    dot: 'bg-accent-500 ring-accent-100',
+    icon: 'text-accent-600',
+    badge: 'bg-accent-100 text-accent-700',
+  },
+  learning: {
+    dot: 'bg-green-500 ring-green-100',
+    icon: 'text-green-600',
+    badge: 'bg-green-100 text-green-700',
+  },
+};
+
+const typeIcons = {
+  project: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />`,
+  career: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />`,
+  learning: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />`,
+};
+---
+
+<div class="timeline-container relative">
+  <!-- Vertical line -->
+  <div class:list={[
+    "absolute left-0 top-0 w-0.5 bg-neutral-200 md:left-1/2 md:-ml-px",
+    preview ? "bottom-24" : "bottom-0"
+  ]}></div>
+
+  <div class="space-y-12">
+    {entries.map((entry, index) => {
+      const styles = typeStyles[entry.type];
+      const isEven = index % 2 === 0;
+
+      return (
+        <div
+          class="timeline-entry opacity-0 transition-all duration-700 ease-out transform translate-y-8"
+          data-index={index}
+        >
+          <div class={`relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${isEven ? '' : 'md:flex-row-reverse'}`}>
+            {/* Left side content (desktop) / Content (mobile) */}
+            <div class={`${isEven ? 'md:text-right md:pr-12' : 'md:pl-12 md:col-start-2'} pl-12 md:pl-0`}>
+              <div class="inline-block">
+                <span class={`inline-block px-3 py-1 text-sm font-semibold rounded-full mb-3 ${styles.badge}`}>
+                  {entry.year}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-neutral-900 mb-2">
+                {entry.title}
+              </h3>
+              <p class="text-neutral-600 leading-relaxed mb-3">
+                {entry.description}
+              </p>
+              {entry.tags && entry.tags.length > 0 && (
+                <div class={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
+                  {entry.tags.map((tag) => (
+                    <span class="px-2 py-1 text-xs font-medium bg-neutral-100 text-neutral-700 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Center dot with icon */}
+            <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 -ml-3 md:-ml-6 md:-mt-6 z-10">
+              <div class={`w-12 h-12 rounded-full ${styles.dot} ring-4 flex items-center justify-center shadow-md`}>
+                <svg
+                  class={`w-6 h-6 ${styles.icon}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  set:html={typeIcons[entry.type]}
+                />
+              </div>
+            </div>
+
+            {/* Right side spacer (desktop) */}
+            <div class={`hidden md:block ${isEven ? 'md:col-start-2' : ''}`}></div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  {preview && (
+    <div class="mt-12 text-center">
+      <a
+        href={moreLink}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors shadow-sm hover:shadow-md"
+      >
+        {moreLinkText}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  )}
+</div>
+
+<style>
+  .timeline-entry.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger animation delays */
+  .timeline-entry[data-index="0"].visible {
+    transition-delay: 0ms;
+  }
+  .timeline-entry[data-index="1"].visible {
+    transition-delay: 100ms;
+  }
+  .timeline-entry[data-index="2"].visible {
+    transition-delay: 200ms;
+  }
+  .timeline-entry[data-index="3"].visible {
+    transition-delay: 300ms;
+  }
+  .timeline-entry[data-index="4"].visible {
+    transition-delay: 400ms;
+  }
+  .timeline-entry[data-index="5"].visible {
+    transition-delay: 500ms;
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll-based animations
+  function setupTimelineAnimations() {
+    const timelineEntries = document.querySelectorAll('.timeline-entry');
+
+    if (!timelineEntries.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Once visible, stop observing this entry
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    );
+
+    timelineEntries.forEach((entry) => {
+      observer.observe(entry);
+    });
+  }
+
+  // Run on page load
+  setupTimelineAnimations();
+
+  // Re-run after view transitions (for Astro's built-in transitions)
+  document.addEventListener('astro:page-load', setupTimelineAnimations);
+</script>

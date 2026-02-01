@@ -1,0 +1,71 @@
+---
+import valuePropsData from '../data/value-props.json';
+
+interface ValueProp {
+  title: string;
+  description: string;
+  icon: string;
+  color: 'primary' | 'accent' | 'green' | 'purple' | 'orange' | 'indigo';
+}
+
+const values: ValueProp[] = valuePropsData;
+
+// Color scheme mapping
+const colorSchemes = {
+  primary: {
+    bg: 'bg-primary-100',
+    icon: 'text-primary-600',
+  },
+  accent: {
+    bg: 'bg-accent-100',
+    icon: 'text-accent-600',
+  },
+  green: {
+    bg: 'bg-green-100',
+    icon: 'text-green-600',
+  },
+  purple: {
+    bg: 'bg-purple-100',
+    icon: 'text-purple-600',
+  },
+  orange: {
+    bg: 'bg-orange-100',
+    icon: 'text-orange-600',
+  },
+  indigo: {
+    bg: 'bg-indigo-100',
+    icon: 'text-indigo-600',
+  },
+};
+---
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {values.map((value) => {
+    const colors = colorSchemes[value.color];
+    return (
+      <div class="card p-6">
+        <div class={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center mb-4`}>
+          <svg
+            class={`w-5 h-5 ${colors.icon}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d={value.icon}
+            />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-neutral-900 mb-2">
+          {value.title}
+        </h3>
+        <p class="text-sm text-neutral-600">
+          {value.description}
+        </p>
+      </div>
+    );
+  })}
+</div>

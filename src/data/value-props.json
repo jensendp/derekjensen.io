@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Mobile-First Thinking",
+    "description": "I design and build with mobile users in mind from day one, ensuring smooth experiences on any device.",
+    "icon": "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
+    "color": "primary"
+  },
+  {
+    "title": "Clean, Maintainable Code",
+    "description": "I write code that's easy to read, test, and maintain. Good architecture saves time in the long run.",
+    "icon": "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+    "color": "accent"
+  },
+  {
+    "title": "User-Centric Approach",
+    "description": "Features mean nothing if users don't love them. I focus on building things people actually want to use.",
+    "icon": "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    "color": "green"
+  },
+  {
+    "title": "\"Do It\" Mentality",
+    "description": "I don't wait for permission to make things better. When I see an opportunity to add value or improve a process, I take action.",
+    "icon": "M13 10V3L4 14h7v7l9-11h-7z",
+    "color": "purple"
+  },
+  {
+    "title": "Fearless Learning",
+    "description": "I embrace challenges and dive into unfamiliar territory. Learning on the fly and sharing knowledge keeps me sharp and teams growing.",
+    "icon": "M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z",
+    "color": "orange"
+  },
+  {
+    "title": "Cross-Functional Leadership",
+    "description": "Leading at my core, I thrive coordinating cross-team projects across mobile, web, QA, product, and marketing to deliver unified results.",
+    "icon": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    "color": "indigo"
+  }
+]
