@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import DemoCard from '@components/DemoCard.astro';
+
+const demos = await getCollection('demos');
+
+// Sort by featured first, then by order, then by completed date
+const sortedDemos = demos.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+  if (a.data.completedDate && b.data.completedDate) {
+    return b.data.completedDate.getTime() - a.data.completedDate.getTime();
+  }
+  return 0;
+});
+
+const pageTitle = 'Site Demos';
+const pageDescription = 'Explore my website redesigns and recreations. Each demo showcases a complete reimagining of existing sites with modern design and development practices.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <Hero
+    title="Site Demos"
+    subtitle="Website Redesigns & Recreations"
+    description="Each demo is a complete reimagining of an existing site, rebuilt with modern design principles and clean code. View live demos and compare with the original sites."
+  />
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {sortedDemos.length === 0 ? (
+      <div class="text-center py-12">
+        <svg class="w-16 h-16 mx-auto mb-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <h2 class="text-xl font-semibold text-neutral-700 mb-2">No demos yet</h2>
+        <p class="text-neutral-500">Check back soon for website redesign demos!</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {sortedDemos.map((demo) => (
+          <DemoCard
+            title={demo.data.title}
+            description={demo.data.description}
+            slug={demo.id}
+            clientName={demo.data.clientName}
+            originalUrl={demo.data.originalUrl}
+            technologies={demo.data.technologies}
+            image={demo.data.image}
+            featured={demo.data.featured}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

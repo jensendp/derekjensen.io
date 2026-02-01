@@ -30,4 +30,19 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+const demos = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/demos' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    clientName: z.string().optional(),
+    originalUrl: z.string().url().optional(),
+    image: z.string().optional(),
+    technologies: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    completedDate: z.coerce.date().optional(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { blog, projects, demos };

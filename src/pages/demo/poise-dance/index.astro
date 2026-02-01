@@ -1,0 +1,330 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const classes = [
+  {
+    name: 'Ballet',
+    description: 'Classical ballet technique building strength, flexibility, and grace. Perfect for dancers of all levels.',
+    icon: '🩰',
+    color: 'from-pink-500 to-rose-500',
+  },
+  {
+    name: 'Jazz',
+    description: 'Energetic and expressive movement combining technique with creative choreography.',
+    icon: '✨',
+    color: 'from-purple-500 to-violet-500',
+  },
+  {
+    name: 'Contemporary',
+    description: 'Modern dance style blending ballet and jazz, emphasizing emotion and fluidity.',
+    icon: '🌊',
+    color: 'from-blue-500 to-cyan-500',
+  },
+  {
+    name: 'Tap',
+    description: 'Rhythmic footwork creating music through movement. Build coordination and musicality.',
+    icon: '🎵',
+    color: 'from-amber-500 to-orange-500',
+  },
+];
+
+const values = [
+  {
+    title: 'Inclusivity',
+    description: 'We welcome dancers of all backgrounds, abilities, and experience levels. Everyone belongs here.',
+    icon: '🤝',
+  },
+  {
+    title: 'Positivity',
+    description: 'We foster a supportive environment where encouragement and growth go hand in hand.',
+    icon: '⭐',
+  },
+  {
+    title: 'Confidence',
+    description: 'We build self-esteem through achievement, helping dancers believe in themselves on and off the stage.',
+    icon: '💪',
+  },
+];
+---
+
+<BaseLayout
+  title="Poise Dance Center - Oswego, IL"
+  description="Student-centered dance studio in Oswego, IL offering ballet, jazz, contemporary, and tap classes. Building confidence through inclusivity and positivity."
+>
+  <div class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-purple-600 via-pink-600 to-rose-500 text-white overflow-hidden">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        <div class="max-w-3xl">
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-in">
+            Poise Dance Center
+          </h1>
+          <p class="text-xl md:text-2xl text-purple-100 mb-8 delay-1">
+            Where passion meets purpose. Building confident, well-rounded individuals through the art of dance.
+          </p>
+          <div class="flex flex-wrap gap-4 delay-2">
+            <a href="#classes" class="btn bg-white text-purple-600 hover:bg-purple-50 px-8 py-3 text-lg font-semibold">
+              View Classes
+            </a>
+            <a href="#contact" class="btn border-2 border-white text-white hover:bg-white hover:text-purple-600 px-8 py-3 text-lg font-semibold">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Decorative wave -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-neutral-900 mb-4">Our Mission</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-6"></div>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            Poise Dance Center is a student-centered dance studio where we focus on <strong>inclusivity, positivity, and confidence</strong>.
+            We aim to create well-rounded individuals by instilling responsibility, passion, teamwork, and determination through
+            quality dance instruction and opportunities.
+          </p>
+        </div>
+
+        <!-- Values Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          {values.map((value) => (
+            <div class="text-center">
+              <div class="text-5xl mb-4">{value.icon}</div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-3">{value.title}</h3>
+              <p class="text-neutral-600">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="py-16 bg-neutral-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-neutral-900 mb-4">Our Classes</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-6"></div>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            We offer a variety of classes for dancers of all ages and levels. Find the perfect style to express yourself.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {classes.map((danceClass) => (
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-neutral-200">
+              <div class={`h-2 bg-gradient-to-r ${danceClass.color}`}></div>
+              <div class="p-8">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="text-5xl">{danceClass.icon}</div>
+                  <h3 class="text-2xl font-bold text-neutral-900">{danceClass.name}</h3>
+                </div>
+                <p class="text-neutral-600 leading-relaxed">{danceClass.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 text-center">
+          <p class="text-neutral-600 mb-6">
+            All classes are designed to build technique, artistry, and confidence in a supportive environment.
+          </p>
+          <a href="#contact" class="btn btn-primary px-8 py-3 text-lg">
+            Enroll Today
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-neutral-900 mb-4">Studio Hours</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-6"></div>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8 md:p-12 border border-purple-100">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Weekday Classes
+              </h3>
+              <p class="text-lg text-neutral-700">
+                <strong>Monday - Thursday</strong><br/>
+                5:00 PM - 9:00 PM
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Weekend Classes
+              </h3>
+              <p class="text-lg text-neutral-700">
+                <strong>Saturday</strong><br/>
+                9:00 AM - 12:00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-neutral-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-neutral-900 mb-4">Get Started</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-6"></div>
+          <p class="text-lg text-neutral-600">
+            Ready to join the Poise Dance family? We'd love to hear from you!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact Info -->
+          <div class="bg-white rounded-xl p-8 shadow-sm border border-neutral-200">
+            <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Visit Us</h3>
+
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <p class="font-medium text-neutral-900">Location</p>
+                  <p class="text-neutral-600">39 Stone Hill Rd Ste E<br/>Oswego, IL 60543</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <div>
+                  <p class="font-medium text-neutral-900">Phone</p>
+                  <p class="text-neutral-600">(630) 701-5433</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <div>
+                  <p class="font-medium text-neutral-900">Email</p>
+                  <p class="text-neutral-600">info@poisedance.org</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-neutral-200">
+              <a
+                href="https://www.poisedance.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-700"
+              >
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Visit Original Website
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-white rounded-xl p-8 shadow-sm border border-neutral-200">
+            <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Send a Message</h3>
+
+            <form class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-neutral-700 mb-1">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="(630) 555-1234"
+                />
+              </div>
+
+              <div>
+                <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows="4"
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Tell us about your interest in our classes..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full py-3">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Gallery -->
+    <div class="py-8 bg-white border-t border-neutral-200">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <a
+          href="/demo"
+          class="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-700"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Demo Gallery
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
