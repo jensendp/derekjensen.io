@@ -158,20 +158,20 @@ const currentPath = Astro.url.pathname;
     if (!button || !menu) return;
 
     function toggleMenu() {
-      const isOpen = !menu.classList.contains('hidden');
+      const isOpen = !menu?.classList?.contains('hidden');
 
       if (isOpen) {
-        menu.classList.add('hidden');
-        menu.classList.remove('open');
-        menuIcon?.classList.remove('hidden');
-        closeIcon?.classList.add('hidden');
-        button.setAttribute('aria-expanded', 'false');
+        menu?.classList?.add('hidden');
+        menu?.classList?.remove('open');
+        menuIcon?.classList?.remove('hidden');
+        closeIcon?.classList?.add('hidden');
+        button?.setAttribute('aria-expanded', 'false');
       } else {
-        menu.classList.remove('hidden');
-        menu.classList.add('open');
-        menuIcon?.classList.add('hidden');
-        closeIcon?.classList.remove('hidden');
-        button.setAttribute('aria-expanded', 'true');
+        menu?.classList?.remove('hidden');
+        menu?.classList?.add('open');
+        menuIcon?.classList?.add('hidden');
+        closeIcon?.classList?.remove('hidden');
+        button?.setAttribute('aria-expanded', 'true');
       }
     }
 
