@@ -3,24 +3,27 @@ interface Props {
   heading?: string;
 }
 
-const { heading = "About Me" } = Astro.props;
+const { heading = 'About Me' } = Astro.props;
 ---
 
 <section class="py-12 border-t border-neutral-200">
   <div class="animate-in delay-2">
-    <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+    <h2
+      class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6"
+    >
       {heading}
     </h2>
     <div class="flex flex-col sm:flex-row gap-8 items-start">
       <div class="flex-1">
         <p class="text-neutral-700 leading-relaxed mb-4">
-          I'm a software engineer with a passion for building mobile applications
-          that solve real problems. Currently focused on React Native development,
-          I love creating smooth, intuitive experiences that users enjoy.
+          I'm a software engineer with a passion for building applications that
+          solve real problems. Currently focused on React Native development, I
+          love creating smooth, intuitive experiences that users enjoy.
         </p>
         <p class="text-neutral-600 leading-relaxed mb-6">
-          When I'm not coding, you'll find me exploring new coffee shops—which
-          inspired my current project, Brew Loyalty.
+          When I'm not coding, you'll find me cooking, watching sports, hanging
+          with my family, and visiting the local taproom-which inspired my
+          current project, Brew Loyalty.
         </p>
         <a
           href="/about"
@@ -33,7 +36,11 @@ const { heading = "About Me" } = Astro.props;
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
           </svg>
         </a>
       </div>

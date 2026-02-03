@@ -10,15 +10,17 @@ import ContactCTA from '@components/ContactCTA.astro';
 const recentPosts = [
   {
     title: "Why I'm Building Brew Loyalty",
-    description: "The story behind building a loyalty rewards platform for local coffee shops.",
-    href: "/blog",
-    tags: ["React Native", "Startup"],
+    description:
+      'The story behind building a loyalty rewards platform for local coffee shops.',
+    href: '/blog',
+    tags: ['React Native', 'Startup'],
   },
   {
-    title: "My React Native Architecture Decisions",
-    description: "Technical deep-dive into the architecture choices for a production mobile app.",
-    href: "/blog",
-    tags: ["React Native", "Architecture"],
+    title: 'My React Native Architecture Decisions',
+    description:
+      'Technical deep-dive into the architecture choices for a production mobile app.',
+    href: '/blog',
+    tags: ['React Native', 'Architecture'],
   },
 ];
 ---
@@ -29,21 +31,23 @@ const recentPosts = [
     title="Hi, I'm Derek Jensen"
     subtitle="Software Engineer"
     description="I build mobile applications and web experiences with a focus on clean code, great user experience, and modern technologies like React Native and TypeScript."
-    primaryCta={{ text: "View My Work", href: "/projects" }}
-    secondaryCta={{ text: "About Me", href: "/about" }}
+    primaryCta={{ text: 'View My Work', href: '/projects' }}
+    secondaryCta={{ text: 'About Me', href: '/about' }}
   />
 
   <!-- Featured Project -->
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-1">
-      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+      <h2
+        class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6"
+      >
         Featured Project
       </h2>
       <FeaturedProject
         title="Brew Loyalty"
         description="A mobile loyalty rewards app for coffee shops, built with React Native and a modern tech stack. Helping local cafes build lasting customer relationships."
         href="/projects"
-        technologies={["React Native", "TypeScript", "Node.js"]}
+        technologies={['React Native', 'TypeScript', 'Node.js']}
         featured={true}
       />
     </div>
@@ -53,7 +57,9 @@ const recentPosts = [
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-2">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+        <h2
+          class="text-sm font-medium text-neutral-500 uppercase tracking-wider"
+        >
           Recent Writing
         </h2>
         <a
@@ -64,14 +70,16 @@ const recentPosts = [
         </a>
       </div>
       <div class="divide-y divide-neutral-100">
-        {recentPosts.map((post) => (
-          <BlogPostCard
-            title={post.title}
-            description={post.description}
-            href={post.href}
-            tags={post.tags}
-          />
-        ))}
+        {
+          recentPosts.map((post) => (
+            <BlogPostCard
+              title={post.title}
+              description={post.description}
+              href={post.href}
+              tags={post.tags}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
