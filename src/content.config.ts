@@ -11,6 +11,7 @@ const blog = defineCollection({
     author: z.string().default('Derek Jensen'),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    heroImage: z.string().url().optional(),
   }),
 });
 
