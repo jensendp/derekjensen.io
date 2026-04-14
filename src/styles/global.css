@@ -341,10 +341,6 @@ html[data-theme="dark"] {
   }
 
   /* Prose styles for blog content */
-  .prose {
-    max-width: 65ch;
-  }
-
   .prose p {
     margin-bottom: 1.25em;
   }
@@ -411,3 +407,4 @@ html[data-theme="dark"] {
     scroll-behavior: auto;
   }
 }
+
