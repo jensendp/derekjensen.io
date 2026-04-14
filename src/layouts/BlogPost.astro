@@ -12,6 +12,7 @@ interface Props {
   author?: string;
   tags?: string[];
   readingTime: string;
+  heroImage?: string;
   prevPost?: { slug: string; title: string };
   nextPost?: { slug: string; title: string };
 }
@@ -24,6 +25,7 @@ const {
   author = 'Derek Jensen',
   tags = [],
   readingTime,
+  heroImage,
   prevPost,
   nextPost,
 } = Astro.props;
@@ -93,6 +95,13 @@ const breadcrumbItems = [
         <ShareButtons title={title} url={fullUrl} description={description} />
       </div>
     </header>
+
+    <!-- Hero Image -->
+    {heroImage && (
+      <div class="mb-10 rounded-xl overflow-hidden">
+        <img src={heroImage} alt={title} class="w-full object-cover max-h-96" />
+      </div>
+    )}
 
     <!-- Article Content -->
     <div class="prose animate-in delay-1">
