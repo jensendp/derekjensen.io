@@ -9,13 +9,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+// Split featured (first) from the rest
+const [featuredPost, ...remainingPosts] = posts;
+
 // Get all unique tags
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
 <BaseLayout
   title="Blog"
-  description="Articles about React Native, mobile development, TypeScript, and building products."
+  description="Articles about building with AI, vibe coding, and creating tools without an engineering background."
 >
   <!-- Page Header -->
   <section class="py-12 sm:py-16">
@@ -26,8 +29,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
         Blog
       </h1>
       <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
-        Thoughts on mobile development, React Native, building products, and
-        lessons learned along the way.
+        Practical guides and lessons on building with AI — no engineering degree required.
       </p>
     </div>
   </section>
@@ -58,37 +60,54 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 
   <!-- Blog Posts -->
   <section class="py-8 border-t border-neutral-200">
-    <div class="animate-in delay-2">
-      {
-        posts.length > 0 ? (
-          <div class="divide-y divide-neutral-100">
-            {posts.map((post) => (
+    {
+      posts.length === 0 ? (
+        <div class="text-center py-12 animate-in delay-2">
+          <p class="text-neutral-500 mb-4">No posts yet. Check back soon!</p>
+          <a href="/" class="text-primary-600 hover:text-primary-700 font-medium">
+            ← Back to home
+          </a>
+        </div>
+      ) : (
+        <div class="animate-in delay-2">
+          {/* Featured post */}
+          {featuredPost && (
+            <div class="mb-12">
               <BlogPostCard
-                title={post.data.title}
-                description={post.data.description}
-                href={`/blog/${post.id}`}
-                pubDate={post.data.pubDate}
-                tags={post.data.tags}
-                readingTime={getReadingTime(post.body || '')}
+                title={featuredPost.data.title}
+                description={featuredPost.data.description}
+                href={`/blog/${featuredPost.id}`}
+                pubDate={featuredPost.data.pubDate}
+                tags={featuredPost.data.tags}
+                readingTime={getReadingTime(featuredPost.body || '')}
+                heroImage={featuredPost.data.heroImage}
+                featured={true}
               />
-            ))}
-          </div>
-        ) : (
-          <div class="text-center py-12">
-            <p class="text-neutral-500 mb-4">No posts yet. Check back soon!</p>
-            <a
-              href="/"
-              class="text-primary-600 hover:text-primary-700 font-medium"
-            >
-              ← Back to home
-            </a>
-          </div>
-        )
-      }
-    </div>
+            </div>
+          )}
+
+          {/* Remaining posts grid */}
+          {remainingPosts.length > 0 && (
+            <div class="grid sm:grid-cols-2 gap-8">
+              {remainingPosts.map((post) => (
+                <BlogPostCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={`/blog/${post.id}`}
+                  pubDate={post.data.pubDate}
+                  tags={post.data.tags}
+                  readingTime={getReadingTime(post.body || '')}
+                  heroImage={post.data.heroImage}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
   </section>
 
-  <!-- Newsletter CTA (optional) -->
+  <!-- Newsletter CTA -->
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-3">
       <div class="card p-8 text-center">
@@ -96,8 +115,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
           Stay Updated
         </h2>
         <p class="text-neutral-600 mb-4 max-w-md mx-auto">
-          Follow along as I share what I'm learning about mobile development and
-          building products.
+          New posts on building with AI, vibe coding, and shipping without an engineering team.
         </p>
         <div class="flex flex-wrap justify-center gap-3">
           <a href="/rss.xml" class="btn btn-secondary">
