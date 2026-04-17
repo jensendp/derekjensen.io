@@ -1,6 +1,5 @@
 ---
 import '@styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 
@@ -33,25 +32,13 @@ const canonical = canonicalUrl || Astro.url.href;
 
     <!-- FOUC Prevention & View Transitions Theme Persistence -->
     <script is:inline>
-      // Apply theme immediately on initial load
+      // Apply theme immediately on initial load to prevent FOUC
       (function() {
-        function applyTheme() {
-          try {
-            const theme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-          } catch (e) {
-            document.documentElement.setAttribute('data-theme', 'light');
-          }
-        }
-
-        // Apply on initial load
-        applyTheme();
-
-        // Re-apply after View Transitions swap (before new page renders)
-        // Use a flag to prevent duplicate listeners
-        if (!window.__themeListenerAdded) {
-          document.addEventListener('astro:after-swap', applyTheme);
-          window.__themeListenerAdded = true;
+        try {
+          const theme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
         }
       })();
     </script>
@@ -96,8 +83,6 @@ const canonical = canonicalUrl || Astro.url.href;
 
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Derek Jensen Blog" href="/rss.xml" />
-
-    <ViewTransitions />
 
     <!-- Plausible Analytics (production only) -->
     {import.meta.env.PROD && (
