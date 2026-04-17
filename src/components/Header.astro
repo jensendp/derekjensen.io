@@ -135,7 +135,7 @@ const currentPath = Astro.url.pathname;
   }
 
   #mobile-menu.open .mobile-nav-item {
-    animation: slideDown 0.2s ease-out forwards;
+    animation: slideDown 0.2s ease-out both;
   }
 </style>
 
@@ -182,9 +182,5 @@ const currentPath = Astro.url.pathname;
     };
   }
 
-  // Run on initial page load
   setupMobileMenu();
-
-  // Re-run after view transitions
-  document.addEventListener('astro:page-load', setupMobileMenu);
 </script>
