@@ -11,9 +11,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 // Split featured (first) from the rest
 const [featuredPost, ...remainingPosts] = posts;
-
-// Get all unique tags
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
 <BaseLayout
@@ -33,30 +30,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
       </p>
     </div>
   </section>
-
-  <!-- Tags Filter -->
-  {
-    allTags.length > 0 && (
-      <section class="pb-8 animate-in delay-1">
-        <div class="flex flex-wrap gap-2">
-          <a
-            href="/blog"
-            class="px-3 py-1.5 text-sm font-medium bg-primary-100 text-primary-700 rounded-full"
-          >
-            All Posts
-          </a>
-          {allTags.map((tag) => (
-            <a
-              href={`/blog/tag/${tag.toLowerCase()}`}
-              class="px-3 py-1.5 text-sm font-medium bg-neutral-100 text-neutral-700 rounded-full hover:bg-neutral-200 transition-colors duration-200"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div>
-      </section>
-    )
-  }
 
   <!-- Blog Posts -->
   <section class="py-8 border-t border-neutral-200">
@@ -78,7 +51,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
                 description={featuredPost.data.description}
                 href={`/blog/${featuredPost.id}`}
                 pubDate={featuredPost.data.pubDate}
-                tags={featuredPost.data.tags}
                 readingTime={getReadingTime(featuredPost.body || '')}
                 heroImage={featuredPost.data.heroImage}
                 featured={true}
@@ -95,7 +67,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
                   description={post.data.description}
                   href={`/blog/${post.id}`}
                   pubDate={post.data.pubDate}
-                  tags={post.data.tags}
                   readingTime={getReadingTime(post.body || '')}
                   heroImage={post.data.heroImage}
                 />
