@@ -5,6 +5,7 @@ pubDate: 2026-04-14
 tags: ["AI", "Vibe Coding", "ChatGPT", "Productivity"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1775440285627-ce48346bc58c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY3MTE5MzR8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
 ## Introduction

@@ -5,6 +5,7 @@ pubDate: 2026-04-19
 tags: ["Codex 2.0","AI coding agents","no-code AI tools","building with AI"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1775994121052-7e653711f72c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY3MTE5NDR8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
 OpenAI just released Codex 2.0, and it's not a small update. The original Codex helped developers write code faster. This new version does something fundamentally different — it acts as an autonomous coding agent that can take a plain-English description, break it into steps, and build working software on its own. If you've ever wanted to turn an idea into an app but didn't know how to code, this is the moment worth paying attention to. In this post, I'll break down exactly what changed, what Codex 2.0 practically unlocks for non-technical builders, and give you a starter workflow so you can try it yourself on a simple project this week.

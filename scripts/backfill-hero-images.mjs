@@ -14,8 +14,8 @@ function hasHeroImage(content) {
 }
 
 function insertHeroImage(content, url) {
-  // Insert heroImage before the closing --- of frontmatter
-  return content.replace(/^(draft: false\n---)/m, `draft: false\nheroImage: "${url}"\n---`);
+  // Handle both LF and CRLF line endings
+  return content.replace(/^draft: false\r?\n---/m, `draft: false\r\nheroImage: "${url}"\r\n---`);
 }
 
 async function fetchRandomImage(title) {

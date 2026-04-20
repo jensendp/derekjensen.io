@@ -5,6 +5,7 @@ pubDate: 2026-04-11
 tags: ["AI", "Vibe Coding", "ChatGPT", "Productivity"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1561651188-d207bbec4ec3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY3MTE5MzZ8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
 You don't need a computer science degree to build things with AI. In fact, thousands of people with no coding background are already creating apps, tools, and businesses powered by artificial intelligence. The world of AI has opened up in a big way. New tools make it possible for almost anyone to get started. If you've been curious about building with AI but felt like it wasn't "for you," this guide is here to change your mind. We'll walk through everything you need to know — step by step, in plain language — so you can go from curious beginner to confident AI builder.

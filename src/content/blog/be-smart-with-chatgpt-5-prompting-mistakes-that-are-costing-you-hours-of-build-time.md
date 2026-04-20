@@ -5,6 +5,7 @@ pubDate: 2026-04-10
 tags: ["AI", "Vibe Coding", "ChatGPT", "Productivity"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1675865254433-6ba341f0f00b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY3MTE5MzN8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
 Most people who start building with ChatGPT hit the same wall. They type a quick prompt, get back something that doesn't quite work, and then spend the next two hours going back and forth trying to fix it. Sound familiar? The truth is, ChatGPT is an incredibly powerful building tool — but only if you know how to talk to it. The difference between someone who builds a working tool in 20 minutes and someone who gives up after three hours usually comes down to five simple prompting mistakes. These aren't complicated things. They're small habits that, once you fix them, completely change what you can get AI to do for you. In this guide, we'll walk through each mistake one by one, show you exactly what goes wrong, and give you a practical fix you can use right away. You don't need to be an engineer. You just need to be smart with ChatGPT.

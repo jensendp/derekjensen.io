@@ -5,6 +5,7 @@ pubDate: 2026-03-24
 tags: ["AI", "Automation", "Developer Productivity"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1775994121064-e75fa6f3e84c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY3MTE5MzV8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 ## Getting the Most Out of Claude's Desktop Version
 
