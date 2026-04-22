@@ -1,0 +1,252 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const WEBHOOK_URL = import.meta.env.PUBLIC_TRAINING_WAITLIST_WEBHOOK_URL || '';
+---
+
+<BaseLayout
+  title="Training"
+  description="AI-assisted development training for non-engineers. Learn to build real things with AI — no coding background required."
+>
+  <!-- Hero -->
+  <section class="py-16 sm:py-24">
+    <div class="animate-in">
+      <span
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-accent-100 text-accent-800 mb-6"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse"></span>
+        Coming Soon
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight max-w-3xl">
+        You don't need to become an engineer.<br />You need to become someone who can build.
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+        Stop waiting on developers. Stop filing tickets. Stop letting your best ideas sit in a doc
+        somewhere because you can't make them real yourself. AI has changed what's possible — and
+        this training will show you exactly how to use it.
+      </p>
+    </div>
+  </section>
+
+  <!-- What's Coming -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-1">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-10">
+        What's Coming
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Foundational Track -->
+        <div class="rounded-lg border border-neutral-200 p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-green-100 text-green-800">
+              Free
+            </span>
+            <span class="text-sm text-neutral-500">Foundational Track</span>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-900 mb-3">
+            AI-Assisted Development: From Zero to Shipped
+          </h3>
+          <p class="text-neutral-600 leading-relaxed mb-4">
+            The core skills everyone needs to build with AI. No coding background required. By the
+            end, you'll have shipped one real thing — a working tool, page, or automation that
+            solves a problem in your work or life.
+          </p>
+          <p class="text-sm text-neutral-500 italic">
+            "You'll have a URL you made yourself — and you'll know how to make the next one."
+          </p>
+        </div>
+
+        <!-- Role-Specific Tracks -->
+        <div class="rounded-lg border border-primary-200 bg-primary-50/40 p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-primary-100 text-primary-800">
+              Paid
+            </span>
+            <span class="text-sm text-neutral-500">Role-Specific Tracks</span>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-900 mb-3">
+            Deep Dives for Your Role
+          </h3>
+          <p class="text-neutral-600 leading-relaxed mb-4">
+            Once you have the foundation, go deeper with training built specifically for how you
+            work. The problems you solve, the tools you use, the outcomes that matter in your field.
+          </p>
+          <ul class="space-y-2">
+            {[
+              'AI for Product Designers',
+              'AI for Product Managers',
+              'AI for Founders & Entrepreneurs',
+              'AI for Marketers',
+              'AI for Business Analysts & Operations',
+            ].map((track) => (
+              <li class="flex items-center gap-2 text-sm text-neutral-700">
+                <svg class="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                {track}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-2">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-8">
+        Who This Is For
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          {
+            label: 'Product Designers',
+            description: 'Ship interactive, data-connected prototypes without handing off to an engineer.',
+          },
+          {
+            label: 'Product Managers',
+            description: 'Build and ship internal tools or prototypes without filing a single ticket.',
+          },
+          {
+            label: 'Founders',
+            description: 'Go from idea to a live, working product without a technical co-founder.',
+          },
+          {
+            label: 'Marketers',
+            description: 'Build custom tooling and automation without depending on an engineering queue.',
+          },
+          {
+            label: 'Business Analysts',
+            description: 'Automate the workflows you\'ve been doing manually for years.',
+          },
+          {
+            label: 'Anyone with an idea',
+            description: 'If you\'ve ever said "I wish I could just build this myself" — this is for you.',
+          },
+        ].map((item) => (
+          <div class="p-5 rounded-lg bg-neutral-50 border border-neutral-200">
+            <h3 class="font-semibold text-neutral-900 mb-1">{item.label}</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-3">
+      <div class="max-w-xl">
+        <h2 class="text-2xl font-semibold text-neutral-900 mb-3">
+          Get notified when it launches
+        </h2>
+        <p class="text-neutral-600 mb-8">
+          The foundational track will be free. No spam, no pressure — just a heads up when it's
+          ready. Early signups will get first access.
+        </p>
+
+        <form id="waitlist-form" class="space-y-4">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              id="waitlist-name"
+              name="name"
+              required
+              placeholder="Your name"
+              class="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+            />
+            <input
+              type="email"
+              id="waitlist-email"
+              name="email"
+              required
+              placeholder="your@email.com"
+              class="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+            />
+          </div>
+          <button
+            type="submit"
+            id="waitlist-submit"
+            class="btn btn-primary w-full sm:w-auto px-8 py-3 font-semibold"
+          >
+            <span id="waitlist-button-text">Notify Me</span>
+            <span id="waitlist-button-loading" class="hidden">
+              <svg class="animate-spin h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
+          </button>
+
+          <div id="waitlist-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+            Something went wrong. Please try again or reach out directly via the <a href="/contact" class="underline">contact page</a>.
+          </div>
+        </form>
+
+        <div id="waitlist-success" class="hidden">
+          <div class="flex items-center gap-3 p-5 bg-green-50 border border-green-200 rounded-lg">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <p class="font-semibold text-green-900">You're on the list.</p>
+              <p class="text-sm text-green-700">I'll reach out as soon as the training is ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ WEBHOOK_URL }}>
+  const form = document.getElementById('waitlist-form');
+  const submitBtn = document.getElementById('waitlist-submit');
+  const btnText = document.getElementById('waitlist-button-text');
+  const btnLoading = document.getElementById('waitlist-button-loading');
+  const successState = document.getElementById('waitlist-success');
+  const errorMsg = document.getElementById('waitlist-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!WEBHOOK_URL) {
+      errorMsg.classList.remove('hidden');
+      return;
+    }
+
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      source: 'training-waitlist',
+      timestamp: new Date().toISOString(),
+    };
+
+    submitBtn.disabled = true;
+    btnText.classList.add('hidden');
+    btnLoading.classList.remove('hidden');
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        form.classList.add('hidden');
+        successState.classList.remove('hidden');
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      errorMsg.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      btnText.classList.remove('hidden');
+      btnLoading.classList.add('hidden');
+    }
+  });
+</script>
