@@ -74,6 +74,7 @@ const readingTime = getReadingTime(post.body || '');
             href={`/blog/${relatedPost.id}`}
             pubDate={relatedPost.data.pubDate}
             readingTime={getReadingTime(relatedPost.body || '')}
+            heroImage={relatedPost.data.heroImage}
           />
         ))}
       </div>
