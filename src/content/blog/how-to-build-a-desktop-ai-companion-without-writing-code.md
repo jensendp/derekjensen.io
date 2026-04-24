@@ -5,7 +5,7 @@ pubDate: 2026-04-24
 tags: ["desktop AI companion","no-code AI app","Claude Desktop Buddy","weekend AI project"]
 author: "Derek Jensen"
 draft: false
-heroImage: "https://images.unsplash.com/photo-1772303142828-4c8dc2162589?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzcwMjg1MDh8&ixlib=rb-4.1.0&q=80&w=1080"
+heroImage: "https://images.unsplash.com/photo-1619597455322-4fbbd820250a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfGFsbHx8fHx8fHx8fDE3NzcwMzQ3NDd8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
 AI isn't just living in your browser anymore. A new wave of desktop AI companion apps — like the trending Claude Desktop Buddy on Product Hunt — are putting smart, always-available assistants right on your computer's home screen. The best part? You don't need to be a software engineer to build one yourself. This post breaks down exactly what desktop AI companions are, why they're taking off, and how you can build your own in a single weekend using no-code and low-code tools. Whether you've never touched a line of code or you're just getting started, this roadmap will get you from zero to a working AI assistant on your desktop.
