@@ -1,0 +1,78 @@
+---
+// Inline email capture for blog posts — links to the free AI Prompt Builder
+---
+
+<div class="my-12 rounded-xl border border-primary-200 bg-primary-50 p-6 sm:p-8">
+  <div class="max-w-xl">
+    <p class="text-xs font-semibold uppercase tracking-wider text-primary-600 mb-2">Free Tool</p>
+    <h3 class="text-xl font-bold text-neutral-900 mb-2">
+      Get my free AI Prompt Builder
+    </h3>
+    <p class="text-neutral-600 mb-6">
+      Describe your idea, answer 3 quick questions, and get a project brief + ready-to-paste Claude prompts in under 60 seconds.
+    </p>
+
+    <form id="lead-capture-form" class="flex flex-col sm:flex-row gap-3">
+      <input
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        class="flex-1 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+      />
+      <button
+        type="submit"
+        id="lead-capture-btn"
+        class="btn-primary whitespace-nowrap text-sm"
+      >
+        Get Free Access →
+      </button>
+    </form>
+
+    <p id="lead-capture-success" class="hidden mt-3 text-sm font-medium text-primary-700">
+      Done! Check your email — the link is on its way.
+    </p>
+    <p id="lead-capture-error" class="hidden mt-3 text-sm text-red-600"></p>
+    <p class="mt-3 text-xs text-neutral-400">Free. No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('lead-capture-form') as HTMLFormElement;
+  const btn = document.getElementById('lead-capture-btn') as HTMLButtonElement;
+  const success = document.getElementById('lead-capture-success') as HTMLElement;
+  const error = document.getElementById('lead-capture-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    error.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+      } else {
+        const data = await res.json();
+        error.textContent = data.error || 'Something went wrong. Please try again.';
+        error.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Get Free Access →';
+      }
+    } catch {
+      error.textContent = 'Something went wrong. Please try again.';
+      error.classList.remove('hidden');
+      btn.disabled = false;
+      btn.textContent = 'Get Free Access →';
+    }
+  });
+</script>

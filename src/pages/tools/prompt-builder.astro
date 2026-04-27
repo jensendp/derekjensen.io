@@ -1,0 +1,245 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="AI Prompt Builder"
+  description="Generate a project brief and ready-to-use Claude prompts for your idea."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <div class="py-12 sm:py-16">
+    <div class="max-w-2xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-10 animate-in">
+        <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight mb-3">
+          AI Prompt Builder
+        </h1>
+        <p class="text-lg text-neutral-600">
+          Describe your idea below. We'll generate a project brief and prompts ready to paste into Claude.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="prompt-form" class="space-y-6 animate-in delay-1">
+        <div>
+          <label for="idea" class="block text-sm font-medium text-neutral-700 mb-2">
+            What are you trying to build? <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            id="idea"
+            name="idea"
+            rows="4"
+            required
+            placeholder="e.g. A tool that monitors my competitors' pricing and sends me a weekly digest of changes so I can react faster"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 resize-none"
+          ></textarea>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div>
+            <label for="projectType" class="block text-sm font-medium text-neutral-700 mb-2">
+              Project type
+            </label>
+            <select
+              id="projectType"
+              name="projectType"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+            >
+              <option value="Web app">Web app</option>
+              <option value="Automation / workflow">Automation / workflow</option>
+              <option value="Content tool">Content tool</option>
+              <option value="Browser extension">Browser extension</option>
+              <option value="Mobile app">Mobile app</option>
+              <option value="Internal tool">Internal tool</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="audience" class="block text-sm font-medium text-neutral-700 mb-2">
+              Who uses it?
+            </label>
+            <select
+              id="audience"
+              name="audience"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+            >
+              <option value="Just me">Just me</option>
+              <option value="My team">My team</option>
+              <option value="Customers / public">Customers / public</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="challenge" class="block text-sm font-medium text-neutral-700 mb-2">
+              Biggest challenge?
+            </label>
+            <select
+              id="challenge"
+              name="challenge"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+            >
+              <option value="Don't know where to start">Where to start</option>
+              <option value="Getting AI to do what I want">Prompting AI effectively</option>
+              <option value="Connecting tools together">Connecting tools</option>
+              <option value="Shipping and launching">Shipping it</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-primary">
+          Generate My Prompts →
+        </button>
+      </form>
+
+      <!-- Loading -->
+      <div id="loading" class="hidden mt-10 text-center py-12">
+        <div class="inline-flex flex-col items-center gap-3">
+          <div class="w-8 h-8 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-sm text-neutral-500">Generating your prompts...</p>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="gen-error" class="hidden mt-6 rounded-lg bg-red-50 border border-red-200 px-4 py-3">
+        <p class="text-sm text-red-700" id="gen-error-text"></p>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden mt-10 space-y-6 animate-in">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-lg font-semibold text-neutral-900">Your starter kit</h2>
+          <button id="reset-btn" class="text-sm text-neutral-500 hover:text-neutral-700 underline">
+            Start over
+          </button>
+        </div>
+
+        <!-- Brief -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">📋</span>
+              <h3 class="font-semibold text-neutral-900">Project Brief</h3>
+            </div>
+            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="brief-text">
+              Copy
+            </button>
+          </div>
+          <pre id="brief-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed"></pre>
+        </div>
+
+        <!-- Kickoff Prompt -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⚡</span>
+              <h3 class="font-semibold text-neutral-900">Kickoff Prompt</h3>
+            </div>
+            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="kickoff-text">
+              Copy
+            </button>
+          </div>
+          <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to start building</p>
+          <pre id="kickoff-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
+        </div>
+
+        <!-- Planning Prompt -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🗺️</span>
+              <h3 class="font-semibold text-neutral-900">Planning Prompt</h3>
+            </div>
+            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="planning-text">
+              Copy
+            </button>
+          </div>
+          <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to map out your build steps</p>
+          <pre id="planning-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
+        </div>
+
+        <p class="text-xs text-neutral-400 text-center pt-2">
+          Built by <a href="/" class="underline hover:text-neutral-600">Derek Jensen</a> · Free forever
+        </p>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('prompt-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const loading = document.getElementById('loading') as HTMLElement;
+  const results = document.getElementById('results') as HTMLElement;
+  const genError = document.getElementById('gen-error') as HTMLElement;
+  const genErrorText = document.getElementById('gen-error-text') as HTMLElement;
+  const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const idea = (document.getElementById('idea') as HTMLTextAreaElement).value.trim();
+    const projectType = (document.getElementById('projectType') as HTMLSelectElement).value;
+    const audience = (document.getElementById('audience') as HTMLSelectElement).value;
+    const challenge = (document.getElementById('challenge') as HTMLSelectElement).value;
+
+    form.classList.add('hidden');
+    loading.classList.remove('hidden');
+    results.classList.add('hidden');
+    genError.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/generate-prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idea, projectType, audience, challenge }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+
+      (document.getElementById('brief-text') as HTMLElement).textContent = data.brief;
+      (document.getElementById('kickoff-text') as HTMLElement).textContent = data.kickoffPrompt;
+      (document.getElementById('planning-text') as HTMLElement).textContent = data.planningPrompt;
+
+      loading.classList.add('hidden');
+      results.classList.remove('hidden');
+    } catch (err: unknown) {
+      loading.classList.add('hidden');
+      form.classList.remove('hidden');
+      genErrorText.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      genError.classList.remove('hidden');
+      submitBtn.disabled = false;
+    }
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    results.classList.add('hidden');
+    form.classList.remove('hidden');
+    form.reset();
+  });
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const targetId = (btn as HTMLElement).dataset.target!;
+      const text = (document.getElementById(targetId) as HTMLElement).textContent || '';
+      await navigator.clipboard.writeText(text);
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      (btn as HTMLButtonElement).disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        (btn as HTMLButtonElement).disabled = false;
+      }, 2000);
+    });
+  });
+</script>
