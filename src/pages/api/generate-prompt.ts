@@ -56,7 +56,6 @@ function getRatelimit(): Ratelimit | null {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  // Rate limiting (gracefully skipped if Upstash not configured)
   const limiter = getRatelimit();
   if (limiter) {
     const ip =
@@ -67,73 +66,78 @@ export const POST: APIRoute = async ({ request }) => {
     if (!success) {
       return Response.json(
         { error: `Rate limit reached. You can generate up to ${limit} prompts per hour.` },
-        {
-          status: 429,
-          headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) },
-        }
+        { status: 429, headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) } }
       );
     }
   }
 
   const json = await request.json().catch(() => null);
-  if (!json) {
-    return Response.json({ error: 'Invalid request body.' }, { status: 400 });
-  }
+  if (!json) return Response.json({ error: 'Invalid request body.' }, { status: 400 });
 
   const { idea, projectType, audience, challenge } = json;
 
-  // Input validation
-  if (!idea || typeof idea !== 'string' || idea.trim().length < 10) {
-    return Response.json(
-      { error: 'Please describe your idea in more detail (at least a sentence).' },
-      { status: 400 }
-    );
-  }
+  if (!idea || typeof idea !== 'string' || idea.trim().length < 10)
+    return Response.json({ error: 'Please describe your idea in more detail (at least a sentence).' }, { status: 400 });
 
-  if (idea.length > 500) {
-    return Response.json(
-      { error: 'Please keep your idea description under 500 characters.' },
-      { status: 400 }
-    );
-  }
+  if (idea.length > 500)
+    return Response.json({ error: 'Please keep your idea description under 500 characters.' }, { status: 400 });
 
-  // Validate selects against allowed values
-  if (projectType && !ALLOWED_PROJECT_TYPES.includes(projectType)) {
+  if (projectType && !ALLOWED_PROJECT_TYPES.includes(projectType))
     return Response.json({ error: 'Invalid project type.' }, { status: 400 });
-  }
-  if (audience && !ALLOWED_AUDIENCES.includes(audience)) {
-    return Response.json({ error: 'Invalid audience selection.' }, { status: 400 });
-  }
-  if (challenge && !ALLOWED_CHALLENGES.includes(challenge)) {
-    return Response.json({ error: 'Invalid challenge selection.' }, { status: 400 });
-  }
 
-  // Prompt injection check
-  if (containsInjection(idea)) {
-    return Response.json(
-      { error: 'Input contains disallowed content. Please describe your idea naturally.' },
-      { status: 400 }
-    );
-  }
+  if (audience && !ALLOWED_AUDIENCES.includes(audience))
+    return Response.json({ error: 'Invalid audience selection.' }, { status: 400 });
+
+  if (challenge && !ALLOWED_CHALLENGES.includes(challenge))
+    return Response.json({ error: 'Invalid challenge selection.' }, { status: 400 });
+
+  if (containsInjection(idea))
+    return Response.json({ error: 'Input contains disallowed content. Please describe your idea naturally.' }, { status: 400 });
 
   const apiKey = import.meta.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return Response.json({ error: 'Service not configured.' }, { status: 500 });
-  }
+  if (!apiKey) return Response.json({ error: 'Service not configured.' }, { status: 500 });
 
-  const userPrompt = `Generate an AI build starter kit for this project:
+  const userPrompt = `You are helping a non-technical builder get started on their project. Be specific, opinionated, and personal — reference their exact idea and context throughout every section. Never be generic.
 
-Idea: ${idea.trim()}
-Project type: ${projectType || 'Not specified'}
-Who uses it: ${audience || 'Not specified'}
-Biggest challenge: ${challenge || 'Not specified'}
+Project details:
+- Idea: ${idea.trim()}
+- Type: ${projectType || 'Not specified'}
+- Who uses it: ${audience || 'Not specified'}
+- Biggest challenge: ${challenge || 'Not specified'}
 
-Return ONLY valid JSON with this exact structure — no markdown, no explanation:
+Generate a complete AI build starter kit. Every section must feel written specifically for this person's project — use their words, their context, their situation. Do not write generic content that could apply to any project.
+
+Return ONLY valid JSON — no markdown, no explanation:
 {
-  "brief": "4-line project brief using this format exactly:\\nProblem: [the core problem being solved]\\nSolution: [what this builds]\\nTarget user: [who uses it]\\nSuccess looks like: [one concrete outcome]",
-  "kickoffPrompt": "A ready-to-paste prompt for Claude that kicks off the actual build. Be specific — reference the idea, the user, and what to build first. Tell Claude to ask clarifying questions before writing any code. Minimum 120 words.",
-  "planningPrompt": "A ready-to-paste prompt for Claude that breaks this project into 5-7 ordered, concrete steps. For each step, name what to build and suggest which AI tool is best suited (Claude, Cursor, v0, Replit, etc). Minimum 100 words."
-}`;
+  "brief": "A tight 4-line project brief. Start with their actual idea. Format:\\nProblem: [the specific frustration this solves — use their language]\\nSolution: [exactly what this builds, named specifically]\\nBuilt for: [who uses it and in what context]\\nSuccess looks like: [one concrete, measurable outcome specific to this idea]",
+
+  "techStack": [
+    {
+      "tool": "Tool name",
+      "purpose": "What it does in this specific project (1 line)",
+      "why": "Why this tool over alternatives for their exact situation (1 line)"
+    }
+  ],
+
+  "validationPrompt": "A ready-to-paste Claude prompt that helps them validate this specific idea before writing a line of code. Should ask Claude to pressure-test the core assumption, identify the riskiest part of the idea, and suggest a lean experiment to test it in under a week. Make it feel tailored to their project — not generic startup advice. 80-120 words.",
+
+  "kickoffPrompt": "A ready-to-paste Claude prompt that kicks off the actual build. Must reference their specific idea, audience, and challenge. Tell Claude to ask 3-5 clarifying questions before suggesting any code or tooling. End with a clear statement of what to build first. 150-200 words.",
+
+  "planningPrompt": "A ready-to-paste Claude prompt that produces a step-by-step build plan for this specific project. Should result in 6-8 concrete phases, each with: what gets built, which specific tool to use, and what done looks like. Reference their actual project type and audience throughout. 120-160 words.",
+
+  "risks": [
+    {
+      "risk": "A specific failure mode for this exact project — not generic advice",
+      "mitigation": "A concrete action they can take to prevent or handle it"
+    }
+  ]
+}
+
+Rules:
+- techStack: 3-4 tools max. Be opinionated — pick the best tool, don't hedge with "you could also use X"
+- risks: exactly 3 items, each specific to their project type and idea
+- Every prompt must reference their idea by name or description — nothing generic
+- Tool choices should account for their skill level (non-technical, building with AI)`;
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -144,16 +148,14 @@ Return ONLY valid JSON with this exact structure — no markdown, no explanation
     },
     body: JSON.stringify({
       model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1500,
-      system:
-        'You are an expert at helping non-technical people build real products using AI. Be direct, specific, and immediately actionable. No fluff. Always respond with valid JSON only.',
+      max_tokens: 2500,
+      system: 'You are an expert product builder and AI tools specialist helping non-technical founders ship real products. You give specific, opinionated, immediately actionable guidance. You always reference the user\'s exact project context — never give generic advice. Respond only with valid JSON.',
       messages: [{ role: 'user', content: userPrompt }],
     }),
   });
 
-  if (!response.ok) {
+  if (!response.ok)
     return Response.json({ error: 'Failed to generate prompts. Please try again.' }, { status: 500 });
-  }
 
   const data = await response.json();
   const raw = data.content[0].text;

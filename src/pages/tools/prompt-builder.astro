@@ -19,7 +19,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
           AI Prompt Builder
         </h1>
         <p class="text-lg text-neutral-600">
-          Describe your idea below. We'll generate a project brief and prompts ready to paste into Claude.
+          Describe your idea below. We'll generate a complete build starter kit tailored to your specific project.
         </p>
       </div>
 
@@ -34,9 +34,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             name="idea"
             rows="4"
             required
+            maxlength="500"
             placeholder="e.g. A tool that monitors my competitors' pricing and sends me a weekly digest of changes so I can react faster"
-            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 resize-none"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 resize-none transition-colors"
           ></textarea>
+          <p class="mt-1 text-xs text-neutral-400 text-right"><span id="char-count">0</span>/500</p>
         </div>
 
         <div class="grid sm:grid-cols-3 gap-4">
@@ -47,7 +49,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <select
               id="projectType"
               name="projectType"
-              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
             >
               <option value="Web app">Web app</option>
               <option value="Automation / workflow">Automation / workflow</option>
@@ -66,7 +68,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <select
               id="audience"
               name="audience"
-              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
             >
               <option value="Just me">Just me</option>
               <option value="My team">My team</option>
@@ -81,7 +83,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <select
               id="challenge"
               name="challenge"
-              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+              class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
             >
               <option value="Don't know where to start">Where to start</option>
               <option value="Getting AI to do what I want">Prompting AI effectively</option>
@@ -92,15 +94,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </div>
 
         <button type="submit" id="submit-btn" class="btn btn-primary">
-          Generate My Prompts →
+          Generate My Build Kit →
         </button>
       </form>
 
       <!-- Loading -->
-      <div id="loading" class="hidden mt-10 text-center py-12">
-        <div class="inline-flex flex-col items-center gap-3">
-          <div class="w-8 h-8 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
-          <p class="text-sm text-neutral-500">Generating your prompts...</p>
+      <div id="loading" class="hidden mt-10 text-center py-16">
+        <div class="inline-flex flex-col items-center gap-4">
+          <div class="w-10 h-10 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+          <div>
+            <p class="text-sm font-medium text-neutral-700">Building your starter kit...</p>
+            <p class="text-xs text-neutral-400 mt-1">Tailoring everything to your specific project</p>
+          </div>
         </div>
       </div>
 
@@ -110,56 +115,122 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       </div>
 
       <!-- Results -->
-      <div id="results" class="hidden mt-10 space-y-6 animate-in">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-lg font-semibold text-neutral-900">Your starter kit</h2>
-          <button id="reset-btn" class="text-sm text-neutral-500 hover:text-neutral-700 underline">
-            Start over
+      <div id="results" class="hidden mt-10 space-y-5">
+        <div class="flex items-center justify-between pb-2">
+          <h2 class="text-lg font-semibold text-neutral-900">Your AI Build Starter Kit</h2>
+          <button id="reset-btn" class="text-sm text-neutral-400 hover:text-neutral-600 transition-colors">
+            ← Start over
           </button>
         </div>
 
-        <!-- Brief -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-2">
-              <span class="text-lg">📋</span>
-              <h3 class="font-semibold text-neutral-900">Project Brief</h3>
+        <!-- 1. Project Brief -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">📋</span>
+                <h3 class="text-base font-semibold text-neutral-900">Project Brief</h3>
+              </div>
+              <button class="copy-btn btn btn-secondary text-xs py-1 px-3" data-target="brief-text">Copy</button>
             </div>
-            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="brief-text">
-              Copy
-            </button>
+            <pre id="brief-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed"></pre>
           </div>
-          <pre id="brief-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed"></pre>
         </div>
 
-        <!-- Kickoff Prompt -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-2">
-              <span class="text-lg">⚡</span>
-              <h3 class="font-semibold text-neutral-900">Kickoff Prompt</h3>
+        <!-- 2. Tech Stack -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">🛠️</span>
+              <h3 class="text-base font-semibold text-neutral-900">Your Tech Stack</h3>
             </div>
-            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="kickoff-text">
-              Copy
-            </button>
+            <p class="text-xs text-neutral-400 mb-4">Picked specifically for your project type and skill level</p>
+            <div id="tech-stack" class="space-y-3"></div>
           </div>
-          <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to start building</p>
-          <pre id="kickoff-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
         </div>
 
-        <!-- Planning Prompt -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-2">
-              <span class="text-lg">🗺️</span>
-              <h3 class="font-semibold text-neutral-900">Planning Prompt</h3>
+        <!-- 3. Validate First -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🔍</span>
+                <h3 class="text-base font-semibold text-neutral-900">Validate First</h3>
+              </div>
+              <button class="copy-btn btn btn-secondary text-xs py-1 px-3" data-target="validation-text">Copy</button>
             </div>
-            <button class="copy-btn text-xs font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded px-2.5 py-1 transition-colors" data-target="planning-text">
-              Copy
-            </button>
+            <p class="text-xs text-neutral-400 mb-3">Paste this into Claude before you build anything — it could save you weeks</p>
+            <pre id="validation-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
           </div>
-          <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to map out your build steps</p>
-          <pre id="planning-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
+        </div>
+
+        <!-- 4. Kickoff Prompt -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">⚡</span>
+                <h3 class="text-base font-semibold text-neutral-900">Kickoff Prompt</h3>
+              </div>
+              <button class="copy-btn btn btn-secondary text-xs py-1 px-3" data-target="kickoff-text">Copy</button>
+            </div>
+            <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to start building — it tells Claude exactly what you need</p>
+            <pre id="kickoff-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
+          </div>
+        </div>
+
+        <!-- 5. Build Plan -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🗺️</span>
+                <h3 class="text-base font-semibold text-neutral-900">Build Plan Prompt</h3>
+              </div>
+              <button class="copy-btn btn btn-secondary text-xs py-1 px-3" data-target="planning-text">Copy</button>
+            </div>
+            <p class="text-xs text-neutral-400 mb-3">Paste this into Claude to get a step-by-step plan with the right tool for each phase</p>
+            <pre id="planning-text" class="text-sm text-neutral-700 whitespace-pre-wrap font-sans leading-relaxed bg-neutral-50 rounded-lg p-4"></pre>
+          </div>
+        </div>
+
+        <!-- 6. Watch Out For -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-amber-500"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">⚠️</span>
+              <h3 class="text-base font-semibold text-neutral-900">Watch Out For</h3>
+            </div>
+            <p class="text-xs text-neutral-400 mb-4">The most common failure points for a project like yours — before you hit them</p>
+            <div id="risks" class="space-y-4"></div>
+          </div>
+        </div>
+
+        <!-- 7. Derek CTA -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+                <span class="text-primary-700 font-semibold text-sm">DJ</span>
+              </div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1">Want help with any of this?</p>
+                <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+                  I work personally with founders and builders to help them ship AI-powered products — from initial setup through launch. Whether you're stuck on the tools, the prompts, the development, or the strategy, reach out and let's figure it out together.
+                </p>
+                <a href="/contact" class="btn btn-primary text-sm">
+                  Get in Touch with Derek →
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <p class="text-xs text-neutral-400 text-center pt-2">
@@ -179,11 +250,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   const genError = document.getElementById('gen-error') as HTMLElement;
   const genErrorText = document.getElementById('gen-error-text') as HTMLElement;
   const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
+  const idea = document.getElementById('idea') as HTMLTextAreaElement;
+  const charCount = document.getElementById('char-count') as HTMLElement;
+
+  idea?.addEventListener('input', () => {
+    charCount.textContent = String(idea.value.length);
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const idea = (document.getElementById('idea') as HTMLTextAreaElement).value.trim();
+    const ideaVal = idea.value.trim();
     const projectType = (document.getElementById('projectType') as HTMLSelectElement).value;
     const audience = (document.getElementById('audience') as HTMLSelectElement).value;
     const challenge = (document.getElementById('challenge') as HTMLSelectElement).value;
@@ -197,21 +274,54 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       const res = await fetch('/api/generate-prompt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idea, projectType, audience, challenge }),
+        body: JSON.stringify({ idea: ideaVal, projectType, audience, challenge }),
       });
 
       const data = await res.json();
 
-      if (!res.ok || data.error) {
-        throw new Error(data.error || 'Something went wrong.');
-      }
+      if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
 
+      // Populate text fields
       (document.getElementById('brief-text') as HTMLElement).textContent = data.brief;
+      (document.getElementById('validation-text') as HTMLElement).textContent = data.validationPrompt;
       (document.getElementById('kickoff-text') as HTMLElement).textContent = data.kickoffPrompt;
       (document.getElementById('planning-text') as HTMLElement).textContent = data.planningPrompt;
 
+      // Populate tech stack
+      const techContainer = document.getElementById('tech-stack') as HTMLElement;
+      techContainer.innerHTML = '';
+      (data.techStack || []).forEach((item: { tool: string; purpose: string; why: string }) => {
+        techContainer.innerHTML += `
+          <div class="flex gap-3 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
+            <div class="shrink-0 w-8 h-8 rounded-md bg-primary-100 flex items-center justify-center">
+              <span class="text-primary-700 font-bold text-xs">${item.tool.slice(0, 2).toUpperCase()}</span>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-900">${item.tool} <span class="font-normal text-neutral-500">— ${item.purpose}</span></p>
+              <p class="text-xs text-neutral-500 mt-0.5">${item.why}</p>
+            </div>
+          </div>`;
+      });
+
+      // Populate risks
+      const risksContainer = document.getElementById('risks') as HTMLElement;
+      risksContainer.innerHTML = '';
+      (data.risks || []).forEach((item: { risk: string; mitigation: string }, i: number) => {
+        risksContainer.innerHTML += `
+          <div class="flex gap-3">
+            <div class="shrink-0 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center mt-0.5">
+              <span class="text-amber-700 font-bold text-xs">${i + 1}</span>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-800">${item.risk}</p>
+              <p class="text-xs text-neutral-500 mt-1"><span class="font-medium text-neutral-600">Fix: </span>${item.mitigation}</p>
+            </div>
+          </div>`;
+      });
+
       loading.classList.add('hidden');
       results.classList.remove('hidden');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (err: unknown) {
       loading.classList.add('hidden');
       form.classList.remove('hidden');
@@ -225,16 +335,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     results.classList.add('hidden');
     form.classList.remove('hidden');
     form.reset();
+    charCount.textContent = '0';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Copy buttons
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const targetId = (btn as HTMLElement).dataset.target!;
       const text = (document.getElementById(targetId) as HTMLElement).textContent || '';
       await navigator.clipboard.writeText(text);
       const original = btn.textContent;
-      btn.textContent = 'Copied!';
+      btn.textContent = '✓ Copied';
       (btn as HTMLButtonElement).disabled = true;
       setTimeout(() => {
         btn.textContent = original;
