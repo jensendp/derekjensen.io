@@ -17,6 +17,8 @@
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/vercel": "^8.2.11",
     "@tailwindcss/vite": "^4.1.18",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
     "astro": "^5.16.11",
     "tailwindcss": "^4.1.18"
   },
