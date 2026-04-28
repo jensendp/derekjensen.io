@@ -1,5 +1,5 @@
 ---
-title: "Best AI Tools for Non-Developers (2025 Guide)"
+title: "Best AI Tools for Non-Developers (2026 Guide)"
 description: "Discover the best AI tools for non-developers. A practical, beginner-friendly guide to building with AI — no coding background needed."
 pubDate: 2026-04-23
 tags: ["AI tools","no-code AI","non-developers","beginner AI guide"]
