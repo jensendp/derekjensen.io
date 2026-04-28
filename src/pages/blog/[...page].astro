@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+import { getReadingTime } from '@utils/readingTime';
+
+const PAGE_SIZE = 12;
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 12;
+  const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
+
+  // Pages 2+ only — page 1 is handled by index.astro
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => {
+    const pageNum = i + 2;
+    return {
+      params: { page: String(pageNum) },
+      props: {
+        posts: allPosts.slice((pageNum - 1) * PAGE_SIZE, pageNum * PAGE_SIZE),
+        currentPage: pageNum,
+        totalPages,
+        total: allPosts.length,
+      },
+    };
+  });
+}
+
+const { posts, currentPage, totalPages, total } = Astro.props;
+---
+
+<BaseLayout
+  title={`Blog — Page ${currentPage}`}
+  description="Practical guides and lessons on building with AI — no engineering degree required."
+>
+  <!-- Page Header -->
+  <section class="py-12 sm:py-16">
+    <div class="animate-in">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight">
+        Blog
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+        Practical guides and lessons on building with AI — no engineering degree required.
+      </p>
+    </div>
+  </section>
+
+  <!-- Posts Grid -->
+  <section class="py-8 border-t border-neutral-200">
+    <div class="grid sm:grid-cols-2 gap-8 animate-in delay-1">
+      {posts.map((post) => (
+        <BlogPostCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`/blog/${post.id}`}
+          pubDate={post.data.pubDate}
+          readingTime={getReadingTime(post.body || '')}
+          heroImage={post.data.heroImage}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  <nav class="py-10 border-t border-neutral-200 animate-in delay-2">
+    <div class="flex items-center justify-between">
+      <a
+        href={currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`}
+        class="btn btn-secondary"
+      >
+        ← Newer Posts
+      </a>
+
+      <span class="text-sm text-neutral-500">
+        Page {currentPage} of {totalPages}
+      </span>
+
+      {currentPage < totalPages ? (
+        <a href={`/blog/${currentPage + 1}`} class="btn btn-secondary">
+          Older Posts →
+        </a>
+      ) : (
+        <span class="btn btn-secondary opacity-40 pointer-events-none">
+          Older Posts →
+        </span>
+      )}
+    </div>
+  </nav>
+</BaseLayout>

@@ -4,13 +4,16 @@ import BlogPostCard from '@components/BlogPostCard.astro';
 import { getCollection } from 'astro:content';
 import { getReadingTime } from '@utils/readingTime';
 
-// Get all non-draft blog posts, sorted by date
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+const PAGE_SIZE = 12;
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// Split featured (first) from the rest
+const posts = allPosts.slice(0, PAGE_SIZE);
 const [featuredPost, ...remainingPosts] = posts;
+const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
+const hasNextPage = allPosts.length > PAGE_SIZE;
 ---
 
 <BaseLayout
@@ -77,6 +80,23 @@ const [featuredPost, ...remainingPosts] = posts;
       )
     }
   </section>
+
+  <!-- Pagination -->
+  {hasNextPage && (
+    <nav class="py-10 border-t border-neutral-200 animate-in delay-3">
+      <div class="flex items-center justify-between">
+        <span class="btn btn-secondary opacity-40 pointer-events-none">
+          ← Newer Posts
+        </span>
+        <span class="text-sm text-neutral-500">
+          Page 1 of {totalPages}
+        </span>
+        <a href="/blog/2" class="btn btn-secondary">
+          Older Posts →
+        </a>
+      </div>
+    </nav>
+  )}
 
   <!-- Newsletter CTA -->
   <section class="py-12 border-t border-neutral-200">
