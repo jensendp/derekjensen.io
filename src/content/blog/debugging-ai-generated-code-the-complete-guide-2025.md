@@ -1,5 +1,5 @@
 ---
-title: "Debugging AI Generated Code: The Complete Guide (2025)"
+title: "Debugging AI Generated Code: The Complete Guide (2026)"
 description: "Learn debugging AI generated code step by step. A beginner-friendly guide to finding and fixing mistakes in code written by ChatGPT, Copilot, and other AI tools."
 pubDate: 2026-04-27
 tags: ["debugging AI code","fixing AI-generated code","AI coding for beginners","debug AI code"]
