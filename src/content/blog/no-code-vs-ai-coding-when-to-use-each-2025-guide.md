@@ -1,5 +1,5 @@
 ---
-title: "No-Code vs AI Coding: When to Use Each (2025 Guide)"
+title: "No-Code vs AI Coding: When to Use Each (2026 Guide)"
 description: "No-code vs AI coding — which should you use to build your next project? A clear, practical guide to choosing the right approach for your goals."
 pubDate: 2026-04-28
 tags: ["no-code vs AI coding","vibe coding","no-code tools","AI development"]
