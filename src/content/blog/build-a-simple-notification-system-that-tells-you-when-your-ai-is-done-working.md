@@ -132,7 +132,7 @@ requests.post(
 )
 ```
 
-> **Warning:** If you're using the Ntfy script above, pick a unique topic name (like `derek-ai-alerts-2025`) instead of something generic like `test` or `notifications`. Ntfy topics are public by default — anyone who knows the topic name can send messages to it. A unique name keeps your alerts private in practice.
+> **Warning:** If you're using the Ntfy script above, pick a unique topic name (like `derek-ai-alerts-2026`) instead of something generic like `test` or `notifications`. Ntfy topics are public by default — anyone who knows the topic name can send messages to it. A unique name keeps your alerts private in practice.
 
 For more on getting better results when you ask AI to write things for you — including scripts like these — check out [5 Prompting Mistakes That Are Costing You Hours of Build Time](https://derekjensen.io/blog/be-smart-with-chatgpt-5-prompting-mistakes-that-are-costing-you-hours-of-build-time).
 
