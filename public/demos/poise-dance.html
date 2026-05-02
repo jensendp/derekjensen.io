@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Poise Dance — Be kind, work hard, dream BIG.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,200;1,9..144,300;1,9..144,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        dark: '#1c1a2e',
+        accent: '#c9826b',
+        bg: '#faf7f4',
+        'bg-alt': '#f2ede8',
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        body: ['Nunito', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  * { font-family: 'Nunito', sans-serif; }
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+
+  .rule-accent {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9826b 30%, #c9826b 70%, transparent);
+  }
+  .rule-short {
+    display: inline-block;
+    width: 48px;
+    height: 1px;
+    background: #c9826b;
+    flex-shrink: 0;
+  }
+  .lift {
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+  }
+  .lift:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 28px 60px rgba(0,0,0,0.13);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-inner {
+    display: flex;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-inner:hover {
+    animation-play-state: paused;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fu { opacity: 0; animation: fadeUp 0.7s ease both; }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.35s; }
+  .d4 { animation-delay: 0.5s; }
+  .d5 { animation-delay: 0.65s; }
+
+  .nav-lnk {
+    position: relative;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-lnk::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #c9826b;
+    transition: width 0.3s;
+  }
+  .nav-lnk:hover::after { width: 100%; }
+
+  .prow {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 9px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+  }
+  .prow:last-child { border-bottom: none; }
+
+  .prow-dark {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 9px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+  }
+  .prow-dark:last-child { border-bottom: none; }
+
+  .incl {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8125rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .incl:last-child { border-bottom: none; }
+  .incl::before {
+    content: '—';
+    color: #c9826b;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.75rem;
+  }
+
+  .incl-dark {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8125rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+  }
+  .incl-dark:last-child { border-bottom: none; }
+  .incl-dark::before {
+    content: '—';
+    color: #c9826b;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.75rem;
+  }
+
+  .sec-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 5.5rem;
+    line-height: 1;
+    color: rgba(201,130,107,0.18);
+    position: absolute;
+    top: -0.5rem;
+    left: -0.75rem;
+    user-select: none;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(201,130,107,0.2);
+    pointer-events: none;
+  }
+
+  .stats-grid {
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+  .stat-cell {
+    background: #1c1a2e;
+  }
+
+  #mob-nav { display: none; }
+  #mob-nav.open { display: flex; }
+
+  .hero-bg {
+    background-image: linear-gradient(135deg, rgba(28,26,46,0.88) 0%, rgba(28,26,46,0.72) 50%, rgba(201,130,107,0.18) 100%), url('https://static.wixstatic.com/media/94450e_fbe74129014d499faf33dc27e5665ef7~mv2.jpg/v1/crop/x_0,y_81,w_5124,h_3255/fill/w_779,h_489,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_0013.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .watermark {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(5rem, 18vw, 18rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    right: -2rem;
+    bottom: -2rem;
+    user-select: none;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .check-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    padding: 4px 10px 4px 7px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+  }
+  .check-badge .chk {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #c9826b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .check-badge .chk svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    padding: 5px 12px;
+    border: 1px solid rgba(201,130,107,0.35);
+    border-radius: 4px;
+    background: rgba(201,130,107,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  .col-divider {
+    border-left: 1px solid rgba(0,0,0,0.08);
+  }
+
+  @media (max-width: 768px) {
+    .col-divider { border-left: none; border-top: 1px solid rgba(0,0,0,0.08); }
+    .watermark { font-size: 5rem; }
+  }
+</style>
+</head>
+
+<body class="bg-bg text-dark" style="font-family:'Nunito',sans-serif;">
+
+<!-- ============================================================ -->
+<!-- NAV -->
+<!-- ============================================================ -->
+<nav class="sticky top-0 z-50 bg-dark shadow-lg" style="shadow:0 2px 24px rgba(0,0,0,0.2);">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#c9826b;">
+        <span class="font-display font-light italic text-white text-base leading-none">P</span>
+      </div>
+      <div>
+        <div class="font-display font-light text-white text-lg leading-none tracking-wide">Poise Dance</div>
+        <div class="text-xs tracking-widest uppercase mt-0.5" style="color:#c9826b; font-size:0.62rem;">Dance Education &amp; Character</div>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#why" class="nav-lnk text-white opacity-80 hover:opacity-100 transition-opacity">About</a>
+      <a href="#programs" class="nav-lnk text-white opacity-80 hover:opacity-100 transition-opacity">Programs</a>
+      <a href="#pricing" class="nav-lnk text-white opacity-80 hover:opacity-100 transition-opacity">Pricing</a>
+      <a href="#story" class="nav-lnk text-white opacity-80 hover:opacity-100 transition-opacity">Our Story</a>
+      <a href="#contact" class="nav-lnk text-white opacity-80 hover:opacity-100 transition-opacity">Contact</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <a href="#contact" class="nav-lnk px-5 py-2.5 text-dark font-semibold text-xs tracking-widest uppercase transition-all hover:opacity-90" style="background:#c9826b; border-radius:3px;">
+        Enroll Now
+      </a>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="md:hidden text-white p-1" onclick="document.getElementById('mob-nav').classList.toggle('open')" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mob-nav" class="md:hidden flex-col bg-dark border-t border-white border-opacity-10 px-6 py-5 gap-5">
+    <a href="#why" class="nav-lnk text-white opacity-80" onclick="document.getElementById('mob-nav').classList.remove('open')">About</a>
+    <a href="#programs" class="nav-lnk text-white opacity-80" onclick="document.getElementById('mob-nav').classList.remove('open')">Programs</a>
+    <a href="#pricing" class="nav-lnk text-white opacity-80" onclick="document.getElementById('mob-nav').classList.remove('open')">Pricing</a>
+    <a href="#story" class="nav-lnk text-white opacity-80" onclick="document.getElementById('mob-nav').classList.remove('open')">Our Story</a>
+    <a href="#contact" class="nav-lnk text-white opacity-80" onclick="document.getElementById('mob-nav').classList.remove('open')">Contact</a>
+    <a href="#contact" class="inline-block px-5 py-2.5 text-dark font-semibold text-xs tracking-widest uppercase mt-2" style="background:#c9826b; border-radius:3px;">Enroll Now</a>
+  </div>
+</nav>
+
+
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<section class="hero-bg relative overflow-hidden" style="min-height:90vh; display:flex; align-items:center;">
+
+  <!-- Rings -->
+  <div class="ring" style="width:520px;height:520px;top:-120px;right:-80px;"></div>
+  <div class="ring" style="width:280px;height:280px;top:60px;right:120px;"></div>
+  <div class="ring" style="width:180px;height:180px;bottom:80px;right:280px;"></div>
+
+  <!-- Watermark -->
+  <div class="watermark">Poise</div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-24 w-full">
+    <div class="max-w-3xl">
+
+      <!-- Eyebrow -->
+      <div class="fu d1 flex items-center gap-4 mb-8">
+        <span class="rule-short"></span>
+        <span class="text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Dance Education · Character Development · Community</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="fu d2 font-display font-light text-white leading-tight mb-6" style="font-size:clamp(3rem,7vw,5.5rem);">
+        Where Every Step<br>
+        Builds More<br>
+        Than a <em class="not-italic" style="color:#c9826b; font-style:italic;">Dancer.</em>
+      </h1>
+
+      <!-- Accent divider -->
+      <div class="fu d3 rule-accent mb-8" style="max-width:420px;"></div>
+
+      <!-- Body -->
+      <p class="fu d3 text-white text-opacity-75 text-base leading-relaxed mb-10 max-w-lg" style="color:rgba(255,255,255,0.72);">
+        Poise Dance offers classes that nurture confidence, discipline, and artistry — shaping young dancers into poised, resilient young people. Be kind. Work hard. Dream big.
+      </p>
+
+      <!-- CTAs -->
+      <div class="fu d4 flex flex-wrap gap-4 mb-12">
+        <a href="#contact" class="px-8 py-3.5 font-semibold text-sm tracking-wide text-dark transition-all hover:opacity-90" style="background:#c9826b; border-radius:3px;">
+          Start Your Journey
+        </a>
+        <a href="#programs" class="px-8 py-3.5 font-semibold text-sm tracking-wide text-white border transition-all hover:border-opacity-80" style="border-color:rgba(255,255,255,0.4); border-radius:3px;">
+          Explore Programs
+        </a>
+      </div>
+
+      <!-- Credential badges -->
+      <div class="fu d5 flex flex-wrap gap-3">
+        <span class="check-badge">
+          <span class="chk">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          All Skill Levels
+        </span>
+        <span class="check-badge">
+          <span class="chk">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Ages 3 &amp; Up
+        </span>
+        <span class="check-badge">
+          <span class="chk">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Character-First Approach
+        </span>
+        <span class="check-badge">
+          <span class="chk">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Performance Opportunities
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- MARQUEE STRIP -->
+<!-- ============================================================ -->
+<div class="overflow-hidden py-4" style="background:#1c1a2e;">
+  <div class="marquee-inner">
+    <!-- Set 1 -->
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Ballet</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Jazz</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Contemporary</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Hip-Hop</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Tap</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Lyrical</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Acro</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Character &amp; Confidence</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Performance Prep</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <!-- Set 2 (duplicate for seamless) -->
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Ballet</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Jazz</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Contemporary</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Hip-Hop</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Tap</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Lyrical</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Acro</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Character &amp; Confidence</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">Performance Prep</span>
+    <span class="mx-8 text-xs font-semibold tracking-widest uppercase text-white opacity-30">·</span>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- WHY / BENEFITS -->
+<!-- ============================================================ -->
+<section id="why" class="py-24 bg-bg">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Section label -->
+    <div class="flex items-center gap-4 mb-6">
+      <span class="rule-short"></span>
+      <span class="text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">The Poise Difference</span>
+    </div>
+
+    <h2 class="font-display font-light text-dark leading-tight mb-16" style="font-size:clamp(2.2rem,5vw,3.8rem); max-width:600px;">
+      More Than Steps —<br>
+      <em style="color:#c9826b;">A Life in Motion.</em>
+    </h2>
+
+    <!-- Three columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-dark divide-opacity-10">
+
+      <!-- Col 1 -->
+      <div class="relative pr-0 pb-10 md:pb-0 md:pr-12 pt-4">
+        <span class="sec-num">01</span>
+        <h3 class="font-display font-light text-2xl text-dark mb-4 mt-8 leading-snug">
+          Character Before<br><em style="color:#c9826b;">Choreography</em>
+        </h3>
+        <p class="text-sm leading-relaxed text-dark" style="color:rgba(28,26,46,0.65);">
+          Every class at Poise begins with values — kindness, hard work, and big dreams. We believe the way a student carries themselves off the stage is just as important as what they do on it.
+        </p>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="relative py-10 md:py-0 md:px-12 pt-4 col-divider">
+        <span class="sec-num">02</span>
+        <h3 class="font-display font-light text-2xl text-dark mb-4 mt-8 leading-snug">
+          Training for Every<br><em style="color:#c9826b;">Stage of Growth</em>
+        </h3>
+        <p class="text-sm leading-relaxed" style="color:rgba(28,26,46,0.65);">
+          From tiny dancers taking their first barre steps to teens preparing for competitive stages, our curriculum meets students exactly where they are — and brings out their best.
+        </p>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="relative pt-10 md:pt-4 md:pl-12 col-divider">
+        <span class="sec-num">03</span>
+        <h3 class="font-display font-light text-2xl text-dark mb-4 mt-8 leading-snug">
+          A Community That<br><em style="color:#c9826b;">Lifts You Up</em>
+        </h3>
+        <p class="text-sm leading-relaxed" style="color:rgba(28,26,46,0.65);">
+          Dance can be competitive — but Poise is a place where students cheer each other on. We cultivate friendships, mentorship, and a joyful studio culture that keeps dancers coming back year after year.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- ABOUT IMAGE BREAK -->
+<!-- ============================================================ -->
+<div class="w-full overflow-hidden" style="height:400px; background-image:linear-gradient(to right, rgba(28,26,46,0.55) 0%, rgba(28,26,46,0.2) 100%), url('https://static.wixstatic.com/media/94450e_fbe74129014d499faf33dc27e5665ef7~mv2.jpg/v1/crop/x_0,y_81,w_5124,h_3255/fill/w_779,h_489,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_0013.jpg'); background-size:cover; background-position:center; display:flex; align-items:center;">
+  <div class="max-w-7xl mx-auto px-6 w-full">
+    <p class="font-display font-light italic text-white leading-tight" style="font-size:clamp(1.8rem,4vw,3rem); max-width:580px; color:rgba(255,255,255,0.92);">
+      "Be kind, work hard, dream BIG. Live Poised."
+    </p>
+    <div class="rule-short mt-6" style="background:#c9826b;"></div>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PROGRAMS -->
+<!-- ============================================================ -->
+<section id="programs" class="py-24" style="background:#f2ede8;">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="flex items-center gap-4 mb-6">
+      <span class="rule-short"></span>
+      <span class="text-xs font-semibold tracking-widest uppercase" style="color:#c9826b;">What We Offer</span>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <h2 class="font-display font-light leading-tight" style="font-size:clamp(2.2rem,4.5vw,3.5rem); max-width:480px;">
+        Dance Programs<br>for <em style="color:#c9826b;">Every Dancer</em>
+      </h2>
+      <a href="#contact" class="inline-block px-7 py-3 text-xs font-semibold tracking-widest uppercase text-dark border transition-all hover:bg-dark hover:text-white self-start md:self-auto" style="border-color:#1c1a2e; border-radius:3px;">
+        Enroll Today
+      </a>
+    </div>
+
+    <!-- Program cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+      <!-- Card 1: Recreational -->
+      <div class="lift bg-bg border border-dark border-opacity-10 p-8 rounded-sm">
+        <div class="text-xs font-semibold tracking-widest uppercase mb-2" style="color:#c9826b;">For Beginners</div>
+        <h3 class
