@@ -10,6 +10,9 @@ import ContactCTA from '@components/ContactCTA.astro';
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const latestPost = allPosts[0];
+
+const allProjects = await getCollection('projects');
+const featuredProject = allProjects.find((p) => p.data.featured);
 ---
 
 <BaseLayout title="Derek Jensen">
@@ -23,22 +26,22 @@ const latestPost = allPosts[0];
   />
 
   <!-- Featured Project -->
-  <section class="py-12 border-t border-neutral-200">
-    <div class="animate-in delay-1">
-      <h2
-        class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6"
-      >
-        Featured Project
-      </h2>
-      <FeaturedProject
-        title="Brew Loyalty"
-        description="A mobile loyalty rewards app for coffee shops, built with React Native and a modern tech stack. Helping local cafes build lasting customer relationships."
-        href="/projects"
-        technologies={['React Native', 'TypeScript', 'Node.js']}
-        featured={true}
-      />
-    </div>
-  </section>
+  {featuredProject && (
+    <section class="py-12 border-t border-neutral-200">
+      <div class="animate-in delay-1">
+        <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">
+          Featured Project
+        </h2>
+        <FeaturedProject
+          title={featuredProject.data.title}
+          description={featuredProject.data.description}
+          href={`/projects/${featuredProject.id}`}
+          technologies={featuredProject.data.technologies}
+          featured={true}
+        />
+      </div>
+    </section>
+  )}
 
   <!-- Latest Blog Post -->
   {latestPost && (
