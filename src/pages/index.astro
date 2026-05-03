@@ -35,7 +35,7 @@ const featuredProject = allProjects.find((p) => p.data.featured);
         <FeaturedProject
           title={featuredProject.data.title}
           description={featuredProject.data.description}
-          href={`/projects/${featuredProject.id}`}
+          href={featuredProject.data.pageUrl ?? `/projects/${featuredProject.id}`}
           technologies={featuredProject.data.technologies}
           featured={true}
         />

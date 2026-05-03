@@ -6,4 +6,5 @@ solution: 'Curb Appeal scrapes the existing site, extracts the brand profile wit
 technologies: ['n8n', 'Claude API', 'Firecrawl', 'GitHub API', 'Tailwind CSS']
 featured: true
 order: 1
+pageUrl: '/projects/curb-appeal'
 ---
