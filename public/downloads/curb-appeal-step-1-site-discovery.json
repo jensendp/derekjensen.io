@@ -1,0 +1,75 @@
+{
+  "name": "Curb Appeal — Step 1: Site Discovery",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "step1-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Provide the homepage URL — the workflow discovers all key pages automatically\n// Slug is auto-generated from the domain name\nreturn [{\n  json: {\n    url: 'https://example.com'\n  }\n}];"
+      },
+      "id": "step1-config",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v1/map",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_FIRECRAWL_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ url: $json.url, limit: 20 }) }}",
+        "options": {}
+      },
+      "id": "step1-map",
+      "name": "Firecrawl Map",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const links = ($json.links || []);\nconst baseUrl = $('Set Config').first().json.url.replace(/\\/$/, '');\n\n// Parse hostname with regex — URL constructor not available in n8n sandbox\nconst hostnameMatch = baseUrl.match(/^https?:\\/\\/([^\\/]+)/);\nconst hostname = hostnameMatch ? hostnameMatch[1] : baseUrl;\nconst domain = hostname.replace(/^www\\./, '');\nconst slug = domain.replace(/\\.[^.]+$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase();\n\nconst SKIP = /\\/(blog|post|article|news|press|legal|privacy|terms|sitemap|tag|category|feed|wp-|admin|login|404|cdn|assets|uploads|media)\\b/i;\nconst KEEP = /\\/(about|service|contact|menu|pricing|location|team|appointment|booking|offer|product|portfolio|gallery)\\b/i;\n\nconst filtered = [baseUrl];\n\nfor (const link of links) {\n  if (filtered.length >= 8) break;\n  const clean = link.replace(/\\/$/, '');\n  if (clean === baseUrl) continue;\n  if (SKIP.test(clean)) continue;\n  if (/sitemap/i.test(clean) || clean.match(/\\.[a-z]{2,4}$/i)) continue;\n  const pathMatch = clean.match(/^https?:\\/\\/[^\\/]+(\\/.*)?$/);\n  const path = pathMatch ? (pathMatch[1] || '/') : '/';\n  const depth = path.split('/').filter(Boolean).length;\n  if (depth <= 2 && (KEEP.test(clean) || depth === 1)) {\n    filtered.push(clean);\n  }\n}\n\nreturn [{ json: { filtered_urls: filtered, homepage: baseUrl, slug } }];"
+      },
+      "id": "step1-filter",
+      "name": "Filter Key Pages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Set Config", "type": "main", "index": 0 }]]
+    },
+    "Set Config": {
+      "main": [[{ "node": "Firecrawl Map", "type": "main", "index": 0 }]]
+    },
+    "Firecrawl Map": {
+      "main": [[{ "node": "Filter Key Pages", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
