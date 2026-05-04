@@ -1,10 +1,10 @@
 ---
 title: 'How to Scrape a Website the Smart Way with Firecrawl and n8n'
-description: 'Most scraping tutorials tell you to list the URLs yourself. That breaks on every new site. Here''s how to build a pipeline that discovers the right pages automatically — and only scrapes what matters.'
+description: "Most scraping tutorials tell you to list the URLs yourself. That breaks on every new site. Here's how to build a pipeline that discovers the right pages automatically — and only scrapes what matters."
 pubDate: '2026-05-04'
 author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'firecrawl', 'build in public', 'curb appeal']
-draft: true
+draft: false
 series: 'curb-appeal'
 seriesOrder: 1
 ---
@@ -60,9 +60,11 @@ One API call. Full URL list. Done.
 Here's the n8n setup:
 
 **Node: Firecrawl Map**
+
 - Method: `POST`
 - URL: `https://api.firecrawl.dev/v1/map`
 - Body:
+
 ```json
 {
   "url": "{{ $json.url }}",
@@ -80,7 +82,7 @@ The output is a `links` array — every URL the crawler found.
 
 Raw Firecrawl map output is noisy.
 
-When I ran it against a real dance studio (Poise Dance in Oswego, IL), it returned everything — including a sitemap XML file, PDF downloads, and links to third-party booking forms.
+When I ran it against a local business site, it returned everything — including a sitemap XML file, PDF downloads, and links to third-party booking forms.
 
 None of that helps us understand the brand.
 
@@ -91,12 +93,14 @@ Here's the logic:
 **Always keep:** the homepage (it's always first in the list)
 
 **Skip if the URL contains:**
+
 - `blog`, `post`, `article`, `news` — content pages, not brand pages
 - `sitemap`, `legal`, `privacy`, `terms` — utility pages
 - `admin`, `login`, `wp-` — backend URLs
 - `.xml`, `.pdf` — file downloads
 
 **Keep if the URL contains:**
+
 - `about`, `service`, `contact`, `menu`, `pricing`, `gallery`, `team`, `location`
 - OR if the path is shallow (one level deep like `/our-story`)
 
@@ -110,22 +114,18 @@ The node also auto-generates a slug from the domain name. `fairytailsmobilepetsp
 
 ## What the Output Looks Like
 
-Here's what came back when I ran this against Poise Dance:
+Here's what came back when I ran this against Fairy Tails Mobile Pet Spa:
 
 ```json
 {
   "filtered_urls": [
-    "https://www.poisedance.org",
-    "https://www.poisedance.org/competition-team",
-    "https://www.poisedance.org/events",
-    "https://www.poisedance.org/about-us",
-    "https://www.poisedance.org/classes",
-    "https://www.poisedance.org/gallery",
-    "https://www.poisedance.org/parent-portal",
-    "https://www.poisedance.org/dress-code"
+    "https://fairytailsmobilepetspa.com",
+    "https://fairytailsmobilepetspa.com/about",
+    "https://fairytailsmobilepetspa.com/services",
+    "https://fairytailsmobilepetspa.com/contact"
   ],
-  "homepage": "https://www.poisedance.org",
-  "slug": "poisedance"
+  "homepage": "https://fairytailsmobilepetspa.com",
+  "slug": "fairytails-mobile-pet-spa"
 }
 ```
 
@@ -182,7 +182,21 @@ The homepage item also includes a `screenshot` URL — a hosted image Firecrawl 
 
 ---
 
-## Download the Workflow Files
+## How I Used AI to Build and Debug This
+
+I want to be transparent about something. This pipeline wasn't built in isolation. I built it with Claude Code — Anthropic's CLI tool — running alongside n8n the whole time.
+
+Here's what that actually looked like in practice.
+
+**Planning the architecture.** Before writing a single node, I described what I wanted to build and worked through the design with Claude. How many API calls should this take? Where do tokens get spent? What's the right split between Steps 1 and 2? Most of those decisions came out of a conversation, not a document.
+
+**Debugging the URL error.** When the Filter Key Pages node threw a `ReferenceError: URL is not defined` error, I pasted the error into Claude and got the fix in about 30 seconds. The `URL` constructor isn't available in n8n's sandboxed Code node environment — you have to use regex instead. I wouldn't have known that without hitting the error, and finding it in docs would have taken much longer.
+
+**Cleaning up the image list.** After the first scrape run, the `image_urls` array was full of Google Maps tile URLs. I described what I was seeing, Claude identified the pattern, and we added a filter to block `maps.googleapis.com` URLs. Three lines of code. Two minutes.
+
+The point isn't that AI wrote everything. I still designed the workflow, made the architectural decisions, and did the testing. But having something that can look at an error message and tell you exactly what's wrong — or talk through a design tradeoff — changes how fast you can move.
+
+That's part of what this series is showing. Not just the finished thing, but how it gets built.
 
 You can follow along by importing these into n8n. Each file is self-contained — just swap in your Firecrawl API key.
 
