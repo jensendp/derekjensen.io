@@ -7,6 +7,7 @@ tags: ['automation', 'n8n', 'firecrawl', 'build in public', 'curb appeal']
 draft: false
 series: 'curb-appeal'
 seriesOrder: 1
+heroImage: '/images/blog/curb-appeal-hero-part-2.png'
 ---
 
 Most scraping setups start the same way.
