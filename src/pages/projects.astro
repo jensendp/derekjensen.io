@@ -50,6 +50,7 @@ const projects = allProjects
             image={featuredProject.data.image}
             liveUrl={featuredProject.data.liveUrl}
             githubUrl={featuredProject.data.githubUrl}
+            href={featuredProject.data.pageUrl ?? `/projects/${featuredProject.id}`}
             featured={true}
           />
         </div>
