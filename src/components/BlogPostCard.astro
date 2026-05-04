@@ -78,17 +78,15 @@ const formatDate = (date: Date) => {
 ) : (
   <article class="group">
     <a href={href} class="block h-full">
-      <div class="rounded-xl overflow-hidden bg-neutral-100 aspect-video mb-4">
-        {heroImage ? (
+      {heroImage && (
+        <div class="rounded-xl overflow-hidden bg-neutral-100 aspect-video mb-4">
           <img
             src={heroImage}
             alt={title}
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
-        ) : (
-          <div class="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200" />
-        )}
-      </div>
+        </div>
+      )}
       <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-200 leading-snug mb-2">
         {title}
       </h3>
