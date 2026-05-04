@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 interface Props {
   series: string;
-  currentSlug: string;
+  currentSlug?: string;
 }
 
 const { series, currentSlug } = Astro.props;

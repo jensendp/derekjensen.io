@@ -1,15 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactCTA from '@components/ContactCTA.astro';
-import { getEntry, getCollection } from 'astro:content';
+import SeriesNav from '@components/SeriesNav.astro';
+import { getEntry } from 'astro:content';
 
 const project = await getEntry('projects', 'curb-appeal');
 const { title, description, problem, solution, technologies } = project.data;
-
-const seriesPosts = await getCollection('blog', ({ data }) =>
-  data.series === 'curb-appeal' && !data.draft
-);
-seriesPosts.sort((a, b) => (a.data.seriesOrder ?? 99) - (b.data.seriesOrder ?? 99));
 
 const steps = [
   {
@@ -104,30 +100,12 @@ const steps = [
     </div>
   </section>
 
-  {seriesPosts.length > 0 && (
-    <section class="py-12 border-t border-neutral-200">
-      <div class="animate-in delay-4">
-        <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-6">Build Log</h2>
-        <ol class="space-y-3">
-          {seriesPosts.map((post) => (
-            <li class="flex items-start gap-4">
-              <span class="text-sm tabular-nums font-medium text-neutral-300 w-6 shrink-0 pt-0.5">
-                {String((post.data.seriesOrder ?? 0) + 1).padStart(2, '0')}
-              </span>
-              <div>
-                <a
-                  href={`/blog/${post.id}/`}
-                  class="text-sm font-medium text-neutral-900 hover:text-primary-600 transition-colors duration-150 link-underline"
-                >
-                  {post.data.title}
-                </a>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  )}
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-4">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-4">Build Log</h2>
+      <SeriesNav series="curb-appeal" />
+    </div>
+  </section>
 
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-4">
