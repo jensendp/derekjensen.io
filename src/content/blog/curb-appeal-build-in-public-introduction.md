@@ -1,10 +1,11 @@
 ---
-title: 'I Built an AI Tool That Redesigns Websites. Now I''m Building It Into a Real Product in Public.'
-description: 'Introducing Curb Appeal — an AI pipeline that scrapes a local business website, builds a redesigned demo, and deploys it live before you ever talk to the owner. Here''s what it is, why I built it, and what I''m doing next.'
+title: "I Built an AI Tool That Redesigns Websites. Now I'm Building It Into a Real Product in Public."
+description: "Introducing Curb Appeal — an AI pipeline that scrapes a local business website, builds a redesigned demo, and deploys it live before you ever talk to the owner. Here's what it is, why I built it, and what I'm doing next."
 pubDate: '2026-05-04'
 author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'build in public', 'AI tools', 'curb appeal']
 draft: false
+heroImage: '/images/blog/curb-appeal-hero-part-1.png'
 ---
 
 Most local business websites are bad.
@@ -43,7 +44,7 @@ Here's the honest reason.
 
 I've been writing on this blog about how to build things with AI. How automation works. How to prompt well. How to turn an idea into software without being an engineer.
 
-But writing about it and *doing* it are two different things.
+But writing about it and _doing_ it are two different things.
 
 Building Curb Appeal in public is my way of showing you that the stuff I write about actually works. Every post in this series will use a concept I've already covered — and show it applied to a real project, with real results.
 
