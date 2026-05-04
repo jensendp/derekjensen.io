@@ -6,6 +6,8 @@ author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'build in public', 'AI tools', 'curb appeal']
 draft: false
 heroImage: '/images/blog/curb-appeal-hero-part-1.png'
+series: 'curb-appeal'
+seriesOrder: 0
 ---
 
 Most local business websites are bad.

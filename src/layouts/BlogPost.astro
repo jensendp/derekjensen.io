@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ShareButtons from '@components/ShareButtons.astro';
 import LeadCapture from '@components/LeadCapture.astro';
+import SeriesNav from '@components/SeriesNav.astro';
 import { formatDate, formatDateISO } from '@utils/readingTime';
 
 interface Props {
@@ -14,6 +15,8 @@ interface Props {
   tags?: string[];
   readingTime: string;
   heroImage?: string;
+  series?: string;
+  currentSlug?: string;
   prevPost?: { slug: string; title: string };
   nextPost?: { slug: string; title: string };
 }
@@ -27,6 +30,8 @@ const {
   tags = [],
   readingTime,
   heroImage,
+  series,
+  currentSlug,
   prevPost,
   nextPost,
 } = Astro.props;
@@ -89,6 +94,11 @@ const breadcrumbItems = [
       <div class="mb-10 rounded-xl overflow-hidden">
         <img src={heroImage} alt={title} class="w-full object-cover max-h-96" />
       </div>
+    )}
+
+    <!-- Series Navigation -->
+    {series && currentSlug && (
+      <SeriesNav series={series} currentSlug={currentSlug} />
     )}
 
     <!-- Article Content -->

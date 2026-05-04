@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  series: string;
+  currentSlug: string;
+}
+
+const { series, currentSlug } = Astro.props;
+
+const seriesConfig: Record<string, {
+  title: string;
+  description: string;
+  projectUrl?: string;
+  posts: { slug: string; title: string }[];
+}> = {
+  'curb-appeal': {
+    title: 'Building Curb Appeal in Public',
+    description: 'A step-by-step series on building an AI pipeline that automatically redesigns local business websites.',
+    projectUrl: '/projects/curb-appeal',
+    posts: [
+      { slug: 'curb-appeal-build-in-public-introduction', title: 'Introduction: What Is Curb Appeal?' },
+      { slug: 'curb-appeal-scraping-with-firecrawl-n8n', title: 'Steps 1 & 2: Scraping the Right Pages' },
+      { slug: 'curb-appeal-brand-analysis-claude', title: 'Step 3: Teaching AI to Read a Brand' },
+      { slug: 'curb-appeal-html-generation', title: 'Step 4: From Brand Brief to Working Website' },
+      { slug: 'curb-appeal-automated-deployment', title: 'Step 5: One URL In, Live Demo Out' },
+      { slug: 'curb-appeal-real-costs', title: 'Step 6: What It Really Costs to Run an AI Product' },
+      { slug: 'curb-appeal-complete-walkthrough', title: 'Wrap-Up: The Complete Walkthrough' },
+    ]
+  }
+};
+
+const config = seriesConfig[series];
+
+const publishedPosts = config
+  ? await getCollection('blog', ({ data }) => data.series === series && !data.draft)
+  : [];
+
+const publishedSlugs = new Set(publishedPosts.map(p => p.id));
+---
+
+{config && (
+  <aside class="my-8 rounded-xl border border-neutral-200 bg-neutral-50 overflow-hidden">
+    <div class="px-5 py-4 border-b border-neutral-200 flex items-center justify-between gap-4">
+      <div>
+        <p class="text-xs font-medium text-neutral-500 uppercase tracking-wider mb-0.5">Series</p>
+        <p class="font-semibold text-neutral-900 text-sm">{config.title}</p>
+      </div>
+      {config.projectUrl && (
+        <a
+          href={config.projectUrl}
+          class="text-xs font-medium text-primary-600 hover:text-primary-700 whitespace-nowrap link-underline"
+        >
+          Project page →
+        </a>
+      )}
+    </div>
+    <ol class="divide-y divide-neutral-200">
+      {config.posts.map((post, i) => {
+        const isPublished = publishedSlugs.has(post.slug);
+        const isCurrent = post.slug === currentSlug;
+        return (
+          <li class:list={['px-5 py-3 flex items-center gap-3', isCurrent && 'bg-white']}>
+            <span class:list={[
+              'text-xs tabular-nums font-medium w-5 shrink-0',
+              isCurrent ? 'text-primary-600' : isPublished ? 'text-neutral-400' : 'text-neutral-300'
+            ]}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            {isPublished && !isCurrent ? (
+              <a
+                href={`/blog/${post.slug}/`}
+                class="text-sm text-neutral-700 hover:text-primary-600 transition-colors duration-150"
+              >
+                {post.title}
+              </a>
+            ) : isCurrent ? (
+              <span class="text-sm font-medium text-neutral-900 flex items-center gap-2">
+                {post.title}
+                <span class="text-xs font-normal text-primary-600 bg-primary-50 px-1.5 py-0.5 rounded">
+                  You are here
+                </span>
+              </span>
+            ) : (
+              <span class="text-sm text-neutral-400">{post.title}</span>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </aside>
+)}
