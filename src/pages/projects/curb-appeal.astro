@@ -5,6 +5,39 @@ import { getEntry } from 'astro:content';
 
 const project = await getEntry('projects', 'curb-appeal');
 const { title, description, problem, solution, technologies } = project.data;
+
+const steps = [
+  {
+    number: '01',
+    title: 'You provide a URL',
+    body: 'Drop in any local business homepage. That\'s the only input required.'
+  },
+  {
+    number: '02',
+    title: 'The pipeline discovers the site',
+    body: 'Firecrawl maps the site and filters down to the pages that matter — home, about, services, contact. Blog posts, legal pages, and noise get dropped automatically.'
+  },
+  {
+    number: '03',
+    title: 'Every page gets scraped',
+    body: 'Each key page is scraped for content. The homepage also gets a screenshot, which is used to extract the existing color palette and visual style.'
+  },
+  {
+    number: '04',
+    title: 'Claude reads the brand',
+    body: 'All scraped content and the screenshot feed into a single Claude call. It extracts a structured brand profile: business type, audience, services, tone of voice, color palette, and an opinionated redesign direction.'
+  },
+  {
+    number: '05',
+    title: 'A demo is generated',
+    body: 'The brand profile drives a second Claude call that produces a complete, production-quality HTML page — fonts, colors, layout, and copy all tailored to the specific business.'
+  },
+  {
+    number: '06',
+    title: 'The demo goes live automatically',
+    body: 'The generated HTML is pushed to GitHub and deployed via Vercel. A live URL is ready before the first conversation with the owner.'
+  }
+];
 ---
 
 <BaseLayout
@@ -38,6 +71,23 @@ const { title, description, problem, solution, technologies } = project.data;
 
   <section class="py-12 border-t border-neutral-200">
     <div class="animate-in delay-2">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-4">How It Works</h2>
+      <div class="space-y-0">
+        {steps.map((step, i) => (
+          <div class="flex gap-8 py-8 border-b border-neutral-100 last:border-0">
+            <span class="text-3xl font-bold text-neutral-200 tabular-nums shrink-0 w-10">{step.number}</span>
+            <div>
+              <h3 class="text-base font-semibold text-neutral-900 mb-2">{step.title}</h3>
+              <p class="text-neutral-600 leading-relaxed">{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-3">
       <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-4">Built With</h2>
       <div class="flex flex-wrap gap-2">
         {technologies.map((tech) => (
@@ -50,11 +100,17 @@ const { title, description, problem, solution, technologies } = project.data;
   </section>
 
   <section class="py-12 border-t border-neutral-200">
-    <div class="animate-in delay-3">
-      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-4">How It Works</h2>
-      <div class="prose max-w-none text-neutral-700 leading-relaxed space-y-4">
-        <p>More details coming soon.</p>
+    <div class="animate-in delay-4">
+      <div class="flex items-start gap-3 mb-6">
+        <span class="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">Private Testing</span>
       </div>
+      <h2 class="text-2xl font-bold text-neutral-900 mb-3">Want early access?</h2>
+      <p class="text-neutral-600 leading-relaxed max-w-xl mb-6">
+        Curb Appeal is currently in private testing. I'm building it in public — documenting every step of the process, from the automation pipeline to the public product launch.
+      </p>
+      <a href="/blog" class="inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 link-underline">
+        Follow the build →
+      </a>
     </div>
   </section>
 
