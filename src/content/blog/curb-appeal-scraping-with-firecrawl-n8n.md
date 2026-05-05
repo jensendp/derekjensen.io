@@ -1,7 +1,7 @@
 ---
 title: 'How to Scrape a Website the Smart Way with Firecrawl and n8n'
 description: "Most scraping tutorials tell you to list the URLs yourself. That breaks on every new site. Here's how to build a pipeline that discovers the right pages automatically — and only scrapes what matters."
-pubDate: '2026-05-04'
+pubDate: '2026-05-04T10:00:00'
 author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'firecrawl', 'build in public', 'curb appeal']
 draft: false

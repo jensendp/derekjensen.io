@@ -1,7 +1,7 @@
 ---
 title: "I Built an AI Tool That Redesigns Websites. Now I'm Building It Into a Real Product in Public."
 description: "Introducing Curb Appeal — an AI pipeline that scrapes a local business website, builds a redesigned demo, and deploys it live before you ever talk to the owner. Here's what it is, why I built it, and what I'm doing next."
-pubDate: '2026-05-04'
+pubDate: '2026-05-04T08:00:00'
 author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'build in public', 'AI tools', 'curb appeal']
 draft: false

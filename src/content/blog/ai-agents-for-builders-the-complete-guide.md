@@ -1,11 +1,11 @@
 ---
-title: "AI Agents for Builders: The Complete Guide (2026)"
-description: "AI agents for builders explained step by step. Learn what they are, how they work, and how to build your first one — no coding required."
+title: 'AI Agents for Builders: The Complete Guide (2026)'
+description: 'AI agents for builders explained step by step. Learn what they are, how they work, and how to build your first one — no coding required.'
 pubDate: 2026-05-05
-tags: ["AI agents","no-code AI","autonomous systems","AI for non-developers"]
-author: "Derek Jensen"
+tags: ['AI agents', 'no-code AI', 'autonomous systems', 'AI for non-developers']
+author: 'Derek Jensen'
 draft: false
-heroImage: "https://images.unsplash.com/photo-1732780484428-4619d6a42a24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxBSSUyMEFnZW50cyUyMGZvciUyMEJ1aWxkZXJzJTNBJTIwVGhlJTIwQ29tcGxldGUlMjBHdWlkZSUyMCUyODIwMjYlMjl8ZW58MHwwfHx8MTc3Nzk4MjU0NHww&ixlib=rb-4.1.0&q=80&w=1080"
+heroImage: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0'
 ---
 
 You don't need to be a developer to build an AI agent. You just need to know what you're building and why.
@@ -20,20 +20,20 @@ If you've been curious but didn't know where to begin, start here. And if you're
 
 Let's start simple. You've probably used a chatbot before. You type a question, it gives you an answer, and that's it. The conversation ends.
 
-An AI agent is different. It doesn't just answer — it *does things*.
+An AI agent is different. It doesn't just answer — it _does things_.
 
 You give an agent a goal, and it figures out the steps to get there. It can check your email, pull data from a spreadsheet, send a follow-up message, and update your CRM — all on its own. A chatbot waits for you. An agent works for you.
 
 Simple automation (like a Zap) follows a fixed path every time. An agent can make decisions along the way. It adapts.
 
-| | Chatbot | Simple Automation (Zap) | AI Agent |
-|---|---|---|---|
-| **How it starts** | You ask a question | A trigger fires | You set a goal |
-| **Decision-making** | None — gives one answer | None — follows a fixed path | Yes — chooses next steps |
-| **Uses tools** | No | Limited (pre-set integrations) | Yes (search, email, APIs, etc.) |
-| **Remembers context** | Only within the chat | No | Yes — across steps |
-| **Adapts when things change** | No | No | Yes |
-| **Best for** | Quick Q&A | Repeatable, identical tasks | Complex or variable workflows |
+|                               | Chatbot                 | Simple Automation (Zap)        | AI Agent                        |
+| ----------------------------- | ----------------------- | ------------------------------ | ------------------------------- |
+| **How it starts**             | You ask a question      | A trigger fires                | You set a goal                  |
+| **Decision-making**           | None — gives one answer | None — follows a fixed path    | Yes — chooses next steps        |
+| **Uses tools**                | No                      | Limited (pre-set integrations) | Yes (search, email, APIs, etc.) |
+| **Remembers context**         | Only within the chat    | No                             | Yes — across steps              |
+| **Adapts when things change** | No                      | No                             | Yes                             |
+| **Best for**                  | Quick Q&A               | Repeatable, identical tasks    | Complex or variable workflows   |
 
 So why should you care right now? Because 2026 is the year AI agents for builders actually became easy to set up. The tools caught up. You no longer need to write code or [understand APIs](https://derekjensen.io/blog/apis-and-integrations-without-coding-the-guide) to build something real.
 
@@ -58,7 +58,7 @@ You give them a goal: "Find me the ten best podcast guests for next quarter." A 
 
 Then it repeats that loop until the job is done.
 
-What makes AI agents for builders so powerful is that they don't just answer questions — they *use tools* to get things done. They can search the web, read a spreadsheet, send an email, or update a CRM. They hold onto **memory** from earlier steps so they don't lose context halfway through. And they stay locked on the **goal** you gave them.
+What makes AI agents for builders so powerful is that they don't just answer questions — they _use tools_ to get things done. They can search the web, read a spreadsheet, send an email, or update a CRM. They hold onto **memory** from earlier steps so they don't lose context halfway through. And they stay locked on the **goal** you gave them.
 
 Here's the simplest way to picture it: a chatbot is a calculator. An agent is a person holding a calculator, a phone, and a to-do list — and they know how to use all three together.
 
@@ -106,7 +106,7 @@ If you're brand new to AI agents for builders, start with Lindy or Gumloop. Get 
 
 Let's build something real. Right now.
 
-**Start with your "done sentence."** Before you open any tool, finish this sentence: "My agent is done when it ___." For example: "My agent is done when it scores a new lead and sends the result to my spreadsheet." That one sentence keeps you focused. Without it, you'll wander.
+**Start with your "done sentence."** Before you open any tool, finish this sentence: "My agent is done when it \_\_\_." For example: "My agent is done when it scores a new lead and sends the result to my spreadsheet." That one sentence keeps you focused. Without it, you'll wander.
 
 **Break it into single jobs.** Most AI agents for builders don't need to be complicated. Write down each step your agent needs to do — one job per line. For a lead scorer, that looks like:
 
