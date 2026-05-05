@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Peace, Love, & Happy Pets — Cage-Free Dog Daycare & Boarding</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark:    '#1A3A3A',
+            accent:  '#F5A800',
+            teal:    '#0D9488',
+            'teal-light': '#14B8A6',
+            bg:      '#F7F5F0',
+            'bg-alt':'#EEF0EB',
+            cream:   '#FDFBF6',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            body:    ['Nunito', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Nunito', sans-serif; background: #F7F5F0; color: #1A3A3A; }
+
+    .rule-accent {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #F5A800 30%, #F5A800 70%, transparent);
+    }
+    .rule-short {
+      display: inline-block;
+      width: 48px;
+      height: 2px;
+      background: #F5A800;
+      flex-shrink: 0;
+    }
+    .lift {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+    }
+    .lift:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.13);
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-inner {
+      display: flex;
+      animation: marquee 32s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-inner:hover { animation-play-state: paused; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fu { opacity: 0; animation: fadeUp 0.7s ease both; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.35s; }
+    .d4 { animation-delay: 0.5s; }
+    .d5 { animation-delay: 0.65s; }
+
+    .nav-lnk {
+      position: relative;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Nunito', sans-serif;
+    }
+    .nav-lnk::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #F5A800;
+      transition: width 0.3s;
+    }
+    .nav-lnk:hover::after { width: 100%; }
+
+    .prow {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 8px 0;
+    }
+    .prow:last-child { border-bottom: none; }
+    .prow-dark {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 0;
+    }
+    .prow-dark:last-child { border-bottom: none; }
+
+    .incl {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8125rem;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .incl:last-child { border-bottom: none; }
+    .incl::before {
+      content: '—';
+      color: #F5A800;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 0.75rem;
+    }
+
+    .incl-dark {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8125rem;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.85);
+    }
+    .incl-dark:last-child { border-bottom: none; }
+    .incl-dark::before {
+      content: '—';
+      color: #F5A800;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 0.75rem;
+    }
+
+    .sec-num {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 5.5rem;
+      line-height: 1;
+      color: rgba(245,168,0,0.15);
+      position: absolute;
+      top: -0.5rem;
+      left: -0.75rem;
+      user-select: none;
+    }
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(245,168,0,0.2);
+      pointer-events: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+    .stat-cell {
+      background: #1A3A3A;
+      padding: 2rem 1.5rem;
+    }
+
+    #mob-nav { display: none; }
+    #mob-nav.open { display: flex; }
+
+    .hero-bg {
+      background-image:
+        radial-gradient(ellipse at 70% 50%, rgba(13,148,136,0.25) 0%, transparent 65%),
+        linear-gradient(160deg, rgba(26,58,58,0.97) 0%, rgba(26,58,58,0.93) 100%),
+        url('https://images.squarespace-cdn.com/content/v1/622a749e0bb02b567479760d/49d9b1c6-ef40-4c6e-8dbf-5a144447add2/415534949_846781230584323_4781021027412672639_n.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .watermark {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(6rem, 20vw, 18rem);
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      right: -2rem;
+      bottom: -2rem;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .badge-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+    .badge-check::before {
+      content: '✓';
+      color: #F5A800;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .about-bg {
+      background-image:
+        radial-gradient(ellipse at 30% 70%, rgba(13,148,136,0.15) 0%, transparent 60%),
+        linear-gradient(135deg, #1A3A3A 0%, #0f2424 100%);
+    }
+
+    .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 14px;
+      border: 1px solid rgba(245,168,0,0.35);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #F5A800;
+    }
+
+    .card-featured-glow {
+      box-shadow: 0 0 0 1px rgba(245,168,0,0.3), 0 24px 56px rgba(0,0,0,0.25);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0D9488;
+    }
+
+    .divider-col {
+      border-left: 1px solid rgba(26,58,58,0.12);
+    }
+
+    @media (max-width: 767px) {
+      .divider-col { border-left: none; border-top: 1px solid rgba(26,58,58,0.12); }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- ============================================================
+     STICKY NAV
+     ============================================================ -->
+<nav class="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-dark/10 shadow-sm">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 flex-shrink-0">
+      <div class="w-8 h-8 rounded-md bg-dark flex items-center justify-center flex-shrink-0">
+        <span class="font-display font-black text-accent text-sm leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="font-display font-bold text-dark text-base leading-none">Peace, Love, & Happy Pets</div>
+        <div class="text-accent text-xs font-bold tracking-widest uppercase leading-none mt-0.5">Cage-Free Dog Care</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="nav-lnk text-dark/70 hover:text-dark transition-colors">Services</a>
+      <a href="#why" class="nav-lnk text-dark/70 hover:text-dark transition-colors">Why Us</a>
+      <a href="#pricing" class="nav-lnk text-dark/70 hover:text-dark transition-colors">Pricing</a>
+      <a href="#about" class="nav-lnk text-dark/70 hover:text-dark transition-colors">About</a>
+      <a href="#contact" class="nav-lnk text-dark/70 hover:text-dark transition-colors">Locations</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a href="tel:6309038765" class="bg-dark text-white font-body font-800 text-xs tracking-widest uppercase px-5 py-2.5 hover:bg-teal transition-colors duration-200">
+        630-903-8765
+      </a>
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      onclick="document.getElementById('mob-nav').classList.toggle('open')"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-6 h-0.5 bg-dark"></span>
+      <span class="block w-6 h-0.5 bg-dark"></span>
+      <span class="block w-4 h-0.5 bg-dark"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div id="mob-nav" class="md:hidden flex-col bg-dark text-white px-6 py-6 gap-5 border-t border-white/10">
+    <a href="#services" class="nav-lnk text-white/70 hover:text-white block py-2" onclick="document.getElementById('mob-nav').classList.remove('open')">Services</a>
+    <a href="#why"      class="nav-lnk text-white/70 hover:text-white block py-2" onclick="document.getElementById('mob-nav').classList.remove('open')">Why Us</a>
+    <a href="#pricing"  class="nav-lnk text-white/70 hover:text-white block py-2" onclick="document.getElementById('mob-nav').classList.remove('open')">Pricing</a>
+    <a href="#about"    class="nav-lnk text-white/70 hover:text-white block py-2" onclick="document.getElementById('mob-nav').classList.remove('open')">About</a>
+    <a href="#contact"  class="nav-lnk text-white/70 hover:text-white block py-2" onclick="document.getElementById('mob-nav').classList.remove('open')">Locations</a>
+    <a href="tel:6309038765" class="mt-2 inline-block bg-accent text-dark font-bold text-sm px-6 py-3 uppercase tracking-widest">
+      Call Now
+    </a>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero-bg relative overflow-hidden" style="min-height:92vh; display:flex; align-items:center;">
+
+  <!-- Decorative rings -->
+  <div class="ring" style="width:520px;height:520px;top:-100px;right:-120px;opacity:0.4;"></div>
+  <div class="ring" style="width:300px;height:300px;top:60px;right:80px;opacity:0.25;"></div>
+  <div class="ring" style="width:180px;height:180px;bottom:80px;left:40px;opacity:0.2;"></div>
+
+  <!-- Watermark -->
+  <div class="watermark select-none hidden lg:block">HAPPY</div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full py-24">
+    <div class="max-w-3xl">
+
+      <!-- Eyebrow -->
+      <div class="fu d1 flex items-center gap-3 mb-7">
+        <span class="rule-short"></span>
+        <span class="text-xs font-body font-800 tracking-widest uppercase text-accent">Plainfield & Romeoville, IL — Making new best friends since 2018</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="fu d2 font-display font-bold text-white leading-none mb-4" style="font-size:clamp(3rem,8vw,6rem);">
+        Your dog deserves<br/>
+        <em class="text-accent font-light italic">real</em> love &<br/>
+        <span style="font-weight:900;">real freedom.</span>
+      </h1>
+
+      <div class="fu d3 rule-accent my-7" style="max-width:380px;"></div>
+
+      <!-- Body -->
+      <p class="fu d3 text-white/70 font-body text-lg leading-relaxed max-w-lg mb-10">
+        Cage-free daycare, overnight boarding, and grooming in a home-like setting — with couches, TVs, a splash pond, and humans who genuinely adore dogs. Two convenient suburban Chicago locations.
+      </p>
+
+      <!-- CTAs -->
+      <div class="fu d4 flex flex-wrap gap-4 mb-12">
+        <a href="#pricing" class="bg-accent text-dark font-body font-800 text-sm tracking-widest uppercase px-8 py-4 hover:bg-yellow-400 transition-colors duration-200">
+          View Packages
+        </a>
+        <a href="#contact" class="border border-white/40 text-white font-body font-700 text-sm tracking-widest uppercase px-8 py-4 hover:border-accent hover:text-accent transition-colors duration-200">
+          Find a Location
+        </a>
+      </div>
+
+      <!-- Credential row -->
+      <div class="fu d5 flex flex-wrap gap-x-8 gap-y-3">
+        <span class="badge-check">Cage-Free Always</span>
+        <span class="badge-check">Constant Human Supervision</span>
+        <span class="badge-check">Outdoor Splash Pond</span>
+        <span class="badge-check">Two Locations</span>
+        <span class="badge-check">In Business Since 2018</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MARQUEE STRIP
+     ============================================================ -->
+<div class="bg-dark overflow-hidden py-4 border-t border-b border-teal/20">
+  <div class="marquee-inner">
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Dog Daycare</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Cage-Free Boarding</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Dog Grooming</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Plainfield, IL</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Romeoville, IL</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Splash Pond</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Daycare Memberships</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Bath & Brush</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Nail Trims</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Bolingbrook · Joliet · Naperville · Lemont</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Dog Daycare</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Cage-Free Boarding</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Dog Grooming</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Plainfield, IL</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Romeoville, IL</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Splash Pond</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Daycare Memberships</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Bath & Brush</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-accent font-display font-bold italic text-sm tracking-wide px-8">Nail Trims</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+    <span class="text-white/60 font-body font-700 text-xs tracking-widest uppercase px-8">Bolingbrook · Joliet · Naperville · Lemont</span>
+    <span class="text-white/30 text-xs px-2">✦</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     WHY / BENEFITS
+     ============================================================ -->
+<section id="why" class="bg-bg py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <!-- Label -->
+    <div class="section-label mb-6">
+      <span class="rule-short"></span>
+      Why Happy Pets
+    </div>
+
+    <!-- Heading -->
+    <h2 class="font-display font-bold text-dark mb-16 leading-tight" style="font-size:clamp(2.25rem,5vw,3.75rem); max-width:600px;">
+      Not a kennel.<br/><em class="font-light text-teal italic">A second home</em><br/>for your dog.
+    </h2>
+
+    <!-- Three columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3">
+
+      <!-- Col 1 -->
+      <div class="relative pr-10 pb-12 md:pb-0">
+        <span class="sec-num">01</span>
+        <h3 class="font-display font-bold text-dark text-2xl mb-4 mt-10 leading-tight">
+          Cage-Free,<br/><em class="font-light italic text-teal">Always</em>
+        </h3>
+        <p class="font-body text-dark/65 text-base leading-relaxed">
+          No crates. No kennels. No waiting in a box. Your dog runs free, socializes with friends, lounges on real couches, and enjoys the run of the space — just like home, only better.
+        </p>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="relative px-0 md:px-10 pb-12 md:pb-0 divider-col pt-10 md:pt-0">
+        <span class="sec-num">02</span>
+        <h3 class="font-display font-bold text-dark text-2xl mb-4 mt-10 leading-tight">
+          People Who<br/><em class="font-light italic text-teal">Love Dogs</em>
+        </h3>
+        <p class="font-body text-dark/65 text-base leading-relaxed">
+          Every dog is supervised by attentive staff who genuinely adore them. Our team monitors play, intervenes when needed, and makes sure every pup feels safe, loved, and celebrated.
+        </p>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="relative pl-0 md:pl-10 divider-col pt-10 md:pt-0">
+        <span class="sec-num">03</span>
+        <h3 class="font-display font-bold text-dark text-2xl mb-4 mt-10 leading-tight">
+          Fun That Goes<br/><em class="font-light italic text-teal">Beyond the Yard</em>
+        </h3>
+        <p class="font-body text-dark/65 text-base leading-relaxed">
+          Splash ponds, outdoor play areas, TVs, comfy furniture, and a community of four-legged friends. We don't just watch dogs — we give them the best day of their week, every week.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Dog photo accent -->
+    <div class="mt-20 rule-accent"></div>
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="overflow-hidden" style="height:340px;">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/622a749e0bb02b567479760d/497ce8a0-253b-45fc-856f-6da51e341740/414686966_845225480739898_5452589632060425391_n.jpg"
+          alt="Happy dogs at Peace, Love, & Happy Pets"
+          class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+        />
+      </div>
+      <div class="overflow-hidden" style="height:340px;">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/622a749e0bb02b567479760d/0ced07bf-4ed9-4b37-8708-f33ac34f393f/344364138_2465847206897058_849525539998163688_n.jpg"
+          alt="Dogs playing cage-free at Happy Pets"
+          class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICES SECTION
+     ============================================================ -->
+<section id="services" class="bg-bg-alt py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="section-label mb-6">
+      <span class="rule-short"></span>
+      What We Offer
+    </div>
+
+    <h2 class="font-display font-bold text-dark mb-5 leading-tight" style="font-size:clamp(2.25rem,5vw,3.5rem); max-width:520px;">
+      Every service your<br/><em class="font-light italic text-teal">dog needs.</em>
+    </h2>
+
+    <p class="font-body text-dark/60 text-base max-w-lg mb-16 leading-relaxed">
+      From daily play to overnight stays to a fresh bath — we've built services around what dogs actually love, not what's easiest to manage.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Daycare -->
+      <div class="bg-cream border border-dark/10 p-8 lift">
+        <div class="text-xs font-body font-800 tracking-widest uppercase text-teal mb-2">Daily Service</div>
+        <h3 class="font-display font-bold text-dark text-2xl mb-4 leading-tight">Dog<br/>Daycare</h3>
+        <div class="rule-accent mb-6" style="max-width:140px;"></div>
+        <p class="font-body text-dark/60 text-sm leading-relaxed mb-6">
+          Full-day socialization, play, rest, and snacks in a cage-free environment with continuous supervision. Drop off knowing they're having the time of their life.
+        </p>
+        <div class="incl">Full-day supervised play</div>
+        <div class="incl">Indoor & outdoor areas</div>
+        <div class="incl">Midday report card</div>
+        <div class="incl">All breeds welcome</div>
+        <div class="incl">Both locations available</div>
+      </div>
+
+      <!-- Boarding — Featured -->
+      <div class="bg-dark p-8 lift card-featured-glow relative overflow-hidden">
+        <div class="absolute top-4 right-4 bg-accent text-dark text-xs font-body font-900 px-3 py-1 uppercase tracking-widest">Most Popular</div>
+        <div class="text-xs font-body font-800 tracking-widest uppercase text-teal-light mb-2">Overnight Stay</div>
+        <h3 class="font-display font-bold text-white text-2xl mb-4 leading-tight">Dog<br/>Boarding</h3>
+        <div class="rule-accent mb-6" style="max-width:140px;"></div>
+        <p class="font-body text-white/60 text-sm leading-relaxed mb-6">
+          Your dog stays in a real home setting — couches, TVs, and human company all night long. No crates. No kennels. Just comfortable, loving overnight care.
+        </p>
+        <div class="incl-dark">Cage-free overnight stay</div>
+        <div class="incl-dark">Couch & TV access</div
