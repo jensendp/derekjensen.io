@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Fairy Tails Mobile Pet Spa — Premium Mobile Grooming</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Nunito:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --dark:    #0f2e35;
+    --teal:    #2a7a8c;
+    --accent:  #c9963a;
+    --accent2: #4cb84c;
+    --bg:      #f5f0e8;
+    --bg-alt:  #ede7d9;
+    --cream:   #faf7f2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  .display { font-family: 'Fraunces', serif; }
+  .script   { font-family: 'Dancing Script', cursive; }
+
+  /* Rules */
+  .rule-accent { height:1px; background:linear-gradient(90deg,transparent,var(--accent) 30%,var(--accent) 70%,transparent); }
+  .rule-short  { display:inline-block; width:48px; height:2px; background:var(--accent); flex-shrink:0; }
+  .rule-short-green { display:inline-block; width:48px; height:2px; background:var(--accent2); flex-shrink:0; }
+
+  /* Lift cards */
+  .lift { transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.35s ease; }
+  .lift:hover { transform:translateY(-7px); box-shadow:0 28px 60px rgba(0,0,0,0.13); }
+
+  /* Marquee */
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-inner { display:flex; animation:marquee 32s linear infinite; white-space:nowrap; }
+  .marquee-inner:hover { animation-play-state:paused; }
+
+  /* FadeUp */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  .fu  { opacity:0; animation:fadeUp 0.7s ease both; }
+  .d1  { animation-delay:0.05s }
+  .d2  { animation-delay:0.2s  }
+  .d3  { animation-delay:0.35s }
+  .d4  { animation-delay:0.5s  }
+  .d5  { animation-delay:0.65s }
+
+  /* Nav links */
+  .nav-lnk { position:relative; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--cream); text-decoration:none; }
+  .nav-lnk::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--accent); transition:width 0.3s; }
+  .nav-lnk:hover::after { width:100%; }
+  .nav-lnk-dark { color:var(--dark); }
+
+  /* Price rows */
+  .prow { border-bottom:1px solid rgba(0,0,0,0.08); padding:14px 0; }
+  .prow:last-child { border-bottom:none; }
+
+  /* Include items */
+  .incl { display:flex; align-items:flex-start; gap:8px; font-size:0.8125rem; padding:5px 0; border-bottom:1px solid rgba(0,0,0,0.06); }
+  .incl:last-child { border-bottom:none; }
+  .incl::before { content:'—'; color:var(--accent); flex-shrink:0; margin-top:1px; font-size:0.75rem; }
+
+  /* Mobile nav */
+  #mob-nav { display:none; }
+  #mob-nav.open { display:flex; }
+
+  /* Paw bullet */
+  .paw-bullet { position:relative; padding-left:1.4rem; }
+  .paw-bullet::before { content:'🐾'; position:absolute; left:0; top:0; font-size:0.75rem; }
+
+  /* Section badge */
+  .badge {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Nunito',sans-serif; font-size:0.7rem; font-weight:700;
+    letter-spacing:0.15em; text-transform:uppercase; color:var(--accent);
+  }
+
+  /* Diagonal divider via clip-path */
+  .clip-diagonal { clip-path:polygon(0 0,100% 5%,100% 100%,0 95%); }
+  .clip-diagonal-top { clip-path:polygon(0 4%,100% 0,100% 100%,0 100%); }
+
+  /* Teal gradient mesh bg */
+  .mesh-bg {
+    background: radial-gradient(ellipse at 20% 50%, rgba(42,122,140,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(201,150,58,0.12) 0%, transparent 55%),
+                var(--bg);
+  }
+
+  .mesh-dark {
+    background: radial-gradient(ellipse at 10% 80%, rgba(42,122,140,0.35) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 15%, rgba(201,150,58,0.2) 0%, transparent 50%),
+                var(--dark);
+  }
+
+  /* Subtle paw pattern overlay */
+  .paw-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='15' cy='10' r='3'/%3E%3Ccircle cx='25' cy='8' r='2.5'/%3E%3Ccircle cx='10' cy='18' r='2.5'/%3E%3Cellipse cx='18' cy='22' rx='5' ry='7'/%3E%3Ccircle cx='45' cy='40' r='3'/%3E%3Ccircle cx='55' cy='38' r='2.5'/%3E%3Ccircle cx='40' cy='48' r='2.5'/%3E%3Cellipse cx='48' cy='52' rx='5' ry='7'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Hero image overlay */
+  .hero-overlay {
+    background:
+      linear-gradient(135deg, rgba(10,30,38,0.88) 0%, rgba(15,46,53,0.75) 50%, rgba(42,122,140,0.45) 100%);
+  }
+
+  /* Testimonial card */
+  .tcard {
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 28px 24px;
+  }
+
+  /* CTA glow button */
+  .btn-glow {
+    background: var(--accent);
+    color: #0f2e35;
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    padding:16px 36px;
+    border-radius:4px;
+    display:inline-block;
+    text-decoration:none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(201,150,58,0.35);
+  }
+  .btn-glow:hover {
+    background:#b8852e;
+    box-shadow: 0 8px 32px rgba(201,150,58,0.5);
+    transform:translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family:'Nunito',sans-serif;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    padding:14px 32px;
+    border-radius:4px;
+    display:inline-block;
+    text-decoration:none;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    background:var(--accent);
+    color:#0f2e35;
+  }
+
+  .btn-teal {
+    background: var(--teal);
+    color: #fff;
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    padding:16px 36px;
+    border-radius:4px;
+    display:inline-block;
+    text-decoration:none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(42,122,140,0.3);
+  }
+  .btn-teal:hover {
+    background:#1e5f6e;
+    box-shadow: 0 8px 32px rgba(42,122,140,0.5);
+    transform:translateY(-2px);
+  }
+
+  /* Service card */
+  .svc-card {
+    background:var(--cream);
+    border-radius:8px;
+    overflow:hidden;
+    border: 1px solid rgba(42,122,140,0.12);
+  }
+  .svc-icon-wrap {
+    width:56px; height:56px;
+    background:rgba(42,122,140,0.1);
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+    margin-bottom:16px;
+  }
+
+  /* Star */
+  .stars { color:var(--accent); font-size:0.9rem; letter-spacing:2px; }
+
+  /* Process step */
+  .step-num {
+    width:48px; height:48px; border-radius:50%;
+    background:var(--accent);
+    color:#0f2e35;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.3rem;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  /* Stat block */
+  .stat-val {
+    font-family:'Fraunces',serif;
+    font-size:3rem;
+    font-weight:700;
+    color:var(--accent);
+    line-height:1;
+  }
+
+  /* Scroll smooth */
+  html { scroll-behavior:smooth; }
+
+  /* Focus visible */
+  a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+
+  @media (max-width:768px) {
+    .stat-val { font-size:2.2rem; }
+    .hero-h { font-size:2.8rem !important; }
+  }
+
+  /* Alternating section spacing */
+  .section-pad { padding:96px 0; }
+  .section-pad-sm { padding:64px 0; }
+
+  /* Gold dot separator */
+  .gold-dot::before { content:'◆'; color:var(--accent); font-size:0.5rem; margin:0 12px; vertical-align:middle; }
+
+  /* Floating paw shapes */
+  .paw-shape {
+    position:absolute;
+    font-size:6rem;
+    opacity:0.035;
+    pointer-events:none;
+    user-select:none;
+  }
+
+  /* Nav bg transition */
+  #main-nav {
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  #main-nav.scrolled {
+    background: rgba(15,46,53,0.97) !important;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     STICKY NAV
+     ============================================================ -->
+<nav id="main-nav" style="position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,28,36,0.0);backdrop-filter:blur(0px);transition:all 0.4s ease;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:72px;">
+
+      <!-- Logo wordmark -->
+      <a href="#" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:1.4rem;">🐾</span>
+        <div>
+          <span class="script" style="font-size:1.25rem;color:var(--accent);line-height:1;">Fairy Tails</span>
+          <span style="display:block;font-family:'Nunito',sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:-2px;">Mobile Pet Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div style="display:flex;align-items:center;gap:36px;" id="desk-links">
+        <a href="#services" class="nav-lnk">Services</a>
+        <a href="#why-us"   class="nav-lnk">Why Us</a>
+        <a href="#process"  class="nav-lnk">How It Works</a>
+        <a href="#areas"    class="nav-lnk">Service Areas</a>
+        <a href="#reviews"  class="nav-lnk">Reviews</a>
+        <a href="#contact"  class="btn-glow" style="padding:10px 22px;font-size:0.7rem;">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button onclick="document.getElementById('mob-nav').classList.toggle('open')" style="display:none;background:none;border:none;cursor:pointer;padding:8px;" id="hamburger" aria-label="Toggle menu">
+        <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6"  x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mob-nav" style="flex-direction:column;background:var(--dark);padding:24px;gap:20px;border-top:1px solid rgba(255,255,255,0.08);">
+    <a href="#services" class="nav-lnk" onclick="document.getElementById('mob-nav').classList.remove('open')">Services</a>
+    <a href="#why-us"   class="nav-lnk" onclick="document.getElementById('mob-nav').classList.remove('open')">Why Us</a>
+    <a href="#process"  class="nav-lnk" onclick="document.getElementById('mob-nav').classList.remove('open')">How It Works</a>
+    <a href="#areas"    class="nav-lnk" onclick="document.getElementById('mob-nav').classList.remove('open')">Service Areas</a>
+    <a href="#reviews"  class="nav-lnk" onclick="document.getElementById('mob-nav').classList.remove('open')">Reviews</a>
+    <a href="#contact"  class="btn-glow" style="text-align:center;" onclick="document.getElementById('mob-nav').classList.remove('open')">Book Now</a>
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 40) {
+      nav.style.background = 'rgba(10,28,36,0.97)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+    } else {
+      nav.style.background = 'rgba(10,28,36,0.0)';
+      nav.style.backdropFilter = 'blur(0px)';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Show hamburger on mobile
+  function handleResize() {
+    const hb = document.getElementById('hamburger');
+    const dl = document.getElementById('desk-links');
+    if (window.innerWidth < 900) {
+      hb.style.display = 'block';
+      dl.style.display = 'none';
+    } else {
+      hb.style.display = 'none';
+      dl.style.display = 'flex';
+      document.getElementById('mob-nav').classList.remove('open');
+    }
+  }
+  handleResize();
+  window.addEventListener('resize', handleResize);
+</script>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section style="position:relative;min-height:95vh;display:flex;align-items:center;overflow:hidden;
+  background-image:url('https://fairytailsmobilepetspa.com/wp-content/uploads/2023/02/mobile-grooming-unit.png');
+  background-size:cover;background-position:center right;">
+
+  <!-- Overlay -->
+  <div class="hero-overlay paw-pattern" style="position:absolute;inset:0;"></div>
+
+  <!-- Decorative teal orb -->
+  <div style="position:absolute;right:-120px;top:10%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(42,122,140,0.28) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;left:40%;bottom:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,150,58,0.15) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <!-- Floating paws -->
+  <span class="paw-shape" style="right:8%;top:15%;font-size:8rem;opacity:0.05;transform:rotate(20deg);">🐾</span>
+  <span class="paw-shape" style="right:20%;bottom:15%;font-size:4rem;opacity:0.05;transform:rotate(-15deg);">🐾</span>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2;width:100%;padding-top:100px;">
+    <div style="max-width:640px;">
+
+      <!-- Badge -->
+      <div class="badge fu d1" style="margin-bottom:24px;color:var(--accent);">
+        <span class="rule-short"></span>
+        Award-Winning · 15+ Years Experience
+      </div>
+
+      <!-- Headline -->
+      <h1 class="display fu d2" style="font-size:clamp(2.8rem,6vw,5rem);font-weight:700;color:var(--cream);line-height:1.08;margin-bottom:12px;">
+        Spa-Quality Grooming,
+        <br>
+        <em style="color:var(--accent);font-weight:400;">Right at Your Door.</em>
+      </h1>
+
+      <!-- Script accent -->
+      <p class="script fu d3" style="font-size:1.6rem;color:rgba(255,255,255,0.55);margin-bottom:24px;">
+        Fairy Tail groomings brought to you!
+      </p>
+
+      <div class="rule-accent fu d3" style="margin-bottom:28px;max-width:300px;"></div>
+
+      <!-- Sub copy -->
+      <p class="fu d4" style="font-size:1.05rem;color:rgba(255,255,255,0.8);max-width:480px;margin-bottom:40px;font-weight:500;line-height:1.7;">
+        One-on-one, stress-free grooming for dogs and cats of all breeds — fully equipped mobile spa visits to your home or business across Chicagoland's southwest suburbs.
+      </p>
+
+      <!-- CTAs -->
+      <div class="fu d5" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+        <a href="#contact" class="btn-glow">Book a Visit</a>
+        <a href="tel:8152120869" class="btn-outline" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.85);">
+          📞 &nbsp;(815) 212-0869
+        </a>
+      </div>
+
+      <!-- Trust micro-row -->
+      <div class="fu d5" style="display:flex;flex-wrap:wrap;gap:24px;margin-top:40px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">🏆</span>
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Award-Winning</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">🚫</span>
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">No Cages Ever</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">❤️</span>
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">CPR Certified</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">🐾</span>
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">All Breeds Welcome</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom wave -->
+  <div style="position:absolute;bottom:-2px;left:0;right:0;line-height:0;">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <path d="M0 60 L0 30 Q360 0 720 30 Q1080 60 1440 30 L1440 60 Z" fill="#f5f0e8"/>
+    </svg>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     MARQUEE STRIP
+     ============================================================ -->
+<div style="background:var(--dark);padding:0;overflow:hidden;position:relative;z-index:1;">
+  <div class="marquee-inner" style="padding:14px 0;">
+    <!-- Repeated twice for seamless loop -->
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Plainfield</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Bolingbrook</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Joliet</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Orland Park</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Naperville</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Lemont</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Dogs &amp; Cats Welcome</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Fully Equipped Mobile Spa</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <!-- duplicate for seamless -->
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Plainfield</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Bolingbrook</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Joliet</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Orland Park</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Naperville</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Lemont</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Dogs &amp; Cats Welcome</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:0 40px;">Fully Equipped Mobile Spa</span>
+    <span style="color:var(--accent);font-size:0.7rem;flex-shrink:0;">◆</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     WHY US — BENEFITS (3 col) with asymmetric layout
+     ============================================================ -->
+<section id="why-us" class="section-pad mesh-bg" style="position:relative;overflow:hidden;">
+
+  <!-- Background geometric shapes -->
+  <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;border:1px solid rgba(42,122,140,0.12);border-radius:50%;pointer-events:none;"></div>
+  <div style="position:absolute;top:-40px;right:-40px;width:280px;height:280px;border:1px solid rgba(201,150,58,0.1);border-radius:50%;pointer-events:none;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+
+    <!-- Section label -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <span class="rule-short"></span>
+      <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Why Fairy Tails</span>
+    </div>
+
+    <!-- Split: heading left, intro right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;" class="why-header-grid">
+      <h2 class="display" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;color:var(--dark);">
+        Your Pet Deserves <em style="color:var(--teal);">Better</em> Than a Salon Waiting Room.
+      </h2>
+      <div>
+        <p style="font-size:1rem;color:#4a5568;line-height:1.75;margin-bottom:20px;">
+          At Fairy Tails, your pet is never left in a cage between services. Our award-winning groomer brings a fully equipped, climate-controlled spa directly to your driveway — so your pet stays calm, comfortable, and safe from start to finish.
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="script" style="font-size:1.3rem;color:var(--teal);">15+ years caring for pets</span>
+          <span style="font-size:0.7rem;color:var(--accent);">◆</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 benefit cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;">
+
+      <!-- Card 1 -->
+      <div class="svc-card lift" style="padding:36px 32px;">
+        <div class="svc-icon-wrap">🏠</div>
+        <h3 class="display" style="font-size:1.3rem;font-weight:600;margin-bottom:10px;color:var(--dark);">We Come to You</h3>
+        <p style="font-size:0.9rem;color:#5a6a7a;line-height:1.7;">No more stressful car rides or hours spent waiting at a salon. We park right in your driveway and get to work — your pet stays in a familiar environment and you stay at home.</p>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(42,122,140,0.1);">
+          <div class="incl">Visits to homes &amp; businesses</div>
+          <div class="incl">Fully equipped mobile unit</div>
+          <div class="incl">Climate-controlled year-round</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="svc-card lift" style="padding:36px 32px;">
+        <div class="svc-icon-wrap" style="background:rgba(201,150,58,0.12);">🚫</div>
+        <h3 class="display" style="font-size:1.3rem;font-weight:600;margin-bottom:10px;color:var(--dark);">Zero Cages, Zero Wait</h3>
+        <p style="font-size:0.9rem;color:#5a6a7a;line-height:1.7;">Your pet is never caged before, during, or after their groom. Our one-on-one format means they have our groomer's undivided attention the entire time — no kennel stress, no separation anxiety.</p>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(42,122,140,0.1);">
+          <div class="incl">1-on-1 personalized attention</div>
+          <div class="incl">No cage holding</div>
+          <div class="incl">Great for anxious pets</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="svc-card lift" style="padding:36px 32px;">
+        <div class="svc-icon-wrap" style="background:rgba(76,184,76,0.1);">🏆</div>
+        <h3 class="display" style="font-size:1.3rem;font-weight:600;margin-bottom:10px;color:var(--dark);">Expert-Level Credentials</h3>
+        <p style="font-size:0.9rem;color:#5a6a7a;line-height:1.7;">Our award-winning groomer brings 15+ years of experience, AKC breed knowledge, and CPR &amp; First Aid certification. Your pet is in professional, caring hands — every single visit.</p>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(42,122,140,0.1);">
+          <div class="incl">Award-winning groomer</div>
+          <div class="incl">CPR &amp; First Aid certified</div>
+          <div class="incl">AKC all-breed knowledge</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width:768px) {
+    .why-header-grid { grid-template-columns:1fr !important; gap:24px !important; }
+  }
+</style>
+
+
+<!-- ============================================================
+     STATS BAND — full-bleed dark with cream type
+     ============================================================ -->
+<div style="background:var(--dark);padding:64px 32px;position:relative;overflow:hidden;" class="paw-pattern">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;text-align:center;">
+
+      <div>
+        <div class="stat-val">15+</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;">Years of Experience</div>
+      </div>
+
+      <div>
+        <div class="stat-val" style="color:var(--accent2);">100%</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;">Cage-Free Promise</div>
+      </div>
+
+      <div>
+        <div class="stat-val">6</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;">Communities Served</div>
+      </div>
+
+      <div>
+        <div class="stat-val" style="color:var(--teal);">1-on-1</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;">Personalized Attention</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services" class="section-pad" style="background:var(--bg-alt);position:relative;overflow:hidden;">
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+
+    <div style="text-align:center;max-width:560px;margin:0 auto 60px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px;">
+        <span class="rule-short"></span>
+        <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Our Services</span>
+        <span class="rule-short"></span>
+      </div>
+      <h2 class="display" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--dark);margin-bottom:16px;">
+        Full-Service Mobile Grooming for Every Pet
+      </h2>
+      <p style="font-size:0.95rem;color:#5a6a7a;line-height:1.7;">From a quick bath and blow-out to a complete breed cut with creative styling — we offer everything your pet needs in one convenient visit.</p>
+    </div>
+
+    <!-- Services grid: asymmetric — 2 large left, 3 small right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="svc-main-grid">
+
+      <!-- Left: 2 large cards stacked -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+
+        <div class="svc-card lift" style="padding:40px 36px;background:var(--dark);flex:1;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🐕</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <h3 class="display" style="font-size:1.5rem;font-weight:700;color:var(--cream);">Dog Grooming</h3>
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:var(--accent);color:#0f2e35;padding:3px 8px;border-radius:2px;">Most Popular</span>
+          </div>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:20px;">Complete grooming for all dog breeds and sizes — from tiny Chihuahuas to large Doodles. Every groom includes bath, blow-dry, brush-out, nail trim, ear cleaning, and breed-appropriate styling.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.07);padding:4px 12px;border-radius:2px;">All Breeds</span>
+            <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.07);padding:4px 12px;border-radius:2px;">All Sizes</span>
+            <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.07);padding:4px 12px;border-radius:2px;">Haircuts &amp; Styling</span>
+          </div>
+        </div>
+
+        <div class="svc-card lift" style="padding:40px 36px;background:linear-gradient(135deg,var(--teal),#1e5f6e);flex:1;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🐈</div>
+          <h3 class="display" style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:12px;">Cat Grooming</h3>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:20px;">Cats deserve spa treatment too! We offer patient, gentle grooming for cats of all temperaments — bathing, drying, deshedding, nail trims, and coat maintenance in a calm mobile environment.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:2px;">Gentle Handling</span>
+            <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:2px;">All Temperaments</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: smaller service cards -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="svc-card lift" style="padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="font-size:1.6rem;flex-shrink:0;margin-top:2px;">🛁</div>
+          <div>
+            <h3 class="display" style="font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:6px;">Bath &amp; Dry</h3>
+            <p style="font-size:0.85rem;color:#5a6a7a;line-height:1.6;">Professional shampoo, conditioning, and blow-dry treatment for a fresh, fluffy coat every time.</p>
+          </div>
+        </div>
+
+        <div class="svc-card lift" style="padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="font-size:1.6rem;flex-shrink:0;margin-top:2px;">✂️</div>
+          <div>
+            <h3 class="display" style="font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:6px;">Haircuts &amp; Styling</h3>
+            <p style="font-size:0.85rem;color:#5a6a7a;line-height:1.6;">Breed-standard cuts or your preferred style — precise scissor and clipper work by a seasoned groomer.</p>
+          </div>
+        </div>
+
+        <div class="svc-card lift" style="padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="font-size:1.6rem;flex-shrink:0;margin-top:2px;">💅</div>
+          <div>
+            <h3 class="display" style="font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:6px;">Nail Trims</h3>
+            <p style="font-size:0.85rem;color:#5a6a7a;line-height:1.6;">Safe, stress-free nail care to keep your pet comfortable and your floors scratch-free.</p>
+          </div>
+        </div>
+
+        <div class="svc-card lift" style="padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="font-size:1.6rem;flex-shrink:0;margin-top:2px;">🎨</div>
+          <div>
+            <h3 class="display" style="font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:6px;">Creative Styling</h3>
+            <p style="font-size:0.85rem;color:#5a6a7a;line-height:1.6;">Want something fun? We offer creative color, faux-hawk trims, and specialty styling for the bold pup.</p>
+          </div>
+        </div>
+
+        <!-- CTA mini card -->
+        <div style="background:var(--accent);padding:28px;border-radius:8px;text-align:center;">
+          <p class="display" style="font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:4px;">Ready to book?</p>
+          <p style="font-size:0.82rem;color:rgba(15,46,53,0.7);margin-bottom:16px;">Call or tap below — we'll find a time that works for you.</p>
+          <a href="#contact" class="btn-teal" style="padding:12px 24px;font-size:0.75rem;">Schedule a Visit</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width:800px) {
+    .svc-main-grid { grid-template-columns:1fr !important; }
+  }
+</style>
+
+
+<!-- ============================================================
+     HOW IT WORKS — process steps (dramatic diagonal section)
+     ============================================================ -->
+<section id="process" style="position:relative;background:var(--dark);padding:120px 0;overflow:hidden;" class="paw-pattern">
+
+  <!-- Diagonal top -->
+  <div style="position:absolute;top:0;left:0;right:0;height:64px;background:var(--bg-alt);clip-path:polygon(0 0,100% 0,100% 100%,0 0);"></div>
+
+  <!-- Decorative orbs -->
+  <div style="position:absolute;right:-100px;bottom:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,122,140,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;left:-60px;top:40%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,150,58,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 32px;position:relative;z-index:1;">
+
+    <div style="text-align:center;margin-bottom:72px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px;">
+        <span style="display:inline-block;width:48px;height:1.5px;background:var(--accent);"></span>
+        <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">How It Works</span>
+        <span style="display:inline-block;width:48px;height:1.5px;background:var(--accent);"></span>
+      </div>
+      <h2 class="display" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--cream);line-height:1.15;">
+        Spa Day, Minus the Stress.<br>
+        <em style="color:var(--teal);font-weight:400;">Here's How It Works.</em>
+      </h2>
+    </div>
+
+    <!-- Steps: horizontal on desktop, vertical on mobile -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;" class="process-grid">
+
+      <!-- Connecting line -->
+      <div style="position:absolute;top:24px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent),var(--teal),var(--accent));opacity:0.3;" class="process-line"></div>
+
+      <!-- Step 1 -->
+      <div style="text-align:center;padding:0 16px;">
+        <div style="display:flex;justify-content:center;margin-bottom:28px;">
+          <div class="step-num">1</div>
+        </div>
+        <h3 class="display" style="font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:10px;">Book Your Visit</h3>
+        <p style="font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.65;">Call or text us to pick a date and time. We'll confirm availability and discuss your pet's needs.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="text-align:center;padding:0 16px;">
+        <div style="display:flex;justify-content:center;margin-bottom:28px;">
+          <div class="step-num">2</div>
+        </div>
+        <h3 class="display" style="font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:10px;">We Drive to You</h3>
+        <p style="font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.65;">Our fully equipped, climate-controlled mobile spa arrives right at your home or office — no drop-off needed.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="text-align:center;padding:0 16px;">
+        <div style="display:flex;justify-content:center;margin-bottom:28px;">
+          <div class="step-num">3</div>
+        </div>
+        <h3 class="display" style="font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:10px;">One-on-One Groom</h3>
+        <p style="font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.65;">Your pet gets undivided attention from start to finish — no cages, no waiting, no other animals around.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="text-align:center;padding:0 16px;">
+        <div style="display:flex;justify-content:center;margin-bottom:28px;">
+          <div class="step-num">4</div>
+        </div>
+        <h3 class="display" style="font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:10px;">Happy Pet, Home Free</h3>
+        <p style="font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.65;">We knock when we're done. Your freshly groomed, happy pet is returned right to your door.</p>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div style="text-align:center;margin-top:64px;">
+      <a href="#contact" class="btn-glow">Book Your First Visit →</a>
+    </div>
+
+  </div>
+
+  <!-- Diagonal bottom -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:64px;background:var(--bg);clip-path:polygon(0 100%,100% 0,100% 100%,0 100%);"></div>
+
+</section>
+
+<style>
+  @media (max-width:700px) {
+    .process-grid { grid-template-columns:1fr !important; gap:40px !important; }
+    .process-line { display:none; }
+  }
+</style>
+
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section id="reviews" class="section-pad" style="background:var(--bg);position:relative;overflow:hidden;">
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 32px;">
+
+    <div style="text-align:center;max-width:520px;margin:0 auto 56px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px;">
+        <span class="rule-short"></span>
+        <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Client Love</span>
+        <span class="rule-short"></span>
+      </div>
+      <h2 class="display" style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--dark);">
+        Pet Parents Love Fairy Tails
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
+
+      <div class="tcard lift">
+        <div class="stars">★★★★★</div>
+        <p style="font-size:0.92rem;color:#3a4a5a;line-height:1.75;margin:14px 0 20px;font-style:italic;">
+          "I was so nervous about grooming my anxious rescue pup — but Fairy Tails was incredible. She came right to our driveway, my dog was calm the whole time, and the groom looked amazing. No more salon stress!"
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--accent));display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;font-weight:700;">J</div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--dark);">Jessica M.</div>
+            <div style="font-size:0.72rem;color:#7a8a9a;letter-spacing:0.05em;">Plainfield, IL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tcard lift">
+        <div class="stars">★★★★★</div>
+        <p style="font-size:0.92rem;color:#3a4a5a;line-height:1.75;margin:14px 0 20px;font-style:italic;">
+          "We have two golden retrievers and getting them both groomed used to be an all-day ordeal. Now it's done in the driveway while I work from home. The quality is so much better than any salon we've tried."
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#e8b554);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;font-weight:700;">R</div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--dark);">Ryan &amp; Sarah K.</div>
+            <div style="font-size:0.72rem;color:#7a8a9a;letter-spacing:0.05em;">Naperville, IL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tcard lift">
+        <div class="stars">★★★★★</div>
+        <p style="font-size:0.92rem;color:#3a4a5a;line-height:1.75;margin:14px 0 20px;font-style:italic;">
+          "My Persian cat absolutely hates grooming — we've been through three different groomers. Fairy Tails is the first one she didn't try to escape from. So gentle, so patient. We're customers for life."
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),#3aa03a);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;font-weight:700;">L</div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--dark);">Linda P.</div>
+            <div style="font-size:0.72rem;color:#7a8a9a;letter-spacing:0.05em;">Orland Park, IL</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICE AREAS — dramatic dark section with visual map feel
+     ============================================================ -->
+<section id="areas" style="background:var(--dark);position:relative;overflow:hidden;padding:96px 0;" class="paw-pattern">
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 32px;position:relative;z-index:1;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="areas-grid">
+
+      <!-- Left text -->
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <span style="display:inline-block;width:48px;height:1.5px;background:var(--accent);"></span>
+          <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Service Areas</span>
+        </div>
+        <h2 class="display" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:24px;">
+          Serving Chicagoland's <em style="color:var(--teal);">Southwest Suburbs</em>
+        </h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:36px;">
+          Our mobile spa comes directly to you throughout the southwest Chicagoland area. Not sure if we reach your neighborhood? Just give us a call — we're always happy to check.
+        </p>
+        <a href="tel:8152120869" class="btn-outline" style="color:var(--accent);border-color:var(--accent);">📞 Check Your Area</a>
+      </div>
+
+      <!-- Right: area cards grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Plainfield</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">Kendall County</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Bolingbrook</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">Will County</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Joliet</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">Will County</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Orland Park</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">Cook County</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Naperville</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">DuPage County</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 20px;transition:all 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,150,58,0.5)';this.style.background='rgba(201,150,58,0.06)';" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)';">
+          <div style="font-size:1.3rem;margin-bottom:10px;">📍</div>
+          <div class="display" style="font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:4px;">Lemont</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">Cook County</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width:768px) {
+    .areas-grid { grid-template-columns:1fr !important; gap:40px !important; }
+  }
+</style>
+
+
+<!-- ============================================================
+     CONTACT / BOOKING CTA — full dramatic section
+     ============================================================ -->
+<section id="contact" style="position:relative;background:var(--bg-alt);padding:96px 0;overflow:hidden;">
+
+  <!-- Background accent shapes -->
+  <div style="position:absolute;top:-120px;left:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,122,140,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,150,58,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 32px;position:relative;z-index:1;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="contact-grid">
+
+      <!-- Left: copy + contact info -->
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <span class="rule-short"></span>
+          <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Book Your Visit</span>
+        </div>
+        <h2 class="display" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--dark);line-height:1.1;margin-bottom:20px;">
+          Ready to Book Your Pet's
+          <em style="color:var(--teal);">Spa Day?</em>
+        </h2>
+        <p style="font-size:1rem;color:#5a6a7a;line-height:1.75;margin-bottom:36px;">
+          Booking is simple — just give us a call or text. We'll find a convenient time, confirm your service area, and answer any questions you have about your pet's specific needs.
+        </p>
+
+        <!-- Contact cards -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <a href="tel:8152120869" style="text-decoration:none;display:flex;align-items:center;gap:20px;background:var(--cream);padding:20px 24px;border-radius:8px;border:1px solid rgba(42,122,140,0.12);transition:all 0.3s ease;" class="lift">
+            <div style="width:48px;height:48px;background:var(--teal);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">📞</div>
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;">Call or Text</div>
+              <div class="display" style="font-size:1.3rem;font-weight:600;color:var(--dark);">(815) 212-0869</div>
+            </div>
+          </a>
+
+          <div style="display:flex;align-items:center;gap:20px;background:var(--cream);padding:20px 24px;border-radius:8px;border:1px solid rgba(42,122,140,0.12);">
+            <div style="width:48px;height:48px;background:rgba(201,150,58,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🕐</div>
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;">Response Time</div>
+              <div class="display" style="font-size:1rem;font-weight:600;color:var(--dark);">Typically within a few hours</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:20px;background:var(--cream);padding:20px 24px;border-radius:8px;border:1px solid rgba(42,122,140,0.12);">
+            <div style="width:48px;height:48px;background:rgba(76,184,76,0.12);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🚐</div>
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;">Service Method</div>
+              <div class="display" style="font-size:1rem;font-weight:600;color:var(--dark);">Mobile — we come to you</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: highlighted booking card -->
+      <div style="background:var(--dark);border-radius:12px;padding:48px 40px;position:relative;overflow:hidden;" class="paw-pattern">
+
+        <!-- Glow -->
+        <div style="position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(42,122,140,0.3) 0%,transparent 70%);pointer-events:none;"></div>
+
+        <div class="script" style="font-size:2rem;color:var(--accent);margin-bottom:8px;">Let's book!</div>
+        <h3 class="display" style="font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:20px;line-height:1.2;">Your pet's best grooming experience starts with one call.</h3>
+
+        <div class="rule-accent" style="margin-bottom:28px;"></div>
+
+        <div style="margin-bottom:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="color:var(--accent2);font-size:0.9rem;">✓</span>
+            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">No cage, no kennel — ever</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="color:var(--accent2);font-size:0.9rem;">✓</span>
+            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">All breeds and sizes welcome</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="color:var(--accent2);font-size:0.9rem;">✓</span>
+            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">Award-winning, CPR-certified groomer</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="color:var(--accent2);font-size:0.9rem;">✓</span>
+            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">Serving 6 Chicagoland communities</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--accent2);font-size:0.9rem;">✓</span>
+            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">Dogs &amp; cats of all temperaments</span>
+          </div>
+        </div>
+
+        <a href="tel:8152120869" class="btn-glow" style="display:block;text-align:center;font-size:0.9rem;padding:18px 24px;">
+          📞 Call (815) 212-0869
+        </a>
+
+        <p style="text-align:center;font-size:0.76rem;color:rgba(255,255,255,0.35);margin-top:16px;letter-spacing:0.05em;">Call or text — we're friendly!</p>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width:768px) {
+    .contact-grid { grid-template-columns:1fr !important; gap:40px !important; }
+  }
+</style>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer style="background:var(--dark);color:rgba(255,255,255,0.5);font-family:'Nunito',sans-serif;padding:56px 32px 32px;position:relative;overflow:hidden;" class="paw-pattern">
+
+  <div style="max-width:1100px;margin:0 auto;">
+
+    <!-- Top: logo + tagline left, links right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:32px;" class="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.4rem;">🐾</span>
+          <div>
+            <span class="script" style="font-size:1.35rem;color:var(--accent);">Fairy Tails</span>
+            <span style="display:block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:-2px;">Mobile Pet Spa</span>
+          </div>
+        </div>
+        <p style="font-size:0.84rem;line-height:1.7;max-width:220px;margin-bottom:20px;">Premium mobile grooming for dogs and cats across Chicagoland's southwest suburbs.</p>
+        <a href="tel:8152120869" style="font-size:0.88rem;color:var(--accent);text-decoration:none;font-weight:700;">(815) 212-0869</a>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:20px;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Dog Grooming</a>
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Cat Grooming</a>
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Bath &amp; Dry</a>
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Haircuts &amp; Styling</a>
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Creative Styling</a>
+          <a href="#services" style="font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Nail Trims</a>
+        </div>
+      </div>
+
+      <!-- Areas + CTA -->
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:20px;">Service Areas</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+          <span style="font-size:0.85rem;color:rgba(255,255,255,0.45);">Plainfield · Bolingbrook</span>
+          <span style="font-size:0.85rem;color:rgba(255,255,255,0.45);">Joliet · Orland Park</span>
+          <span style="font-size:0.85rem;color:rgba(255,255,255,0.45);">Naperville · Lemont</span>
+        </div>
+        <a href="tel:8152120869" class="btn-glow" style="font-size:0.75rem;padding:12px 20px;">Book a Visit</a>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);">
+        &copy; 2024 Fairy Tails Mobile Pet Spa. All rights reserved.
+      </p>
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.25);">
+        Redesign demo by <a href="https://derekjensen.io" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);">derekjensen.io</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  @media (max-width:768px) {
+    .footer-grid { grid-template-columns:1fr !important; gap:36px !important; }
+  }
+</style>
+
+</body>
+</html>
