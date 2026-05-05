@@ -1,0 +1,193 @@
+{
+  "name": "Curb Appeal — Steps 1-3: Brand Profile",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "s13-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Provide the homepage URL — the workflow discovers all key pages automatically\n// Slug is auto-generated from the domain name\nreturn [{\n  json: {\n    url: 'https://example.com'\n  }\n}];"
+      },
+      "id": "s13-config",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v1/map",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_FIRECRAWL_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ url: $json.url, limit: 20 }) }}",
+        "options": {}
+      },
+      "id": "s13-map",
+      "name": "Firecrawl Map",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const links = ($json.links || []);\nconst baseUrl = $('Set Config').first().json.url.replace(/\\/$/, '');\n\n// Parse hostname with regex — URL constructor not available in n8n sandbox\nconst hostnameMatch = baseUrl.match(/^https?:\\/\\/([^\\/]+)/);\nconst hostname = hostnameMatch ? hostnameMatch[1] : baseUrl;\nconst domain = hostname.replace(/^www\\./, '');\nconst slug = domain.replace(/\\.[^.]+$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase();\n\nconst SKIP = /\\/(blog|post|article|news|press|legal|privacy|terms|sitemap|tag|category|feed|wp-|admin|login|404|cdn|assets|uploads|media)\\b/i;\nconst KEEP = /\\/(about|service|contact|menu|pricing|location|team|appointment|booking|offer|product|portfolio|gallery)\\b/i;\n\nconst filtered = [baseUrl];\n\nfor (const link of links) {\n  if (filtered.length >= 8) break;\n  const clean = link.replace(/\\/$/, '');\n  if (clean === baseUrl) continue;\n  if (SKIP.test(clean)) continue;\n  if (/sitemap/i.test(clean) || clean.match(/\\.[a-z]{2,4}$/i)) continue;\n  const pathMatch = clean.match(/^https?:\\/\\/[^\\/]+(\\/.*)?$/);\n  const path = pathMatch ? (pathMatch[1] || '/') : '/';\n  const depth = path.split('/').filter(Boolean).length;\n  if (depth <= 2 && (KEEP.test(clean) || depth === 1)) {\n    filtered.push(clean);\n  }\n}\n\nreturn [{ json: { filtered_urls: filtered, homepage: baseUrl, slug } }];"
+      },
+      "id": "s13-filter",
+      "name": "Filter Key Pages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "filtered_urls",
+        "options": {}
+      },
+      "id": "s13-split",
+      "name": "Split URLs",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [880, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v1/scrape",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_FIRECRAWL_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ url: $json.filtered_urls, formats: $json.filtered_urls === $('Filter Key Pages').first().json.homepage ? ['markdown', 'screenshot'] : ['markdown'] }) }}",
+        "options": {}
+      },
+      "id": "s13-scrape",
+      "name": "Firecrawl Scrape",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $json.data || {};\nconst url = data.metadata?.sourceURL || '(unknown url)';\nconst title = data.metadata?.title || url;\nconst screenshot = data.screenshot || null;\n\n// Strip data URI lines and map noise from markdown before passing to Claude\nconst rawMarkdown = data.markdown || '(no content scraped)';\nconst cleanedMarkdown = rawMarkdown\n  .split('\\n')\n  .filter(line => !line.includes('data:image'))\n  .filter(line => !line.includes('maps.googleapis.com'))\n  .filter(line => !line.includes('maps.gstatic.com'))\n  .filter(line => !line.includes('©2026 Google'))\n  .join('\\n')\n  .replace(/\\n{3,}/g, '\\n\\n')\n  .trim();\n\n// Extract real image URLs from original markdown before stripping\nconst imgRegex = /!\\[.*?\\]\\((https?:\\/\\/[^)\\s]+)\\)/g;\nconst imageUrls = [];\nlet m;\nwhile ((m = imgRegex.exec(rawMarkdown)) !== null) {\n  const src = m[1];\n  if (\n    !src.endsWith('.svg') &&\n    !src.includes('data:') &&\n    !src.includes('pixel') &&\n    !src.includes('track') &&\n    !src.includes('maps.googleapis.com') &&\n    !src.includes('maps.gstatic.com') &&\n    !src.includes('google.com/maps')\n  ) {\n    imageUrls.push(src);\n  }\n}\n\nreturn [{ json: { formatted: `--- PAGE: ${title} | URL: ${url} ---\\n\\n${cleanedMarkdown}`, image_urls: imageUrls, screenshot } }];"
+      },
+      "id": "s13-format",
+      "name": "Format Page",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 0]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const items = $input.all();\nconst slug = $('Filter Key Pages').first().json.slug;\nconst combined = items.map(i => i.json.formatted).join('\\n\\n========\\n\\n');\n\n// Get screenshot from homepage (first item that has one)\nconst screenshot = items.find(i => i.json.screenshot)?.json.screenshot || null;\n\n// Deduplicate image URLs across all scraped pages\nconst seen = new Set();\nconst imageUrls = [];\nfor (const item of items) {\n  for (const u of (item.json.image_urls || [])) {\n    if (!seen.has(u)) { seen.add(u); imageUrls.push(u); }\n  }\n}\n\nreturn [{ json: { combined_content: combined, slug, image_urls: imageUrls.slice(0, 20), screenshot } }];"
+      },
+      "id": "s13-combine",
+      "name": "Combine Pages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1540, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const combinedContent = $json.combined_content;\nconst slug = $json.slug;\nconst screenshot = $json.screenshot || null;\nconst imageUrls = $json.image_urls || [];\n\nconst textPrompt = `You are analyzing a local business website to create a precise brand profile for a redesign. Study everything carefully and return ONLY valid JSON — no markdown, no code blocks, no explanation.\n\n${screenshot ? 'A screenshot of the homepage is attached. Use it to identify the current color palette, visual style, and layout.' : ''}\n\nReturn this exact JSON structure:\n{\n  \"business_name\": \"exact business name from the site\",\n  \"tagline\": \"their tagline or slogan, or null\",\n  \"business_type\": \"specific type e.g. 'mobile pet grooming spa', 'competitive dance studio', 'craft brewery'\",\n  \"services\": [\"list\", \"of\", \"specific\", \"services\"],\n  \"contact\": {\n    \"phone\": \"phone number or null\",\n    \"email\": \"email or null\",\n    \"address\": \"full address or null\"\n  },\n  \"hours\": \"business hours as a string, or null\",\n  \"target_audience\": \"specific description of who they serve — age, lifestyle, needs\",\n  \"tone\": \"one of: friendly, professional, casual, corporate, rustic, playful, luxury, energetic\",\n  \"colors\": {\n    \"primary\": \"#hexcode — dominant brand color visible on the site, or best inference from content\",\n    \"accent\": \"#hexcode — standout accent color, or null\",\n    \"background\": \"#hexcode — main background color\"\n  },\n  \"font_style\": \"describe the typography: e.g. 'elegant serif', 'clean modern sans', 'bold display', 'handwritten script'\",\n  \"aesthetic_notes\": \"honest assessment of what is visually dated or weak about the current site\",\n  \"key_differentiators\": \"specific credentials, awards, years in business, or unique claims\",\n  \"redesign_direction\": \"one confident sentence: specific tone, palette approach, and layout style for the redesign\"\n}\n\nScraped content:\n\n${combinedContent}`;\n\nlet messages;\nif (screenshot) {\n  messages = [{\n    role: 'user',\n    content: [\n      { type: 'image', source: { type: 'url', url: screenshot } },\n      { type: 'text', text: textPrompt }\n    ]\n  }];\n} else {\n  messages = [{ role: 'user', content: textPrompt }];\n}\n\nconst requestBody = JSON.stringify({\n  model: 'claude-sonnet-4-6',\n  max_tokens: 1500,\n  messages\n});\n\nreturn [{ json: { requestBody, slug, image_urls: imageUrls, screenshot } }];"
+      },
+      "id": "s13-build-brand",
+      "name": "Build Brand Profile Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1760, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "YOUR_ANTHROPIC_API_KEY"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ $json.requestBody }}",
+        "options": {}
+      },
+      "id": "s13-claude-brand",
+      "name": "Claude - Extract Brand Profile",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1980, 0]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Set Config", "type": "main", "index": 0 }]]
+    },
+    "Set Config": {
+      "main": [[{ "node": "Firecrawl Map", "type": "main", "index": 0 }]]
+    },
+    "Firecrawl Map": {
+      "main": [[{ "node": "Filter Key Pages", "type": "main", "index": 0 }]]
+    },
+    "Filter Key Pages": {
+      "main": [[{ "node": "Split URLs", "type": "main", "index": 0 }]]
+    },
+    "Split URLs": {
+      "main": [[{ "node": "Firecrawl Scrape", "type": "main", "index": 0 }]]
+    },
+    "Firecrawl Scrape": {
+      "main": [[{ "node": "Format Page", "type": "main", "index": 0 }]]
+    },
+    "Format Page": {
+      "main": [[{ "node": "Combine Pages", "type": "main", "index": 0 }]]
+    },
+    "Combine Pages": {
+      "main": [[{ "node": "Build Brand Profile Request", "type": "main", "index": 0 }]]
+    },
+    "Build Brand Profile Request": {
+      "main": [[{ "node": "Claude - Extract Brand Profile", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
