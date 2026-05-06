@@ -33,6 +33,7 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
 <BaseLayout
   title={`Posts tagged "${tag}"`}
   description={`Articles about ${tag} - React Native, mobile development, and more.`}
+  noindex={true}
 >
   <!-- Page Header -->
   <section class="py-12 sm:py-16">

@@ -16,7 +16,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/tools/prompt-builder'),
+      filter: (page) =>
+        !page.includes('/tools/prompt-builder') &&
+        !page.includes('/blog/tag/'),
     }),
   ],
 
