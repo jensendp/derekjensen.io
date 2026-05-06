@@ -7,6 +7,7 @@ tags: ['automation', 'n8n', 'claude', 'build in public', 'curb appeal']
 draft: false
 series: 'curb-appeal'
 seriesOrder: 2
+heroImage: '/images/blog/curb-appeal-hero-part-3.png'
 ---
 
 At the end of Step 2, we have clean scraped content from 4-8 pages of a business website.
