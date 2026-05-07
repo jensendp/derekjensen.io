@@ -7,9 +7,10 @@ interface Props {
   readingTime?: string;
   heroImage?: string;
   featured?: boolean;
+  compact?: boolean;
 }
 
-const { title, description, href, pubDate, readingTime, heroImage, featured = false } = Astro.props;
+const { title, description, href, pubDate, readingTime, heroImage, featured = false, compact = false } = Astro.props;
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-US', {
@@ -79,7 +80,7 @@ const formatDate = (date: Date) => {
   <article class="group">
     <a href={href} class="block h-full">
       {heroImage && (
-        <div class="rounded-xl overflow-hidden bg-neutral-100 aspect-video mb-4">
+        <div class:list={["rounded-xl overflow-hidden bg-neutral-100 mb-3", compact ? "aspect-video" : "aspect-video mb-4"]}>
           <img
             src={heroImage}
             alt={title}
@@ -87,13 +88,15 @@ const formatDate = (date: Date) => {
           />
         </div>
       )}
-      <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-200 leading-snug mb-2">
+      <h3 class:list={["font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-200 leading-snug mb-1", compact ? "text-sm" : ""]}>
         {title}
       </h3>
-      <p class="text-neutral-600 text-sm leading-relaxed line-clamp-2 mb-3">
-        {description}
-      </p>
-      <div class="flex items-center gap-2 text-xs text-neutral-500">
+      {!compact && (
+        <p class="text-neutral-600 text-sm leading-relaxed line-clamp-2 mb-3">
+          {description}
+        </p>
+      )}
+      <div class="flex items-center gap-2 text-xs text-neutral-500 mt-2">
         {pubDate && (
           <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
         )}
