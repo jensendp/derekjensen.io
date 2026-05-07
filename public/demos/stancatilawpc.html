@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Greenlee Law, PC — Kalamazoo Family Law &amp; Bankruptcy Attorneys</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --dark: #0f2338;
+    --navy: #1a3a5c;
+    --accent: #c9a84c;
+    --accent-light: #e8c96d;
+    --bg: #f4f1ec;
+    --bg-alt: #eae6df;
+    --text: #1e2b38;
+    --muted: #6b7a8d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Merriweather', serif;
+  }
+
+  /* Core patterns */
+  .rule-accent {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
+  }
+
+  .rule-short {
+    display: inline-block;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .lift {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.13);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-inner {
+    display: flex;
+    animation: marquee 32s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-inner:hover { animation-play-state: paused; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fu { opacity: 0; animation: fadeUp 0.7s ease both; }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.35s; }
+  .d4 { animation-delay: 0.5s; }
+  .d5 { animation-delay: 0.65s; }
+
+  .nav-lnk {
+    position: relative;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-lnk::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .nav-lnk:hover { color: var(--accent); }
+  .nav-lnk:hover::after { width: 100%; }
+
+  .prow {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .prow:last-child { border-bottom: none; }
+
+  .prow-dark {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .prow-dark:last-child { border-bottom: none; }
+
+  .incl {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8125rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .incl:last-child { border-bottom: none; }
+
+  .incl::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.75rem;
+  }
+
+  #mob-nav { display: none; }
+  #mob-nav.open { display: flex; }
+
+  /* Nav scroll effect */
+  #main-nav {
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  #main-nav.scrolled {
+    background: var(--dark) !important;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.22);
+  }
+
+  /* Hero */
+  .hero-bg {
+    background-color: var(--dark);
+    background-image: url('https://static.wixstatic.com/media/5bfb6f_c9a631e8e43443cb9d7ad97133d9d83d.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/5bfb6f_c9a631e8e43443cb9d7ad97133d9d83d.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    position: relative;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(10,22,38,0.94) 0%, rgba(15,35,56,0.82) 45%, rgba(10,22,38,0.55) 100%);
+  }
+
+  /* Gold accent line */
+  .gold-line {
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+    flex-shrink: 0;
+  }
+
+  /* Practice area cards */
+  .practice-card {
+    background: #fff;
+    border-top: 3px solid var(--accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .practice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+  }
+
+  /* Attorney photo containers */
+  .attorney-photo {
+    background-color: var(--navy);
+    background-size: cover;
+    background-position: center top;
+  }
+
+  /* Diagonal section */
+  .diagonal-section {
+    position: relative;
+    background: var(--dark);
+    clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
+    padding: 100px 0;
+  }
+
+  @media (max-width: 768px) {
+    .diagonal-section {
+      clip-path: polygon(0 20px, 100% 0, 100% calc(100% - 20px), 0 100%);
+      padding: 80px 0;
+    }
+  }
+
+  /* Stat number */
+  .stat-num {
+    font-family: 'Merriweather', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  /* CTA section */
+  .cta-bg {
+    background-color: var(--navy);
+    background-image: radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+
+  /* Form banner */
+  .form-demo-banner {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--muted);
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+  }
+
+  /* Input styling */
+  .form-input {
+    width: 100%;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 2px;
+    padding: 12px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .form-input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    background: #fff;
+    border-left: 3px solid var(--accent);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '\201C';
+    font-family: 'Merriweather', serif;
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.15;
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Process step */
+  .process-step-num {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 1;
+  }
+
+  /* Award badge text treatment */
+  .award-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 20px 28px;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Mobile menu */
+  .mob-nav-lnk {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+
+  .mob-nav-lnk:hover { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    background: #080f18;
+  }
+
+  /* Divider dot */
+  .dot-divider {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+
+  /* Service icon circle */
+  .svc-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Marquee strip */
+  .marquee-strip {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+
+  /* Responsive typography */
+  @media (max-width: 640px) {
+    .hero-title { font-size: 2.2rem !important; }
+    .stat-num { font-size: 2.2rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ===================== STICKY NAV ===================== -->
+<nav id="main-nav" style="background:rgba(10,22,38,0.96); backdrop-filter:blur(12px);" class="fixed top-0 left-0 right-0 z-50">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+    <div class="flex items-center justify-between" style="height:72px;">
+
+      <!-- Logo -->
+      <a href="#" style="text-decoration:none; display:flex; flex-direction:column; gap:2px;">
+        <span style="font-family:'Merriweather',serif; font-size:1.05rem; font-weight:700; color:#fff; letter-spacing:0.02em; line-height:1.2;">Greenlee Law, <span style="font-weight:300;">PC</span></span>
+        <span style="font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); font-weight:500; font-family:'Outfit',sans-serif;">Kalamazoo, Michigan</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#practice-areas" class="nav-lnk">Practice Areas</a>
+        <a href="#attorneys" class="nav-lnk">Attorneys</a>
+        <a href="#about" class="nav-lnk">About</a>
+        <a href="#process" class="nav-lnk">Process</a>
+        <a href="#contact" class="nav-lnk">Contact</a>
+      </div>
+
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center gap-5">
+        <a href="tel:2693814471" style="font-size:0.82rem; font-weight:600; color:var(--accent); letter-spacing:0.04em; text-decoration:none; font-family:'Outfit',sans-serif;">(269) 381-4471</a>
+        <a href="#contact" style="background:var(--accent); color:#0f2338; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:10px 20px; text-decoration:none; transition:background 0.2s; font-family:'Outfit',sans-serif;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--accent)'">Free Consultation</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" onclick="document.getElementById('mob-nav').classList.toggle('open')" aria-label="Menu">
+        <span style="display:block; width:24px; height:1.5px; background:rgba(255,255,255,0.85);"></span>
+        <span style="display:block; width:18px; height:1.5px; background:rgba(255,255,255,0.85);"></span>
+        <span style="display:block; width:24px; height:1.5px; background:rgba(255,255,255,0.85);"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mob-nav" style="background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); padding:8px 24px 20px;" class="flex-col">
+    <a href="#practice-areas" class="mob-nav-lnk block" onclick="document.getElementById('mob-nav').classList.remove('open')">Practice Areas</a>
+    <a href="#attorneys" class="mob-nav-lnk block" onclick="document.getElementById('mob-nav').classList.remove('open')">Attorneys</a>
+    <a href="#about" class="mob-nav-lnk block" onclick="document.getElementById('mob-nav').classList.remove('open')">About</a>
+    <a href="#process" class="mob-nav-lnk block" onclick="document.getElementById('mob-nav').classList.remove('open')">Process</a>
+    <a href="#contact" class="mob-nav-lnk block" onclick="document.getElementById('mob-nav').classList.remove('open')">Contact</a>
+    <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+      <a href="tel:2693814471" style="display:block; font-size:1rem; font-weight:600; color:var(--accent); text-decoration:none; margin-bottom:12px;">(269) 381-4471</a>
+      <a href="#contact" style="display:inline-block; background:var(--accent); color:#0f2338; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:12px 24px; text-decoration:none;" onclick="document.getElementById('mob-nav').classList.remove('open')">Free Consultation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero-bg" style="min-height:95vh; display:flex; align-items:flex-end; padding-bottom:80px; padding-top:72px;">
+  <div class="hero-overlay"></div>
+
+  <!-- Decorative vertical accent line -->
+  <div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%); opacity:0.6;"></div>
+
+  <div style="position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:0 24px; width:100%;">
+    <div style="max-width:680px;">
+      <div class="fu d1 flex items-center gap-4" style="margin-bottom:24px;">
+        <span class="rule-short"></span>
+        <span class="section-label" style="color:var(--accent);">Kalamazoo, Michigan</span>
+      </div>
+
+      <h1 class="hero-title fu d2" style="font-family:'Merriweather',serif; font-size:3.4rem; font-weight:900; color:#fff; line-height:1.15; letter-spacing:-0.01em; margin-bottom:24px;">
+        Legal Counsel<br>
+        <em style="font-weight:300; color:rgba(255,255,255,0.88);">When It Matters</em><br>
+        <span style="color:var(--accent);">Most.</span>
+      </h1>
+
+      <p class="fu d3" style="font-size:1.05rem; color:rgba(255,255,255,0.72); line-height:1.75; max-width:520px; margin-bottom:36px; font-weight:300;">
+        Trusted family law, bankruptcy, and estate planning representation for Kalamazoo-area families navigating life's most challenging transitions.
+      </p>
+
+      <div class="fu d4 flex flex-wrap gap-4" style="margin-bottom:52px;">
+        <a href="#contact" style="background:var(--accent); color:var(--dark); font-size:0.78rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:16px 32px; text-decoration:none; transition:all 0.2s; display:inline-block;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--accent)'">Schedule a Free Consultation</a>
+        <a href="#practice-areas" style="border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.85); font-size:0.78rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; padding:16px 32px; text-decoration:none; transition:all 0.2s; display:inline-block;" onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.color='rgba(255,255,255,0.85)'">Our Practice Areas</a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="fu d5" style="display:flex; flex-wrap:wrap; gap:24px; align-items:center; padding-top:28px; border-top:1px solid rgba(255,255,255,0.1);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; background:var(--accent); border-radius:50%; flex-shrink:0;"></div>
+          <span style="font-size:0.78rem; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase; font-weight:500;">Family Law</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; background:var(--accent); border-radius:50%; flex-shrink:0;"></div>
+          <span style="font-size:0.78rem; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase; font-weight:500;">Bankruptcy</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; background:var(--accent); border-radius:50%; flex-shrink:0;"></div>
+          <span style="font-size:0.78rem; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase; font-weight:500;">Estate Planning</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:8px; height:8px; background:var(--accent); border-radius:50%; flex-shrink:0;"></div>
+          <span style="font-size:0.78rem; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase; font-weight:500;">SSD Claims</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Award callout — anchored bottom right on large screens -->
+    <div style="position:absolute; right:24px; bottom:0; display:none;" class="lg:block">
+      <div class="award-badge">
+        <span style="font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; font-family:'Outfit',sans-serif;">Recognized</span>
+        <span style="font-family:'Merriweather',serif; font-size:1.1rem; font-weight:700; color:#fff; line-height:1.2; text-align:center;">Kalamazoo<br>Divorce Attorney</span>
+        <span style="font-size:0.65rem; letter-spacing:0.1em; color:rgba(255,255,255,0.5); font-family:'Outfit',sans-serif;">2022 AWARD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE STRIP ===================== -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Family Law</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Divorce &amp; Separation</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Child Support</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Chapter 7 Bankruptcy</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Estate Planning</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Social Security Disability</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">902 S Westnedge Ave · Kalamazoo, MI</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <!-- Duplicate for seamless loop -->
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Family Law</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Divorce &amp; Separation</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Child Support</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Chapter 7 Bankruptcy</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Estate Planning</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">Social Security Disability</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+    <span style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-family:'Outfit',sans-serif; padding:0 32px;">902 S Westnedge Ave · Kalamazoo, MI</span>
+    <span style="color:var(--accent); padding:0 4px; opacity:0.5;">◆</span>
+  </div>
+</div>
+
+<!-- ===================== WHY / BENEFITS ===================== -->
+<section id="about" style="background:var(--bg); padding:96px 0;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;" class="lg:grid-cols-2">
+      <!-- Left: text -->
+      <div>
+        <div class="flex items-center gap-4" style="margin-bottom:20px;">
+          <span class="rule-short"></span>
+          <span class="section-label">Why Greenlee Law</span>
+        </div>
+        <h2 style="font-family:'Merriweather',serif; font-size:2.4rem; font-weight:900; color:var(--dark); line-height:1.25; margin-bottom:24px; letter-spacing:-0.01em;">
+          Local Attorneys.<br>
+          <em style="font-weight:300;">Real Guidance.</em>
+        </h2>
+        <p style="font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:20px; font-weight:300;">
+          When you're facing a divorce, mounting debt, or questions about your future, you deserve an attorney who knows Kalamazoo — not a call center operator. Stancati, Hencken &amp; Greenlee brings decades of combined experience to every client who walks through our doors.
+        </p>
+        <p style="font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:36px; font-weight:300;">
+          We serve middle-income Michigan families who need straightforward, honest legal advice — without the intimidation of a large firm. Our practice is built on accessibility, clarity, and results.
+        </p>
+        <div class="rule-accent" style="max-width:320px;"></div>
+        <div style="display:flex; gap:48px; margin-top:32px;">
+          <div>
+            <div class="stat-num">8+</div>
+            <div style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:6px; font-weight:500;">Practice Areas</div>
+          </div>
+          <div style="width:1px; background:rgba(0,0,0,0.08);"></div>
+          <div>
+            <div class="stat-num">2</div>
+            <div style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:6px; font-weight:500;">Lead Attorneys</div>
+          </div>
+          <div style="width:1px; background:rgba(0,0,0,0.08);"></div>
+          <div>
+            <div class="stat-num">MI</div>
+            <div style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:6px; font-weight:500;">Licensed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 3 benefit pillars -->
+      <div style="display:flex; flex-direction:column; gap:28px;">
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="svc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:8px;">Trusted Local Representation</h3>
+            <p style="font-size:0.9rem; color:var(--muted); line-height:1.7; font-weight:300;">Deep roots in Kalamazoo County mean we understand local courts, judges, and community context. You're not a case number here.</p>
+          </div>
+        </div>
+
+        <div style="height:1px; background:rgba(0,0,0,0.07);"></div>
+
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="svc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:8px;">Responsive &amp; Accessible</h3>
+            <p style="font-size:0.9rem; color:var(--muted); line-height:1.7; font-weight:300;">Legal issues don't pause for business hours. We prioritize clear communication and timely responses so you're never left wondering about your case.</p>
+          </div>
+        </div>
+
+        <div style="height:1px; background:rgba(0,0,0,0.07);"></div>
+
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="svc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:8px;">Transparent Flat-Fee Options</h3>
+            <p style="font-size:0.9rem; color:var(--muted); line-height:1.7; font-weight:300;">We offer straightforward fee structures for uncontested divorces and bankruptcy filings so you know exactly what to expect — no billing surprises.</p>
+          </div>
+        </div>
+
+        <div style="height:1px; background:rgba(0,0,0,0.07);"></div>
+
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+          <div class="svc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:8px;">Recognized Excellence</h3>
+            <p style="font-size:0.9rem; color:var(--muted); line-height:1.7; font-weight:300;">Recipient of the 2022 Kalamazoo Divorce Attorney award, reflecting our commitment to outcomes and client care in the Kalamazoo legal community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRACTICE AREAS ===================== -->
+<section id="practice-areas" style="background:var(--bg-alt); padding:96px 0;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="flex items-center justify-center gap-4" style="margin-bottom:16px;">
+        <span class="rule-short"></span>
+        <span class="section-label">What We Handle</span>
+        <span class="rule-short"></span>
+      </div>
+      <h2 style="font-family:'Merriweather',serif; font-size:2.4rem; font-weight:900; color:var(--dark); line-height:1.25; letter-spacing:-0.01em;">Practice Areas</h2>
+      <p style="font-size:1rem; color:var(--muted); margin-top:16px; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.75; font-weight:300;">Legal matters that affect your family, your finances, and your future. We bring clarity to complexity.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+
+      <!-- Family Law -->
+      <div class="practice-card lift" style="padding:36px 30px;">
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:16px;">01</div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1.2rem; font-weight:700; color:var(--dark); margin-bottom:14px;">Family Law</h3>
+        <p style="font-size:0.88rem; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px;">Comprehensive representation in all family law matters, including contested and uncontested divorce, custody arrangements, parenting time, and asset division.</p>
+        <div>
+          <div class="incl">Divorce &amp; Legal Separation</div>
+          <div class="incl">Uncontested Divorce</div>
+          <div class="incl">Child Custody &amp; Parenting Time</div>
+          <div class="incl">Child Support Modification</div>
+        </div>
+        <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); text-decoration:none; transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+          Consult an Attorney
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- Bankruptcy -->
+      <div class="practice-card lift" style="padding:36px 30px;">
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:16px;">02</div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1.2rem; font-weight:700; color:var(--dark); margin-bottom:14px;">Bankruptcy</h3>
+        <p style="font-size:0.88rem; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px;">A fresh financial start is possible. We guide you through the bankruptcy process with clarity and discretion, helping you regain control of your financial life.</p>
+        <div>
+          <div class="incl">Chapter 7 Liquidation Bankruptcy</div>
+          <div class="incl">Automatic Stay Protection</div>
+          <div class="incl">Debt Discharge Guidance</div>
+          <div class="incl">Asset Exemption Analysis</div>
+        </div>
+        <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); text-decoration:none; transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+          Consult an Attorney
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- Estate Planning -->
+      <div class="practice-card lift" style="padding:36px 30px;">
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:16px;">03</div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1.2rem; font-weight:700; color:var(--dark); margin-bottom:14px;">Estate Planning</h3>
+        <p style="font-size:0.88rem; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px;">Protect your family's future with a thoughtfully prepared estate plan. We help you document your wishes clearly and ensure your loved ones are provided for.</p>
+        <div>
+          <div class="incl">Last Will &amp; Testament</div>
+          <div class="incl">Durable Power of Attorney</div>
+          <div class="incl">Healthcare Directives</div>
+          <div class="incl">Trust Preparation</div>
+        </div>
+        <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); text-decoration:none; transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+          Consult an Attorney
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- SSD -->
+      <div class="practice-card lift" style="padding:36px 30px;">
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:16px;">04</div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1.2rem; font-weight:700; color:var(--dark); margin-bottom:14px;">Social Security Disability</h3>
+        <p style="font-size:0.88rem; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px;">Navigating SSD claims is complex and often frustrating. We advocate for Michigan residents who have been denied benefits or are applying for the first time.</p>
+        <div>
+          <div class="incl">Initial Applications</div>
+          <div class="incl">Denial Appeals</div>
+          <div class="incl">Hearing Representation</div>
+          <div class="incl">Benefits Review</div>
+        </div>
+        <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); text-decoration:none; transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+          Consult an Attorney
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATTORNEYS — DRAMATIC FULL-BLEED SECTION ===================== -->
+<section id="attorneys" style="background:var(--dark); padding:0;">
+  <div style="max-width:1200px; margin:0 auto; padding:96px 24px;">
+    <div style="display:flex; align-items:center; gap:4" style="margin-bottom:16px;">
+      <div class="flex items-center gap-4" style="margin-bottom:16px;">
+        <span class="rule-short" style="background:var(--accent);"></span>
+        <span class="section-label">Your Legal Team</span>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:end; margin-bottom:0;" class="md:grid-cols-2">
+      <h2 style="font-family:'Merriweather',serif; font-size:2.4rem; font-weight:900; color:#fff; line-height:1.2; letter-spacing:-0.01em;">Meet Your<br><em style="font-weight:300; color:rgba(255,255,255,0.7);">Attorneys</em></h2>
+      <p style="font-size:0.95rem; color:rgba(255,255,255,0.5); line-height:1.8; font-weight:300; padding-bottom:4px;">Two experienced attorneys dedicated to serving the Kalamazoo community with integrity, knowledge, and a personal approach to every case.</p>
+    </div>
+
+    <div class="rule-accent" style="margin:32px 0 56px;"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;" class="md:grid-cols-2">
+
+      <!-- Attorney 1 -->
+      <div style="display:flex; flex-direction:column;">
+        <div class="attorney-photo" style="
+          background-image: url('https://static.wixstatic.com/media/418b1c_b292f428b52e41b3a7cc2c0b17e8baaf~mv2.jpeg/v1/fill/w_195,h_222,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Allison%20Greenlee%20Korr.jpeg');
+          background-size: cover;
+          background-position: center top;
+          height: 380px;
+          position: relative;
+        ">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 50%, rgba(10,22,38,0.92) 100%);"></div>
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:28px 28px 24px;">
+            <div style="width:36px; height:2px; background:var(--accent); margin-bottom:12px;"></div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.35rem; font-weight:700; color:#fff; margin-bottom:4px;">Allison Greenlee Korr</h3>
+            <p style="font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:500;">Attorney at Law</p>
+          </div>
+        </div>
+        <div style="background:#0c1e30; padding:28px; flex:1;">
+          <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.8; font-weight:300; margin-bottom:20px;">Allison brings focused expertise in family law and divorce matters, guiding Kalamazoo families through their most difficult transitions with compassion and precision.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Family Law</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Divorce</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Child Support</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Estate Planning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attorney 2 -->
+      <div style="display:flex; flex-direction:column;">
+        <div class="attorney-photo" style="
+          background-image: url('https://static.wixstatic.com/media/418b1c_a68f9aa1be7b493ea8a273e6a6f89cb4~mv2.jpg/v1/fill/w_195,h_222,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/RRH%20pic.jpg');
+          background-size: cover;
+          background-position: center top;
+          height: 380px;
+          position: relative;
+        ">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 50%, rgba(10,22,38,0.92) 100%);"></div>
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:28px 28px 24px;">
+            <div style="width:36px; height:2px; background:var(--accent); margin-bottom:12px;"></div>
+            <h3 style="font-family:'Merriweather',serif; font-size:1.35rem; font-weight:700; color:#fff; margin-bottom:4px;">R. Richard Hanson</h3>
+            <p style="font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:500;">Attorney at Law</p>
+          </div>
+        </div>
+        <div style="background:#0c1e30; padding:28px; flex:1;">
+          <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.8; font-weight:300; margin-bottom:20px;">Richard's extensive background in bankruptcy and disability law provides clients with knowledgeable advocacy during financially challenging times and Social Security Disability proceedings.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Bankruptcy</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">Chapter 7</span>
+            <span style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); padding:5px 10px; border:1px solid rgba(255,255,255,0.08);">SSD Claims</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section id="process" class="diagonal-section">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px; position:relative; z-index:2;">
+
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="flex items-center justify-center gap-4" style="margin-bottom:16px;">
+        <span class="rule-short"></span>
+        <span class="section-label">How It Works</span>
+        <span class="rule-short"></span>
+      </div>
+      <h2 style="font-family:'Merriweather',serif; font-size:2.4rem; font-weight:900; color:#fff; line-height:1.25; letter-spacing:-0.01em;">Your Path Forward,<br><em style="font-weight:300; color:rgba(255,255,255,0.65);">Step by Step</em></h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2px; background:rgba(255,255,255,0.05);">
+
+      <div style="background:var(--dark); padding:40px 32px; position:relative;">
+        <div class="process-step-num">01</div>
+        <div style="width:40px; height:1px; background:var(--accent); margin:16px 0;"></div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:12px;">Free Consultation</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300;">Call or contact us to schedule your initial consultation at no charge. We'll listen to your situation without judgment.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.02); padding:40px 32px; position:relative;">
+        <div class="process-step-num">02</div>
+        <div style="width:40px; height:1px; background:var(--accent); margin:16px 0;"></div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:12px;">Case Evaluation</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300;">We review the details of your situation, explain your legal options clearly, and outline a realistic path to resolution.</p>
+      </div>
+
+      <div style="background:var(--dark); padding:40px 32px; position:relative;">
+        <div class="process-step-num">03</div>
+        <div style="width:40px; height:1px; background:var(--accent); margin:16px 0;"></div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:12px;">Strategy &amp; Engagement</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300;">We agree on a clear strategy, fee structure, and timeline. You'll know exactly what to expect before we begin.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.02); padding:40px 32px; position:relative;">
+        <div class="process-step-num">04</div>
+        <div style="width:40px; height:1px; background:var(--accent); margin:16px 0;"></div>
+        <h3 style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:12px;">Resolution</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300;">We guide you through every filing, hearing, and negotiation — keeping you informed and advocating for the best possible outcome.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section style="background:var(--bg); padding:96px 0;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:48px; flex-wrap:wrap; gap:24px;">
+      <div>
+        <div class="flex items-center gap-4" style="margin-bottom:16px;">
+          <span class="rule-short"></span>
+          <span class="section-label">Client Voices</span>
+        </div>
+        <h2 style="font-family:'Merriweather',serif; font-size:2.2rem; font-weight:900; color:var(--dark); line-height:1.25; letter-spacing:-0.01em;">What Our Clients Say</h2>
+      </div>
+      <p style="font-size:0.85rem; color:var(--muted); max-width:340px; line-height:1.7; font-weight:300;">Real feedback from the Kalamazoo families and individuals we've had the privilege to represent.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px;">
+
+      <div class="testimonial-card lift" style="padding:36px 32px;">
+        <div style="display:flex; margin-bottom:16px;">
+          <span style="color:var(--accent); font-size:0.85rem; letter-spacing:2px;">★★★★★</span>
+        </div>
+        <p style="font-size:0.92rem; color:var(--text); line-height:1.8; font-weight:300; margin-bottom:24px; font-style:italic;">"Allison made an incredibly difficult time in my life manageable. She explained everything clearly and fought for my family with real dedication."</p>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'Merriweather',serif; font-size:0.8rem; font-weight:700; color:#fff;">S.M.</span>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; font-weight:600; color:var(--dark); letter-spacing:0.04em;">S. Mitchell</div>
+            <div style="font-size:0.72rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Family Law Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card lift" style="padding:36px 32px;">
+        <div style="display:flex; margin-bottom:16px;">
+          <span style="color:var(--accent); font-size:0.85rem; letter-spacing:2px;">★★★★★</span>
+        </div>
+        <p style="font-size:0.92rem; color:var(--text); line-height:1.8; font-weight:300; margin-bottom:24px; font-style:italic;">"Richard guided me through the Chapter 7 process without any surprises. After months of financial stress, I finally felt like I had someone in my corner."</p>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'Merriweather',serif; font-size:0.8rem; font-weight:700; color:#fff;">T.W.</span>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; font-weight:600; color:var(--dark); letter-spacing:0.04em;">T. Williams</div>
+            <div style="font-size:0.72rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Bankruptcy Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card lift" style="padding:36px 32px;">
+        <div style="display:flex; margin-bottom:16px;">
+          <span style="color:var(--accent); font-size:0.85rem; letter-spacing:2px;">★★★★★</span>
+        </div>
+        <p style="font-size:0.92rem; color:var(--text); line-height:1.8; font-weight:300; margin-bottom:24px; font-style:italic;">"I'd been denied SSD twice before calling this office. They took my case seriously, prepared me for the hearing, and we won. I'm incredibly grateful."</p>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'Merriweather',serif; font-size:0.8rem; font-weight:700; color:#fff;">D.P.</span>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; font-weight:600; color:var(--dark); letter-spacing:0.04em;">D. Peterson</div>
+            <div style="font-size:0.72rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">Disability Client</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Award recognition row -->
+    <div style="margin-top:56px; padding-top:48px; border-top:1px solid rgba(0,0,0,0.07); display:flex; align-items:center; justify-content:center; gap:48px; flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Award Recipient</div>
+        <div style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:var(--dark);">Kalamazoo Divorce Attorney</div>
+        <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-top:4px; font-weight:600;">2022</div>
+      </div>
+      <div style="width:1px; height:48px; background:rgba(0,0,0,0.1);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Licensed &amp; Serving</div>
+        <div style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:var(--dark);">State of Michigan</div>
+        <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-top:4px; font-weight:600;">Kalamazoo County</div>
+      </div>
+      <div style="width:1px; height:48px; background:rgba(0,0,0,0.1);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Legacy Practice</div>
+        <div style="font-family:'Merriweather',serif; font-size:1rem; font-weight:700; color:var(--dark);">Stancati, Hencken &amp; Greenlee</div>
+        <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-top:4px; font-weight:600;">Established Firm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT / CTA ===================== -->
+<section id="contact" class="cta-bg" style="padding:96px 0;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" class="lg:grid-cols-2">
+
+      <!-- Left: Contact info -->
+      <div>
+        <div class="flex items-center gap-4" style="margin-bottom:20px;">
+          <span class="rule-short"></span>
+          <span class="section-label">Get In Touch</span>
+        </div>
+        <h2 style="font-family:'Merriweather',serif; font-size:2.4rem; font-weight:900; color:#fff; line-height:1.2; margin-bottom:24px; letter-spacing:-0.01em;">
+          Schedule Your<br>
+          <em style="font-weight:300; color:rgba(255,255,255,0.65);">Free Consultation</em>
+        </h2>
+        <p style="font-size:1rem; color:rgba(255,255,255,0.55); line-height:1.8; font-weight:300; margin-bottom:40px;">
+          Whether you're facing a difficult divorce, overwhelming debt, or need help securing disability benefits — the first conversation costs nothing. Let's talk about your situation.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <div style="display:flex; align-items:flex-start; gap:16px;" class="prow-dark" style="padding-bottom:20px;">
+            <div class="svc-icon" style="background:rgba(201,168,76,0.12); flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; font-weight:600;">Phone</div>
+              <a href="tel:2693814471" style="font-family:'Merriweather',serif; font-size:1.4rem; font-weight:700; color:#fff; text-decoration:none;">(269) 381-4471</a>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:flex-start; gap:16px;">
+            <div class="svc-icon" style="background:rgba(201,168,76,0.12); flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; font-weight:600;">Office</div>
+              <p style="font-size:1rem; color:#fff; line-height:1.6; font-weight:400;">902 S Westnedge Ave<br>Kalamazoo, MI 49008</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map note -->
+        <div style="margin-top:40px; padding:20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+          <p style="font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.7; font-weight:300;">
+            <span style="color:var(--accent); font-weight:500;">Located in Kalamazoo's Vine neighborhood</span> — conveniently accessible from downtown and the greater Southwest Michigan area.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Contact form -->
+      <div>
+        <div style="background:var(--bg); padding:40px; border-top:3px solid var(--accent);">
+          <h3 style="font-family:'Merriweather',serif; font-size:1.3rem; font-weight:700; color:var(--dark); margin-bottom:8px;">Send a Message</h3>
+          <p style="font-size:0.85rem; color:var(--muted); margin-bottom:28px; line-height:1.6;">We'll respond within one business day.</p>
+
+          <form>
+            <div class="form-demo-banner">This is a redesign demo — form submissions are disabled.</div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+              <div>
+                <label style="display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:6px;">First Name</label>
+                <input type="text" placeholder="Jane" class="form-input" disabled>
+              </div>
+              <div>
+                <label style="display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:6px;">Last Name</label>
+                <input type="text" placeholder="Smith" class="form-input" disabled>
+              </div>
+            </div>
+
+            <div style="margin-bottom:16px;">
+              <label style="display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:6px;">Phone Number</label>
+              <input type="tel" placeholder="(269) 000-0000" class="form-input" disabled>
+            </div>
+
+            <div style="margin-bottom:16px;">
+              <label style="display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:6px;">Practice Area</label>
+              <select class="form-input" disabled>
+                <option value="">Select an area of concern...</option>
+                <option>Family Law / Divorce</option>
+                <option>Bankruptcy</option>
+                <option>Estate Planning</option>
+                <option>Social Security Disability</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom:24px;">
+              <label style="display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:6px;">Brief Description</label>
+              <textarea rows="4" placeholder="Briefly describe your situation..." class="form-input" style="resize:vertical;" disabled></textarea>
+            </div>
+
+            <button type="submit" disabled style="width:100%; background:var(--accent); color:var(--dark); font-size:0.78rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:16px 24px; border:none; cursor:not-allowed; opacity:0.65; font-family:'Outfit',sans-serif;">
+              Request Free Consultation
+            </button>
+
+            <p style="font-size:0.72rem; color:var(--muted); text-align:center; margin-top:12px; line-height:1.6;">By submitting, you agree to be contacted by our office. Attorney-client relationship is not established until formally agreed.</p>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="padding:60px 0 32px;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:52px;" class="md:grid-cols-4">
+
+      <!-- Brand column -->
+      <div>
+        <div style="margin-bottom:20px;">
+          <div style="font-family:'Merriweather',serif; font-size:1.1rem; font-weight:700; color:#fff; letter-spacing:0.02em; margin-bottom:4px;">Greenlee Law, PC</div>
+          <div style="font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); font-weight:500;">Stancati, Hencken &amp; Greenlee, P.C.</div>
+        </div>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.4); line-height:1.75; font-weight:300; margin-bottom:20px;">Trusted legal representation for Kalamazoo-area families. Family law, bankruptcy, estate planning, and disability claims.</p>
+        <a href="tel:2693814471" style="font-size:1rem; font-weight:600; color:var(--accent); text-decoration:none;">(269) 381-4471</a>
+      </div>
+
+      <!-- Practice Areas -->
+      <div>
+        <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:20px;">Practice Areas</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#practice-areas" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Family Law</a>
+          <a href="#practice-areas" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Divorce</a>
+          <a href="#practice-areas" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Bankruptcy</a>
+          <a href="#practice-areas" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Estate Planning</a>
+          <a href="#practice-areas" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">SSD Claims</a>
+        </div>
+      </div>
+
+      <!-- Firm -->
+      <div>
+        <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:20px;">Our Firm</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#attorneys" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Attorneys</a>
+          <a href="#about" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About the Firm</a>
+          <a href="#process" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Process</a>
+          <a href="#contact" style="font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Contact</a>
+        </div>
+      </div>
+
+      <!-- Office -->
+      <div>
+        <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:20px;">Office</div>
+        <address style="font-style:normal; font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.8;">
+          902 S Westnedge Ave<br>
+          Kalamazoo, MI 49008
+        </address>
+        <div style="margin-top:16px; font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.8;">
+          <a href="tel:2693814471" style="color:rgba(255,255,255,0.45); text-decoration:none;">(269) 381-4471</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rule-accent" style="margin-bottom:28px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.25);">
+        &copy; 2024 Greenlee Law, PC · Stancati, Hencken &amp; Greenlee, P.C. All rights reserved.
+        <span class="dot-divider"></span>
+        The information on this website is for general information only and does not constitute legal advice.
+      </p>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.2); letter-spacing:0.04em;">
+        Redesign demo by <a href="https://derekjensen.io" style="color:rgba(255,255,255,0.35); text-decoration:none;" target="_blank" rel="noopener">derekjensen.io</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ===================== NAV SCROLL JS ===================== -->
+<script>
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 40) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Responsive grid fixes on mobile
+  function handleResponsive() {
+    const w = window.innerWidth;
+    const grids = document.querySelectorAll('[style*="grid-template-columns:1fr 1fr"]');
+    grids.forEach(function(el) {
+      if (w < 768) {
+        el.style.gridTemplateColumns = '1fr';
+        el.style.gap = '32px';
+      } else {
+        el.style.gridTemplateColumns = '';
+        el.style.gap = '';
+      }
+    });
+    const grid4 = document.querySelector('[style*="grid-template-columns:2fr 1fr 1fr 1fr"]');
+    if (grid4) {
+      if (w < 768) {
+        grid4.style.gridTemplateColumns = '1fr 1fr';
+        grid4.style.gap = '32px';
+      } else if (w < 1024) {
+        grid4.style.gridTemplateColumns = '1fr 1fr';
+        grid4.style.gap = '32px';
+      } else {
+        grid4.style.gridTemplateColumns = '2fr 1fr 1fr 1fr';
+        grid4.style.gap = '48px';
+      }
+    }
+    if (w < 640) {
+      if (grid4) {
+        grid4.style.gridTemplateColumns = '1fr';
+      }
+    }
+  }
+
+  handleResponsive();
+  window.addEventListener('resize', handleResponsive);
+</script>
+
+</body>
+</html>
