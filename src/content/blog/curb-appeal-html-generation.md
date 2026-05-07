@@ -79,6 +79,8 @@ Sections chosen: nav, hero, marquee (services), why/benefits (certifications), s
 
 The marquee strip became a rotating list of grooming services. The service area section showed the specific Illinois communities served — a detail that only works because the brand profile captured it from the scraped content.
 
+[View original site →](https://fairytailsmobilepetspa.com) · [View redesign demo →](https://derekjensen.io/demos/fairytailsmobilepetspa.html)
+
 ### Stancati Law PC
 
 Brand profile tone: **professional**. Redesign direction: confident navy and warm gold, credentials above the fold, clear CTA hierarchy.
@@ -87,6 +89,8 @@ Sections chosen: nav, hero, why/benefits (attorney credentials), services, about
 
 No gallery. No marquee. A law firm earns trust through credentials and clarity, not visual flair. The attorney names and the 2022 Kalamazoo divorce attorney award appeared in the hero — trust signals first, exactly as the brief specified.
 
+[View original site →](https://www.stancatilawpc.com) · [View redesign demo →](https://derekjensen.io/demos/stancatilawpc.html)
+
 ### Pollen & Pastry
 
 Brand profile tone: **luxury**. Redesign direction: deep burgundy and warm cream, editorial full-bleed photography, refined serif typography.
@@ -94,6 +98,8 @@ Brand profile tone: **luxury**. Redesign direction: deep burgundy and warm cream
 Sections chosen: nav, hero (full-bleed), press/"As Seen In", services, gallery, about, contact CTA, footer.
 
 The press section listed eight publication features — Wedding Chicks, Aisle Perfect, Bridal Guide, and others — pulled directly from the `key_differentiators` field in the brand profile.
+
+[View original site →](https://www.pollenandpastry.com) · [View redesign demo →](https://derekjensen.io/demos/pollenandpastry.html)
 
 ---
 
@@ -144,6 +150,12 @@ The fix: all real images from the existing site must be used as CSS `background-
 The Pollen & Pastry demo had an "As Seen In" section with eight press features. Claude tried to load logos for The Knot, Wedding Chicks, and others — all blocked.
 
 The fix: an explicit rule in the prompt that press/award sections must render as styled text only. Publication names in uppercase with letter-spacing and a muted color, separated by dividers. No `<img>` tags for logos.
+
+### Forms on Demo Pages
+
+The law firm and bakery demos both included contact forms. The demos are publicly accessible URLs — anyone who finds them could fill out a form thinking it's real. The business owner never sees the submission, and someone might genuinely think they've contacted a lawyer or placed an order.
+
+The fix: a prompt rule requiring all forms to render with `disabled` attributes on every input and button, plus a visible note inside the form: *"This is a redesign demo — form submissions are disabled."* The form still looks like a real form (which is the point of the demo), but no one can accidentally submit it.
 
 ### Blog-Heavy Sites Miss Key Pages
 
