@@ -233,7 +233,7 @@ The output: a JSON brand profile — business type, audience, color palette, ton
 
 That profile is what makes the generated demo look like it belongs to the specific business instead of every business.
 
-[Step 3 is coming soon →](/projects/curb-appeal)
+[Step 3: Teaching AI to Read a Brand →](/blog/curb-appeal-brand-analysis-claude)
 
 ---
 
