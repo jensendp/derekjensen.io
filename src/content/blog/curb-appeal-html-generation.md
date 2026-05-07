@@ -4,7 +4,7 @@ description: "One prompt. One Claude call. A complete, production-quality HTML d
 pubDate: '2026-05-07T09:00:00'
 author: 'Derek Jensen'
 tags: ['automation', 'n8n', 'claude', 'build in public', 'curb appeal']
-draft: false
+draft: true
 series: 'curb-appeal'
 seriesOrder: 3
 heroImage: '/images/blog/curb-appeal-hero-part-4.png'
