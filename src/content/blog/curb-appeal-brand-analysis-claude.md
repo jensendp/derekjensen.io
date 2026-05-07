@@ -198,7 +198,7 @@ Step 4 takes the brand profile and builds a complete, production-quality HTML de
 
 The brief from `redesign_direction` drives everything: section selection, fonts, colors, layout. A mobile pet spa gets different sections than a law firm. A playful brand gets different typography than a luxury one.
 
-[Step 4: From Brand Brief to Working Website →](/blog/curb-appeal-html-generation)
+[Step 4 is coming soon →](/projects/curb-appeal)
 
 ---
 
