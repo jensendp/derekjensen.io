@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pollen & Pastry — Florals & Desserts | Bloomington, Illinois</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --dark:   #12100e;
+      --accent: #8b1a2f;
+      --accent-light: #b8354d;
+      --bg:     #f7f3ee;
+      --bg-alt: #ede8e1;
+      --ivory:  #faf7f2;
+      --text:   #1a1a1a;
+      --muted:  #7a7060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .display {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .display-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ── CORE PATTERNS ── */
+    .rule-accent {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
+    }
+    .rule-short {
+      display: inline-block;
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .lift {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .lift:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.13);
+    }
+
+    /* ── MARQUEE ── */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-inner {
+      display: flex;
+      animation: marquee 32s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-inner:hover { animation-play-state: paused; }
+
+    /* ── FADE UP ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fu { opacity: 0; animation: fadeUp 0.7s ease both; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.2s;  }
+    .d3 { animation-delay: 0.35s; }
+    .d4 { animation-delay: 0.5s;  }
+    .d5 { animation-delay: 0.65s; }
+
+    /* ── NAV ── */
+    .nav-lnk {
+      position: relative;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .nav-lnk::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-lnk:hover::after { width: 100%; }
+
+    /* ── MOBILE NAV ── */
+    #mob-nav { display: none; }
+    #mob-nav.open { display: flex; }
+
+    /* ── PRICE ROWS ── */
+    .prow { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .prow:last-child { border-bottom: none; }
+    .incl {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8125rem;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .incl:last-child { border-bottom: none; }
+    .incl::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 0.75rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 95vh;
+      background-color: #1c1010;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461645454546-BKD9K6RX0DY0Y00VLXU8/Burgundy+Bridal+Bouquet+With+Lots+of+Texture');
+      background-size: cover;
+      background-position: center 30%;
+      position: relative;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(12, 8, 6, 0.82) 0%,
+        rgba(12, 8, 6, 0.55) 55%,
+        rgba(12, 8, 6, 0.18) 100%
+      );
+    }
+
+    /* ── SPLIT IMAGE PANELS ── */
+    .panel-bouquet {
+      background-color: #2a1a1a;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461645161562-X3J78JN3XP6NFB5OZTAC/Burgundy+and+Marsala+Bridal+Bouquet');
+      background-size: cover;
+      background-position: center;
+    }
+    .panel-cake {
+      background-color: #2a1f18;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1541723307640-9Z5WXTCE44VV75SWI1P3/Chocolate+Brushstroke+Cake');
+      background-size: cover;
+      background-position: center;
+    }
+    .panel-crown {
+      background-color: #1a2214;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461645578151-TEDUZLKFQSQ4937EL37D/Greenery+Flower+Crown');
+      background-size: cover;
+      background-position: center;
+    }
+    .panel-gold-cake {
+      background-color: #2a1f10;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461645415620-VEY1AZ3SW6OM3QH23KEF/Gold+Painted+Cake+for+Travel+Themed+Engagement+Shoot');
+      background-size: cover;
+      background-position: center;
+    }
+    .panel-desert {
+      background-color: #231515;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461705247415-IKSE9X2596FAZEJ7ND8U/Desert+Burgundy+Bouquet');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── ABOUT SECTION PHOTO ── */
+    .about-photo {
+      background-color: #261818;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1489181711436-YRBOYXLMLHFY4R8SOKAT/image-asset.jpeg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* ── DIAGONAL DIVIDER ── */
+    .clip-diagonal {
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    }
+    .clip-diagonal-reverse {
+      clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── BUTTON STYLES ── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #faf7f2;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: 1px solid var(--accent);
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: #faf7f2;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 36px;
+      border: 1px solid rgba(250,247,242,0.5);
+      transition: background 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      background: rgba(250,247,242,0.08);
+      border-color: rgba(250,247,242,0.9);
+    }
+    .btn-dark {
+      display: inline-block;
+      background: transparent;
+      color: var(--dark);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 36px;
+      border: 1px solid var(--dark);
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    .btn-dark:hover {
+      background: var(--dark);
+      color: var(--ivory);
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 3px;
+    }
+    .gallery-grid .g-tall {
+      grid-row: span 2;
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px;
+      }
+      .gallery-grid .g-tall {
+        grid-row: span 1;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-grid > div { height: 260px; }
+    }
+
+    /* ── SERVICE CARDS ── */
+    .service-card {
+      background: var(--ivory);
+      border: 1px solid rgba(139,26,47,0.12);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(139,26,47,0.1);
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-card {
+      background: var(--ivory);
+      border-left: 2px solid var(--accent);
+    }
+
+    /* ── FORM DEMO BANNER ── */
+    .form-demo-notice {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      padding: 8px 12px;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(0,0,0,0.03);
+      margin-bottom: 20px;
+    }
+
+    /* ── INPUT STYLES ── */
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: none;
+      border-bottom: 1px solid rgba(250,247,242,0.3);
+      color: #faf7f2;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 12px 4px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-input::placeholder { color: rgba(250,247,242,0.4); }
+    .form-input:focus { border-bottom-color: var(--accent-light); }
+    .form-input:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(250,247,242,0.3);
+      color: #faf7f2;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 12px 4px;
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    .form-select:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-select option { background: var(--dark); color: #faf7f2; }
+    .form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(250,247,242,0.15);
+      color: #faf7f2;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 12px;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.3s;
+    }
+    .form-textarea::placeholder { color: rgba(250,247,242,0.4); }
+    .form-textarea:focus { border-color: var(--accent-light); }
+    .form-textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── STICKY NAV SCROLL ── */
+    #main-nav {
+      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+    }
+    #main-nav.scrolled {
+      background: rgba(18, 16, 14, 0.97) !important;
+      box-shadow: 0 2px 30px rgba(0,0,0,0.25);
+    }
+
+    /* ── FOOTER ── */
+    footer a:hover { color: var(--accent-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     STICKY NAVIGATION
+══════════════════════════════════════════════ -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-transparent" style="background:rgba(12,8,6,0.15); backdrop-filter:blur(4px);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between" style="height:72px;">
+
+      <!-- Logo -->
+      <a href="#" class="flex flex-col leading-none" style="text-decoration:none;">
+        <span class="display" style="color:#faf7f2; font-size:1.35rem; letter-spacing:0.04em;">POLLEN</span>
+        <span class="display-italic" style="color:var(--accent); font-size:0.9rem; letter-spacing:0.08em;">&amp; Pastry</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="nav-lnk" style="color:rgba(250,247,242,0.8); text-decoration:none;">Services</a>
+        <a href="#gallery"  class="nav-lnk" style="color:rgba(250,247,242,0.8); text-decoration:none;">Portfolio</a>
+        <a href="#about"    class="nav-lnk" style="color:rgba(250,247,242,0.8); text-decoration:none;">Studio</a>
+        <a href="#press"    class="nav-lnk" style="color:rgba(250,247,242,0.8); text-decoration:none;">Press</a>
+        <a href="#popup"    class="nav-lnk" style="color:rgba(250,247,242,0.8); text-decoration:none;">Pop-Up</a>
+        <a href="#contact"  class="btn-primary" style="text-decoration:none; padding:10px 24px;">Inquire</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="ham-btn" class="md:hidden flex flex-col gap-1.5 p-2" onclick="document.getElementById('mob-nav').classList.toggle('open')" aria-label="Menu">
+        <span style="width:22px;height:1px;background:#faf7f2;display:block;"></span>
+        <span style="width:22px;height:1px;background:#faf7f2;display:block;"></span>
+        <span style="width:14px;height:1px;background:#faf7f2;display:block;"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div id="mob-nav" class="flex-col md:hidden" style="background:rgba(12,8,6,0.97); padding:24px 24px 32px; border-top:1px solid rgba(139,26,47,0.3);">
+    <a href="#services" class="nav-lnk block py-3" style="color:rgba(250,247,242,0.85); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.06);" onclick="document.getElementById('mob-nav').classList.remove('open')">Services</a>
+    <a href="#gallery"  class="nav-lnk block py-3" style="color:rgba(250,247,242,0.85); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.06);" onclick="document.getElementById('mob-nav').classList.remove('open')">Portfolio</a>
+    <a href="#about"    class="nav-lnk block py-3" style="color:rgba(250,247,242,0.85); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.06);" onclick="document.getElementById('mob-nav').classList.remove('open')">Studio</a>
+    <a href="#press"    class="nav-lnk block py-3" style="color:rgba(250,247,242,0.85); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.06);" onclick="document.getElementById('mob-nav').classList.remove('open')">Press</a>
+    <a href="#popup"    class="nav-lnk block py-3" style="color:rgba(250,247,242,0.85); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.06);" onclick="document.getElementById('mob-nav').classList.remove('open')">Pop-Up</a>
+    <a href="#contact"  class="btn-primary inline-block mt-5" style="text-decoration:none;" onclick="document.getElementById('mob-nav').classList.remove('open')">Inquire</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section id="hero" class="relative flex items-end">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pb-20 pt-40">
+
+    <div class="max-w-2xl">
+      <div class="fu d1 flex items-center gap-4 mb-6">
+        <span class="rule-short"></span>
+        <span class="label" style="color:var(--accent-light);">Bloomington, Illinois</span>
+      </div>
+
+      <h1 class="display fu d2" style="color:#faf7f2; font-size:clamp(3.2rem, 7vw, 6.5rem); line-height:0.98;">
+        Flowers<br/>
+        <span class="display-italic" style="color:var(--accent-light);">&amp; something</span><br/>
+        sweet.
+      </h1>
+
+      <p class="fu d3 mt-6" style="color:rgba(250,247,242,0.7); font-size:1rem; font-weight:300; max-width:440px; line-height:1.8;">
+        Central Illinois' premier artisan celebration studio — crafting bespoke florals and handmade desserts for weddings and everyday moments that deserve beauty.
+      </p>
+
+      <div class="fu d4 flex flex-wrap gap-4 mt-10">
+        <a href="#contact" class="btn-primary" style="text-decoration:none;">Begin Your Consultation</a>
+        <a href="#services" class="btn-ghost" style="text-decoration:none;">Explore Our Work</a>
+      </div>
+    </div>
+
+    <!-- Floating Hours Chip -->
+    <div class="fu d5 absolute bottom-10 right-6 lg:right-10 hidden lg:block">
+      <div style="background:rgba(18,16,14,0.85); border:1px solid rgba(139,26,47,0.4); backdrop-filter:blur(8px); padding:16px 24px; max-width:220px;">
+        <p class="label" style="color:var(--accent-light); margin-bottom:6px;">Saturday Pop-Up</p>
+        <p style="color:#faf7f2; font-size:0.8rem; font-weight:300; line-height:1.6;">212 N Center St.<br/>Downtown Bloomington<br/><span style="color:rgba(250,247,242,0.55);">8:00 am – Noon</span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+    <span class="label" style="color:rgba(250,247,242,0.35); font-size:0.6rem;">Scroll</span>
+    <div style="width:1px; height:40px; background:linear-gradient(180deg, rgba(250,247,242,0.4), transparent);"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     MARQUEE STRIP
+══════════════════════════════════════════════ -->
+<div style="background:var(--accent); overflow:hidden; padding:12px 0;">
+  <div class="marquee-inner">
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Wedding Florals</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Custom Wedding Cakes</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Everyday Flower Delivery</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Saturday Pop-Up · Downtown Bloomington</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Dessert Delivery</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">The Knot Best of Weddings</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Wedding Florals</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Custom Wedding Cakes</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Everyday Flower Delivery</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Saturday Pop-Up · Downtown Bloomington</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">Dessert Delivery</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+    <span class="label" style="color:rgba(250,247,242,0.9); padding:0 48px;">The Knot Best of Weddings</span>
+    <span style="color:rgba(250,247,242,0.4);">◆</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════ -->
+<section id="services" style="background:var(--bg); padding:100px 0 80px;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <!-- Section Header -->
+    <div class="flex items-center gap-4 mb-4">
+      <span class="rule-short"></span>
+      <span class="label" style="color:var(--accent);">What We Create</span>
+    </div>
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14 gap-6">
+      <h2 class="display" style="font-size:clamp(2.4rem, 5vw, 4rem); max-width:520px;">
+        One Studio.<br/>
+        <span class="display-italic" style="color:var(--accent);">Every celebration.</span>
+      </h2>
+      <p style="max-width:380px; color:var(--muted); font-size:0.9rem; line-height:1.8;">
+        Pollen &amp; Pastry is the only studio in Central Illinois offering bespoke florals and handcrafted desserts under one artisan roof — a seamless, elevated experience from first bloom to final bite.
+      </p>
+    </div>
+
+    <!-- Service Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: Wedding Florals -->
+      <div class="service-card lift" style="padding:0; overflow:hidden;">
+        <div class="panel-bouquet" style="height:240px; position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(12,8,6,0.65) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:20px;">
+            <span class="label" style="color:rgba(250,247,242,0.6);">For Your Day</span>
+          </div>
+        </div>
+        <div style="padding:24px 24px 28px;">
+          <h3 class="display" style="font-size:1.6rem; margin-bottom:10px;">Wedding Florals</h3>
+          <p style="color:var(--muted); font-size:0.875rem; line-height:1.8; margin-bottom:16px;">
+            Bridal bouquets, ceremony installations, reception arrangements, and flower crowns — each designed around your story.
+          </p>
+          <div>
+            <div class="incl">Bridal &amp; bridesmaids bouquets</div>
+            <div class="incl">Ceremony arches &amp; installations</div>
+            <div class="incl">Reception centerpieces</div>
+            <div class="incl">Boutonnieres &amp; corsages</div>
+            <div class="incl">Flower crowns &amp; hair florals</div>
+          </div>
+          <a href="#contact" class="btn-dark mt-6 inline-block" style="text-decoration:none;">Inquire</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Wedding Cakes & Desserts -->
+      <div class="service-card lift" style="padding:0; overflow:hidden;">
+        <div class="panel-cake" style="height:240px; position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(12,8,6,0.65) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:20px;">
+            <span class="label" style="color:rgba(250,247,242,0.6);">For Your Celebration</span>
+          </div>
+        </div>
+        <div style="padding:24px 24px 28px;">
+          <h3 class="display" style="font-size:1.6rem; margin-bottom:10px;">Wedding Cakes &amp; Desserts</h3>
+          <p style="color:var(--muted); font-size:0.875rem; line-height:1.8; margin-bottom:16px;">
+            Handcrafted cakes and dessert tables that taste as extraordinary as they look — fully customized to your palette and aesthetic.
+          </p>
+          <div>
+            <div class="incl">Custom multi-tier wedding cakes</div>
+            <div class="incl">Dessert table styling &amp; coordination</div>
+            <div class="incl">Cupcakes, tarts &amp; petit fours</div>
+            <div class="incl">Brushstroke &amp; hand-painted finishes</div>
+            <div class="incl">Flavor consultation included</div>
+          </div>
+          <a href="#contact" class="btn-dark mt-6 inline-block" style="text-decoration:none;">Inquire</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Everyday + Pop-Up -->
+      <div class="service-card lift" style="padding:0; overflow:hidden;">
+        <div class="panel-gold-cake" style="height:240px; position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(12,8,6,0.65) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:20px;">
+            <span class="label" style="color:rgba(250,247,242,0.6);">Anytime</span>
+          </div>
+        </div>
+        <div style="padding:24px 24px 28px;">
+          <h3 class="display" style="font-size:1.6rem; margin-bottom:10px;">Everyday &amp; Pop-Up</h3>
+          <p style="color:var(--muted); font-size:0.875rem; line-height:1.8; margin-bottom:16px;">
+            Fresh flowers and handmade desserts for everyday life — delivered to your door or grabbed at our Saturday pop-up in Downtown Bloomington.
+          </p>
+          <div>
+            <div class="incl">Flower delivery (Mon–Fri, appt.)</div>
+            <div class="incl">Dessert delivery (Mon–Fri, appt.)</div>
+            <div class="incl">Pickup orders available</div>
+            <div class="incl">Saturday Pop-Up · 8am–Noon</div>
+            <div class="incl">212 N Center St., Downtown</div>
+          </div>
+          <a href="#popup" class="btn-dark mt-6 inline-block" style="text-decoration:none;">Pop-Up Details</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     WHY / DIFFERENTIATORS — DIAGONAL TREATMENT
+══════════════════════════════════════════════ -->
+<section style="background:var(--dark); clip-path:polygon(0 4%, 100% 0, 100% 96%, 0 100%); padding:120px 0; margin:-30px 0; position:relative; z-index:1;">
+  <!-- Subtle radial overlay -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 50%, rgba(139,26,47,0.12) 0%, transparent 70%); pointer-events:none;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="rule-short" style="background:var(--accent-light);"></span>
+      <span class="label" style="color:var(--accent-light);">Why Pollen &amp; Pastry</span>
+    </div>
+
+    <h2 class="display mb-16" style="color:#faf7f2; font-size:clamp(2.2rem, 4.5vw, 3.5rem); max-width:600px;">
+      The difference is in<br/>
+      <span class="display-italic" style="color:var(--accent-light);">every detail.</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; color:var(--accent); line-height:1; margin-bottom:16px; font-weight:300;">01</div>
+        <div class="rule-accent" style="margin-bottom:20px;"></div>
+        <h3 class="display" style="color:#faf7f2; font-size:1.4rem; margin-bottom:12px;">Dual Artisan Expertise</h3>
+        <p style="color:rgba(250,247,242,0.55); font-size:0.875rem; line-height:1.9;">
+          The only studio in Central Illinois combining professional floristry and pastry artistry under one roof. Coordinate your entire aesthetic — blooms and bites — with a single creative vision.
+        </p>
+      </div>
+
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; color:var(--accent); line-height:1; margin-bottom:16px; font-weight:300;">02</div>
+        <div class="rule-accent" style="margin-bottom:20px;"></div>
+        <h3 class="display" style="color:#faf7f2; font-size:1.4rem; margin-bottom:12px;">Nationally Recognized</h3>
+        <p style="color:rgba(250,247,242,0.55); font-size:0.875rem; line-height:1.9;">
+          Featured in <em>Bridal Guide</em>, <em>Wedding Chicks</em>, <em>Cake &amp; Lace</em>, <em>Aisle Perfect</em>, and more. Honored with The Knot Best of Weddings — a testament to consistent excellence.
+        </p>
+      </div>
+
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; color:var(--accent); line-height:1; margin-bottom:16px; font-weight:300;">03</div>
+        <div class="rule-accent" style="margin-bottom:20px;"></div>
+        <h3 class="display" style="color:#faf7f2; font-size:1.4rem; margin-bottom:12px;">A Registered Brand</h3>
+        <p style="color:rgba(250,247,242,0.55); font-size:0.875rem; line-height:1.9;">
+          Pollen &amp; Pastry™ is a registered trademark — a reflection of the seriousness, identity, and commitment to craft that defines every arrangement and every cake we create.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     PORTFOLIO GALLERY
+══════════════════════════════════════════════ -->
+<section id="gallery" style="background:var(--bg-alt); padding:100px 0 80px; position:relative; z-index:2;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="rule-short"></span>
+      <span class="label" style="color:var(--accent);">Portfolio</span>
+    </div>
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10 gap-4">
+      <h2 class="display" style="font-size:clamp(2.2rem, 4.5vw, 3.5rem);">
+        Made with intention.<br/>
+        <span class="display-italic" style="color:var(--accent);">Remembered forever.</span>
+      </h2>
+      <p style="color:var(--muted); font-size:0.875rem; max-width:320px; line-height:1.8;">Each piece is designed once, for you — never duplicated.</p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+
+      <!-- Tall feature: Bouquet -->
+      <div class="g-tall panel-desert relative overflow-hidden lift" style="cursor:pointer;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(12,8,6,0.5) 100%);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;">
+          <span class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem;">Floral Design</span>
+        </div>
+      </div>
+
+      <!-- Crown -->
+      <div class="panel-crown relative overflow-hidden lift" style="cursor:pointer;">
+        <div style="position:absolute;inset:0;background:rgba(12,8,6,0.15);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;">
+          <span class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem;">Flower Crown</span>
+        </div>
+      </div>
+
+      <!-- Gold Cake -->
+      <div class="panel-gold-cake relative overflow-hidden lift" style="cursor:pointer;">
+        <div style="position:absolute;inset:0;background:rgba(12,8,6,0.1);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;">
+          <span class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem;">Custom Cake</span>
+        </div>
+      </div>
+
+      <!-- Chocolate Cake -->
+      <div class="panel-cake relative overflow-hidden lift" style="cursor:pointer;">
+        <div style="position:absolute;inset:0;background:rgba(12,8,6,0.1);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;">
+          <span class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem;">Brushstroke Cake</span>
+        </div>
+      </div>
+
+      <!-- Bouquet 2 -->
+      <div class="panel-bouquet relative overflow-hidden lift" style="cursor:pointer;">
+        <div style="position:absolute;inset:0;background:rgba(12,8,6,0.15);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;">
+          <span class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem;">Bridal Bouquet</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Gallery CTA -->
+    <div class="flex justify-center mt-12">
+      <a href="#contact" class="btn-dark" style="text-decoration:none;">Start Your Custom Order</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     ABOUT / STUDIO
+══════════════════════════════════════════════ -->
+<section id="about" style="background:var(--bg); padding:100px 0; overflow:hidden;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center about-grid">
+
+      <!-- Photo side -->
+      <div style="position:relative;">
+        <div class="about-photo" style="height:560px; width:100%;"></div>
+        <!-- Accent border offset -->
+        <div style="position:absolute; top:20px; left:-16px; right:20px; bottom:-16px; border:1px solid var(--accent); z-index:-1; opacity:0.4;"></div>
+        <!-- Floating credential chip -->
+        <div style="position:absolute; bottom:-20px; right:0; background:var(--accent); padding:20px 24px;">
+          <p class="label" style="color:rgba(250,247,242,0.7); font-size:0.6rem; margin-bottom:4px;">Recognized by</p>
+          <p style="font-family:'Cormorant Garamond',serif; color:#faf7f2; font-size:1.1rem; font-weight:600; line-height:1.2;">The Knot™<br/>Best of Weddings</p>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="rule-short"></span>
+          <span class="label" style="color:var(--accent);">Our Studio</span>
+        </div>
+
+        <h2 class="display mb-6" style="font-size:clamp(2rem, 4vw, 3.2rem);">
+          Art-driven. Local.<br/>
+          <span class="display-italic" style="color:var(--accent);">Completely yours.</span>
+        </h2>
+
+        <p style="color:var(--muted); font-size:0.9rem; line-height:1.9; margin-bottom:16px;">
+          Pollen &amp; Pastry™ was born from a single belief: that the flowers on your table and the cake at its center should feel cohesive, intentional, and extraordinary. Our Bloomington studio handles both — removing the coordination stress and elevating your entire experience.
+        </p>
+        <p style="color:var(--muted); font-size:0.9rem; line-height:1.9; margin-bottom:32px;">
+          We work by appointment for weddings and everyday orders, and host a weekly Saturday pop-up in Downtown Bloomington where the community can grab fresh seasonal blooms, baked goods, and curated gifts — no appointment needed.
+        </p>
+
+        <!-- Studio hours block -->
+        <div style="border-left:2px solid var(--accent); padding-left:20px; margin-bottom:32px;">
+          <p class="label" style="color:var(--accent); margin-bottom:10px;">Hours &amp; Availability</p>
+          <div class="prow py-3">
+            <div class="flex justify-between" style="font-size:0.875rem;">
+              <span style="font-weight:400;">Monday – Friday</span>
+              <span style="color:var(--muted);">By Appointment &amp; Pickup</span>
+            </div>
+          </div>
+          <div class="prow py-3">
+            <div class="flex justify-between" style="font-size:0.875rem;">
+              <span style="font-weight:400;">Saturday Pop-Up</span>
+              <span style="color:var(--muted);">8:00 am – Noon</span>
+            </div>
+          </div>
+          <div class="py-3" style="font-size:0.875rem; color:var(--muted);">
+            212 N Center St., Downtown Bloomington, IL
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary" style="text-decoration:none;">Book a Consultation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════ -->
+<section style="background:var(--bg-alt); padding:90px 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="rule-short"></span>
+      <span class="label" style="color:var(--accent);">Couples &amp; Clients</span>
+    </div>
+    <h2 class="display mb-14" style="font-size:clamp(2rem, 4vw, 3rem);">
+      Words from those<br/>
+      <span class="display-italic" style="color:var(--accent);">we've celebrated.</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="testimonial-card" style="padding:32px 28px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--accent); line-height:0.8; margin-bottom:16px; opacity:0.6;">"</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+          The flowers and cake together felt like one seamless work of art. Our guests couldn't stop commenting. I'm so grateful we found a studio that truly understood our vision.
+        </p>
+        <div class="flex items-center gap-3">
+          <span class="rule-short" style="width:24px;"></span>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; letter-spacing:0.05em;">Emily &amp; James R.</p>
+            <p style="font-size:0.7rem; color:var(--muted);">Wedding Couple · Normal, IL</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" style="padding:32px 28px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--accent); line-height:0.8; margin-bottom:16px; opacity:0.6;">"</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+          I order from the Saturday pop-up nearly every week. The arrangements are always stunning and the pastries disappear before I get home. Pollen &amp; Pastry is a Bloomington treasure.
+        </p>
+        <div class="flex items-center gap-3">
+          <span class="rule-short" style="width:24px;"></span>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; letter-spacing:0.05em;">Sara M.</p>
+            <p style="font-size:0.7rem; color:var(--muted);">Loyal Pop-Up Customer · Bloomington, IL</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" style="padding:32px 28px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--accent); line-height:0.8; margin-bottom:16px; opacity:0.6;">"</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+          We had a dessert table and full floral package — working with one studio for both was a dream. Everything was coordinated perfectly, and the chocolate brushstroke cake was jaw-dropping.
+        </p>
+        <div class="flex items-center gap-3">
+          <span class="rule-short" style="width:24px;"></span>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; letter-spacing:0.05em;">Megan &amp; Daniel K.</p>
+            <p style="font-size:0.7rem; color:var(--muted);">Wedding Couple · Bloomington, IL</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="font-size:0.7rem; color:var(--muted); margin-top:20px; font-style:italic; text-align:center;">* Testimonials shown are representative placeholder content for this design demo.</p>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     PRESS — TEXT-ONLY TREATMENT
+══════════════════════════════════════════════ -->
+<section id="press" style="background:var(--dark); padding:80px 0; position:relative; overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 50%, rgba(139,26,47,0.07) 0%, transparent 80%); pointer-events:none;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <span class="rule-short" style="background:var(--accent-light);"></span>
+        <span class="label" style="color:var(--accent-light);">As Featured In</span>
+        <span class="rule-short" style="background:var(--accent-light);"></span>
+      </div>
+      <h2 class="display" style="color:#faf7f2; font-size:clamp(1.8rem, 3.5vw, 2.8rem);">Nationally published.<br/><span class="display-italic" style="color:var(--accent-light);">Locally rooted.</span></h2>
+    </div>
+
+    <!-- Press names in elegant text treatment -->
+    <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-6">
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">The Knot</p>
+        <p style="font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent-light); margin-top:3px;">Best of Weddings</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Bridal Guide</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Wedding Chicks</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Cake &amp; Lace</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Aisle Perfect</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Aisle Society</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Artfully Wed</p>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(250,247,242,0.12);"></div>
+      <div style="text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.85);">Beyond the Wanderlust</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SATURDAY POP-UP
+══════════════════════════════════════════════ -->
+<section id="popup" style="background:var(--bg); padding:100px 0; position:relative; overflow:hidden;">
+
+  <!-- Decorative side element -->
+  <div style="position:absolute; top:0; right:0; width:40%; height:100%; background:var(--bg-alt); clip-path:polygon(20% 0, 100% 0, 100% 100%, 0% 100%); z-index:0;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="rule-short"></span>
+          <span class="label" style="color:var(--accent);">Every Saturday</span>
+        </div>
+
+        <h2 class="display mb-6" style="font-size:clamp(2.2rem, 4.5vw, 3.5rem);">
+          Grab-and-Go<br/>
+          <span class="display-italic" style="color:var(--accent);">Downtown Blooms.</span>
+        </h2>
+
+        <p style="color:var(--muted); font-size:0.9rem; line-height:1.9; margin-bottom:24px;">
+          Every Saturday morning, we set up in the heart of Downtown Bloomington with a curated selection of fresh seasonal flowers, handcrafted pastries, and thoughtful gifts. No appointment needed — just show up.
+        </p>
+
+        <div style="border:1px solid rgba(139,26,47,0.2); padding:24px 28px; background:var(--ivory); margin-bottom:32px;">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="label" style="color:var(--accent); font-size:0.6rem; margin-bottom:6px;">Location</p>
+              <p style="font-size:0.875rem; line-height:1.6;">212 N Center St.<br/>Downtown Bloomington, IL</p>
+            </div>
+            <div>
+              <p class="label" style="color:var(--accent); font-size:0.6rem; margin-bottom:6px;">Hours</p>
+              <p style="font-size:0.875rem; line-height:1.6;">Saturday<br/>8:00 am – 12:00 pm</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn-primary" style="text-decoration:none;">Order for Pickup</a>
+        </div>
+      </div>
+
+      <!-- Visual panel -->
+      <div class="hidden lg:block" style="position:relative;">
+        <div class="panel-desert" style="height:480px; position:relative;">
+          <div style="position:absolute;inset:0;background:rgba(12,8,6,0.2);"></div>
+        </div>
+        <!-- Stacked badge -->
+        <div style="position:absolute; top:-20px; right:-10px; background:var(--accent); padding:18px 22px; text-align:center;">
+          <p class="label" style="color:rgba(250,247,242,0.7); font-size:0.55rem; margin-bottom:4px;">Weekly</p>
+          <p style="font-family:'Cormorant Garamond',serif; color:#faf7f2; font-size:1.6rem; font-weight:600; line-height:1;">SAT<br/>POP-UP</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     CONTACT / INQUIRY CTA
+══════════════════════════════════════════════ -->
+<section id="contact" style="background:var(--dark); padding:100px 0; position:relative; overflow:hidden;">
+  <!-- Background photography layer -->
+  <div style="position:absolute;inset:0;background-color:#1c1010;background-image:url('https://images.squarespace-cdn.com/content/v1/56ad8006f8baf35958c41b16/1461645161562-X3J78JN3XP6NFB5OZTAC/Burgundy+and+Marsala+Bridal+Bouquet');background-size:cover;background-position:center right;opacity:0.15;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(12,8,6,0.98) 55%, rgba(12,8,6,0.7) 100%);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="rule-short" style="background:var(--accent-light);"></span>
+          <span class="label" style="color:var(--accent-light);">Let's Create Together</span>
+        </div>
+
+        <h2 class="display mb-6" style="color:#faf7f2; font-size:clamp(2.4rem, 5vw, 4rem);">
+          Begin your<br/>
+          <span class="display-italic" style="color:var(--accent-light);">celebration.</span>
+        </h2>
+
+        <p style="color:rgba(250,247,242,0.6); font-size:0.9rem; line-height:1.9; margin-bottom:36px; max-width:400px;">
+          Whether you're planning a wedding or simply want beautiful flowers on your table, we'd love to hear about your vision. Wedding consultations are available by appointment Monday through Friday.
+        </p>
+
+        <!-- Contact details -->
+        <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:36px;">
+          <div class="flex items-start gap-4">
+            <span class="rule-short" style="margin-top:8px;"></span>
+            <div>
+              <p class="label" style="color:var(--accent-light); font-size:0.6rem; margin-bottom:4px;">Pop-Up Location</p>
+              <p style="color:rgba(250,247,242,0.75); font-size:0.875rem;">212 N Center St., Downtown Bloomington, Illinois</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="rule-short" style="margin-top:8px;"></span>
+            <div>
+              <p class="label" style="color:var(--accent-light); font-size:0.6rem; margin-bottom:4px;">Studio</p>
+              <p style="color:rgba(250,247,242,0.75); font-size:0.875rem;">SE Side of Bloomington, Illinois</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="rule-short" style="margin-top:8px;"></span>
+            <div>
+              <p class="label" style="color:var(--accent-light); font-size:0.6rem; margin-bottom:4px;">Hours</p>
+              <p style="color:rgba(250,247,242,0.75); font-size:0.875rem;">Mon–Fri: By Appointment &amp; Pickup<br/>Saturday: Pop-Up 8:00 am – Noon</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: form -->
+      <div>
+        <form style="display:flex; flex-direction:column; gap:20px;">
+
+          <div class="form-demo-notice" style="color:rgba(250,247,242,0.4); border-color:rgba(250,247,242,0.1); background:rgba(250,247,242,0.04);">
+            This is a redesign demo — form submissions are disabled.
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">First Name</label>
+              <input type="text" placeholder="Your first name" class="form-input" disabled />
+            </div>
+            <div>
+              <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">Last Name</label>
+              <input type="text" placeholder="Your last name" class="form-input" disabled />
+            </div>
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">Email Address</label>
+            <input type="email" placeholder="your@email.com" class="form-input" disabled />
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">I'm inquiring about</label>
+            <select class="form-select" disabled>
+              <option value="">Select a service…</option>
+              <option>Wedding Florals</option>
+              <option>Wedding Cake &amp; Desserts</option>
+              <option>Both Florals &amp; Desserts (Wedding)</option>
+              <option>Everyday Flower Delivery</option>
+              <option>Everyday Dessert Delivery</option>
+              <option>Pickup Order</option>
+              <option>Other / General Inquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">Event Date (if applicable)</label>
+            <input type="date" class="form-input" disabled />
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.45); margin-bottom:6px;">Tell us about your vision</label>
+            <textarea placeholder="Share your ideas, aesthetic, color palette, or any details that matter to you…" class="form-textarea" disabled></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" disabled style="align-self:flex-start; opacity:0.5; cursor:not-allowed;">
+            Send Inquiry
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer style="background:#0c0806; padding:56px 0 32px; border-top:1px solid rgba(139,26,47,0.25);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div>
+        <div class="mb-4">
+          <span class="display" style="color:#faf7f2; font-size:1.5rem; letter-spacing:0.04em; display:block;">POLLEN</span>
+          <span class="display-italic" style="color:var(--accent-light); font-size:1rem; display:block;">&amp; Pastry™</span>
+        </div>
+        <p style="color:rgba(250,247,242,0.4); font-size:0.8rem; line-height:1.8; max-width:240px;">
+          Artisan florals and handcrafted desserts for weddings and everyday celebrations in Central Illinois.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <p class="label" style="color:var(--accent-light); font-size:0.6rem; margin-bottom:16px;">Navigation</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#services" class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Services</a>
+          <a href="#gallery"  class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Portfolio</a>
+          <a href="#about"    class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Studio</a>
+          <a href="#press"    class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Press</a>
+          <a href="#popup"    class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Pop-Up</a>
+          <a href="#contact"  class="nav-lnk" style="color:rgba(250,247,242,0.55); text-decoration:none;">Contact</a>
+        </div>
+      </div>
+
+      <!-- Visit -->
+      <div>
+        <p class="label" style="color:var(--accent-light); font-size:0.6rem; margin-bottom:16px;">Find Us</p>
+        <p style="color:rgba(250,247,242,0.55); font-size:0.8rem; line-height:1.9;">
+          Saturday Pop-Up<br/>
+          212 N Center St.<br/>
+          Downtown Bloomington, IL<br/>
+          <span style="color:rgba(250,247,242,0.35);">8:00 am – 12:00 pm</span>
+        </p>
+        <p style="color:rgba(250,247,242,0.55); font-size:0.8rem; line-height:1.9; margin-top:12px;">
+          Studio: SE Bloomington, IL<br/>
+          <span style="color:rgba(250,247,242,0.35);">By appointment Mon–Fri</span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="rule-accent" style="margin-bottom:24px;"></div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p style="color:rgba(250,247,242,0.25); font-size:0.7rem; letter-spacing:0.05em;">
+        © 2025 Pollen &amp; Pastry™. All rights reserved. Bloomington, Illinois.
+      </p>
+      <p style="color:rgba(250,247,242,0.2); font-size:0.65rem; letter-spacing:0.04em;">
+        Redesign demo by <a href="https://derekjensen.io" style="color:rgba(250,247,242,0.35); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent-light)'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">derekjensen.io</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════
+     JS: NAV SCROLL EFFECT
+══════════════════════════════════════════════ -->
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Intersection observer for .fu elements outside hero
+  const fus = document.querySelectorAll('.fu');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  fus.forEach(el => {
+    // Pause all .fu elements not in the hero initially
+    if (!el.closest('#hero')) {
+      el.style.animationPlayState = 'paused';
+      io.observe(el);
+    }
+  });
+</script>
+
+</body>
+</html>
