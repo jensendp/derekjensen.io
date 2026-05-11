@@ -173,7 +173,7 @@ Maybe it's a simple tracker for your side project. Maybe it's an automation that
 
 And here's something worth remembering — every person you see building cool things with AI started right where you are now. They read something like this, got curious, and tried it.
 
-If you want a deeper starting point, check out the full guide on [getting started with AI-assisted development for beginners](https://derekjensen.io/blog/ai-development-for-beginners). It walks you through the tools, the mindset, and your first project step by step.
+If you want a deeper starting point, check out the full guide on [getting started with AI-assisted development for beginners](https://derekjensen.io/blog/getting-started-with-ai-development-a-beginners-guide). It walks you through the tools, the mindset, and your first project step by step.
 
 Here's a quick prompt template you can copy right now to kick off your first build with any AI tool:
 

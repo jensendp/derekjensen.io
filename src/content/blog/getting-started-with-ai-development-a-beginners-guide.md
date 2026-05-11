@@ -8,7 +8,7 @@ draft: false
 heroImage: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxHZXR0aW5nJTIwU3RhcnRlZCUyMHdpdGglMjBBSSUyMERldmVsb3BtZW50JTNBJTIwQSUyMEJlZ2lubmVyJTI3cyUyMEd1aWRlfGVufDB8MHx8fDE3NzY5NTE3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
-You keep hearing about AI changing everything. Maybe you've played with ChatGPT or seen someone build a small app in minutes using tools that didn't exist a year ago. Part of you thinks, "I could do that." Another part thinks, "I wouldn't even know where to begin." This guide is for the second part of you. Getting started with AI development doesn't require a computer science degree, years of coding experience, or a giant budget. It requires curiosity, a willingness to experiment, and a clear starting point — which is exactly what this post gives you. Think of this as the roadmap I wish someone had handed me on day one. If you're following along with our [Getting Started with AI-Assisted Development](https://derekjensen.io/blog/ai-development-for-beginners) pillar guide, this post goes deeper into the practical first steps.
+You keep hearing about AI changing everything. Maybe you've played with ChatGPT or seen someone build a small app in minutes using tools that didn't exist a year ago. Part of you thinks, "I could do that." Another part thinks, "I wouldn't even know where to begin." This guide is for the second part of you. Getting started with AI development doesn't require a computer science degree, years of coding experience, or a giant budget. It requires curiosity, a willingness to experiment, and a clear starting point — which is exactly what this post gives you. Think of this as the roadmap I wish someone had handed me on day one. If you're following along with the [What Is AI-Assisted Development](https://derekjensen.io/blog/what-is-ai-assisted-development-a-plain-english-guide) pillar guide, this post goes deeper into the practical first steps.
 
 ## Why Right Now Is the Best Time for Getting Started with AI Development
 
@@ -191,7 +191,7 @@ That's your first build. It doesn't have to be pretty. It just has to be real.
 
 You're closer to building than you think. And once you start, you won't want to stop.
 
-If you want the full roadmap from the very beginning, head over to our [Getting Started with AI-Assisted Development](https://derekjensen.io/blog/ai-development-for-beginners) pillar guide. It connects every step from here forward.
+If you want the full roadmap from the very beginning, head over to the [What Is AI-Assisted Development](https://derekjensen.io/blog/what-is-ai-assisted-development-a-plain-english-guide) guide. It covers the core concept and connects every step from here forward.
 
 ## FAQ
 
