@@ -167,6 +167,33 @@ A few resources worth bookmarking as you keep getting started with AI developmen
 
 Here's the bigger picture. Every small project you finish teaches you skills that stack. Prompting leads to understanding logic. Logic leads to building workflows. Workflows lead to building real tools other people use. You're not just learning AI — you're becoming someone who builds things. That identity shift matters more than any single tool.
 
+
+## In This Series
+
+This guide is part of a complete series on Getting Started with AI-Assisted Development. Here's what we cover:
+
+- [What Is AI-Assisted Development (Plain English Guide)](https://derekjensen.io/blog/what-is-ai-assisted-development-a-plain-english-guide)
+- [How Non-Engineers Can Build Software in 2026](https://derekjensen.io/blog/how-non-engineers-can-build-software-in-real-talk)
+
+- Core Concepts You Need (Without Learning to Code)
+- Understanding How AI Writes Code
+- The Minimum Tools Stack to Get Started
+- First Project: Build a Simple Tool with AI
+- Common Beginner Mistakes Using AI to Code
+- How to Think Like a Builder (Not a Programmer)
+- What AI Can and Cannot Build Today
+- Cost Breakdown of Building with AI
+- Setting Up Your First Development Environment
+- How to Read Code Without Knowing Code
+- The Role of Copy-Paste Engineering
+- Managing Expectations with AI Tools
+- AI vs Hiring Developers (Beginner Perspective)
+- Time-to-First-App Roadmap
+- Vocabulary Every Non-Engineer Should Know
+- Understanding Frontend vs Backend Simply
+- When You Actually Need to Learn Code
+- Your First 30-Day AI Builder Plan
+
 ## Conclusion
 
 Here's what I want you to take away from this: you don't need anyone's permission to start building with AI. You don't need a degree. You don't need to understand how neural networks work. You don't need to wait until you feel "ready."
