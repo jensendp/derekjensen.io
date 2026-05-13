@@ -5,6 +5,7 @@ pubDate: '2026-05-13T12:02:29'
 tags: ["no-code AI","AI fundamentals for beginners","building with AI","non-engineer AI development"]
 author: "Derek Jensen"
 draft: false
+heroImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
 ---
 
 You don't need to learn Python. You need to learn how to think.
