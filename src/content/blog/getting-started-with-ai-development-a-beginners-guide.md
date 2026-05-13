@@ -174,8 +174,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 
 - [What Is AI-Assisted Development (Plain English Guide)](https://derekjensen.io/blog/what-is-ai-assisted-development-a-plain-english-guide)
 - [How Non-Engineers Can Build Software in 2026](https://derekjensen.io/blog/how-non-engineers-can-build-software-in-real-talk)
+- [Core Concepts You Need (Without Learning to Code)](https://derekjensen.io/blog/core-concepts-for-building-with-ai-without-coding)
 
-- Core Concepts You Need (Without Learning to Code)
 - Understanding How AI Writes Code
 - The Minimum Tools Stack to Get Started
 - First Project: Build a Simple Tool with AI
@@ -193,6 +193,7 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - Understanding Frontend vs Backend Simply
 - When You Actually Need to Learn Code
 - Your First 30-Day AI Builder Plan
+
 
 ## Conclusion
 
