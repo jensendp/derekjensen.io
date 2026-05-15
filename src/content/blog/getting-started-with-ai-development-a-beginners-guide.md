@@ -176,8 +176,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [How Non-Engineers Can Build Software in 2026](https://derekjensen.io/blog/how-non-engineers-can-build-software-in-real-talk)
 - [Core Concepts You Need (Without Learning to Code)](https://derekjensen.io/blog/core-concepts-for-building-with-ai-without-coding)
 - [Understanding How AI Writes Code](https://derekjensen.io/blog/how-ai-writes-code-a-plain-english-guide)
+- [The Minimum Tools Stack to Get Started](https://derekjensen.io/blog/minimum-ai-tools-stack-for-beginners-just-3-tools)
 
-- The Minimum Tools Stack to Get Started
 - First Project: Build a Simple Tool with AI
 - Common Beginner Mistakes Using AI to Code
 - How to Think Like a Builder (Not a Programmer)
