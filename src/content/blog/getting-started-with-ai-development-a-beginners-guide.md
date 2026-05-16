@@ -177,8 +177,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [Core Concepts You Need (Without Learning to Code)](https://derekjensen.io/blog/core-concepts-for-building-with-ai-without-coding)
 - [Understanding How AI Writes Code](https://derekjensen.io/blog/how-ai-writes-code-a-plain-english-guide)
 - [The Minimum Tools Stack to Get Started](https://derekjensen.io/blog/minimum-ai-tools-stack-for-beginners-just-3-tools)
+- [First Project: Build a Simple Tool with AI](https://derekjensen.io/blog/first-ai-project-build-a-simple-tool-step-by-step-guide)
 
-- First Project: Build a Simple Tool with AI
 - Common Beginner Mistakes Using AI to Code
 - How to Think Like a Builder (Not a Programmer)
 - What AI Can and Cannot Build Today
