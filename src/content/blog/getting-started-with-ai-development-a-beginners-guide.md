@@ -179,8 +179,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [The Minimum Tools Stack to Get Started](https://derekjensen.io/blog/minimum-ai-tools-stack-for-beginners-just-3-tools)
 - [First Project: Build a Simple Tool with AI](https://derekjensen.io/blog/first-ai-project-build-a-simple-tool-step-by-step-guide)
 - [Common Beginner Mistakes Using AI to Code](https://derekjensen.io/blog/beginner-mistakes-using-ai-to-code-and-how-to-fix-them)
+- [How to Think Like a Builder (Not a Programmer)](https://derekjensen.io/blog/how-to-think-like-a-builder-not-a-programmer-guide)
 
-- How to Think Like a Builder (Not a Programmer)
 - What AI Can and Cannot Build Today
 - Cost Breakdown of Building with AI
 - Setting Up Your First Development Environment
