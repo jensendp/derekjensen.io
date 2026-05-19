@@ -176,12 +176,12 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [How Non-Engineers Can Build Software in 2026](https://derekjensen.io/blog/how-non-engineers-can-build-software-in-real-talk)
 - [Core Concepts You Need (Without Learning to Code)](https://derekjensen.io/blog/core-concepts-for-building-with-ai-without-coding)
 - [Understanding How AI Writes Code](https://derekjensen.io/blog/how-ai-writes-code-a-plain-english-guide)
+- [The Minimum Tools Stack to Get Started](https://derekjensen.io/blog/minimum-ai-tools-stack-for-beginners-just-3-tools)
+- [First Project: Build a Simple Tool with AI](https://derekjensen.io/blog/first-ai-project-build-a-simple-tool-step-by-step-guide)
+- [Common Beginner Mistakes Using AI to Code](https://derekjensen.io/blog/beginner-mistakes-using-ai-to-code-and-how-to-fix-them)
+- [How to Think Like a Builder (Not a Programmer)](https://derekjensen.io/blog/how-to-think-like-a-builder-not-a-programmer-guide)
+- [What AI Can and Cannot Build Today](https://derekjensen.io/blog/what-ai-can-and-cannot-build-today-guide)
 
-- The Minimum Tools Stack to Get Started
-- First Project: Build a Simple Tool with AI
-- Common Beginner Mistakes Using AI to Code
-- How to Think Like a Builder (Not a Programmer)
-- What AI Can and Cannot Build Today
 - Cost Breakdown of Building with AI
 - Setting Up Your First Development Environment
 - How to Read Code Without Knowing Code
