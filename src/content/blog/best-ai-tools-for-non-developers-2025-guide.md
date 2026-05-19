@@ -8,9 +8,11 @@ draft: false
 heroImage: "https://images.unsplash.com/photo-1746286720965-cccf57e56c68?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxCZXN0JTIwQUklMjBUb29scyUyMGZvciUyME5vbi1EZXZlbG9wZXJzJTIwJTI4MjAyNSUyMEd1aWRlJTI5fGVufDB8MHx8fDE3NzY5Nzg0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
-You don't need a computer science degree to build with AI. Not anymore. A new wave of tools has made it possible for anyone — writers, teachers, small business owners, curious hobbyists — to tap into the power of artificial intelligence without writing a single line of code. But with so many options popping up every week, it's hard to know where to start or which tools are actually worth your time. That's exactly why I put this guide together. I've spent months testing the best AI tools for non-developers so I could give you an honest, practical breakdown of what works, what doesn't, and what matters most when you're just getting started. Whether you want to automate boring tasks, build a simple app, create content, or just understand what all the hype is about, this page is your starting point.
+Here's the short answer: if you're a non-developer building with AI in 2026, start with **ChatGPT or Claude** for writing and thinking, **Lovable or Bolt** if you want to build an actual app or website, and **Make or Zapier** if you want to automate repetitive work. Those three categories cover 90% of what most non-technical people actually need.
 
-If you're completely new to building with AI, my [beginner's guide for non-engineers](https://derekjensen.io/blog/how-to-build-with-ai-a-beginners-guide-for-non-engineers) is a great companion to this article.
+The longer answer — which specific tools are worth your time, which are overhyped, and how to pick the right one for your situation — is what this guide is for. I build real products with AI without writing traditional code, and I've spent months running these tools through their paces. This isn't a roundup of everything on the market. It's what I'd actually recommend to a smart person starting from zero.
+
+If you're brand new to all of this, my [beginner's guide for non-engineers](https://derekjensen.io/blog/how-to-build-with-ai-a-beginners-guide-for-non-engineers) pairs well with this article.
 
 ## What Makes an AI Tool "Non-Developer Friendly"?
 

@@ -19,11 +19,40 @@ const featuredProject = allProjects.find((p) => p.data.featured);
   <!-- Hero Section -->
   <Hero
     title="Hi, I'm Derek Jensen"
-    subtitle="Software Engineer"
-    description="I build mobile applications and web experiences with a focus on clean code, great user experience, and modern technologies like React Native and TypeScript."
+    subtitle="20-Year Software Veteran Teaching Non-Engineers to Build with AI"
+    description="I've spent two decades in the software industry. Now I use that experience to help non-technical people build real things with AI — cutting through the jargon, skipping the unnecessary complexity, and sharing what actually works."
     primaryCta={{ text: 'View My Work', href: '/projects' }}
     secondaryCta={{ text: 'About Me', href: '/about' }}
   />
+
+  <!-- Start Here -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-1">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        New Here? Start Here.
+      </h2>
+      <p class="text-neutral-600 mb-6 max-w-xl">
+        I write for people who want to build real things with AI — no coding background needed. Here's the path that makes the most sense if you're just getting started.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <a href="/blog/getting-started-with-ai-development-a-beginners-guide" class="card p-5 hover-lift block group">
+          <span class="text-xs font-medium text-accent-600 uppercase tracking-wider">Step 1</span>
+          <h3 class="mt-1 font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">Getting Started with AI Development</h3>
+          <p class="mt-2 text-sm text-neutral-500">The roadmap I wish someone had handed me on day one — practical, beginner-friendly, no fluff.</p>
+        </a>
+        <a href="/blog/core-concepts-for-building-with-ai-without-coding" class="card p-5 hover-lift block group">
+          <span class="text-xs font-medium text-accent-600 uppercase tracking-wider">Step 2</span>
+          <h3 class="mt-1 font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">Core Concepts for Building with AI</h3>
+          <p class="mt-2 text-sm text-neutral-500">The mental models — tokens, prompts, context windows — that stay useful no matter what tool you're using.</p>
+        </a>
+        <a href="/blog/building-apps-without-coding-using-ai-the-complete-guide" class="card p-5 hover-lift block group">
+          <span class="text-xs font-medium text-accent-600 uppercase tracking-wider">Step 3</span>
+          <h3 class="mt-1 font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">Building Apps Without Coding Using AI</h3>
+          <p class="mt-2 text-sm text-neutral-500">Turn your first idea into a working product — real tools, real examples, zero coding required.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Featured Project -->
   {featuredProject && (

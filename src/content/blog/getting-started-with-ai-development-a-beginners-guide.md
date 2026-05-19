@@ -60,7 +60,7 @@ You don't need to buy anything to start building. Here are the tools I recommend
 
 **ChatGPT** (free tier) is a great first stop. You can describe what you want to build in plain English and get working code, project ideas, or step-by-step instructions back. Think of it as your always-available building partner.
 
-**Claude** is another AI assistant worth signing up for. I find it especially good at explaining things clearly and helping you think through problems before you build. If you want to get the most out of it, check out my guide on [getting the most out of Claude's desktop version](https://derekjensen.io/blog/getting-the-most-out-of-claude-s-desktop-version-b0zm).
+**Claude** is another AI assistant worth signing up for. I find it especially good at explaining things clearly and helping you think through problems before you build. If you want to get the most out of it, check out my guide on [getting the most out of Claude's desktop version](https://derekjensen.io/blog/getting-the-most-out-of-claude-s-desktop-version-b0zm). One thing worth knowing early: Claude's output quality can vary in ways that have nothing to do with your prompt — it's driven by something called [AI reasoning effort](https://derekjensen.io/blog/ai-reasoning-effort-explained-control-how-deep-ai-thinks), and understanding it will save you real confusion as you start building.
 
 **Google AI Studio** gives you free access to Google's AI models. It's a solid playground for experimenting without any setup.
 

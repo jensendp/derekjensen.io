@@ -58,6 +58,8 @@ Let's get into the techniques that actually move the needle. These are the build
 
 **Output formatting** tells the AI exactly how to structure its response. Want a table? A numbered list? A JSON block you can paste into another tool? Just ask. If you've ever struggled to get AI outputs to look the same way twice, my guide on [formatting outputs consistently with Claude](https://derekjensen.io/blog/formatting-outputs-consistently-with-claude-75hy) goes deeper on this.
 
+**Reasoning effort** is a fifth lever most prompt guides skip entirely. Beyond how you phrase a request, AI models have an adjustable setting for how deeply they think before responding. A well-structured prompt can still produce thin output if the model isn't thinking hard enough — and this setting can change without any warning from the provider. Understanding [AI reasoning effort](https://derekjensen.io/blog/ai-reasoning-effort-explained-control-how-deep-ai-thinks) and knowing when to push for deeper thinking is one of the fastest ways to get more consistent, high-quality results.
+
 Here's a prompt template that combines all four techniques at once:
 
 ```

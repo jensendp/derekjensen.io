@@ -8,7 +8,9 @@ draft: false
 heroImage: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxBSSUyMFJlYXNvbmluZyUyMEVmZm9ydCUyMEV4cGxhaW5lZCUzQSUyMENvbnRyb2wlMjBIb3clMjBEZWVwJTIwQUklMjBUaGlua3N8ZW58MHwwfHx8MTc3NjQyOTM5Nnww&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
-A few weeks ago, people on Reddit noticed something strange. Claude's Opus model — one of the most powerful AI tools available — seemed to suddenly get lazier. Answers were shorter. Reasoning felt thinner. The community quickly figured out the culprit: something had changed with the model's "reasoning effort." If you've never heard that term before, you're not alone. Most people building with AI have no idea that these models have an adjustable thinking dial — and that it dramatically changes the quality of what you get back. This post breaks down what AI reasoning effort actually is, why it matters so much when you're building tools and workflows, and how you can take control of it starting today.
+AI reasoning effort is the amount of thinking work a model does before it gives you an answer — and it's one of the most important settings most builders have never heard of. When reasoning effort is high, the model works through problems step by step, catches its own mistakes, and produces more reliable output. When it's low, it fires off a quick response and moves on. Same model. Dramatically different results.
+
+Here's why this suddenly matters. A few weeks ago, Reddit lit up with complaints about Claude's Opus model — one of the most powerful AI tools available — feeling oddly lazy. Answers were shorter. Reasoning felt thinner. The community figured out what happened: Anthropic had quietly adjusted the model's reasoning effort settings behind the scenes. No announcement, no changelog. Just thinner thinking. If you're building tools and workflows with AI, this post shows you what AI reasoning effort actually is, why it changes the quality of what you get back, and how to take control of it starting today.
 
 ## What Is AI Reasoning Effort? (The Simple Version)
 
