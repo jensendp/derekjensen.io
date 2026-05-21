@@ -182,8 +182,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [How to Think Like a Builder (Not a Programmer)](https://derekjensen.io/blog/how-to-think-like-a-builder-not-a-programmer-guide)
 - [What AI Can and Cannot Build Today](https://derekjensen.io/blog/what-ai-can-and-cannot-build-today-guide)
 - [Cost Breakdown of Building with AI](https://derekjensen.io/blog/cost-of-building-with-ai-a-real-breakdown)
+- [Setting Up Your First Development Environment](https://derekjensen.io/blog/setting-up-your-first-ai-development-environment)
 
-- Setting Up Your First Development Environment
 - How to Read Code Without Knowing Code
 - The Role of Copy-Paste Engineering
 - Managing Expectations with AI Tools
