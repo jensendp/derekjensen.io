@@ -183,8 +183,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [What AI Can and Cannot Build Today](https://derekjensen.io/blog/what-ai-can-and-cannot-build-today-guide)
 - [Cost Breakdown of Building with AI](https://derekjensen.io/blog/cost-of-building-with-ai-a-real-breakdown)
 - [Setting Up Your First Development Environment](https://derekjensen.io/blog/setting-up-your-first-ai-development-environment)
+- [How to Read Code Without Knowing Code](https://derekjensen.io/blog/how-to-read-code-without-knowing-code-guide)
 
-- How to Read Code Without Knowing Code
 - The Role of Copy-Paste Engineering
 - Managing Expectations with AI Tools
 - AI vs Hiring Developers (Beginner Perspective)
