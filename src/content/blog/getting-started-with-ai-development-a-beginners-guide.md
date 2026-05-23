@@ -184,8 +184,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [Cost Breakdown of Building with AI](https://derekjensen.io/blog/cost-of-building-with-ai-a-real-breakdown)
 - [Setting Up Your First Development Environment](https://derekjensen.io/blog/setting-up-your-first-ai-development-environment)
 - [How to Read Code Without Knowing Code](https://derekjensen.io/blog/how-to-read-code-without-knowing-code-guide)
+- [The Role of Copy-Paste Engineering](https://derekjensen.io/blog/copy-paste-engineering-with-ai-why-it-fails-what-works)
 
-- The Role of Copy-Paste Engineering
 - Managing Expectations with AI Tools
 - AI vs Hiring Developers (Beginner Perspective)
 - Time-to-First-App Roadmap
