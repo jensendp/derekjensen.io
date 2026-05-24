@@ -185,8 +185,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [Setting Up Your First Development Environment](https://derekjensen.io/blog/setting-up-your-first-ai-development-environment)
 - [How to Read Code Without Knowing Code](https://derekjensen.io/blog/how-to-read-code-without-knowing-code-guide)
 - [The Role of Copy-Paste Engineering](https://derekjensen.io/blog/copy-paste-engineering-with-ai-why-it-fails-what-works)
+- [Managing Expectations with AI Tools](https://derekjensen.io/blog/managing-expectations-with-ai-tools-a-practical-guide)
 
-- Managing Expectations with AI Tools
 - AI vs Hiring Developers (Beginner Perspective)
 - Time-to-First-App Roadmap
 - Vocabulary Every Non-Engineer Should Know
