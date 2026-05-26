@@ -187,8 +187,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [The Role of Copy-Paste Engineering](https://derekjensen.io/blog/copy-paste-engineering-with-ai-why-it-fails-what-works)
 - [Managing Expectations with AI Tools](https://derekjensen.io/blog/managing-expectations-with-ai-tools-a-practical-guide)
 - [AI vs Hiring Developers (Beginner Perspective)](https://derekjensen.io/blog/ai-vs-hiring-developers-a-beginners-honest-guide)
+- [Time-to-First-App Roadmap](https://derekjensen.io/blog/time-to-first-app-roadmap-with-ai-no-code-needed)
 
-- Time-to-First-App Roadmap
 - Vocabulary Every Non-Engineer Should Know
 - Understanding Frontend vs Backend Simply
 - When You Actually Need to Learn Code
