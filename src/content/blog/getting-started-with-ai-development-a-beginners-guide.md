@@ -190,8 +190,8 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [Time-to-First-App Roadmap](https://derekjensen.io/blog/time-to-first-app-roadmap-with-ai-no-code-needed)
 - [Vocabulary Every Non-Engineer Should Know](https://derekjensen.io/blog/vocabulary-non-engineer-should-know-to-build-with-ai)
 - [Understanding Frontend vs Backend Simply](https://derekjensen.io/blog/frontend-vs-backend-explained-simply-no-code-needed)
+- [When You Actually Need to Learn Code](https://derekjensen.io/blog/when-do-you-need-to-learn-to-code-honest-answer)
 
-- When You Actually Need to Learn Code
 - Your First 30-Day AI Builder Plan
 
 
