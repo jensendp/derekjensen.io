@@ -191,8 +191,7 @@ This guide is part of a complete series on Getting Started with AI-Assisted Deve
 - [Vocabulary Every Non-Engineer Should Know](https://derekjensen.io/blog/vocabulary-non-engineer-should-know-to-build-with-ai)
 - [Understanding Frontend vs Backend Simply](https://derekjensen.io/blog/frontend-vs-backend-explained-simply-no-code-needed)
 - [When You Actually Need to Learn Code](https://derekjensen.io/blog/when-do-you-need-to-learn-to-code-honest-answer)
-
-- Your First 30-Day AI Builder Plan
+- [Your First 30-Day AI Builder Plan](https://derekjensen.io/blog/30-day-ai-builder-plan-a-realistic-guide)
 
 
 ## Conclusion
