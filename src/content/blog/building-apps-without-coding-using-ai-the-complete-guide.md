@@ -193,8 +193,8 @@ The people who start building now — even small, simple things — will have a 
 This guide is part of a complete series on Building Apps Without Coding Using AI. Here's what we cover:
 
 - [How to Build a Web App Using Only AI Prompts](https://derekjensen.io/blog/build-a-web-app-using-ai-prompts-no-code-needed)
+- [Step-by-Step: Create a CRUD App Without Coding](https://derekjensen.io/blog/create-a-crud-app-without-coding-step-by-step)
 
-- Step-by-Step: Create a CRUD App Without Coding
 - Building a Personal Dashboard Tool
 - Creating a Simple SaaS Product from Scratch
 - Turning a Spreadsheet into a Web App
