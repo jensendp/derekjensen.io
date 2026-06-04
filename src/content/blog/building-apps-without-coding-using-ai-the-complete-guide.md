@@ -196,8 +196,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Step-by-Step: Create a CRUD App Without Coding](https://derekjensen.io/blog/create-a-crud-app-without-coding-step-by-step)
 - [Building a Personal Dashboard Tool](https://derekjensen.io/blog/building-a-personal-dashboard-with-ai-no-code-needed)
 - [Creating a Simple SaaS Product from Scratch](https://derekjensen.io/blog/create-a-simple-saas-product-with-ai-no-code-needed)
+- [Turning a Spreadsheet into a Web App](https://derekjensen.io/blog/turn-spreadsheet-into-web-app-with-ai-guide)
 
-- Turning a Spreadsheet into a Web App
 - Building a Chrome Extension with AI
 - Creating Internal Tools for Your Business
 - Building a Landing Page with AI
