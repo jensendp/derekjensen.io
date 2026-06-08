@@ -200,8 +200,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Building a Chrome Extension with AI](https://derekjensen.io/blog/build-a-chrome-extension-with-ai-no-coding-needed)
 - [Creating Internal Tools for Your Business](https://derekjensen.io/blog/creating-internal-tools-with-ai-a-non-engineers-guide)
 - [Building a Landing Page with AI](https://derekjensen.io/blog/build-a-landing-page-with-ai-no-coding-required)
+- [From Idea to MVP in 24 Hours](https://derekjensen.io/blog/from-idea-to-mvp-in-24-hours-with-ai-no-code-needed)
 
-- From Idea to MVP in 24 Hours
 - Creating Mobile Apps with AI Tools
 - Building a Directory Website
 - Creating a Subscription-Based Tool
