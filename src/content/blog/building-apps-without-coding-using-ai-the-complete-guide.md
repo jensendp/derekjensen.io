@@ -201,8 +201,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Creating Internal Tools for Your Business](https://derekjensen.io/blog/creating-internal-tools-with-ai-a-non-engineers-guide)
 - [Building a Landing Page with AI](https://derekjensen.io/blog/build-a-landing-page-with-ai-no-coding-required)
 - [From Idea to MVP in 24 Hours](https://derekjensen.io/blog/from-idea-to-mvp-in-24-hours-with-ai-no-code-needed)
+- [Creating Mobile Apps with AI Tools](https://derekjensen.io/blog/create-mobile-apps-with-ai-tools-a-practical-guide)
 
-- Creating Mobile Apps with AI Tools
 - Building a Directory Website
 - Creating a Subscription-Based Tool
 - Building a Job Board with AI
