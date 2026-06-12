@@ -204,8 +204,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Creating Mobile Apps with AI Tools](https://derekjensen.io/blog/create-mobile-apps-with-ai-tools-a-practical-guide)
 - [Building a Directory Website](https://derekjensen.io/blog/build-a-directory-website-with-ai-no-code-guide)
 - [Creating a Subscription-Based Tool](https://derekjensen.io/blog/create-a-subscription-based-tool-with-ai-no-code-guide)
+- [Building a Job Board with AI](https://derekjensen.io/blog/build-a-job-board-with-ai-no-code-guide)
 
-- Building a Job Board with AI
 - Creating a Content Generator Tool
 - Building a Form + Database System
 - Creating a Marketplace MVP
