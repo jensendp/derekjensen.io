@@ -207,8 +207,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Building a Job Board with AI](https://derekjensen.io/blog/build-a-job-board-with-ai-no-code-guide)
 - [Creating a Content Generator Tool](https://derekjensen.io/blog/create-a-content-generator-tool-with-ai-no-code)
 - [Building a Form + Database System](https://derekjensen.io/blog/build-a-form-and-database-system-with-ai-no-code)
+- [Creating a Marketplace MVP](https://derekjensen.io/blog/create-a-marketplace-mvp-with-ai-no-code-guide)
 
-- Creating a Marketplace MVP
 - Building a Notion-Like Tool
 - Creating a Blog Platform with AI
 - Building a Micro SaaS Product
