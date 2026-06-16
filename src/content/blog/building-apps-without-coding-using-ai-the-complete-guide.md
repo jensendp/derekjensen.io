@@ -208,8 +208,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Creating a Content Generator Tool](https://derekjensen.io/blog/create-a-content-generator-tool-with-ai-no-code)
 - [Building a Form + Database System](https://derekjensen.io/blog/build-a-form-and-database-system-with-ai-no-code)
 - [Creating a Marketplace MVP](https://derekjensen.io/blog/create-a-marketplace-mvp-with-ai-no-code-guide)
+- [Building a Notion-Like Tool](https://derekjensen.io/blog/build-a-notion-like-tool-with-ai-no-coding-needed)
 
-- Building a Notion-Like Tool
 - Creating a Blog Platform with AI
 - Building a Micro SaaS Product
 - Turning Manual Workflows into Apps
