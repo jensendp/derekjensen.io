@@ -210,8 +210,8 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Creating a Marketplace MVP](https://derekjensen.io/blog/create-a-marketplace-mvp-with-ai-no-code-guide)
 - [Building a Notion-Like Tool](https://derekjensen.io/blog/build-a-notion-like-tool-with-ai-no-coding-needed)
 - [Creating a Blog Platform with AI](https://derekjensen.io/blog/create-a-blog-platform-with-ai-no-coding-required)
+- [Building a Micro SaaS Product](https://derekjensen.io/blog/build-a-micro-saas-product-with-ai-no-code-needed)
 
-- Building a Micro SaaS Product
 - Turning Manual Workflows into Apps
 
 
