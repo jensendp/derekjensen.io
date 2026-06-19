@@ -211,8 +211,7 @@ This guide is part of a complete series on Building Apps Without Coding Using AI
 - [Building a Notion-Like Tool](https://derekjensen.io/blog/build-a-notion-like-tool-with-ai-no-coding-needed)
 - [Creating a Blog Platform with AI](https://derekjensen.io/blog/create-a-blog-platform-with-ai-no-coding-required)
 - [Building a Micro SaaS Product](https://derekjensen.io/blog/build-a-micro-saas-product-with-ai-no-code-needed)
-
-- Turning Manual Workflows into Apps
+- [Turning Manual Workflows into Apps](https://derekjensen.io/blog/turning-manual-workflows-into-apps-with-ai-guide)
 
 
 ## Conclusion
