@@ -191,7 +191,8 @@ Now go try something. You're more ready than you think.
 
 This guide is part of a complete series on Best AI Tools for Non-Developers. Here's what we cover:
 
-- Best AI Coding Tools for Beginners
+- [Best AI Coding Tools for Beginners](https://derekjensen.io/blog/best-ai-coding-tools-for-beginners-guide)
+
 - AI Website Builders Compared
 - Best Tools for Backend Without Coding
 - AI Tools for UI Design
@@ -211,6 +212,7 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - Hidden Gems in AI Development Tools
 - Tool Fatigue: What You Actually Need
 - Monthly Stack Recommendations
+
 
 ## Conclusion
 
