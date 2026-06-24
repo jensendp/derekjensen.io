@@ -195,8 +195,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [AI Website Builders Compared](https://derekjensen.io/blog/ai-website-builders-compared-honest-guide-for)
 - [Best Tools for Backend Without Coding](https://derekjensen.io/blog/best-backend-tools-without-coding-guide)
 - [AI Tools for UI Design](https://derekjensen.io/blog/ai-tools-for-ui-design-a-non-developers-guide)
+- [Automation Tools Powered by AI](https://derekjensen.io/blog/automation-tools-powered-by-ai-a-non-developer-guide)
 
-- Automation Tools Powered by AI
 - Free vs Paid AI Tools (Full Breakdown)
 - All-in-One Platforms vs Tool Stacks
 - Tools for Building SaaS Without Code
