@@ -200,8 +200,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [All-in-One Platforms vs Tool Stacks](https://derekjensen.io/blog/all-in-one-ai-platforms-vs-tool-stacks-which-is-right)
 - [Tools for Building SaaS Without Code](https://derekjensen.io/blog/tools-for-building-saas-without-code-guide)
 - [AI Tools for Data Handling](https://derekjensen.io/blog/ai-tools-for-data-handling-a-non-developers-guide)
+- [Best Prompt Interfaces Compared](https://derekjensen.io/blog/best-ai-prompt-interfaces-compared-hands-on-guide)
 
-- Best Prompt Interfaces Compared
 - Tools for Debugging AI Code
 - Hosting Platforms for AI-Built Apps
 - Tools for API Connections
