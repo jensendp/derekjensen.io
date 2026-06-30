@@ -201,8 +201,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [Tools for Building SaaS Without Code](https://derekjensen.io/blog/tools-for-building-saas-without-code-guide)
 - [AI Tools for Data Handling](https://derekjensen.io/blog/ai-tools-for-data-handling-a-non-developers-guide)
 - [Best Prompt Interfaces Compared](https://derekjensen.io/blog/best-ai-prompt-interfaces-compared-hands-on-guide)
+- [Tools for Debugging AI Code](https://derekjensen.io/blog/tools-for-debugging-ai-generated-code-guide)
 
-- Tools for Debugging AI Code
 - Hosting Platforms for AI-Built Apps
 - Tools for API Connections
 - AI Tools for Rapid Prototyping
