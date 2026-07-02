@@ -203,8 +203,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [Best Prompt Interfaces Compared](https://derekjensen.io/blog/best-ai-prompt-interfaces-compared-hands-on-guide)
 - [Tools for Debugging AI Code](https://derekjensen.io/blog/tools-for-debugging-ai-generated-code-guide)
 - [Hosting Platforms for AI-Built Apps](https://derekjensen.io/blog/hosting-platforms-for-ai-built-apps-a-non-dev-guide)
+- [Tools for API Connections](https://derekjensen.io/blog/tools-for-api-connections-without-coding-guide)
 
-- Tools for API Connections
 - AI Tools for Rapid Prototyping
 - Beginner-Friendly Dev Environments
 - Tools for Scaling AI Projects
