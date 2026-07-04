@@ -205,8 +205,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [Hosting Platforms for AI-Built Apps](https://derekjensen.io/blog/hosting-platforms-for-ai-built-apps-a-non-dev-guide)
 - [Tools for API Connections](https://derekjensen.io/blog/tools-for-api-connections-without-coding-guide)
 - [AI Tools for Rapid Prototyping](https://derekjensen.io/blog/ai-tools-for-rapid-prototyping-a-non-developers-guide)
+- [Beginner-Friendly Dev Environments](https://derekjensen.io/blog/beginner-friendly-ai-dev-environments-guide)
 
-- Beginner-Friendly Dev Environments
 - Tools for Scaling AI Projects
 - AI Tools for Teams vs Solo Builders
 - Hidden Gems in AI Development Tools
