@@ -207,8 +207,8 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [AI Tools for Rapid Prototyping](https://derekjensen.io/blog/ai-tools-for-rapid-prototyping-a-non-developers-guide)
 - [Beginner-Friendly Dev Environments](https://derekjensen.io/blog/beginner-friendly-ai-dev-environments-guide)
 - [Tools for Scaling AI Projects](https://derekjensen.io/blog/tools-for-scaling-ai-projects-non-developer-guide)
+- [AI Tools for Teams vs Solo Builders](https://derekjensen.io/blog/ai-tools-for-teams-vs-solo-builders-how-to-choose)
 
-- AI Tools for Teams vs Solo Builders
 - Hidden Gems in AI Development Tools
 - Tool Fatigue: What You Actually Need
 - Monthly Stack Recommendations
