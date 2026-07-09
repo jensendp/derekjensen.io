@@ -210,8 +210,7 @@ This guide is part of a complete series on Best AI Tools for Non-Developers. Her
 - [AI Tools for Teams vs Solo Builders](https://derekjensen.io/blog/ai-tools-for-teams-vs-solo-builders-how-to-choose)
 - [Hidden Gems in AI Development Tools](https://derekjensen.io/blog/hidden-gem-ai-development-tools-you-need-to-try-in)
 - [Tool Fatigue: What You Actually Need](https://derekjensen.io/blog/ai-tool-fatigue-what-you-actually-need-guide)
-
-- Monthly Stack Recommendations
+- [Monthly Stack Recommendations](https://derekjensen.io/blog/monthly-ai-stack-recommendations-for-non-developers)
 
 
 ## Conclusion
