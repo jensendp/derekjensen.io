@@ -182,8 +182,8 @@ So don't wait until you feel ready. Start building. Start saving what works. The
 This guide is part of a complete series on Prompt Engineering for Builders. Here's what we cover:
 
 - [What Is Prompt Engineering (For Builders)](https://derekjensen.io/blog/what-is-prompt-engineering-for-builders-guide)
+- [Writing Prompts That Generate Working Code](https://derekjensen.io/blog/writing-prompts-that-generate-working-code-guide)
 
-- Writing Prompts That Generate Working Code
 - Structuring Prompts for Complex Projects
 - Debugging Through Prompting
 - Prompt Templates for App Building
