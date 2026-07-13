@@ -184,8 +184,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [What Is Prompt Engineering (For Builders)](https://derekjensen.io/blog/what-is-prompt-engineering-for-builders-guide)
 - [Writing Prompts That Generate Working Code](https://derekjensen.io/blog/writing-prompts-that-generate-working-code-guide)
 - [Structuring Prompts for Complex Projects](https://derekjensen.io/blog/structuring-prompts-for-complex-ai-projects-guide)
+- [Debugging Through Prompting](https://derekjensen.io/blog/debugging-through-prompting-ai-a-non-coders-guide)
 
-- Debugging Through Prompting
 - Prompt Templates for App Building
 - How to Iterate on Broken Outputs
 - Prompting for UI vs Backend
