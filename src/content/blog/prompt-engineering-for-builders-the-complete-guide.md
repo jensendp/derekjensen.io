@@ -187,8 +187,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Debugging Through Prompting](https://derekjensen.io/blog/debugging-through-prompting-ai-a-non-coders-guide)
 - [Prompt Templates for App Building](https://derekjensen.io/blog/prompt-templates-for-app-building-copy-paste-kit)
 - [How to Iterate on Broken Outputs](https://derekjensen.io/blog/how-to-iterate-on-broken-ai-outputs-step-by-step)
+- [Prompting for UI vs Backend](https://derekjensen.io/blog/prompting-ai-for-ui-vs-backend-a-builders-guide)
 
-- Prompting for UI vs Backend
 - Multi-Step Prompt Workflows
 - Reducing Hallucinations in Code
 - Using Constraints in Prompts
