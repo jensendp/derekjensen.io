@@ -188,8 +188,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Prompt Templates for App Building](https://derekjensen.io/blog/prompt-templates-for-app-building-copy-paste-kit)
 - [How to Iterate on Broken Outputs](https://derekjensen.io/blog/how-to-iterate-on-broken-ai-outputs-step-by-step)
 - [Prompting for UI vs Backend](https://derekjensen.io/blog/prompting-ai-for-ui-vs-backend-a-builders-guide)
+- [Multi-Step Prompt Workflows](https://derekjensen.io/blog/multi-step-prompt-workflows-ai-build-more-prompt-less)
 
-- Multi-Step Prompt Workflows
 - Reducing Hallucinations in Code
 - Using Constraints in Prompts
 - Prompting for Database Design
