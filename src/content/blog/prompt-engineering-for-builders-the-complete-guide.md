@@ -189,8 +189,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [How to Iterate on Broken Outputs](https://derekjensen.io/blog/how-to-iterate-on-broken-ai-outputs-step-by-step)
 - [Prompting for UI vs Backend](https://derekjensen.io/blog/prompting-ai-for-ui-vs-backend-a-builders-guide)
 - [Multi-Step Prompt Workflows](https://derekjensen.io/blog/multi-step-prompt-workflows-ai-build-more-prompt-less)
+- [Reducing Hallucinations in Code](https://derekjensen.io/blog/reducing-ai-hallucinations-in-code-a-builders-guide)
 
-- Reducing Hallucinations in Code
 - Using Constraints in Prompts
 - Prompting for Database Design
 - Prompting for API Integrations
