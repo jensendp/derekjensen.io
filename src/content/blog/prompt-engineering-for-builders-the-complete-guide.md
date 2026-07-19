@@ -190,8 +190,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Prompting for UI vs Backend](https://derekjensen.io/blog/prompting-ai-for-ui-vs-backend-a-builders-guide)
 - [Multi-Step Prompt Workflows](https://derekjensen.io/blog/multi-step-prompt-workflows-ai-build-more-prompt-less)
 - [Reducing Hallucinations in Code](https://derekjensen.io/blog/reducing-ai-hallucinations-in-code-a-builders-guide)
+- [Using Constraints in Prompts](https://derekjensen.io/blog/using-constraints-in-ai-prompts-a-builders-guide)
 
-- Using Constraints in Prompts
 - Prompting for Database Design
 - Prompting for API Integrations
 - Role-Based Prompting Techniques
