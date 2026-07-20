@@ -1,10 +1,43 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
 const BREVO_API = 'https://api.brevo.com/v3';
 
+let ratelimit: Ratelimit | null = null;
+
+function getRatelimit(): Ratelimit | null {
+  const url = import.meta.env.UPSTASH_REDIS_REST_URL;
+  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  if (!ratelimit) {
+    ratelimit = new Ratelimit({
+      redis: new Redis({ url, token }),
+      limiter: Ratelimit.slidingWindow(5, '1 h'),
+      prefix: 'subscribe',
+    });
+  }
+  return ratelimit;
+}
+
 export const POST: APIRoute = async ({ request }) => {
+  const limiter = getRatelimit();
+  if (limiter) {
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+      request.headers.get('cf-connecting-ip') ??
+      '127.0.0.1';
+    const { success, limit, remaining } = await limiter.limit(ip);
+    if (!success) {
+      return Response.json(
+        { error: `Rate limit reached. Please try again later.` },
+        { status: 429, headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) } }
+      );
+    }
+  }
+
   const json = await request.json().catch(() => null);
   if (!json) {
     return Response.json({ error: 'Invalid request body.' }, { status: 400 });
