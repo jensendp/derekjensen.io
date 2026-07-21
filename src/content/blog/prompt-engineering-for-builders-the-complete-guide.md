@@ -192,8 +192,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Reducing Hallucinations in Code](https://derekjensen.io/blog/reducing-ai-hallucinations-in-code-a-builders-guide)
 - [Using Constraints in Prompts](https://derekjensen.io/blog/using-constraints-in-ai-prompts-a-builders-guide)
 - [Prompting for Database Design](https://derekjensen.io/blog/prompting-ai-for-database-design-a-non-technical-guide)
+- [Prompting for API Integrations](https://derekjensen.io/blog/prompting-ai-for-api-integrations-a-non-technical-guide)
 
-- Prompting for API Integrations
 - Role-Based Prompting Techniques
 - Prompt Libraries You Should Build
 - When Prompts Fail (And Why)
