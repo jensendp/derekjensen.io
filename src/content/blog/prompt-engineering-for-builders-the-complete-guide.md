@@ -193,8 +193,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Using Constraints in Prompts](https://derekjensen.io/blog/using-constraints-in-ai-prompts-a-builders-guide)
 - [Prompting for Database Design](https://derekjensen.io/blog/prompting-ai-for-database-design-a-non-technical-guide)
 - [Prompting for API Integrations](https://derekjensen.io/blog/prompting-ai-for-api-integrations-a-non-technical-guide)
+- [Role-Based Prompting Techniques](https://derekjensen.io/blog/role-based-prompting-techniques-ai-a-builders-guide)
 
-- Role-Based Prompting Techniques
 - Prompt Libraries You Should Build
 - When Prompts Fail (And Why)
 - Long vs Short Prompts Explained
