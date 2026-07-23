@@ -194,8 +194,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Prompting for Database Design](https://derekjensen.io/blog/prompting-ai-for-database-design-a-non-technical-guide)
 - [Prompting for API Integrations](https://derekjensen.io/blog/prompting-ai-for-api-integrations-a-non-technical-guide)
 - [Role-Based Prompting Techniques](https://derekjensen.io/blog/role-based-prompting-techniques-ai-a-builders-guide)
+- [Prompt Libraries You Should Build](https://derekjensen.io/blog/prompt-libraries-for-builders-what-to-build-why)
 
-- Prompt Libraries You Should Build
 - When Prompts Fail (And Why)
 - Long vs Short Prompts Explained
 - Prompt Chaining Strategies
