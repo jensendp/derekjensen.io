@@ -196,8 +196,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Role-Based Prompting Techniques](https://derekjensen.io/blog/role-based-prompting-techniques-ai-a-builders-guide)
 - [Prompt Libraries You Should Build](https://derekjensen.io/blog/prompt-libraries-for-builders-what-to-build-why)
 - [When Prompts Fail (And Why)](https://derekjensen.io/blog/when-ai-prompts-fail-and-why-and-how-to-fix-them)
+- [Long vs Short Prompts Explained](https://derekjensen.io/blog/long-vs-short-ai-prompts-explained-what-actually-works)
 
-- Long vs Short Prompts Explained
 - Prompt Chaining Strategies
 - Teaching AI Your Project Context
 - Prompting vs Manual Editing
