@@ -199,8 +199,8 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Long vs Short Prompts Explained](https://derekjensen.io/blog/long-vs-short-ai-prompts-explained-what-actually-works)
 - [Prompt Chaining Strategies](https://derekjensen.io/blog/prompt-chaining-strategies-ai-a-builders-practical-guide)
 - [Teaching AI Your Project Context](https://derekjensen.io/blog/teaching-ai-your-project-context-a-non-technical-guide)
+- [Prompting vs Manual Editing](https://derekjensen.io/blog/prompting-vs-manual-editing-ai-which-saves-more-time)
 
-- Prompting vs Manual Editing
 - Advanced Prompt Patterns
 
 
