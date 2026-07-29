@@ -200,8 +200,7 @@ This guide is part of a complete series on Prompt Engineering for Builders. Here
 - [Prompt Chaining Strategies](https://derekjensen.io/blog/prompt-chaining-strategies-ai-a-builders-practical-guide)
 - [Teaching AI Your Project Context](https://derekjensen.io/blog/teaching-ai-your-project-context-a-non-technical-guide)
 - [Prompting vs Manual Editing](https://derekjensen.io/blog/prompting-vs-manual-editing-ai-which-saves-more-time)
-
-- Advanced Prompt Patterns
+- [Advanced Prompt Patterns](https://derekjensen.io/blog/advanced-prompt-patterns-for-builders-guide)
 
 
 ## Conclusion
