@@ -210,7 +210,8 @@ Once your first AI powered automation for workflows is running smoothly, you'll 
 
 This guide is part of a complete series on AI-Powered Automation for Workflows. Here's what we cover:
 
-- What Workflows You Should Automate First
+- [What Workflows You Should Automate First](https://derekjensen.io/blog/what-workflows-to-automate-first-with-ai-guide)
+
 - Building Your First AI Automation
 - Automating Email Processing
 - AI for CRM Automation
@@ -230,6 +231,7 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - Real Business Automation Examples
 - No-Code vs AI Automation
 - Automation Maintenance Guide
+
 
 ## Conclusion
 
