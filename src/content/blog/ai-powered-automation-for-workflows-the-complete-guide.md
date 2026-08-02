@@ -213,8 +213,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [What Workflows You Should Automate First](https://derekjensen.io/blog/what-workflows-to-automate-first-with-ai-guide)
 - [Building Your First AI Automation](https://derekjensen.io/blog/building-your-first-ai-automation-a-no-code-beginner-guide)
 - [Automating Email Processing](https://derekjensen.io/blog/automating-email-processing-with-ai-no-code-guide)
+- [AI for CRM Automation](https://derekjensen.io/blog/ai-for-crm-automation-a-non-technical-guide)
 
-- AI for CRM Automation
 - Automating Content Pipelines
 - Workflow Design for Non-Engineers
 - Connecting Tools Without Code
