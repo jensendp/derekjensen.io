@@ -216,8 +216,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [AI for CRM Automation](https://derekjensen.io/blog/ai-for-crm-automation-a-non-technical-guide)
 - [Automating Content Pipelines](https://derekjensen.io/blog/automating-content-pipelines-with-ai-simple-guide)
 - [Workflow Design for Non-Engineers](https://derekjensen.io/blog/workflow-design-for-non-engineers-ai-a-practical-guide)
+- [Connecting Tools Without Code](https://derekjensen.io/blog/connecting-tools-without-code-ai-a-simple-guide)
 
-- Connecting Tools Without Code
 - Automating Data Entry Tasks
 - AI for Customer Support Automation
 - Creating Internal Business Automations
