@@ -218,8 +218,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Workflow Design for Non-Engineers](https://derekjensen.io/blog/workflow-design-for-non-engineers-ai-a-practical-guide)
 - [Connecting Tools Without Code](https://derekjensen.io/blog/connecting-tools-without-code-ai-a-simple-guide)
 - [Automating Data Entry Tasks](https://derekjensen.io/blog/automating-data-entry-tasks-with-ai-no-code-guide)
+- [AI for Customer Support Automation](https://derekjensen.io/blog/ai-for-customer-support-automation-a-simple-guide)
 
-- AI for Customer Support Automation
 - Creating Internal Business Automations
 - Scheduling and Task Automation
 - Automating Reporting Systems
