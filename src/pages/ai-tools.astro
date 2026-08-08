@@ -1,0 +1,300 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { tools, overallScore } from '../data/ai-tools';
+
+function outboundUrl(base: string, toolName: string): string {
+  const content = toolName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const separator = base.includes('?') ? '&' : '?';
+  return `${base}${separator}utm_source=derekjensen.io&utm_medium=referral&utm_campaign=ai-tools&utm_content=${content}`;
+}
+
+const categoryMeta: Record<string, { label: string; description: string }> = {
+  building: { label: 'Building', description: 'Apps, products, interfaces' },
+  writing:  { label: 'Writing',  description: 'Content, copy, docs' },
+  automating: { label: 'Automating', description: 'Workflows, integrations' },
+  research: { label: 'Research', description: 'Search, analysis, planning' },
+};
+
+const costMeta: Record<string, { label: string; classes: string }> = {
+  free:     { label: 'Free',      classes: 'bg-emerald-50 text-emerald-700' },
+  freemium: { label: 'Free Tier', classes: 'bg-primary-50 text-primary-700' },
+  paid:     { label: 'Paid',      classes: 'bg-neutral-100 text-neutral-600' },
+};
+
+const skillMeta: Record<string, { label: string }> = {
+  beginner:     { label: 'No-Code Friendly' },
+  intermediate: { label: 'Some Setup' },
+  advanced:     { label: 'Developer' },
+};
+
+const scoreLabels: Record<string, string> = {
+  easeOfUse:           'Ease of Use',
+  nonEngineerFriendly: 'Non-Engineer Fit',
+  capability:          'Capability',
+  valueForMoney:       'Value for Money',
+};
+
+function scoreBars(score: number): boolean[] {
+  return Array.from({ length: 5 }, (_, i) => i < score);
+}
+
+const totalCount = tools.length;
+---
+
+<BaseLayout
+  title="AI Tool Finder for Non-Engineers"
+  description="An opinionated, scored guide to the best AI tools for people building without a coding background — filtered by what you want to do, your budget, and your skill level."
+>
+  <!-- Hero -->
+  <section class="py-12 sm:py-16 animate-in">
+    <p class="text-sm font-medium text-primary-600 uppercase tracking-wider mb-3">AI Tool Finder</p>
+    <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 tracking-tight mb-4">
+      The right AI tool for what you're building
+    </h1>
+    <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+      Every tool here is scored across four criteria — ease of use, non-engineer friendliness,
+      capability, and value for money. Filter by what you want to do, your budget, and your
+      experience level. My honest take on each one is at the bottom of every card.
+    </p>
+  </section>
+
+  <!-- Filters -->
+  <section class="py-6 border-t border-neutral-200 animate-in delay-1">
+    <div class="space-y-4">
+
+      <!-- Category -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-medium text-neutral-500 uppercase tracking-wider w-20 shrink-0">Use case</span>
+        {Object.entries(categoryMeta).map(([key, meta]) => (
+          <button
+            data-filter-btn
+            data-dimension="category"
+            data-value={key}
+            class="filter-btn px-3 py-1.5 text-sm font-medium rounded-full border border-neutral-300 text-neutral-600 bg-white hover:border-primary-400 hover:text-primary-600 transition-colors"
+          >
+            {meta.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Cost -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-medium text-neutral-500 uppercase tracking-wider w-20 shrink-0">Budget</span>
+        {Object.entries(costMeta).map(([key, meta]) => (
+          <button
+            data-filter-btn
+            data-dimension="cost"
+            data-value={key}
+            class="filter-btn px-3 py-1.5 text-sm font-medium rounded-full border border-neutral-300 text-neutral-600 bg-white hover:border-primary-400 hover:text-primary-600 transition-colors"
+          >
+            {meta.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Skill -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-medium text-neutral-500 uppercase tracking-wider w-20 shrink-0">Skill level</span>
+        {Object.keys(skillMeta).map((key) => (
+          <button
+            data-filter-btn
+            data-dimension="skill"
+            data-value={key}
+            class="filter-btn px-3 py-1.5 text-sm font-medium rounded-full border border-neutral-300 text-neutral-600 bg-white hover:border-primary-400 hover:text-primary-600 transition-colors"
+          >
+            {skillMeta[key].label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Count + clear -->
+    <div class="mt-5 flex items-center justify-between">
+      <p class="text-sm text-neutral-500">
+        Showing <span id="tool-count" class="font-semibold text-neutral-900">{totalCount}</span> of {totalCount} tools
+      </p>
+      <button
+        id="clear-filters"
+        class="hidden text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
+      >
+        Clear filters
+      </button>
+    </div>
+  </section>
+
+  <!-- Tool Grid -->
+  <section class="py-6 animate-in delay-2">
+    <div id="tool-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {tools.map((tool) => {
+        const overall = overallScore(tool);
+        const cost = costMeta[tool.cost];
+        const skill = skillMeta[tool.skillLevel];
+        const category = categoryMeta[tool.category];
+
+        return (
+          <article
+            data-tool-card
+            data-category={tool.category}
+            data-cost={tool.cost}
+            data-skill={tool.skillLevel}
+            class="card p-6 flex flex-col gap-4 hover-lift"
+          >
+            <!-- Badges + score -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary-700">
+                  {category.label}
+                </span>
+                <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${cost.classes}`}>
+                  {cost.label}
+                </span>
+                <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600">
+                  {skill.label}
+                </span>
+              </div>
+              <div class="shrink-0 text-right">
+                <span class="text-xl font-bold text-neutral-900">{overall}</span>
+                <span class="text-xs text-neutral-400">/5</span>
+              </div>
+            </div>
+
+            <!-- Name + description -->
+            <div>
+              <h2 class="text-base font-semibold text-neutral-900 mb-1">{tool.name}</h2>
+              <p class="text-sm text-neutral-600 leading-relaxed">{tool.description}</p>
+            </div>
+
+            <!-- Score bars -->
+            <div class="space-y-2">
+              {(Object.entries(tool.scores) as [string, number][]).map(([key, score]) => (
+                <div class="flex items-center gap-3">
+                  <span class="text-xs text-neutral-400 w-36 shrink-0 whitespace-nowrap">{scoreLabels[key]}</span>
+                  <div class="flex gap-1">
+                    {scoreBars(score).map((filled) => (
+                      <div class={`h-1 w-5 rounded-sm ${filled ? 'bg-primary-400' : 'bg-neutral-200'}`} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Verdict -->
+            <p class="text-sm text-neutral-500 italic border-t border-neutral-100 pt-4 leading-relaxed flex-1">
+              "{tool.verdict}"
+            </p>
+
+            <!-- Link -->
+            <a
+              href={outboundUrl(tool.url, tool.name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors mt-auto group"
+            >
+              Visit {tool.name}
+              <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 6h8M6 2l4 4-4 4"/>
+              </svg>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden py-16 text-center">
+      <p class="text-neutral-500 mb-2">No tools match those filters.</p>
+      <button id="empty-clear" class="text-sm font-medium text-primary-600 hover:text-primary-700">
+        Clear filters
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <section class="py-12 border-t border-neutral-200 animate-in delay-3">
+    <div class="max-w-xl">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-3">About the scores</h2>
+      <p class="text-sm text-neutral-600 leading-relaxed">
+        Every tool here is scored on four criteria, each rated 1–5. <strong>Ease of Use</strong> measures how
+        quickly you can get started. <strong>Non-Engineer Fit</strong> rates how accessible it is without a
+        technical background. <strong>Capability</strong> is how much you can do with it. <strong>Value for
+        Money</strong> weighs what you get against what you pay. The overall score is the average.
+        These are my honest ratings based on real use — not sponsored placements.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  type FilterDimension = 'category' | 'cost' | 'skill';
+
+  const activeFilters: Record<FilterDimension, Set<string>> = {
+    category: new Set(),
+    cost: new Set(),
+    skill: new Set(),
+  };
+
+  const countEl = document.getElementById('tool-count')!;
+  const clearBtn = document.getElementById('clear-filters')!;
+  const emptyClearBtn = document.getElementById('empty-clear')!;
+  const emptyState = document.getElementById('empty-state')!;
+  const cards = document.querySelectorAll<HTMLElement>('[data-tool-card]');
+
+  function applyFilters() {
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const matchCategory = activeFilters.category.size === 0 || activeFilters.category.has(card.dataset.category!);
+      const matchCost = activeFilters.cost.size === 0 || activeFilters.cost.has(card.dataset.cost!);
+      const matchSkill = activeFilters.skill.size === 0 || activeFilters.skill.has(card.dataset.skill!);
+
+      if (matchCategory && matchCost && matchSkill) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    countEl.textContent = String(visible);
+
+    const hasActive = Object.values(activeFilters).some((s) => s.size > 0);
+    clearBtn.classList.toggle('hidden', !hasActive);
+    emptyState.classList.toggle('hidden', visible > 0);
+  }
+
+  function clearAllFilters() {
+    activeFilters.category.clear();
+    activeFilters.cost.clear();
+    activeFilters.skill.clear();
+
+    document.querySelectorAll<HTMLElement>('[data-filter-btn]').forEach((btn) => {
+      btn.classList.remove('bg-primary-600', 'text-white', 'border-primary-600');
+      btn.classList.add('border-neutral-300', 'text-neutral-600', 'bg-white', 'hover:text-primary-600');
+    });
+
+    applyFilters();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-filter-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dimension = btn.dataset.dimension as FilterDimension;
+      const value = btn.dataset.value!;
+      const isActive = activeFilters[dimension].has(value);
+
+      if (isActive) {
+        activeFilters[dimension].delete(value);
+        btn.classList.remove('bg-primary-600', 'text-white', 'border-primary-600');
+        btn.classList.add('border-neutral-300', 'text-neutral-600', 'bg-white', 'hover:text-primary-600');
+      } else {
+        activeFilters[dimension].add(value);
+        btn.classList.add('bg-primary-600', 'text-white', 'border-primary-600');
+        btn.classList.remove('border-neutral-300', 'text-neutral-600', 'bg-white', 'hover:text-primary-600');
+      }
+
+      applyFilters();
+    });
+  });
+
+  clearBtn.addEventListener('click', clearAllFilters);
+  emptyClearBtn.addEventListener('click', clearAllFilters);
+</script>
