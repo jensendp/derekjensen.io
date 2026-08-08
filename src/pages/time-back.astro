@@ -1,0 +1,244 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Get Your Time Back"
+  description="Free 30-minute call for small business owners. I'll find where your business is losing hours each week — and often money too — and send you a short report on how to get it back."
+>
+  <!-- Hero -->
+  <section class="py-16 sm:py-24">
+    <div class="animate-in">
+      <span
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-accent-100 text-accent-800 mb-6"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse"></span>
+        Free for a limited time
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6 tracking-tight max-w-3xl">
+        Get 5–10 hours back in your work week.
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed mb-8">
+        A free 30-minute call where I dig into how your business runs day-to-day, then send you
+        a short report on exactly where you're losing time — and money — to repetitive tasks.
+        No jargon, no obligation, no pitch.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#get-started" class="btn btn-primary group">
+          Get My Free Time Back Session
+          <svg
+            class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-1">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-10">
+        How It Works
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {[
+          {
+            step: '1',
+            title: '30-Minute Call',
+            description: 'We talk through how your business runs day-to-day — your team, your tools, and what eats up your time.',
+          },
+          {
+            step: '2',
+            title: 'I Do the Digging',
+            description: 'I take what you told me and find the specific places you could get hours (and often dollars) back each week.',
+          },
+          {
+            step: '3',
+            title: 'You Get a Report',
+            description: 'Within 48 hours, you get a short, plain-English report with quick wins you can act on right away.',
+          },
+        ].map((item) => (
+          <div class="card p-6">
+            <div class="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center mb-4 text-primary-600 font-bold">
+              {item.step}
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-2">
+      <h2 class="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-8">
+        Who This Is For
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            label: 'Small business owners with a team',
+            description: 'Roughly 5–50 people. If you\'ve got your hands in a lot of different parts of the business, this is for you.',
+          },
+          {
+            label: 'Anyone tired of repetitive busywork',
+            description: 'Reports, follow-ups, copying data between tools — the stuff that quietly eats hours every week.',
+          },
+          {
+            label: 'Owners losing leads to slow follow-up',
+            description: 'If a lead comes in after hours and waits until tomorrow, you\'re probably losing business.',
+          },
+          {
+            label: 'Anyone curious, not just convinced',
+            description: 'You don\'t need to believe in "AI" or anything else — just be open to finding a few hours back.',
+          },
+        ].map((item) => (
+          <div class="p-5 rounded-lg bg-white border border-neutral-200">
+            <h3 class="font-semibold text-neutral-900 mb-1">{item.label}</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The Guarantee -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-3">
+      <div class="rounded-lg border border-primary-200 bg-primary-50/40 p-8 max-w-2xl">
+        <h2 class="text-xl font-semibold text-neutral-900 mb-3">
+          The promise
+        </h2>
+        <p class="text-neutral-600 leading-relaxed">
+          This is genuinely free — I'm doing a handful of these to learn and get feedback. There's
+          no pitch at the end and no obligation to buy anything. If I can't find at least one real
+          way for you to save time or money, I'll buy you a coffee for the trouble.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started -->
+  <section id="get-started" class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-4">
+      <div class="max-w-xl">
+        <h2 class="text-2xl font-semibold text-neutral-900 mb-3">
+          Get your free Time Back session
+        </h2>
+        <p class="text-neutral-600 mb-8">
+          Drop your name and email below and I'll reach out to find a time that works. Spots are
+          limited while I'm running these for free.
+        </p>
+
+        <form id="timeback-form" class="space-y-4">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              id="timeback-name"
+              name="name"
+              required
+              placeholder="Your name"
+              class="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+            />
+            <input
+              type="email"
+              id="timeback-email"
+              name="email"
+              required
+              placeholder="your@email.com"
+              class="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+            />
+          </div>
+          <input
+            type="text"
+            id="timeback-business"
+            name="business"
+            placeholder="What does your business do? (optional)"
+            class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+          />
+          <button
+            type="submit"
+            id="timeback-submit"
+            class="btn btn-primary w-full sm:w-auto px-8 py-3 font-semibold"
+          >
+            <span id="timeback-button-text">Claim My Free Session</span>
+            <span id="timeback-button-loading" class="hidden">
+              <svg class="animate-spin h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
+          </button>
+
+          <div id="timeback-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+            Something went wrong. Please try again or reach out directly via the <a href="/contact" class="underline">contact page</a>.
+          </div>
+        </form>
+
+        <div id="timeback-success" class="hidden">
+          <div class="flex items-center gap-3 p-5 bg-green-50 border border-green-200 rounded-lg">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <p class="font-semibold text-green-900">You're in.</p>
+              <p class="text-sm text-green-700">I'll reach out shortly to find a time that works.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('timeback-form');
+  const submitBtn = document.getElementById('timeback-submit');
+  const btnText = document.getElementById('timeback-button-text');
+  const btnLoading = document.getElementById('timeback-button-loading');
+  const successState = document.getElementById('timeback-success');
+  const errorMsg = document.getElementById('timeback-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      business: formData.get('business'),
+    };
+
+    submitBtn.disabled = true;
+    btnText.classList.add('hidden');
+    btnLoading.classList.remove('hidden');
+
+    try {
+      const response = await fetch('/api/timeback-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        form.classList.add('hidden');
+        successState.classList.remove('hidden');
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      errorMsg.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      btnText.classList.remove('hidden');
+      btnLoading.classList.add('hidden');
+    }
+  });
+</script>

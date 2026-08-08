@@ -96,6 +96,39 @@ const featuredProject = allProjects.find((p) => p.data.featured);
     </section>
   )}
 
+  <!-- Time Back CTA -->
+  <section class="py-12 border-t border-neutral-200">
+    <div class="animate-in delay-2">
+      <div class="card p-8">
+        <span
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-accent-100 text-accent-800 mb-4"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse"></span>
+          Free for a limited time
+        </span>
+        <h2 class="text-2xl font-semibold text-neutral-900 mb-3">
+          Run a small business? Get 5–10 hours back a week.
+        </h2>
+        <p class="text-neutral-600 mb-6 max-w-xl">
+          Not everyone wants to learn to build this stuff themselves — and that's fine. I'll dig
+          into how your business runs day-to-day and send you a free report on exactly where
+          you're losing time (and money) to repetitive tasks. No jargon, no obligation.
+        </p>
+        <a href="/time-back" class="btn btn-primary group">
+          Get My Free Time Back Session
+          <svg
+            class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- About Snippet -->
   <AboutSnippet />
 
