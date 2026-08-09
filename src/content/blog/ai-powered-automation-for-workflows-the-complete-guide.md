@@ -220,8 +220,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Automating Data Entry Tasks](https://derekjensen.io/blog/automating-data-entry-tasks-with-ai-no-code-guide)
 - [AI for Customer Support Automation](https://derekjensen.io/blog/ai-for-customer-support-automation-a-simple-guide)
 - [Creating Internal Business Automations](https://derekjensen.io/blog/creating-internal-business-automations-with-ai-guide)
+- [Scheduling and Task Automation](https://derekjensen.io/blog/scheduling-and-task-automation-with-ai-a-simple-guide)
 
-- Scheduling and Task Automation
 - Automating Reporting Systems
 - Building AI Assistants for Workflows
 - Multi-Step Automation Systems
