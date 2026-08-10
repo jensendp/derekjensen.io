@@ -1,43 +1,27 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { checkRateLimit } from '@utils/ratelimit';
 
 const BREVO_API = 'https://api.brevo.com/v3';
 const TIMEBACK_LIST_ID = 6;
 
-let ratelimit: Ratelimit | null = null;
-
-function getRatelimit(): Ratelimit | null {
-  const url = import.meta.env.UPSTASH_REDIS_REST_URL;
-  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;
-  if (!ratelimit) {
-    ratelimit = new Ratelimit({
-      redis: new Redis({ url, token }),
-      limiter: Ratelimit.slidingWindow(5, '1 h'),
-      prefix: 'timeback-lead',
-    });
-  }
-  return ratelimit;
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const limiter = getRatelimit();
-  if (limiter) {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-      request.headers.get('cf-connecting-ip') ??
-      '127.0.0.1';
-    const { success, limit, remaining } = await limiter.limit(ip);
-    if (!success) {
-      return Response.json(
-        { error: `Rate limit reached. Please try again later.` },
-        { status: 429, headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) } }
-      );
-    }
-  }
+  const rateLimit = await checkRateLimit(request, 'timeback-lead', {
+    limit: 5,
+    window: '1 h',
+    message: 'Rate limit reached. Please try again later.',
+  });
+  if (!rateLimit.ok) return rateLimit.response;
 
   const json = await request.json().catch(() => null);
   if (!json) {
@@ -108,9 +92,9 @@ export const POST: APIRoute = async ({ request }) => {
       htmlContent: `
 <p>New submission from the Time Back landing page:</p>
 <ul>
-  <li><strong>Name:</strong> ${trimmedName}</li>
-  <li><strong>Email:</strong> ${email}</li>
-  <li><strong>Business:</strong> ${business || '(not provided)'}</li>
+  <li><strong>Name:</strong> ${escapeHtml(trimmedName)}</li>
+  <li><strong>Email:</strong> ${escapeHtml(email)}</li>
+  <li><strong>Business:</strong> ${escapeHtml(business || '(not provided)')}</li>
 </ul>`,
       textContent: `New Time Back lead:\nName: ${trimmedName}\nEmail: ${email}\nBusiness: ${business || '(not provided)'}`,
     }),
