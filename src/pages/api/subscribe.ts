@@ -1,42 +1,26 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { checkRateLimit } from '@utils/ratelimit';
 
 const BREVO_API = 'https://api.brevo.com/v3';
 
-let ratelimit: Ratelimit | null = null;
-
-function getRatelimit(): Ratelimit | null {
-  const url = import.meta.env.UPSTASH_REDIS_REST_URL;
-  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;
-  if (!ratelimit) {
-    ratelimit = new Ratelimit({
-      redis: new Redis({ url, token }),
-      limiter: Ratelimit.slidingWindow(5, '1 h'),
-      prefix: 'subscribe',
-    });
-  }
-  return ratelimit;
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const limiter = getRatelimit();
-  if (limiter) {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-      request.headers.get('cf-connecting-ip') ??
-      '127.0.0.1';
-    const { success, limit, remaining } = await limiter.limit(ip);
-    if (!success) {
-      return Response.json(
-        { error: `Rate limit reached. Please try again later.` },
-        { status: 429, headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) } }
-      );
-    }
-  }
+  const rateLimit = await checkRateLimit(request, 'subscribe', {
+    limit: 5,
+    window: '1 h',
+    message: 'Rate limit reached. Please try again later.',
+  });
+  if (!rateLimit.ok) return rateLimit.response;
 
   const json = await request.json().catch(() => null);
   if (!json) {
@@ -45,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const { email, firstName } = json;
 
-  if (!email || !email.includes('@')) {
+  if (!email || typeof email !== 'string' || !email.includes('@')) {
     return Response.json({ error: 'Please enter a valid email address.' }, { status: 400 });
   }
 
@@ -80,42 +64,35 @@ export const POST: APIRoute = async ({ request }) => {
     return Response.json({ error: 'Could not subscribe. Please try again.' }, { status: 500 });
   }
 
-  // Send welcome email directly — no automation needed
-  const greeting = firstName ? `Hey ${firstName},` : 'Hey,';
+  // Send welcome email directly — no automation needed. Generic on purpose: this endpoint is
+  // reached from a plain "get new posts by email" widget, not tied to any one lead magnet, so
+  // it shouldn't promise a specific tool/link.
+  const safeFirstName = typeof firstName === 'string' ? escapeHtml(firstName) : '';
+  const greeting = safeFirstName ? `Hey ${safeFirstName},` : 'Hey,';
 
   const htmlContent = `
 <p>${greeting}</p>
-<p>Here's your link: <a href="https://derekjensen.io/tools/prompt-builder"><strong>derekjensen.io/tools/prompt-builder</strong></a></p>
-<p>Describe your idea, answer 3 quick questions, and you'll get:</p>
-<ul>
-  <li>A project brief (problem, solution, who it's for)</li>
-  <li>A kickoff prompt ready to paste into Claude</li>
-  <li>A planning prompt that breaks your build into steps</li>
-</ul>
-<p>It takes about 60 seconds. I use this exact process every time I start something new.</p>
-<hr />
+<p>You're on the list — thanks for subscribing.</p>
 <p>I'm Derek. I build real products with AI and share everything about how I do it — the tools, the prompts, the mistakes, and the wins.</p>
-<p>Most of what I put out is free. Not as a teaser — because I genuinely think the more you can build, the better.</p>
+<p>Most of what I put out is free. Not as a teaser — because I genuinely think the more you can build, the better. While you're here, a couple of free tools worth trying:</p>
+<ul>
+  <li><a href="https://derekjensen.io/tools/prompt-builder"><strong>AI Prompt Builder</strong></a> — describe your idea, get a project brief and ready-to-paste Claude prompts in under 60 seconds.</li>
+  <li><a href="https://derekjensen.io/tools/ai-visibility-check"><strong>AI Visibility Check</strong></a> — find out whether ChatGPT and other AI assistants can actually find and recommend your business.</li>
+</ul>
 <p>You'll hear from me when I have something worth sharing. No filler.</p>
 <p>If you ever have a question or want to show me what you're building, just reply to this email. I read everything.</p>
 <p>— Derek</p>`;
 
   const textContent = `${greeting}
 
-Here's your link: https://derekjensen.io/tools/prompt-builder
-
-Describe your idea, answer 3 quick questions, and you'll get:
-- A project brief (problem, solution, who it's for)
-- A kickoff prompt ready to paste into Claude
-- A planning prompt that breaks your build into steps
-
-It takes about 60 seconds. I use this exact process every time I start something new.
-
----
+You're on the list — thanks for subscribing.
 
 I'm Derek. I build real products with AI and share everything about how I do it — the tools, the prompts, the mistakes, and the wins.
 
-Most of what I put out is free. Not as a teaser — because I genuinely think the more you can build, the better.
+Most of what I put out is free. Not as a teaser — because I genuinely think the more you can build, the better. While you're here, a couple of free tools worth trying:
+
+- AI Prompt Builder — https://derekjensen.io/tools/prompt-builder
+- AI Visibility Check — https://derekjensen.io/tools/ai-visibility-check
 
 You'll hear from me when I have something worth sharing. No filler.
 
@@ -130,7 +107,7 @@ If you ever have a question or want to show me what you're building, just reply 
       to: [{ email, name: firstName || email }],
       sender: { name: 'Derek Jensen', email: senderEmail },
       replyTo: { email: senderEmail },
-      subject: "Here's your free AI Prompt Builder",
+      subject: "You're on the list",
       htmlContent,
       textContent,
     }),

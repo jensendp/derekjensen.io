@@ -1,5 +1,7 @@
 ---
-// Inline email capture for blog posts — links to the free AI Prompt Builder
+// Inline CTA for blog posts — a direct link to a free tool, plus a genuine (tool-agnostic)
+// newsletter opt-in. Two separate asks: "try this now" needs no email at all, "keep in touch"
+// does, and neither pretends to gate access to the other.
 ---
 
 <div class="card my-12 overflow-hidden">
@@ -7,43 +9,53 @@
   <div class="p-6 sm:p-8">
     <p class="text-xs font-semibold uppercase tracking-wider text-primary-600 mb-3">Free Tool</p>
     <h3 class="text-xl font-bold text-neutral-900 mb-2">
-      Get my free AI Prompt Builder
+      Try my free AI Prompt Builder
     </h3>
-    <p class="text-neutral-600 mb-6">
-      Describe your idea, answer 3 quick questions, and get a project brief + ready-to-paste Claude prompts in under 60 seconds.
+    <p class="text-neutral-600 mb-5">
+      Describe your idea, answer 3 quick questions, and get a project brief + ready-to-paste
+      Claude prompts in under 60 seconds. No signup required to try it.
     </p>
-
-    <form id="lead-capture-form" class="flex flex-col sm:flex-row gap-3">
-      <input
-        type="text"
-        name="firstName"
-        placeholder="First name (optional)"
-        class="sm:w-40 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="your@email.com"
-        required
-        class="flex-1 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
-      />
-      <button
-        type="submit"
-        id="lead-capture-btn"
-        class="btn btn-primary whitespace-nowrap"
-      >
-        Get Free Access →
-      </button>
-    </form>
-
-    <div id="lead-capture-success" class="hidden mt-4 flex items-center gap-2 text-sm font-medium text-primary-700">
-      <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+    <a href="/tools/prompt-builder" class="btn btn-primary inline-flex items-center gap-2">
+      Try It Free
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
       </svg>
-      Done! Check your email — the link is on its way.
+    </a>
+
+    <div class="mt-6 pt-6 border-t border-neutral-100">
+      <p class="text-sm font-medium text-neutral-700 mb-3">Or just get new posts by email</p>
+      <form id="lead-capture-form" class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First name (optional)"
+          class="sm:w-40 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          class="flex-1 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+        />
+        <button
+          type="submit"
+          id="lead-capture-btn"
+          class="btn btn-secondary whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <div id="lead-capture-success" class="hidden mt-4 flex items-center gap-2 text-sm font-medium text-primary-700">
+        <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        Done! Check your email for a quick confirmation.
+      </div>
+      <p id="lead-capture-error" class="hidden mt-3 text-sm text-red-600"></p>
+      <p class="mt-3 text-xs text-neutral-400">Free. No spam. Unsubscribe anytime.</p>
     </div>
-    <p id="lead-capture-error" class="hidden mt-3 text-sm text-red-600"></p>
-    <p class="mt-3 text-xs text-neutral-400">Free. No spam. Unsubscribe anytime.</p>
   </div>
 </div>
 
@@ -77,13 +89,13 @@
         error.textContent = data.error || 'Something went wrong. Please try again.';
         error.classList.remove('hidden');
         btn.disabled = false;
-        btn.textContent = 'Get Free Access →';
+        btn.textContent = 'Subscribe';
       }
     } catch {
       error.textContent = 'Something went wrong. Please try again.';
       error.classList.remove('hidden');
       btn.disabled = false;
-      btn.textContent = 'Get Free Access →';
+      btn.textContent = 'Subscribe';
     }
   });
 </script>

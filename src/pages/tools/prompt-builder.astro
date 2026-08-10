@@ -3,8 +3,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="AI Prompt Builder"
-  description="Generate a project brief and ready-to-use Claude prompts for your idea."
+  title="Free AI Prompt Builder"
+  description="Describe your idea, answer 3 questions, and get a complete AI build starter kit — project brief, tech stack, validation prompt, kickoff prompt, build plan, and risk assessment. Free from Derek Jensen."
 >
   <Fragment slot="head">
     <meta name="robots" content="noindex, nofollow" />
@@ -15,16 +15,56 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
       <!-- Header -->
       <div class="mb-10 animate-in">
+        <p class="text-sm font-semibold uppercase tracking-wider text-primary-600 mb-3">Free Tool</p>
         <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight mb-3">
-          AI Prompt Builder
+          Your complete AI build starter kit — in 60 seconds.
         </h1>
         <p class="text-lg text-neutral-600">
-          Describe your idea below. We'll generate a complete build starter kit tailored to your specific project.
+          Describe your idea. Answer 3 quick questions. Get a full starter kit tailored specifically
+          to your project — not generic templates, but everything personalized to what you're
+          actually building.
         </p>
       </div>
 
+      <!-- What you get -->
+      <div class="mb-10 animate-in delay-1">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-5">What you get</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="card p-5">
+            <div class="text-xl mb-2">📋</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Project Brief</h3>
+            <p class="text-xs text-neutral-600">A tight, personalized summary of the problem, solution, and what success looks like.</p>
+          </div>
+          <div class="card p-5">
+            <div class="text-xl mb-2">🛠️</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Your Tech Stack</h3>
+            <p class="text-xs text-neutral-600">Specific tool recommendations for your exact project type and skill level.</p>
+          </div>
+          <div class="card p-5">
+            <div class="text-xl mb-2">🔍</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Validate First</h3>
+            <p class="text-xs text-neutral-600">A ready-to-paste prompt that pressure-tests your idea before you write a line of code.</p>
+          </div>
+          <div class="card p-5">
+            <div class="text-xl mb-2">⚡</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Kickoff Prompt</h3>
+            <p class="text-xs text-neutral-600">Paste this into Claude and start building immediately.</p>
+          </div>
+          <div class="card p-5">
+            <div class="text-xl mb-2">🗺️</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Build Plan Prompt</h3>
+            <p class="text-xs text-neutral-600">A step-by-step plan with 6–8 concrete phases — what to build and which tool to use.</p>
+          </div>
+          <div class="card p-5">
+            <div class="text-xl mb-2">⚠️</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1">Watch Out For</h3>
+            <p class="text-xs text-neutral-600">The 3 failure points most likely to trip up your specific project.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Form -->
-      <form id="prompt-form" class="space-y-6 animate-in delay-1">
+      <form id="prompt-form" class="space-y-6 animate-in delay-2">
         <div>
           <label for="idea" class="block text-sm font-medium text-neutral-700 mb-2">
             What are you trying to build? <span class="text-red-500">*</span>
@@ -91,6 +131,21 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               <option value="Shipping and launching">Shipping it</option>
             </select>
           </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">
+            Email <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+          />
+          <p class="mt-1 text-xs text-neutral-400">We'll send a copy of your starter kit here too, in case you want to save it.</p>
         </div>
 
         <button type="submit" id="submit-btn" class="btn btn-primary">
@@ -238,6 +293,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </p>
       </div>
 
+      <!-- Who it's for -->
+      <div class="mt-14 pt-10 border-t border-neutral-100 animate-in">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Who it's for</h2>
+        <p class="text-sm text-neutral-600 leading-relaxed">
+          Built for founders, entrepreneurs, and professionals who have a real idea and want to
+          build it with AI — without a technical background and without wasting time on vague
+          prompts that go nowhere. Everything is personalized to your specific project, not
+          generic advice you could find anywhere.
+        </p>
+      </div>
+
     </div>
   </div>
 </BaseLayout>
@@ -257,6 +323,14 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     charCount.textContent = String(idea.value.length);
   });
 
+  // Claude-generated fields get inserted via innerHTML below — escape first, since the
+  // content is influenced by user-supplied input.
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -264,6 +338,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     const projectType = (document.getElementById('projectType') as HTMLSelectElement).value;
     const audience = (document.getElementById('audience') as HTMLSelectElement).value;
     const challenge = (document.getElementById('challenge') as HTMLSelectElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value.trim();
 
     form.classList.add('hidden');
     loading.classList.remove('hidden');
@@ -274,7 +349,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       const res = await fetch('/api/generate-prompt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idea: ideaVal, projectType, audience, challenge }),
+        body: JSON.stringify({ idea: ideaVal, projectType, audience, challenge, email }),
       });
 
       const data = await res.json();
@@ -287,18 +362,19 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       (document.getElementById('kickoff-text') as HTMLElement).textContent = data.kickoffPrompt;
       (document.getElementById('planning-text') as HTMLElement).textContent = data.planningPrompt;
 
-      // Populate tech stack
+      // Populate tech stack — escape everything: these strings are Claude-generated from
+      // user-influenced input, and get inserted via innerHTML.
       const techContainer = document.getElementById('tech-stack') as HTMLElement;
       techContainer.innerHTML = '';
       (data.techStack || []).forEach((item: { tool: string; purpose: string; why: string }) => {
         techContainer.innerHTML += `
           <div class="flex gap-3 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
             <div class="shrink-0 w-8 h-8 rounded-md bg-primary-100 flex items-center justify-center">
-              <span class="text-primary-700 font-bold text-xs">${item.tool.slice(0, 2).toUpperCase()}</span>
+              <span class="text-primary-700 font-bold text-xs">${escapeHtml(item.tool.slice(0, 2).toUpperCase())}</span>
             </div>
             <div>
-              <p class="text-sm font-semibold text-neutral-900">${item.tool} <span class="font-normal text-neutral-500">— ${item.purpose}</span></p>
-              <p class="text-xs text-neutral-500 mt-0.5">${item.why}</p>
+              <p class="text-sm font-semibold text-neutral-900">${escapeHtml(item.tool)} <span class="font-normal text-neutral-500">— ${escapeHtml(item.purpose)}</span></p>
+              <p class="text-xs text-neutral-500 mt-0.5">${escapeHtml(item.why)}</p>
             </div>
           </div>`;
       });
@@ -313,8 +389,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               <span class="text-amber-700 font-bold text-xs">${i + 1}</span>
             </div>
             <div>
-              <p class="text-sm font-semibold text-neutral-800">${item.risk}</p>
-              <p class="text-xs text-neutral-500 mt-1"><span class="font-medium text-neutral-600">Fix: </span>${item.mitigation}</p>
+              <p class="text-sm font-semibold text-neutral-800">${escapeHtml(item.risk)}</p>
+              <p class="text-xs text-neutral-500 mt-1"><span class="font-medium text-neutral-600">Fix: </span>${escapeHtml(item.mitigation)}</p>
             </div>
           </div>`;
       });

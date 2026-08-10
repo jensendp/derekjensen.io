@@ -1,152 +1,56 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+
+const tools = [
+  {
+    href: '/tools/prompt-builder',
+    icon: '🛠️',
+    title: 'AI Prompt Builder',
+    description: 'Describe your idea, answer 3 questions, and get a complete AI build starter kit — project brief, tech stack, ready-to-paste prompts, and a build plan tailored to your project.',
+  },
+  {
+    href: '/tools/ai-visibility-check',
+    icon: '🤖',
+    title: 'AI Visibility Check',
+    description: "Find out whether ChatGPT, Perplexity, and Gemini can actually find and recommend your business — a scored audit of your Google listing, website, and AI crawler access.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Free AI Prompt Builder"
-  description="Describe your idea, answer 3 questions, and get a complete AI build starter kit — project brief, tech stack, validation prompt, kickoff prompt, build plan, and risk assessment. Free from Derek Jensen."
+  title="Free Tools"
+  description="Free tools from Derek Jensen — an AI build starter kit generator and an AI search visibility checker for local businesses."
 >
-  <!-- Hero -->
-  <section class="py-16 sm:py-24 animate-in">
-    <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-wider text-primary-600 mb-4">Free Tool</p>
+  <section class="py-16 sm:py-24">
+    <div class="animate-in">
+      <p class="text-sm font-semibold uppercase tracking-wider text-primary-600 mb-4">Free Tools</p>
       <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 tracking-tight mb-6">
-        Your complete AI build starter kit — in 60 seconds.
+        Tools I've built, free to use.
       </h1>
-      <p class="text-xl text-neutral-600 leading-relaxed mb-10">
-        Describe your idea. Answer 3 quick questions. Get a full starter kit tailored specifically to your project — not generic templates, but everything personalized to what you're actually building.
+      <p class="text-xl text-neutral-600 max-w-2xl leading-relaxed">
+        No signup walls, no upsell tricks — just tools that solve a real problem, built the same
+        way I build everything else.
       </p>
+    </div>
+  </section>
 
-      <!-- Opt-in form -->
-      <div class="card overflow-hidden">
-        <div class="h-1 bg-primary-600"></div>
-        <div class="p-6 sm:p-8">
-          <p class="text-xs font-semibold uppercase tracking-wider text-primary-600 mb-3">Get free access</p>
-          <p class="text-sm text-neutral-500 mb-5">Enter your email and we'll send you the link instantly.</p>
-
-          <form id="optin-form" class="space-y-3">
-            <div class="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name (optional)"
-                class="sm:w-40 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                required
-                class="flex-1 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
-              />
-              <button type="submit" id="optin-btn" class="btn btn-primary whitespace-nowrap">
-                Send Me the Link →
-              </button>
-            </div>
-          </form>
-
-          <div id="optin-success" class="hidden mt-4 flex items-center gap-2 text-sm font-medium text-primary-700">
-            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+  <section class="pb-16 sm:pb-24">
+    <div class="grid sm:grid-cols-2 gap-6">
+      {tools.map((tool, i) => (
+        <a href={tool.href} class={`card p-6 hover-lift block group animate-in delay-${Math.min(i + 1, 4)}`}>
+          <div class="text-3xl mb-4">{tool.icon}</div>
+          <h2 class="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+            {tool.title}
+          </h2>
+          <p class="text-sm text-neutral-600 leading-relaxed mb-4">{tool.description}</p>
+          <span class="text-sm font-medium text-primary-600 inline-flex items-center gap-1">
+            Try it
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-            Done! Check your email — the link is on its way.
-          </div>
-
-          <p id="optin-error" class="hidden mt-3 text-sm text-red-600"></p>
-          <p class="mt-4 text-xs text-neutral-400">Free. No spam. Unsubscribe anytime.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What you get -->
-  <section class="py-12 border-t border-neutral-100 animate-in delay-1">
-    <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-8">What you get</h2>
-    <div class="grid sm:grid-cols-2 gap-5">
-      <div class="card p-6">
-        <div class="text-2xl mb-3">📋</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Project Brief</h3>
-        <p class="text-sm text-neutral-600">A tight, personalized summary of the problem, solution, target user, and what success looks like — written using your exact idea and context.</p>
-      </div>
-      <div class="card p-6">
-        <div class="text-2xl mb-3">🛠️</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Your Tech Stack</h3>
-        <p class="text-sm text-neutral-600">Specific tool recommendations for your exact project type and skill level — not a generic list, but an opinionated pick with a clear reason for each choice.</p>
-      </div>
-      <div class="card p-6">
-        <div class="text-2xl mb-3">🔍</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Validate First</h3>
-        <p class="text-sm text-neutral-600">A ready-to-paste prompt that pressure-tests your idea before you write a line of code. Could save you weeks building the wrong thing.</p>
-      </div>
-      <div class="card p-6">
-        <div class="text-2xl mb-3">⚡</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Kickoff Prompt</h3>
-        <p class="text-sm text-neutral-600">Paste this into Claude and start building immediately. Tailored to your idea, your audience, and your biggest challenge — not a blank-chat guess.</p>
-      </div>
-      <div class="card p-6">
-        <div class="text-2xl mb-3">🗺️</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Build Plan Prompt</h3>
-        <p class="text-sm text-neutral-600">A prompt that produces a step-by-step plan with 6–8 concrete phases — each with what to build, which tool to use, and what "done" looks like.</p>
-      </div>
-      <div class="card p-6">
-        <div class="text-2xl mb-3">⚠️</div>
-        <h3 class="text-base font-semibold text-neutral-900 mb-2">Watch Out For</h3>
-        <p class="text-sm text-neutral-600">The 3 failure points most likely to trip up your specific project — before you hit them — each with a concrete mitigation so you know how to handle it.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Who it's for -->
-  <section class="py-12 border-t border-neutral-100 animate-in delay-2">
-    <div class="max-w-xl">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Who it's for</h2>
-      <p class="text-neutral-600 leading-relaxed">
-        Built for founders, entrepreneurs, and professionals who have a real idea and want to build it with AI — without a technical background and without wasting time on vague prompts that go nowhere.
-      </p>
-      <p class="text-neutral-600 leading-relaxed mt-3">
-        Everything is personalized to your specific project. Not generic advice you could find anywhere — a starter kit built around what you're actually trying to build.
-      </p>
+          </span>
+        </a>
+      ))}
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  const form = document.getElementById('optin-form') as HTMLFormElement;
-  const btn = document.getElementById('optin-btn') as HTMLButtonElement;
-  const success = document.getElementById('optin-success') as HTMLElement;
-  const error = document.getElementById('optin-error') as HTMLElement;
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    const firstName = (form.elements.namedItem('firstName') as HTMLInputElement).value;
-
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    error.classList.add('hidden');
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, firstName }),
-      });
-
-      if (res.ok) {
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-      } else {
-        const data = await res.json();
-        error.textContent = data.error || 'Something went wrong. Please try again.';
-        error.classList.remove('hidden');
-        btn.disabled = false;
-        btn.textContent = 'Send Me the Link →';
-      }
-    } catch {
-      error.textContent = 'Something went wrong. Please try again.';
-      error.classList.remove('hidden');
-      btn.disabled = false;
-      btn.textContent = 'Send Me the Link →';
-    }
-  });
-</script>

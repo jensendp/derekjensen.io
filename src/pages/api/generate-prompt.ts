@@ -1,8 +1,19 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { checkRateLimit } from '@utils/ratelimit';
+
+async function fetchWithTimeout(url: string, options: RequestInit, timeoutMs = 15000): Promise<Response | null> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 const ALLOWED_PROJECT_TYPES = [
   'Web app',
@@ -39,45 +50,98 @@ function containsInjection(text: string): boolean {
   return INJECTION_PATTERNS.some((pattern) => pattern.test(text));
 }
 
-let ratelimit: Ratelimit | null = null;
+const BREVO_API = 'https://api.brevo.com/v3';
+const PROMPT_BUILDER_LIST_ID = 5; // "Lead Magnet Prompt Builder"
 
-function getRatelimit(): Ratelimit | null {
-  const url = import.meta.env.UPSTASH_REDIS_REST_URL;
-  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;
-  if (!ratelimit) {
-    ratelimit = new Ratelimit({
-      redis: new Redis({ url, token }),
-      limiter: Ratelimit.slidingWindow(5, '1 h'),
-      prefix: 'prompt-builder',
-    });
-  }
-  return ratelimit;
+interface GeneratedKit {
+  brief?: string;
+  techStack?: { tool: string; purpose: string; why: string }[];
+  validationPrompt?: string;
+  kickoffPrompt?: string;
+  planningPrompt?: string;
+  risks?: { risk: string; mitigation: string }[];
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Claude's output is influenced by user-supplied input (the "idea" field, filtered but not
+// bulletproof) — escape before it goes into an HTML email, same as any other untrusted content.
+function buildKitEmail(kit: GeneratedKit): { html: string; text: string } {
+  const techList = (kit.techStack || [])
+    .map((t) => `<li><strong>${escapeHtml(t.tool)}</strong> — ${escapeHtml(t.purpose)} (${escapeHtml(t.why)})</li>`)
+    .join('\n');
+  const risksList = (kit.risks || [])
+    .map((r) => `<li><strong>${escapeHtml(r.risk)}</strong> — Fix: ${escapeHtml(r.mitigation)}</li>`)
+    .join('\n');
+
+  const html = `
+<p>Here's your AI build starter kit:</p>
+<h3>Project Brief</h3>
+<p>${escapeHtml(kit.brief || '').replace(/\n/g, '<br/>')}</p>
+<h3>Tech Stack</h3>
+<ul>${techList}</ul>
+<h3>Validate First</h3>
+<pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(kit.validationPrompt || '')}</pre>
+<h3>Kickoff Prompt</h3>
+<pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(kit.kickoffPrompt || '')}</pre>
+<h3>Build Plan Prompt</h3>
+<pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(kit.planningPrompt || '')}</pre>
+<h3>Watch Out For</h3>
+<ul>${risksList}</ul>
+<hr />
+<p>I'm Derek. I build real products with AI and share everything about how I do it. If you want help with any of this, just reply — I read everything.</p>
+<p>— Derek</p>`;
+
+  const text = `Here's your AI build starter kit:
+
+PROJECT BRIEF
+${kit.brief || ''}
+
+TECH STACK
+${(kit.techStack || []).map((t) => `- ${t.tool} — ${t.purpose} (${t.why})`).join('\n')}
+
+VALIDATE FIRST
+${kit.validationPrompt || ''}
+
+KICKOFF PROMPT
+${kit.kickoffPrompt || ''}
+
+BUILD PLAN PROMPT
+${kit.planningPrompt || ''}
+
+WATCH OUT FOR
+${(kit.risks || []).map((r) => `- ${r.risk} — Fix: ${r.mitigation}`).join('\n')}
+
+— Derek`;
+
+  return { html, text };
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const limiter = getRatelimit();
-  if (limiter) {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-      request.headers.get('cf-connecting-ip') ??
-      '127.0.0.1';
-    const { success, limit, remaining } = await limiter.limit(ip);
-    if (!success) {
-      return Response.json(
-        { error: `Rate limit reached. You can generate up to ${limit} prompts per hour.` },
-        { status: 429, headers: { 'Retry-After': '3600', 'X-RateLimit-Remaining': String(remaining) } }
-      );
-    }
-  }
+  const rateLimit = await checkRateLimit(request, 'prompt-builder', {
+    limit: 5,
+    window: '1 h',
+    message: 'Rate limit reached. You can generate up to 5 prompts per hour.',
+  });
+  if (!rateLimit.ok) return rateLimit.response;
 
   const json = await request.json().catch(() => null);
   if (!json) return Response.json({ error: 'Invalid request body.' }, { status: 400 });
 
-  const { idea, projectType, audience, challenge } = json;
+  const { idea, projectType, audience, challenge, email } = json;
 
   if (!idea || typeof idea !== 'string' || idea.trim().length < 10)
     return Response.json({ error: 'Please describe your idea in more detail (at least a sentence).' }, { status: 400 });
+
+  if (!email || typeof email !== 'string' || !email.includes('@'))
+    return Response.json({ error: 'Please enter a valid email address.' }, { status: 400 });
 
   if (idea.length > 500)
     return Response.json({ error: 'Please keep your idea description under 500 characters.' }, { status: 400 });
@@ -139,7 +203,7 @@ Rules:
 - Every prompt must reference their idea by name or description — nothing generic
 - Tool choices should account for their skill level (non-technical, building with AI)`;
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetchWithTimeout('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
       'anthropic-version': '2023-06-01',
@@ -154,17 +218,46 @@ Rules:
     }),
   });
 
-  if (!response.ok)
+  if (!response || !response.ok)
     return Response.json({ error: 'Failed to generate prompts. Please try again.' }, { status: 500 });
 
-  const data = await response.json();
-  const raw = data.content[0].text;
+  const data = await response.json().catch(() => null);
+  const raw = data?.content?.[0]?.text;
+  if (!raw) return Response.json({ error: 'Failed to generate prompts. Please try again.' }, { status: 500 });
 
+  let parsed: GeneratedKit;
   try {
     const cleaned = raw.replace(/```json\n?/, '').replace(/\n?```/, '').trim();
-    const parsed = JSON.parse(cleaned);
-    return Response.json(parsed);
+    parsed = JSON.parse(cleaned);
   } catch {
     return Response.json({ error: 'Failed to parse response. Please try again.' }, { status: 500 });
   }
+
+  // Fire-and-forget: capture the lead in Brevo and email them a copy of the kit —
+  // don't block the response on either.
+  const brevoApiKey = import.meta.env.BREVO_API_KEY;
+  const senderEmail = import.meta.env.BREVO_SENDER_EMAIL;
+  if (brevoApiKey && senderEmail) {
+    fetch(`${BREVO_API}/contacts`, {
+      method: 'POST',
+      headers: { 'api-key': brevoApiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, listIds: [PROMPT_BUILDER_LIST_ID], updateEnabled: true }),
+    }).catch(() => {});
+
+    const kitEmail = buildKitEmail(parsed);
+    fetch(`${BREVO_API}/smtp/email`, {
+      method: 'POST',
+      headers: { 'api-key': brevoApiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: [{ email }],
+        sender: { name: 'Derek Jensen', email: senderEmail },
+        replyTo: { email: senderEmail },
+        subject: 'Your AI Build Starter Kit',
+        htmlContent: kitEmail.html,
+        textContent: kitEmail.text,
+      }),
+    }).catch(() => {});
+  }
+
+  return Response.json(parsed);
 };
