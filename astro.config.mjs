@@ -18,6 +18,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/tools/prompt-builder') &&
+        !page.includes('/tools/ai-visibility-check') &&
         !page.includes('/blog/tag/'),
     }),
   ],

@@ -1,0 +1,317 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="AI Visibility Check"
+  description="Find out whether ChatGPT, Perplexity, and Gemini can actually find and recommend your business — free scored audit in under a minute."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <div class="py-12 sm:py-16">
+    <div class="max-w-2xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-10 animate-in">
+        <p class="text-sm font-semibold uppercase tracking-wider text-primary-600 mb-3">Free Tool</p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight mb-3">
+          Can AI actually find your business?
+        </h1>
+        <p class="text-lg text-neutral-600">
+          ChatGPT, Perplexity, and Gemini are recommending local businesses right now — and most
+          are invisible to them without knowing it. Enter your business below for a free scored
+          check.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="aivis-form" class="space-y-4 animate-in delay-1">
+        <div>
+          <label for="businessName" class="block text-sm font-medium text-neutral-700 mb-2">
+            Business name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="businessName"
+            name="businessName"
+            required
+            placeholder="e.g. Riverside Plumbing Co."
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="address" class="block text-sm font-medium text-neutral-700 mb-2">
+            Address or city <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            placeholder="e.g. 123 Main St, Springfield, IL"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="websiteUrl" class="block text-sm font-medium text-neutral-700 mb-2">
+            Website (optional, recommended)
+          </label>
+          <input
+            type="text"
+            id="websiteUrl"
+            name="websiteUrl"
+            placeholder="https://www.yourbusiness.com"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">
+            Email <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition-colors"
+          />
+          <p class="mt-1 text-xs text-neutral-400">We'll send your results here too, in case you want to save them.</p>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary">
+          Check My AI Visibility →
+        </button>
+      </form>
+
+      <!-- Loading -->
+      <div id="loading" class="hidden mt-10 text-center py-16">
+        <div class="inline-flex flex-col items-center gap-4">
+          <div class="w-10 h-10 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+          <div>
+            <p class="text-sm font-medium text-neutral-700">Checking Google, your website, and structured data...</p>
+            <p class="text-xs text-neutral-400 mt-1">Usually takes about 10 seconds</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="gen-error" class="hidden mt-6 rounded-lg bg-red-50 border border-red-200 px-4 py-3">
+        <p class="text-sm text-red-700" id="gen-error-text"></p>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden mt-10 space-y-5">
+        <div class="flex items-center justify-between pb-2">
+          <h2 class="text-lg font-semibold text-neutral-900">Your AI Visibility Report</h2>
+          <button id="reset-btn" class="text-sm text-neutral-400 hover:text-neutral-600 transition-colors">
+            ← Check another
+          </button>
+        </div>
+
+        <!-- Score -->
+        <div class="card overflow-hidden">
+          <div id="score-bar" class="h-1 bg-red-500"></div>
+          <div class="p-6 sm:p-8 text-center">
+            <p class="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2" id="result-business-name"></p>
+            <p class="text-5xl font-bold text-neutral-900" id="score-value">0</p>
+            <p class="text-sm text-neutral-500 mt-1">out of 100</p>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">🤖</span>
+              <h3 class="text-base font-semibold text-neutral-900">What this means</h3>
+            </div>
+            <p id="summary-text" class="text-sm text-neutral-700 leading-relaxed whitespace-pre-wrap"></p>
+          </div>
+        </div>
+
+        <!-- Breakdown -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">📊</span>
+              <h3 class="text-base font-semibold text-neutral-900">Score Breakdown</h3>
+            </div>
+            <div id="breakdown-list" class="space-y-4"></div>
+          </div>
+        </div>
+
+        <!-- Derek CTA -->
+        <div class="card overflow-hidden">
+          <div class="h-1 bg-primary-600"></div>
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+                <span class="text-primary-700 font-semibold text-sm">DJ</span>
+              </div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1" id="cta-heading">Want help fixing this?</p>
+                <p class="text-sm text-neutral-600 leading-relaxed mb-4" id="cta-body">
+                  I help small business owners find where they're losing time and money — this is
+                  usually one of the fastest wins. Free 30-minute call, no pitch.
+                </p>
+                <a href="/time-back" class="btn btn-primary text-sm">
+                  Get My Free Time Back Session →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-neutral-400 text-center pt-2">
+          Built by <a href="/" class="underline hover:text-neutral-600">Derek Jensen</a> · Free forever
+        </p>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('aivis-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const loading = document.getElementById('loading') as HTMLElement;
+  const results = document.getElementById('results') as HTMLElement;
+  const genError = document.getElementById('gen-error') as HTMLElement;
+  const genErrorText = document.getElementById('gen-error-text') as HTMLElement;
+  const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
+
+  interface ScoreItem {
+    score: number;
+    max: number;
+    note: string;
+  }
+  interface Breakdown {
+    presence: ScoreItem;
+    reviews: ScoreItem;
+    crawlerAccess: ScoreItem;
+    schema: ScoreItem;
+    nap: ScoreItem;
+    faq: ScoreItem;
+  }
+
+  const LABELS: Record<keyof Breakdown, string> = {
+    presence: 'Listed on Google',
+    reviews: 'Review signal',
+    crawlerAccess: 'AI crawler access',
+    schema: 'Website structured data',
+    nap: 'Name/address/phone consistency',
+    faq: 'AI-answerable content',
+  };
+
+  function scoreColor(score: number): string {
+    if (score >= 75) return 'bg-emerald-500';
+    if (score >= 50) return 'bg-amber-500';
+    return 'bg-red-500';
+  }
+
+  // Breakdown notes can echo back content pulled from the scanned website itself (e.g. its
+  // <title>) — treat that as untrusted before it goes anywhere near innerHTML.
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const businessName = (document.getElementById('businessName') as HTMLInputElement).value.trim();
+    const address = (document.getElementById('address') as HTMLInputElement).value.trim();
+    const websiteUrl = (document.getElementById('websiteUrl') as HTMLInputElement).value.trim();
+    const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+
+    form.classList.add('hidden');
+    loading.classList.remove('hidden');
+    results.classList.add('hidden');
+    genError.classList.add('hidden');
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/ai-visibility-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ businessName, address, websiteUrl, email }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
+
+      (document.getElementById('result-business-name') as HTMLElement).textContent = data.businessName;
+      (document.getElementById('score-value') as HTMLElement).textContent = String(data.score);
+      (document.getElementById('score-bar') as HTMLElement).className = `h-1 ${scoreColor(data.score)}`;
+      (document.getElementById('summary-text') as HTMLElement).textContent =
+        data.summary || 'Score breakdown below — a written summary was not available for this check.';
+
+      const breakdown: Breakdown = data.breakdown;
+      const list = document.getElementById('breakdown-list') as HTMLElement;
+      list.innerHTML = '';
+      (Object.keys(LABELS) as (keyof Breakdown)[]).forEach((key) => {
+        const item = breakdown[key];
+        const pct = Math.round((item.score / item.max) * 100);
+        list.innerHTML += `
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-medium text-neutral-800">${LABELS[key]}</span>
+              <span class="text-xs font-semibold text-neutral-500">${item.score}/${item.max}</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-neutral-100 overflow-hidden mb-1.5">
+              <div class="h-full ${scoreColor(pct)} rounded-full" style="width: ${pct}%"></div>
+            </div>
+            <p class="text-xs text-neutral-500 leading-relaxed">${escapeHtml(item.note)}</p>
+          </div>`;
+      });
+
+      // Tailor the closing CTA to what was actually found, instead of a generic pitch —
+      // someone who just read a technical breakdown should see that reflected back, not a
+      // context-switch into an unrelated offer.
+      const gaps = (Object.keys(LABELS) as (keyof Breakdown)[])
+        .map((key) => ({ key, item: breakdown[key], gap: breakdown[key].max - breakdown[key].score }))
+        .filter((g) => g.gap > 0)
+        .sort((a, b) => b.gap - a.gap);
+
+      const ctaHeading = document.getElementById('cta-heading') as HTMLElement;
+      const ctaBody = document.getElementById('cta-body') as HTMLElement;
+
+      if (gaps.length === 0) {
+        ctaHeading.textContent = 'Nice — this is about as good as it gets.';
+        ctaBody.textContent =
+          "You're covering the fundamentals AI assistants look for. If you're curious what else might be costing you time or money elsewhere in the business, that's what I dig into on a free 30-minute call.";
+      } else {
+        const topIssues = gaps.slice(0, 2).map((g) => LABELS[g.key].toLowerCase());
+        ctaHeading.textContent = `Want help fixing the ${gaps.length} issue${gaps.length === 1 ? '' : 's'} we found?`;
+        ctaBody.textContent = `Your score was ${data.score}/100, mainly held back by ${topIssues.join(' and ')}${gaps.length > 2 ? ', among others' : ''}. I can walk through exactly how to fix these on a free 30-minute call — no pitch.`;
+      }
+
+      loading.classList.add('hidden');
+      results.classList.remove('hidden');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err: unknown) {
+      loading.classList.add('hidden');
+      form.classList.remove('hidden');
+      genErrorText.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      genError.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    results.classList.add('hidden');
+    form.classList.remove('hidden');
+    form.reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
