@@ -222,8 +222,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Creating Internal Business Automations](https://derekjensen.io/blog/creating-internal-business-automations-with-ai-guide)
 - [Scheduling and Task Automation](https://derekjensen.io/blog/scheduling-and-task-automation-with-ai-a-simple-guide)
 - [Automating Reporting Systems](https://derekjensen.io/blog/automating-reporting-systems-with-ai-simple-guide)
+- [Building AI Assistants for Workflows](https://derekjensen.io/blog/building-ai-assistants-for-workflows-no-code-needed)
 
-- Building AI Assistants for Workflows
 - Multi-Step Automation Systems
 - Error Handling in Automations
 - Scaling Automated Workflows
