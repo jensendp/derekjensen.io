@@ -223,8 +223,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Scheduling and Task Automation](https://derekjensen.io/blog/scheduling-and-task-automation-with-ai-a-simple-guide)
 - [Automating Reporting Systems](https://derekjensen.io/blog/automating-reporting-systems-with-ai-simple-guide)
 - [Building AI Assistants for Workflows](https://derekjensen.io/blog/building-ai-assistants-for-workflows-no-code-needed)
+- [Multi-Step Automation Systems](https://derekjensen.io/blog/multi-step-automation-systems-with-ai-a-beginners-guide)
 
-- Multi-Step Automation Systems
 - Error Handling in Automations
 - Scaling Automated Workflows
 - Cost Optimization in Automation
