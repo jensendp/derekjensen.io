@@ -88,6 +88,11 @@ const testimonials = [
         <a href="#team">Our Team</a>
         <a href="#request-consultation" class="nav-cta">Request a Consultation</a>
       </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
 
     <main id="top">
@@ -218,6 +223,27 @@ const testimonials = [
       </p>
     </footer>
 
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      if (navToggle && mainNav) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = mainNav.classList.toggle('is-open');
+          navToggle.classList.toggle('is-open', isOpen);
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+        mainNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mainNav.classList.remove('is-open');
+            navToggle.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Open menu');
+          });
+        });
+      }
+    </script>
+
     <style>
       :root {
         --bg: #faf5ee;
@@ -267,6 +293,7 @@ const testimonials = [
       .concept-ribbon a:hover { opacity: 1; }
 
       .site-header {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -274,6 +301,30 @@ const testimonials = [
         max-width: 1280px;
         margin: 0 auto;
       }
+
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--ink);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+      .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
       .wordmark { text-decoration: none; display: block; line-height: 1.1; }
       .wordmark-mark { font-size: 1.35rem; font-style: italic; }
@@ -527,8 +578,25 @@ const testimonials = [
         .hero, .consult { grid-template-columns: 1fr; }
         .trust-strip { grid-template-columns: 1fr; }
         .hero-art { order: -1; max-width: 20rem; margin: 0 auto; }
-        .main-nav { gap: 1rem; font-size: 0.85rem; }
         .ribbon-links { justify-content: center; width: 100%; }
+
+        .nav-toggle { display: flex; }
+        .main-nav {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.1rem;
+          background: var(--card);
+          border-bottom: 1px solid var(--line);
+          padding: 1.5rem clamp(1.25rem, 5vw, 4rem) 2rem;
+          box-shadow: 0 16px 30px -20px rgba(43, 36, 32, 0.35);
+        }
+        .main-nav.is-open { display: flex; }
+        .main-nav .nav-cta { width: 100%; text-align: center; }
       }
     </style>
   </body>
