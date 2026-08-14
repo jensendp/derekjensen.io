@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current: 'brief' | 'full' | 'technical' | 'ux' | 'demo';
+  current: 'brief' | 'full' | 'technical' | 'ux' | 'demo' | 'demo-clinical';
   base: string;
 }
 
@@ -11,7 +11,8 @@ const links = [
   { key: 'full', label: 'Full Assessment', href: `${base}full` },
   { key: 'ux', label: 'UX & Conversion Design', href: `${base}ux` },
   { key: 'technical', label: 'Technical Evidence', href: `${base}technical` },
-  { key: 'demo', label: 'Concept Preview', href: `${base}demo` },
+  { key: 'demo', label: 'Concept: Warm', href: `${base}demo` },
+  { key: 'demo-clinical', label: 'Concept: Clinical', href: `${base}demo-clinical` },
 ] as const;
 ---
 

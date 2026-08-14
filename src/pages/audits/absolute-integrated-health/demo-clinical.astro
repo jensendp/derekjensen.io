@@ -4,23 +4,23 @@ export const prerender = false;
 const services = [
   {
     name: 'Chiropractic Care',
-    line: 'Hands-on adjustment and mobility work for the pain that’s been slowing you down.',
+    line: 'Hands-on adjustment and mobility work, backed by a plan tailored to your body.',
   },
   {
     name: 'Pain Management',
-    line: 'A plan built around your body, not a prescription pad — for pain that hasn’t responded to anything else.',
+    line: 'A clinical approach to pain that hasn’t responded to medication alone.',
   },
   {
     name: 'IV & Hormone Therapy',
-    line: 'Targeted support for energy, recovery, and balance, administered in-office by our clinical team.',
+    line: 'Physician-guided IV and hormone support, administered on-site by our team.',
   },
   {
     name: 'Wound Care',
-    line: 'Specialized treatment for wounds that need more attention than a standard visit provides.',
+    line: 'Specialized wound treatment for cases that need more than a standard visit.',
   },
   {
     name: 'Aesthetics & Wellness',
-    line: 'Skin, body, and confidence — treatments designed around how you actually want to feel.',
+    line: 'Medical-grade aesthetic treatments, delivered by a clinical team you already trust.',
   },
 ];
 
@@ -46,33 +46,32 @@ const intakeOptions = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Absolute Integrated Health — Concept Preview</title>
-    <meta name="description" content="A concept preview of a rebuilt Absolute Integrated Health homepage, prepared by Derek Jensen." />
+    <title>Absolute Integrated Health — Concept Preview (Clinical)</title>
+    <meta name="description" content="A second concept preview of a rebuilt Absolute Integrated Health homepage, closer to the current brand identity, prepared by Derek Jensen." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="concept-ribbon">
-      <span>Concept preview (warm direction) for Absolute Integrated Health — built by Derek Jensen, not a live site</span>
+      <span>Concept preview (clinical direction) for Absolute Integrated Health — built by Derek Jensen, not a live site</span>
       <span class="ribbon-links">
-        <a href="/audits/absolute-integrated-health/demo-clinical">View the clinical concept →</a>
+        <a href="/audits/absolute-integrated-health/demo">View the warm concept →</a>
         <a href="/audits/absolute-integrated-health/">← Back to the assessment</a>
       </span>
     </div>
 
     <header class="site-header">
       <a href="#top" class="wordmark">
-        <span class="wordmark-mark">Absolute</span>
-        <span class="wordmark-sub">Integrated Health</span>
+        <span class="wordmark-mark">Absolute Integrated Health</span>
       </a>
       <nav class="main-nav" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#team">Our Team</a>
-        <a href="#request-consultation" class="nav-cta">Request a Consultation</a>
+        <a href="#request-consultation" class="nav-cta">Schedule Now</a>
       </nav>
     </header>
 
@@ -80,11 +79,11 @@ const intakeOptions = [
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Plainfield, IL &middot; Chiropractic &amp; Integrative Health</p>
-          <h1>Care that treats the whole person, not just the symptom.</h1>
+          <h1>Comprehensive, coordinated care — under one roof, one team.</h1>
           <p class="hero-sub">
-            Chiropractic, pain management, IV therapy, and aesthetics under one roof —
-            with a team that starts every relationship the same way: an honest conversation
-            about what you actually need.
+            Chiropractic, pain management, IV therapy, wound care, and aesthetics — a
+            clinical team that starts every relationship with a real consultation, not a
+            generic booking form.
           </p>
           <div class="hero-actions">
             <a href="#request-consultation" class="btn btn-primary">Request a Consultation</a>
@@ -96,7 +95,6 @@ const intakeOptions = [
           <div class="hero-photo-frame">
             <img src="/audits/absolute-integrated-health/treatment-photo.jpg" alt="A member of the care team working with a patient" />
           </div>
-          <div class="hero-ring" aria-hidden="true"></div>
           <div class="hero-card">
             <p class="hero-card-stat">5</p>
             <p class="hero-card-label">care specialties, one intake conversation</p>
@@ -107,11 +105,11 @@ const intakeOptions = [
       <section class="trust-strip">
         <div class="trust-item">
           <p class="trust-num">4.8&#9733;</p>
-          <p>235 Google reviews — earned, not bought</p>
+          <p>235 Google reviews</p>
         </div>
         <div class="trust-item">
           <p class="trust-num">5</p>
-          <p>specialties under one roof, one care team</p>
+          <p>specialties, one coordinated care team</p>
         </div>
         <div class="trust-item">
           <p class="trust-num">0%</p>
@@ -125,6 +123,7 @@ const intakeOptions = [
         <div class="services-grid">
           {services.map((s) => (
             <div class="service-card">
+              <div class="service-mark" aria-hidden="true"></div>
               <h3>{s.name}</h3>
               <p>{s.line}</p>
             </div>
@@ -134,8 +133,8 @@ const intakeOptions = [
 
       <section id="team" class="team">
         <p class="section-eyebrow">Who you'll meet</p>
-        <h2>A care team, not a call center</h2>
-        <p class="team-sub">The people who'll actually be in the room with you — not a stock photo.</p>
+        <h2>A clinical team, not a call center</h2>
+        <p class="team-sub">The people who'll actually be in the room with you.</p>
         <div class="team-grid">
           {team.map((t) => (
             <div class="team-card">
@@ -180,7 +179,7 @@ const intakeOptions = [
 
     <footer class="site-footer">
       <div>
-        <p class="wordmark-mark footer-wordmark">Absolute Integrated Health</p>
+        <p class="footer-wordmark">Absolute Integrated Health</p>
         <p>16310 S Lincoln Hwy #124, Plainfield, IL 60586</p>
         <p>815-782-8440</p>
       </div>
@@ -192,40 +191,40 @@ const intakeOptions = [
 
     <style>
       :root {
-        --bg: #faf5ee;
-        --bg-alt: #f1e6d6;
-        --card: #fffdfa;
-        --ink: #2b2420;
-        --ink-soft: #6b5f52;
-        --sage: #46604f;
-        --sage-deep: #33463a;
-        --terracotta: #bd5c2c;
-        --terracotta-deep: #9c4a22;
-        --line: rgba(43, 36, 32, 0.12);
+        --bg: #f4f8fb;
+        --bg-alt: #eaf1f7;
+        --card: #ffffff;
+        --ink: #1c2b38;
+        --ink-soft: #56697a;
+        --blue-deep: #123b5e;
+        --blue: #1f6fa8;
+        --blue-pale: #dceafa;
+        --green: #6fa82e;
+        --green-deep: #578421;
+        --line: rgba(18, 59, 94, 0.14);
       }
 
       * { box-sizing: border-box; }
-
       html { scroll-behavior: smooth; }
 
       body {
         margin: 0;
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Manrope', system-ui, sans-serif;
-        line-height: 1.55;
+        font-family: 'IBM Plex Sans', system-ui, sans-serif;
+        line-height: 1.6;
       }
 
       h1, h2, h3, .wordmark-mark {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 500;
+        font-family: 'Sora', system-ui, sans-serif;
+        font-weight: 700;
         letter-spacing: -0.01em;
-        color: var(--ink);
+        color: var(--blue-deep);
       }
 
       .concept-ribbon {
-        background: var(--sage-deep);
-        color: #f2ece2;
+        background: var(--blue-deep);
+        color: #eaf1f7;
         font-size: 0.78rem;
         padding: 0.55rem 1.25rem;
         display: flex;
@@ -235,70 +234,62 @@ const intakeOptions = [
         text-align: center;
       }
       .ribbon-links { display: flex; gap: 1.25rem; }
-      .concept-ribbon a { color: #f2ece2; opacity: 0.85; }
+      .concept-ribbon a { color: #eaf1f7; opacity: 0.85; }
       .concept-ribbon a:hover { opacity: 1; }
 
       .site-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+        padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
         max-width: 1280px;
         margin: 0 auto;
       }
 
-      .wordmark { text-decoration: none; display: block; line-height: 1.1; }
-      .wordmark-mark { font-size: 1.35rem; font-style: italic; }
-      .wordmark-sub {
-        display: block;
-        font-family: 'Manrope', sans-serif;
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--ink-soft);
-      }
+      .wordmark { text-decoration: none; }
+      .wordmark-mark { font-size: 1.15rem; }
 
       .main-nav { display: flex; align-items: center; gap: 1.75rem; font-size: 0.92rem; }
-      .main-nav a { color: var(--ink); text-decoration: none; }
-      .main-nav a:hover { color: var(--sage); }
+      .main-nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+      .main-nav a:hover { color: var(--blue); }
       .nav-cta {
-        background: var(--terracotta);
+        background: var(--green);
         color: #fff !important;
-        padding: 0.6rem 1.1rem;
-        border-radius: 999px;
-        font-weight: 600;
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.4rem;
+        font-weight: 700;
       }
-      .nav-cta:hover { background: var(--terracotta-deep) !important; }
+      .nav-cta:hover { background: var(--green-deep) !important; }
 
       main { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 4rem); }
 
       .hero {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: clamp(2rem, 5vw, 5rem);
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(2rem, 5vw, 4.5rem);
         align-items: center;
-        padding: clamp(2rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
+        padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
       }
 
       .eyebrow, .section-eyebrow {
         font-size: 0.75rem;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--sage);
+        color: var(--blue);
         font-weight: 700;
         margin: 0 0 0.9rem;
       }
-      .section-eyebrow-light { color: #cddccf; }
+      .section-eyebrow-light { color: #a9c9e0; }
 
       .hero h1 {
-        font-size: clamp(2.3rem, 4.2vw, 3.4rem);
-        line-height: 1.08;
+        font-size: clamp(2.1rem, 3.8vw, 3.1rem);
+        line-height: 1.15;
         margin: 0 0 1.2rem;
       }
 
       .hero-sub {
         color: var(--ink-soft);
-        font-size: 1.08rem;
+        font-size: 1.05rem;
         max-width: 34rem;
         margin: 0 0 1.9rem;
       }
@@ -310,50 +301,43 @@ const intakeOptions = [
         align-items: center;
         justify-content: center;
         padding: 0.85rem 1.6rem;
-        border-radius: 999px;
+        border-radius: 0.5rem;
         font-weight: 700;
         text-decoration: none;
         font-size: 0.95rem;
         transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
       }
-      .btn-primary { background: var(--terracotta); color: #fff; }
-      .btn-primary:hover { background: var(--terracotta-deep); }
-      .btn-ghost { border: 1.5px solid var(--line); color: var(--ink); }
-      .btn-ghost:hover { border-color: var(--sage); color: var(--sage); }
+      .btn-primary { background: var(--green); color: #fff; }
+      .btn-primary:hover { background: var(--green-deep); }
+      .btn-ghost { border: 1.5px solid var(--line); color: var(--blue-deep); }
+      .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
       .btn-block { width: 100%; }
 
-      .hero-trust { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+      .hero-trust { font-size: 0.9rem; color: var(--ink-soft); margin: 0; font-weight: 500; }
 
       .hero-art { position: relative; }
       .hero-photo-frame {
-        border-radius: 44% 56% 62% 38% / 48% 42% 58% 52%;
+        border-radius: 0.9rem;
         overflow: hidden;
-        aspect-ratio: 4 / 4.6;
-        box-shadow: 0 30px 60px -25px rgba(43, 36, 32, 0.35);
+        aspect-ratio: 4 / 3.6;
+        box-shadow: 0 20px 45px -20px rgba(18, 59, 94, 0.4);
+        border: 6px solid var(--card);
+        outline: 1px solid var(--line);
       }
       .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .hero-ring {
-        position: absolute;
-        inset: -12% -14% auto auto;
-        width: 42%;
-        aspect-ratio: 1;
-        border: 2px solid var(--sage);
-        opacity: 0.35;
-        border-radius: 50%;
-        z-index: -1;
-      }
       .hero-card {
         position: absolute;
-        left: -8%;
-        bottom: 6%;
-        background: var(--card);
-        border-radius: 1.1rem;
+        left: -6%;
+        bottom: -8%;
+        background: var(--blue-deep);
+        color: #fff;
+        border-radius: 0.75rem;
         padding: 1.1rem 1.4rem;
-        box-shadow: 0 20px 40px -18px rgba(43, 36, 32, 0.3);
+        box-shadow: 0 20px 40px -18px rgba(18, 59, 94, 0.5);
         max-width: 12rem;
       }
-      .hero-card-stat { font-family: 'Fraunces', serif; font-size: 2.1rem; margin: 0; color: var(--terracotta); }
-      .hero-card-label { margin: 0.15rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+      .hero-card-stat { font-family: 'Sora', sans-serif; font-size: 2rem; margin: 0; color: #9fd15a; }
+      .hero-card-label { margin: 0.15rem 0 0; font-size: 0.82rem; color: #cfe1f0; }
 
       .trust-strip {
         display: grid;
@@ -361,16 +345,16 @@ const intakeOptions = [
         gap: 1.5rem;
         background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 1.5rem;
+        border-radius: 0.75rem;
         padding: 2rem clamp(1.25rem, 4vw, 3rem);
-        margin-bottom: clamp(3rem, 6vw, 6rem);
+        margin-bottom: clamp(3rem, 6vw, 5rem);
       }
       .trust-item p { margin: 0; }
-      .trust-num { font-family: 'Fraunces', serif; font-size: 1.9rem; color: var(--sage); margin-bottom: 0.2rem !important; }
-      .trust-item p:last-child { color: var(--ink-soft); font-size: 0.92rem; }
+      .trust-num { font-family: 'Sora', sans-serif; font-size: 1.8rem; color: var(--blue); margin-bottom: 0.2rem !important; }
+      .trust-item p:last-child { color: var(--ink-soft); font-size: 0.9rem; }
 
-      .services, .team { margin-bottom: clamp(3rem, 6vw, 6rem); }
-      .services h2, .team h2, .consult h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 0 0 0.6rem; }
+      .services, .team { margin-bottom: clamp(3rem, 6vw, 5rem); }
+      .services h2, .team h2, .consult h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); margin: 0 0 0.6rem; }
       .team-sub { color: var(--ink-soft); margin: 0 0 2.2rem; }
 
       .services-grid {
@@ -382,10 +366,18 @@ const intakeOptions = [
       .service-card {
         background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 1.25rem;
+        border-top: 3px solid var(--blue);
+        border-radius: 0.6rem;
         padding: 1.6rem;
       }
-      .service-card h3 { font-size: 1.15rem; margin: 0 0 0.5rem; }
+      .service-mark {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--green);
+        margin-bottom: 0.9rem;
+      }
+      .service-card h3 { font-size: 1.08rem; margin: 0 0 0.5rem; }
       .service-card p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
 
       .team-grid {
@@ -399,18 +391,19 @@ const intakeOptions = [
         width: 100%;
         aspect-ratio: 1;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 0.6rem;
         margin-bottom: 0.9rem;
-        border: 3px solid var(--card);
-        box-shadow: 0 12px 24px -14px rgba(43, 36, 32, 0.35);
+        border: 4px solid var(--card);
+        outline: 1px solid var(--line);
+        box-shadow: 0 10px 20px -12px rgba(18, 59, 94, 0.35);
       }
-      .team-name { font-weight: 700; margin: 0; }
-      .team-role { color: var(--sage); font-size: 0.85rem; margin: 0.1rem 0 0; }
+      .team-name { font-weight: 700; margin: 0; color: var(--blue-deep); }
+      .team-role { color: var(--green-deep); font-size: 0.85rem; margin: 0.1rem 0 0; font-weight: 600; }
 
       .consult {
-        background: var(--sage-deep);
-        color: #f2ece2;
-        border-radius: 1.75rem;
+        background: var(--blue-deep);
+        color: #eaf1f7;
+        border-radius: 0.9rem;
         padding: clamp(2rem, 5vw, 3.5rem);
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -418,9 +411,9 @@ const intakeOptions = [
         align-items: start;
         margin-bottom: clamp(3rem, 6vw, 5rem);
       }
-      .consult h2 { color: #fdfaf5; }
-      .consult-copy p { color: #d9d1c4; max-width: 28rem; }
-      .consult-note { font-size: 0.85rem; opacity: 0.85; }
+      .consult h2 { color: #fff; }
+      .consult-copy p { color: #c3d8e8; max-width: 28rem; }
+      .consult-note { font-size: 0.85rem; opacity: 0.9; }
 
       .consult-form { display: flex; flex-direction: column; gap: 1rem; }
       .consult-form label {
@@ -428,19 +421,20 @@ const intakeOptions = [
         flex-direction: column;
         gap: 0.4rem;
         font-size: 0.85rem;
-        color: #e6e0d3;
+        color: #dce9f2;
+        font-weight: 500;
       }
       .consult-form input, .consult-form select {
         font-family: inherit;
         font-size: 0.95rem;
         padding: 0.75rem 0.9rem;
-        border-radius: 0.7rem;
+        border-radius: 0.4rem;
         border: 1px solid rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.08);
-        color: #fdfaf5;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
       }
       .consult-form select option { color: var(--ink); }
-      .form-note { font-size: 0.78rem; opacity: 0.7; margin: 0; text-align: center; }
+      .form-note { font-size: 0.78rem; opacity: 0.75; margin: 0; text-align: center; }
 
       .site-footer {
         max-width: 1280px;
@@ -454,14 +448,14 @@ const intakeOptions = [
         font-size: 0.88rem;
         color: var(--ink-soft);
       }
-      .footer-wordmark { font-size: 1.1rem; color: var(--ink); margin: 0 0 0.3rem; }
+      .footer-wordmark { font-size: 1.05rem; color: var(--blue-deep); font-weight: 700; margin: 0 0 0.3rem; font-family: 'Sora', sans-serif; }
       .site-footer p { margin: 0.1rem 0; }
-      .footer-credit a { color: var(--sage); }
+      .footer-credit a { color: var(--blue); }
 
       @media (max-width: 880px) {
         .hero, .consult { grid-template-columns: 1fr; }
         .trust-strip { grid-template-columns: 1fr; }
-        .hero-art { order: -1; max-width: 20rem; margin: 0 auto; }
+        .hero-art { order: -1; max-width: 24rem; margin: 0 auto 1.5rem; }
         .main-nav { gap: 1rem; font-size: 0.85rem; }
         .ribbon-links { justify-content: center; width: 100%; }
       }
