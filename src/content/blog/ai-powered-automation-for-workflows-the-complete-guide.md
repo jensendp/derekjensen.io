@@ -225,8 +225,8 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Building AI Assistants for Workflows](https://derekjensen.io/blog/building-ai-assistants-for-workflows-no-code-needed)
 - [Multi-Step Automation Systems](https://derekjensen.io/blog/multi-step-automation-systems-with-ai-a-beginners-guide)
 - [Error Handling in Automations](https://derekjensen.io/blog/error-handling-in-ai-automations-a-non-technical-guide)
+- [Scaling Automated Workflows](https://derekjensen.io/blog/scaling-automated-workflows-with-ai-guide)
 
-- Scaling Automated Workflows
 - Cost Optimization in Automation
 - Real Business Automation Examples
 - No-Code vs AI Automation
