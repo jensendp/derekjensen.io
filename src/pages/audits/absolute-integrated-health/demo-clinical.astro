@@ -41,6 +41,40 @@ const intakeOptions = [
   'Not sure yet — I’d like to talk it through',
 ];
 
+const processSteps = [
+  {
+    title: 'Consultation',
+    body: 'Tell us what’s going on and what you’re hoping to fix — no assumptions, just a real conversation.',
+  },
+  {
+    title: 'Assessment',
+    body: 'Our team examines you in person and builds a plan around your body, not a generic protocol.',
+  },
+  {
+    title: 'Personalized Plan',
+    body: 'Start treatment the same day when appropriate, with follow-ups scheduled around your life.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you accept insurance?',
+    a: 'We work with most major insurance plans, and offer 0% APR financing for services that aren’t covered.',
+  },
+  {
+    q: 'What should I bring to my first visit?',
+    a: 'Just a photo ID and your insurance card, if you have one — we’ll handle the rest during your consultation.',
+  },
+  {
+    q: 'Do I need a referral?',
+    a: 'No referral is required for a chiropractic or wellness consultation.',
+  },
+  {
+    q: 'Can I walk in, or do I need an appointment?',
+    a: 'We recommend requesting a consultation ahead of time so we can prepare for your visit — call 815-782-8440 for same-day availability.',
+  },
+];
+
 const testimonials = [
   {
     quote: 'Friendly greeting, caring staff, to professional workforce. Your experience and well being is paramount in here. You’ll be leaving with a healed body and a smile on your face. I will recommend to family and friends.',
@@ -109,6 +143,7 @@ const testimonials = [
             <a href="tel:8157828440" class="btn btn-ghost">815-782-8440</a>
           </div>
           <p class="hero-trust">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8 from 235 Google reviews</p>
+          <p class="hours-badge" id="hours-badge"></p>
         </div>
         <div class="hero-art">
           <div class="hero-photo-frame">
@@ -179,6 +214,33 @@ const testimonials = [
         </div>
       </section>
 
+      <section class="process">
+        <p class="section-eyebrow">How it starts</p>
+        <h2>What to expect at your first visit</h2>
+        <div class="process-grid">
+          {processSteps.map((s, i) => (
+            <div class="process-step">
+              <div class="process-num">{i + 1}</div>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="faq">
+        <p class="section-eyebrow">Before you book</p>
+        <h2>Common questions</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}<span class="faq-icon" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section id="request-consultation" class="consult">
         <div class="consult-copy">
           <p class="section-eyebrow section-eyebrow-light">Get started</p>
@@ -221,6 +283,10 @@ const testimonials = [
         possible, not the final site.
       </p>
     </footer>
+
+    <div class="sticky-cta">
+      <a href="#request-consultation" class="btn btn-primary btn-block">Request a Consultation</a>
+    </div>
 
     <style>
       :root {
@@ -373,6 +439,18 @@ const testimonials = [
       .btn-block { width: 100%; }
 
       .hero-trust { font-size: 0.9rem; color: var(--ink-soft); margin: 0; font-weight: 500; }
+      .hours-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+        margin: 0.6rem 0 0;
+      }
+      .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; display: inline-block; }
+      .dot-open { background: var(--green); }
+      .dot-closed { background: var(--blue); opacity: 0.6; }
 
       .hero-art { position: relative; }
       .hero-photo-frame {
@@ -495,6 +573,84 @@ const testimonials = [
         font-weight: 700;
       }
 
+      .process { margin-bottom: clamp(3rem, 6vw, 5rem); }
+      .process-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.25rem;
+        margin-top: 2.25rem;
+      }
+      .process-step {
+        flex: 0 1 240px;
+        text-align: left;
+        border-left: 3px solid var(--blue);
+        padding-left: 1.1rem;
+      }
+      .process-num {
+        width: 2.25rem;
+        height: 2.25rem;
+        margin-bottom: 0.9rem;
+        border-radius: 0.4rem;
+        background: var(--blue-deep);
+        color: #fff;
+        font-family: 'Sora', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .process-step h3 { font-size: 1.05rem; margin: 0 0 0.5rem; color: var(--blue-deep); }
+      .process-step p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+      .faq { margin-bottom: clamp(3rem, 6vw, 5rem); }
+      .faq-list { max-width: 42rem; margin-top: 2rem; }
+      .faq-item {
+        border-bottom: 1px solid var(--line);
+        padding: 1.1rem 0;
+      }
+      .faq-item summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--blue-deep);
+        list-style: none;
+      }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-icon {
+        position: relative;
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        margin-left: 1rem;
+      }
+      .faq-icon::before, .faq-icon::after {
+        content: '';
+        position: absolute;
+        background: var(--green);
+        transition: transform 0.2s ease;
+      }
+      .faq-icon::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+      .faq-icon::after { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+      .faq-item[open] .faq-icon::after { transform: translateX(-50%) scaleY(0); }
+      .faq-item p { margin: 0.9rem 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+      .sticky-cta {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 90;
+        padding: 0.85rem 1.1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
+        background: var(--card);
+        border-top: 1px solid var(--line);
+        box-shadow: 0 -12px 24px -18px rgba(18, 59, 94, 0.4);
+      }
+
       .consult {
         background: var(--blue-deep);
         color: #eaf1f7;
@@ -570,6 +726,9 @@ const testimonials = [
         }
         .main-nav.is-open { display: flex; }
         .main-nav .nav-cta { width: 100%; text-align: center; }
+
+        body { padding-bottom: 4.75rem; }
+        .sticky-cta { display: block; }
       }
     </style>
 
@@ -591,6 +750,35 @@ const testimonials = [
             navToggle.setAttribute('aria-label', 'Open menu');
           });
         });
+      }
+
+      // Real hours: Mon–Thu 9–6:30, Fri 9–12, closed Sat/Sun.
+      const weekHours = [
+        null,
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 17 * 60 },
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 12 * 60 },
+        null,
+      ];
+      function formatClock(mins) {
+        let h = Math.floor(mins / 60);
+        const m = mins % 60;
+        const ampm = h >= 12 ? 'pm' : 'am';
+        h = h % 12 || 12;
+        return m === 0 ? `${h}${ampm}` : `${h}:${String(m).padStart(2, '0')}${ampm}`;
+      }
+      const hoursBadge = document.getElementById('hours-badge');
+      if (hoursBadge) {
+        const now = new Date();
+        const today = weekHours[now.getDay()];
+        const minutesNow = now.getHours() * 60 + now.getMinutes();
+        if (today && minutesNow >= today.open && minutesNow < today.close) {
+          hoursBadge.innerHTML = `<span class="dot dot-open"></span> Open now &middot; closes ${formatClock(today.close)}`;
+        } else {
+          hoursBadge.innerHTML = `<span class="dot dot-closed"></span> Closed now &middot; call to schedule`;
+        }
       }
     </script>
   </body>
