@@ -1,0 +1,465 @@
+---
+export const prerender = false;
+
+const services = [
+  {
+    name: 'Chiropractic Care',
+    line: 'Hands-on adjustment and mobility work for the pain that’s been slowing you down.',
+  },
+  {
+    name: 'Pain Management',
+    line: 'A plan built around your body, not a prescription pad — for pain that hasn’t responded to anything else.',
+  },
+  {
+    name: 'IV & Hormone Therapy',
+    line: 'Targeted support for energy, recovery, and balance, administered in-office by our clinical team.',
+  },
+  {
+    name: 'Wound Care',
+    line: 'Specialized treatment for wounds that need more attention than a standard visit provides.',
+  },
+  {
+    name: 'Aesthetics & Wellness',
+    line: 'Skin, body, and confidence — treatments designed around how you actually want to feel.',
+  },
+];
+
+const team = [
+  { name: 'Alyssa Fleischauer', role: 'RN', photo: '/audits/absolute-integrated-health/staff-alyssa.jpg' },
+  { name: 'Andrew Nakis', role: 'Care Team', photo: '/audits/absolute-integrated-health/staff-andrew.jpg' },
+  { name: 'Jay Zurawski', role: 'RN', photo: '/audits/absolute-integrated-health/staff-jay.jpg' },
+];
+
+const intakeOptions = [
+  'Chronic or ongoing pain',
+  'IV or hormone therapy',
+  'Aesthetics & wellness',
+  'Wound care',
+  'Not sure yet — I’d like to talk it through',
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Absolute Integrated Health — Concept Preview</title>
+    <meta name="description" content="A concept preview of a rebuilt Absolute Integrated Health homepage, prepared by Derek Jensen." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="concept-ribbon">
+      <span>Concept preview for Absolute Integrated Health — built by Derek Jensen, not a live site</span>
+      <a href="/audits/absolute-integrated-health/">← Back to the assessment</a>
+    </div>
+
+    <header class="site-header">
+      <a href="#top" class="wordmark">
+        <span class="wordmark-mark">Absolute</span>
+        <span class="wordmark-sub">Integrated Health</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#team">Our Team</a>
+        <a href="#request-consultation" class="nav-cta">Request a Consultation</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Plainfield, IL &middot; Chiropractic &amp; Integrative Health</p>
+          <h1>Care that treats the whole person, not just the symptom.</h1>
+          <p class="hero-sub">
+            Chiropractic, pain management, IV therapy, and aesthetics under one roof —
+            with a team that starts every relationship the same way: an honest conversation
+            about what you actually need.
+          </p>
+          <div class="hero-actions">
+            <a href="#request-consultation" class="btn btn-primary">Request a Consultation</a>
+            <a href="tel:8157828440" class="btn btn-ghost">815-782-8440</a>
+          </div>
+          <p class="hero-trust">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8 from 235 Google reviews</p>
+        </div>
+        <div class="hero-art">
+          <div class="hero-photo-frame">
+            <img src="/audits/absolute-integrated-health/treatment-photo.jpg" alt="A member of the care team working with a patient" />
+          </div>
+          <div class="hero-ring" aria-hidden="true"></div>
+          <div class="hero-card">
+            <p class="hero-card-stat">5</p>
+            <p class="hero-card-label">care specialties, one intake conversation</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip">
+        <div class="trust-item">
+          <p class="trust-num">4.8&#9733;</p>
+          <p>235 Google reviews — earned, not bought</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-num">5</p>
+          <p>specialties under one roof, one care team</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-num">0%</p>
+          <p>APR financing available — no hard credit check</p>
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <p class="section-eyebrow">What we treat</p>
+        <h2>One practice, five ways to feel better</h2>
+        <div class="services-grid">
+          {services.map((s) => (
+            <div class="service-card">
+              <h3>{s.name}</h3>
+              <p>{s.line}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="team" class="team">
+        <p class="section-eyebrow">Who you'll meet</p>
+        <h2>A care team, not a call center</h2>
+        <p class="team-sub">The people who'll actually be in the room with you — not a stock photo.</p>
+        <div class="team-grid">
+          {team.map((t) => (
+            <div class="team-card">
+              <img src={t.photo} alt={t.name} />
+              <p class="team-name">{t.name}</p>
+              <p class="team-role">{t.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="request-consultation" class="consult">
+        <div class="consult-copy">
+          <p class="section-eyebrow section-eyebrow-light">Get started</p>
+          <h2>Request a consultation</h2>
+          <p>
+            One form, one path — no separate booking systems to choose between. Tell us
+            what brings you in, and our team will reach out to get you on the schedule.
+          </p>
+          <p class="consult-note">No appointment changes here — for rescheduling, just give us a call at 815-782-8440.</p>
+        </div>
+        <form class="consult-form" onsubmit="event.preventDefault();">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your full name" />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" placeholder="(815) 000-0000" />
+          </label>
+          <label>
+            What brings you in today?
+            <select name="reason">
+              {intakeOptions.map((opt) => <option>{opt}</option>)}
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Send My Request</button>
+          <p class="form-note">Concept preview — this form isn't connected yet.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="wordmark-mark footer-wordmark">Absolute Integrated Health</p>
+        <p>16310 S Lincoln Hwy #124, Plainfield, IL 60586</p>
+        <p>815-782-8440</p>
+      </div>
+      <p class="footer-credit">
+        Design concept by <a href="https://derekjensen.io">Derek Jensen</a> — built to show what's
+        possible, not the final site.
+      </p>
+    </footer>
+
+    <style>
+      :root {
+        --bg: #faf5ee;
+        --bg-alt: #f1e6d6;
+        --card: #fffdfa;
+        --ink: #2b2420;
+        --ink-soft: #6b5f52;
+        --sage: #46604f;
+        --sage-deep: #33463a;
+        --terracotta: #bd5c2c;
+        --terracotta-deep: #9c4a22;
+        --line: rgba(43, 36, 32, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Manrope', system-ui, sans-serif;
+        line-height: 1.55;
+      }
+
+      h1, h2, h3, .wordmark-mark {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+
+      .concept-ribbon {
+        background: var(--sage-deep);
+        color: #f2ece2;
+        font-size: 0.78rem;
+        padding: 0.55rem 1.25rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+      .concept-ribbon a { color: #f2ece2; opacity: 0.85; }
+      .concept-ribbon a:hover { opacity: 1; }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .wordmark { text-decoration: none; display: block; line-height: 1.1; }
+      .wordmark-mark { font-size: 1.35rem; font-style: italic; }
+      .wordmark-sub {
+        display: block;
+        font-family: 'Manrope', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .main-nav { display: flex; align-items: center; gap: 1.75rem; font-size: 0.92rem; }
+      .main-nav a { color: var(--ink); text-decoration: none; }
+      .main-nav a:hover { color: var(--sage); }
+      .nav-cta {
+        background: var(--terracotta);
+        color: #fff !important;
+        padding: 0.6rem 1.1rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .nav-cta:hover { background: var(--terracotta-deep) !important; }
+
+      main { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 4rem); }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: clamp(2rem, 5vw, 5rem);
+        align-items: center;
+        padding: clamp(2rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
+      }
+
+      .eyebrow, .section-eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage);
+        font-weight: 700;
+        margin: 0 0 0.9rem;
+      }
+      .section-eyebrow-light { color: #cddccf; }
+
+      .hero h1 {
+        font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+        line-height: 1.08;
+        margin: 0 0 1.2rem;
+      }
+
+      .hero-sub {
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+        max-width: 34rem;
+        margin: 0 0 1.9rem;
+      }
+
+      .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      }
+      .btn-primary { background: var(--terracotta); color: #fff; }
+      .btn-primary:hover { background: var(--terracotta-deep); }
+      .btn-ghost { border: 1.5px solid var(--line); color: var(--ink); }
+      .btn-ghost:hover { border-color: var(--sage); color: var(--sage); }
+      .btn-block { width: 100%; }
+
+      .hero-trust { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+
+      .hero-art { position: relative; }
+      .hero-photo-frame {
+        border-radius: 44% 56% 62% 38% / 48% 42% 58% 52%;
+        overflow: hidden;
+        aspect-ratio: 4 / 4.6;
+        box-shadow: 0 30px 60px -25px rgba(43, 36, 32, 0.35);
+      }
+      .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .hero-ring {
+        position: absolute;
+        inset: -12% -14% auto auto;
+        width: 42%;
+        aspect-ratio: 1;
+        border: 2px solid var(--sage);
+        opacity: 0.35;
+        border-radius: 50%;
+        z-index: -1;
+      }
+      .hero-card {
+        position: absolute;
+        left: -8%;
+        bottom: 6%;
+        background: var(--card);
+        border-radius: 1.1rem;
+        padding: 1.1rem 1.4rem;
+        box-shadow: 0 20px 40px -18px rgba(43, 36, 32, 0.3);
+        max-width: 12rem;
+      }
+      .hero-card-stat { font-family: 'Fraunces', serif; font-size: 2.1rem; margin: 0; color: var(--terracotta); }
+      .hero-card-label { margin: 0.15rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+
+      .trust-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1.5rem;
+        padding: 2rem clamp(1.25rem, 4vw, 3rem);
+        margin-bottom: clamp(3rem, 6vw, 6rem);
+      }
+      .trust-item p { margin: 0; }
+      .trust-num { font-family: 'Fraunces', serif; font-size: 1.9rem; color: var(--sage); margin-bottom: 0.2rem !important; }
+      .trust-item p:last-child { color: var(--ink-soft); font-size: 0.92rem; }
+
+      .services, .team { margin-bottom: clamp(3rem, 6vw, 6rem); }
+      .services h2, .team h2, .consult h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 0 0 0.6rem; }
+      .team-sub { color: var(--ink-soft); margin: 0 0 2.2rem; }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      .service-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1.25rem;
+        padding: 1.6rem;
+      }
+      .service-card h3 { font-size: 1.15rem; margin: 0 0 0.5rem; }
+      .service-card p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.75rem;
+        max-width: 44rem;
+      }
+      .team-card { text-align: center; }
+      .team-card img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 0.9rem;
+        border: 3px solid var(--card);
+        box-shadow: 0 12px 24px -14px rgba(43, 36, 32, 0.35);
+      }
+      .team-name { font-weight: 700; margin: 0; }
+      .team-role { color: var(--sage); font-size: 0.85rem; margin: 0.1rem 0 0; }
+
+      .consult {
+        background: var(--sage-deep);
+        color: #f2ece2;
+        border-radius: 1.75rem;
+        padding: clamp(2rem, 5vw, 3.5rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 4vw, 3.5rem);
+        align-items: start;
+        margin-bottom: clamp(3rem, 6vw, 5rem);
+      }
+      .consult h2 { color: #fdfaf5; }
+      .consult-copy p { color: #d9d1c4; max-width: 28rem; }
+      .consult-note { font-size: 0.85rem; opacity: 0.85; }
+
+      .consult-form { display: flex; flex-direction: column; gap: 1rem; }
+      .consult-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: #e6e0d3;
+      }
+      .consult-form input, .consult-form select {
+        font-family: inherit;
+        font-size: 0.95rem;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.7rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fdfaf5;
+      }
+      .consult-form select option { color: var(--ink); }
+      .form-note { font-size: 0.78rem; opacity: 0.7; margin: 0; text-align: center; }
+
+      .site-footer {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 3.5rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.88rem;
+        color: var(--ink-soft);
+      }
+      .footer-wordmark { font-size: 1.1rem; color: var(--ink); margin: 0 0 0.3rem; }
+      .site-footer p { margin: 0.1rem 0; }
+      .footer-credit a { color: var(--sage); }
+
+      @media (max-width: 880px) {
+        .hero, .consult { grid-template-columns: 1fr; }
+        .trust-strip { grid-template-columns: 1fr; }
+        .hero-art { order: -1; max-width: 20rem; margin: 0 auto; }
+        .main-nav { gap: 1rem; font-size: 0.85rem; }
+      }
+    </style>
+  </body>
+</html>
