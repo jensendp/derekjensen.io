@@ -27,7 +27,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  const expectedPasscode = import.meta.env[client.envVar as keyof ImportMetaEnv] as string | undefined;
+  // process.env, not import.meta.env: the var name is only known at runtime (looked up
+  // from client.envVar), and Vite's import.meta.env replacement only works for literal,
+  // statically-analyzable keys — a dynamic/bracket lookup silently resolves to undefined.
+  const expectedPasscode = process.env[client.envVar];
 
   // No passcode configured for this client yet — fail closed (deny) rather than leave it open.
   if (!expectedPasscode) {

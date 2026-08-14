@@ -23,7 +23,8 @@ let error = '';
 if (Astro.request.method === 'POST') {
   const form = await Astro.request.formData();
   const passcode = String(form.get('passcode') || '');
-  const expectedPasscode = import.meta.env[client.envVar as keyof ImportMetaEnv] as string | undefined;
+  // process.env, not import.meta.env — see the matching comment in src/middleware.ts.
+  const expectedPasscode = process.env[client.envVar];
 
   if (expectedPasscode && passcode) {
     const submittedHash = await hashPasscode(slug!, passcode);
