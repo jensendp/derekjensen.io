@@ -37,6 +37,17 @@ const intakeOptions = [
   'Wound care',
   'Not sure yet — I’d like to talk it through',
 ];
+
+const testimonials = [
+  {
+    quote: 'Friendly greeting, caring staff, to professional workforce. Your experience and well being is paramount in here. You’ll be leaving with a healed body and a smile on your face. I will recommend to family and friends.',
+    name: 'Arnulfo Q.',
+  },
+  {
+    quote: 'Not just another chiropractor. They treat the whole body. Trusted innovative procedures. Friendly helpful staff. Give ’em a try. I’ve been seeing them for 20+ years.',
+    name: 'Tim V.',
+  },
+];
 ---
 
 <!doctype html>
@@ -142,6 +153,20 @@ const intakeOptions = [
               <p class="team-name">{t.name}</p>
               <p class="team-role">{t.role}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <p class="section-eyebrow">Patient reviews</p>
+        <h2>235 Google reviews, 4.8 stars average</h2>
+        <div class="testimonial-grid">
+          {testimonials.map((t) => (
+            <blockquote class="testimonial-card">
+              <p class="testimonial-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              <p class="testimonial-quote">{t.quote}</p>
+              <cite>{t.name} &mdash; Google review</cite>
+            </blockquote>
           ))}
         </div>
       </section>
@@ -399,6 +424,40 @@ const intakeOptions = [
       }
       .team-name { font-weight: 700; margin: 0; color: var(--blue-deep); }
       .team-role { color: var(--green-deep); font-size: 0.85rem; margin: 0.1rem 0 0; font-weight: 600; }
+
+      .testimonials { margin-bottom: clamp(3rem, 6vw, 5rem); }
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .testimonial-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--green);
+        border-radius: 0.6rem;
+        padding: 1.75rem;
+        margin: 0;
+      }
+      .testimonial-stars {
+        color: var(--green);
+        letter-spacing: 0.1em;
+        margin: 0 0 0.9rem;
+        font-size: 0.95rem;
+      }
+      .testimonial-quote {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--ink);
+        margin: 0 0 1.1rem;
+      }
+      .testimonial-card cite {
+        font-style: normal;
+        font-size: 0.85rem;
+        color: var(--blue-deep);
+        font-weight: 700;
+      }
 
       .consult {
         background: var(--blue-deep);
