@@ -417,12 +417,14 @@ const testimonials = [
       .team-sub { color: var(--ink-soft); margin: 0 0 2.2rem; }
 
       .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 1.25rem;
         margin-top: 2rem;
       }
       .service-card {
+        flex: 0 1 220px;
         background: var(--card);
         border: 1px solid var(--line);
         border-top: 3px solid var(--blue);
