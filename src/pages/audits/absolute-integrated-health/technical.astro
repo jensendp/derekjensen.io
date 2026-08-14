@@ -1,0 +1,380 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AuditNav from '@components/audit/AuditNav.astro';
+
+const base = '/audits/absolute-integrated-health/';
+
+const domains = [
+  {
+    property: 'absoluteintegratedhealthcenter.com',
+    platform: 'WordPress / Elementor Pro, Hello Elementor child theme, JetEngine + JetTabs',
+    status: 'Live, primary',
+    statusClass: 'text-green-700 bg-green-100',
+    notes: 'Hosted on WP Engine, behind Cloudflare. X-Powered-By: WP Engine confirmed via response header.',
+  },
+  {
+    property: 'aihcenters.com',
+    platform: 'WordPress / Divi theme, CoBlocks, Contact Form 7',
+    status: 'Live, dormant',
+    statusClass: 'text-amber-700 bg-amber-100',
+    notes: 'Separate install. Own canonical tag. Headline: "Are you looking for pain relief? You may want to try stem cell recruitment therapy." No shared navigation with the main site.',
+  },
+  {
+    property: 'media.aihcenters.com',
+    platform: 'GoHighLevel-hosted funnel/blog (native GHL page builder)',
+    status: 'Live, active',
+    statusClass: 'text-green-700 bg-green-100',
+    notes: 'Weekly blog posts, authored by "Melissa Daugherty (aka MP3), Brand Growth Manager." Hosts the /pain-clinic landing page used in paid ads.',
+  },
+  {
+    property: 'absoluteintegratedhealthcenter.info',
+    platform: 'Unclear — resolves to a Google Cloud IP (34.68.234.4), consistent with GHL infrastructure',
+    status: 'Live in ads, broken root',
+    statusClass: 'text-red-700 bg-red-100',
+    notes: 'Display link on at least one active image ad, showing phone 630-491-1333 (vs. 815-782-8440 everywhere else). Homepage returns HTTP 404.',
+  },
+];
+
+const perfMetrics = [
+  { metric: 'Performance score', mobile: '50 / 100', mobileBad: true, desktop: '92 / 100', threshold: '90+' },
+  { metric: 'Accessibility score', mobile: '83 / 100', desktop: '84 / 100', threshold: '90+' },
+  { metric: 'Best Practices score', mobile: '73 / 100', desktop: '73 / 100', threshold: '90+' },
+  { metric: 'SEO score', mobile: '92 / 100', desktop: '92 / 100', threshold: '100' },
+  { metric: 'First Contentful Paint', mobile: '6.8s', mobileBad: true, desktop: '0.6s', threshold: '< 1.8s' },
+  { metric: 'Largest Contentful Paint', mobile: '15.0s', mobileBad: true, desktop: '1.4s', threshold: '< 2.5s' },
+  { metric: 'Total Blocking Time', mobile: '300ms', desktop: '110ms', threshold: '< 200ms' },
+  { metric: 'Speed Index', mobile: '8.9s', mobileBad: true, desktop: '1.7s', threshold: '< 3.4s' },
+  { metric: 'Cumulative Layout Shift', mobile: '0', desktop: '0', threshold: '< 0.1' },
+];
+
+const searchTests = [
+  {
+    query: 'chiropractor plainfield il',
+    mapPack: 'Not present',
+    mapPackBad: true,
+    organic: 'Not present',
+    organicBad: true,
+    instead: 'Plainfield Spine and Rehabilitation (5.0★, 212) · Proactive Chiropractic Group (5.0★, 293) · Plainfield Chiropractic Clinic (4.9★, 328)',
+  },
+  {
+    query: 'iv therapy plainfield il',
+    mapPack: 'Not present',
+    mapPackBad: true,
+    organic: '~4th, broken auto-generated snippet',
+    organicWatch: true,
+    instead: 'Nourish Me Wellness IV Therapy Spa (4.9★, 34) · A2 IV Wellness and Aesthetics (5.0★, 7) · Maintain Wellness and Aesthetics (5.0★, 156)',
+  },
+  {
+    query: 'is iv therapy covered by insurance in plainfield il',
+    mapPack: 'N/A — no map pack triggered',
+    organic: '#2 organic result',
+    organicGood: true,
+    instead: 'Ranks ahead of most competitors on this specific, differentiated question',
+  },
+  {
+    query: 'best chiropractor near plainfield il for chronic pain',
+    mapPack: 'Not present',
+    mapPackBad: true,
+    organic: '—',
+    instead: 'Proactive Chiropractic Group · Pain and Wellness Group · Plainfield Spine and Rehabilitation',
+  },
+];
+
+const gbpListings = [
+  { name: 'Absolute Integrated Health Center', category: 'Chiropractor', rating: '4.8★ / 235 reviews', address: '16310 S Lincoln Hwy #124', phone: '815-782-8440' },
+  { name: 'AIH Aesthetics & Wellness', category: 'Medical spa', rating: '4.8★ / 32 reviews', address: '16310 S Lincoln Hwy #132', phone: '815-999-2677' },
+];
+---
+
+<BaseLayout
+  title="Absolute Integrated Health — Technical Evidence"
+  description="The raw test data, query transcripts, and audit tables behind the Absolute Integrated Health digital presence assessment."
+  noindex={true}
+>
+  <AuditNav current="technical" base={base} />
+
+  <header class="mb-10">
+    <p class="font-mono text-xs tracking-wider uppercase text-accent-600 mb-3">
+      Technical Evidence Appendix · 4 of 4
+    </p>
+    <h1 class="mb-3">The raw data behind every finding</h1>
+    <p class="text-lg text-neutral-600 max-w-2xl">
+      Every claim in the Executive Brief and Full Assessment traces back to something on this page — a live test, a
+      query transcript, or a direct observation. Reproducible by design.
+    </p>
+  </header>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Method</p>
+    <h2 class="mb-4">What was tested, and how</h2>
+    <p class="text-neutral-700 max-w-2xl mb-4">
+      All tests below were run August 13, 2026 against public, unauthenticated properties. No login, private data,
+      or internal system was accessed at any point.
+    </p>
+    <ul class="list-disc pl-5 space-y-2 text-sm text-neutral-700 max-w-2xl">
+      <li><strong>Site structure &amp; SEO:</strong> direct inspection of page source across all four domains</li>
+      <li><strong>Performance:</strong> Google PageSpeed Insights (Lighthouse engine), mobile and desktop, homepage</li>
+      <li><strong>Local search:</strong> live Google search results, incognito, U.S./Illinois locale</li>
+      <li><strong>AI search (AEO):</strong> live queries against Perplexity and ChatGPT, logged out</li>
+      <li><strong>Paid ads:</strong> Meta Ad Library, public advertiser view for the verified Facebook page</li>
+    </ul>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Domain &amp; Hosting</p>
+    <h2 class="mb-5">Every public property, mapped</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse min-w-[640px]">
+        <thead>
+          <tr class="border-b-2 border-neutral-300">
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Property</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Status</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {domains.map((d) => (
+            <tr class="border-b border-neutral-200 align-top">
+              <td class="py-3 px-3">
+                <div class="font-mono text-xs">{d.property}</div>
+                <div class="text-xs text-neutral-500 mt-1">{d.platform}</div>
+              </td>
+              <td class="py-3 px-3">
+                <span class:list={['inline-block font-mono text-[10px] px-2 py-0.5 rounded whitespace-nowrap', d.statusClass]}>
+                  {d.status}
+                </span>
+              </td>
+              <td class="py-3 px-3 text-neutral-600">{d.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="text-base font-semibold mt-8 mb-2">robots.txt — main site</h3>
+    <pre class="bg-neutral-900 text-neutral-100 rounded-lg p-4 text-xs overflow-x-auto"><code>{`User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Crawl-delay: 10
+
+Sitemap: https://absoluteintegratedhealthcenter.com/wp-sitemap.xml`}</code></pre>
+    <p class="text-sm text-neutral-600 mt-3 max-w-2xl">
+      No rules blocking AI crawlers (GPTBot, Google-Extended, PerplexityBot, ClaudeBot, etc.) on any property
+      tested — access is not the AEO bottleneck.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Performance</p>
+    <h2 class="mb-2">Google PageSpeed Insights — full results</h2>
+    <p class="text-neutral-600 max-w-2xl mb-5">Run against the homepage, both device profiles, same test session.</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse min-w-[520px]">
+        <thead>
+          <tr class="border-b-2 border-neutral-300">
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Metric</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Mobile</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Desktop</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">"Good" bar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {perfMetrics.map((m) => (
+            <tr class="border-b border-neutral-200">
+              <td class="py-2.5 px-3">{m.metric}</td>
+              <td class:list={['py-2.5 px-3 font-mono tabular-nums', m.mobileBad ? 'text-red-600' : 'text-neutral-700']}>{m.mobile}</td>
+              <td class="py-2.5 px-3 font-mono tabular-nums text-green-700">{m.desktop}</td>
+              <td class="py-2.5 px-3 font-mono text-neutral-400">{m.threshold}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="text-base font-semibold mt-8 mb-2">Top opportunities flagged (mobile)</h3>
+    <ul class="list-disc pl-5 space-y-1.5 text-sm text-neutral-700 max-w-2xl">
+      <li>Render-blocking requests — est. savings 1,350ms</li>
+      <li>Reduce unused JavaScript — est. savings 624 KiB</li>
+      <li>Reduce unused CSS — est. savings 29 KiB</li>
+      <li>Minify JavaScript — est. savings 68 KiB</li>
+      <li>Total page payload: <strong>4,647 KiB</strong> (4.6MB)</li>
+      <li>12 long main-thread tasks found; main-thread work totals 3.1s</li>
+      <li>9 separate Google Font families loaded on every page: Playfair Display, Slabo 27px, Lato, Raleway, Montserrat, Oswald, Poppins, Source Sans Pro, PT Sans, Open Sans</li>
+    </ul>
+
+    <h3 class="text-base font-semibold mt-8 mb-2">Accessibility failures flagged</h3>
+    <ul class="list-disc pl-5 space-y-1.5 text-sm text-neutral-700 max-w-2xl">
+      <li>Background and foreground colors do not have a sufficient contrast ratio</li>
+      <li>Links rely on color alone to be distinguishable</li>
+      <li>Links do not have a discernible name (screen reader accessibility)</li>
+      <li>Touch targets do not have sufficient size or spacing (mobile usability)</li>
+      <li>Document does not have a main landmark</li>
+      <li>Heading elements are not in sequentially-descending order</li>
+    </ul>
+
+    <h3 class="text-base font-semibold mt-8 mb-2">SEO audit failures flagged</h3>
+    <ul class="list-disc pl-5 space-y-1.5 text-sm text-neutral-700 max-w-2xl">
+      <li>Document does not have a meta description</li>
+      <li>No structured data (schema.org) of any type detected on any crawled page, including the main site, service pages, and GoHighLevel blog posts</li>
+    </ul>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Local Search</p>
+    <h2 class="mb-5">Live Google search results</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse min-w-[700px]">
+        <thead>
+          <tr class="border-b-2 border-neutral-300">
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Query</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Map pack</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Organic p.1</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Who's ranking instead</th>
+          </tr>
+        </thead>
+        <tbody>
+          {searchTests.map((t) => (
+            <tr class="border-b border-neutral-200 align-top">
+              <td class="py-2.5 px-3 font-mono text-xs">{t.query}</td>
+              <td class:list={['py-2.5 px-3', t.mapPackBad ? 'text-red-600' : 'text-neutral-600']}>{t.mapPack}</td>
+              <td class:list={['py-2.5 px-3', t.organicBad ? 'text-red-600' : t.organicWatch ? 'text-amber-600' : t.organicGood ? 'text-green-700' : 'text-neutral-600']}>{t.organic}</td>
+              <td class="py-2.5 px-3 text-neutral-600">{t.instead}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-sm text-neutral-700 max-w-2xl mt-5">
+      <strong>Auto-generated snippet observed</strong> for "iv therapy plainfield il" — Google had no meta
+      description to draw from, so it stitched one together from raw page text:
+    </p>
+    <pre class="bg-neutral-900 text-neutral-100 rounded-lg p-4 text-xs overflow-x-auto max-w-2xl"><code>"16310 S Lincoln Hwy #124 Plainfield, IL 60586. IVIG IV Therapy. Plainfield, IL 60586 815-782-8440"</code></pre>
+
+    <div class="border-l-4 border-primary-400 bg-primary-50 rounded-r-md px-4 py-3 text-sm text-primary-900 max-w-2xl mt-5">
+      <strong>Pattern observed:</strong> the practice ranks reasonably well for specific, differentiated long-tail
+      questions (the insurance-coverage angle) but disappears for generic category searches and every map-pack
+      query tested. This points to a content-structure gap rather than a content-quality or reputation gap.
+    </div>
+
+    <h3 class="text-base font-semibold mt-8 mb-3">Google Business Profile — verified live</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse min-w-[560px]">
+        <thead>
+          <tr class="border-b-2 border-neutral-300">
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Listing</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Category</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Rating</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {gbpListings.map((g) => (
+            <tr class="border-b border-neutral-200">
+              <td class="py-2.5 px-3">
+                <div class="font-semibold text-neutral-900">{g.name}</div>
+                <div class="text-xs text-neutral-500">{g.address}</div>
+              </td>
+              <td class="py-2.5 px-3 text-neutral-600">{g.category}</td>
+              <td class="py-2.5 px-3 font-mono text-xs tabular-nums">{g.rating}</td>
+              <td class="py-2.5 px-3 font-mono text-xs">{g.phone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-neutral-600 max-w-2xl mt-3">
+      Two separate, active Google Business Profiles for what appears to be one practice at one building, different
+      suites. Each has its own Facebook and Instagram presence.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Paid Advertising</p>
+    <h2 class="mb-2">Meta Ad Library — live results</h2>
+    <p class="text-neutral-600 max-w-2xl mb-5">
+      Verified page: "Absolute Integrated Health SC" — @AbsoluteIntegratedHealth on Facebook (~5K followers),
+      @aih_center on Instagram (~4K followers). ~15 active ads at time of review.
+    </p>
+    <ul class="list-disc pl-5 space-y-2 text-sm text-neutral-700 max-w-2xl">
+      <li>Two campaign waves: one starting late June–August 1, 2026 (general IV therapy + a "Vita Med Naperville" launch offer), a second starting August 10–11, 2026 (fresh video testimonial creative, same core message)</li>
+      <li>Call-to-action destinations observed: native Facebook Lead Forms (stays inside Facebook), the GoHighLevel funnel at media.aihcenters.com/pain-clinic, and one image ad linking to absoluteintegratedhealthcenter.info</li>
+      <li>Phone number on the .info-linked ad creative: <span class="font-mono">630-491-1333</span> — does not match the main site or GBP listing</li>
+    </ul>
+  </section>
+
+  <section class="mb-4">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">AI Search (AEO)</p>
+    <h2 class="mb-2">Full query transcripts</h2>
+    <p class="text-neutral-600 max-w-2xl mb-6">
+      Logged out, no account personalization, no prior conversation history in either tool.
+    </p>
+
+    <h3 class="text-base font-semibold mb-2">Perplexity — "best iv therapy clinic in plainfield illinois"</h3>
+    <div class="card p-5 mb-6 text-sm">
+      <p class="text-neutral-700 mb-3">
+        Place data returned: Metro Infusion Center, Maintain Wellness and Aesthetics (5.0★), Nourish Me Wellness IV
+        Therapy Spa (4.9★), IV Wellness Lemont (5.0★), Naperville Health &amp; Wellness Clinic (4.9★),
+        <strong> AIH Aesthetics &amp; Wellness (4.8★)</strong>, <strong>Absolute Integrated Health Center Plainfield
+        IL (4.8★)</strong>, True Wellness Center (5.0★), Rise and Thrive Healthcare (4.8★).
+      </p>
+      <p class="text-neutral-700 mb-0">
+        Written answer: "A top pick for Plainfield, IL is Nourish Me Wellness IV Therapy Spa... it's highly rated
+        (4.9 with 34 reviews)... Other strong options nearby: Metro Infusion Center... Maintain Wellness and
+        Aesthetics..."
+      </p>
+      <p class="font-mono text-xs text-neutral-400 border-t border-neutral-200 mt-4 pt-3 mb-0">
+        Absolute Integrated Health appears in the underlying place data (both listings) but is not named anywhere
+        in the generated answer text.
+      </p>
+    </div>
+
+    <h3 class="text-base font-semibold mb-2">ChatGPT — "best iv therapy clinic in plainfield illinois"</h3>
+    <div class="card p-5 mb-6 text-sm">
+      <p class="text-neutral-700 mb-0">
+        "🥇 Nourish Me Wellness IV Therapy Spa — 4.9, nurse-owned and nurse-led...<br /><br />
+        Other good Plainfield options:<br />
+        <strong>Absolute Integrated Health Center Plainfield IL</strong> — More medically/integratively oriented,
+        with IV therapy alongside pain management, chiropractic, rehab, and other services. Their IV program
+        emphasizes consultation and bloodwork rather than simply choosing a drip off a menu.<br />
+        Maintain Wellness and Aesthetics — 5.0/5 from 151 reviews...<br />
+        360 Immediate Care — better choice for urgent-care setting...<br /><br />
+        My choice: Nourish Me for a dedicated IV therapy experience; Absolute Integrated if you want a more
+        medically comprehensive/integrative approach."
+      </p>
+      <p class="font-mono text-xs text-neutral-400 border-t border-neutral-200 mt-4 pt-3 mb-0">
+        Named and favorably described, second position, with an accurate service description.
+      </p>
+    </div>
+
+    <h3 class="text-base font-semibold mb-2">ChatGPT — "best chiropractor near plainfield il for chronic pain"</h3>
+    <div class="card p-5 mb-6 text-sm">
+      <p class="text-neutral-700 mb-0">
+        "My top picks in Plainfield:<br />
+        HealthSource Chiropractic of Plainfield — best overall for chronic pain (Zocdoc: 5.0/5, 63 reviews)<br />
+        Post Rehab Solutions — best if pain has lasted years<br />
+        PRO Sports &amp; Spinal Rehab — best for multidisciplinary rehab<br />
+        Plainfield Spine And Rehabilitation, Dr. McCarthy — best for spine-focused care<br />
+        Nu Life Energy Chiropractic — good option for pain + massage/soft-tissue"
+      </p>
+      <p class="font-mono text-xs text-neutral-400 border-t border-neutral-200 mt-4 pt-3 mb-0">
+        Absolute Integrated Health not mentioned anywhere in this answer, despite "Chronic Pain" being a lead
+        service tile on the practice's own homepage.
+      </p>
+    </div>
+
+    <div class="border-l-4 border-primary-400 bg-primary-50 rounded-r-md px-4 py-3 text-sm text-primary-900 max-w-2xl">
+      <strong>Reading across all three transcripts:</strong> the practice is present in the underlying
+      place/business data every AI tool draws from, but gets named in the generated answer inconsistently —
+      sometimes favorably, sometimes not at all — with no schema markup or structured content anywhere to give the
+      model something reliable to cite every time.
+    </div>
+  </section>
+
+  <p class="font-mono text-xs text-neutral-400 mt-10">
+    Technical Evidence Appendix — Absolute Integrated Health Digital Presence Assessment · Tests conducted August
+    13, 2026 · All sources public and unauthenticated
+  </p>
+</BaseLayout>

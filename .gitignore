@@ -37,3 +37,6 @@ pnpm-debug.log*
 
 # Windows
 Thumbs.db
+
+# private pre-meeting client notes — not for the repo
+/audits-notes/

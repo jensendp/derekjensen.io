@@ -1,0 +1,33 @@
+---
+interface Props {
+  current: 'brief' | 'full' | 'technical' | 'ux';
+  base: string;
+}
+
+const { current, base } = Astro.props;
+
+const links = [
+  { key: 'brief', label: 'Executive Brief', href: base },
+  { key: 'full', label: 'Full Assessment', href: `${base}full` },
+  { key: 'ux', label: 'UX & Conversion Design', href: `${base}ux` },
+  { key: 'technical', label: 'Technical Evidence', href: `${base}technical` },
+] as const;
+---
+
+<nav
+  aria-label="Assessment sections"
+  class="flex items-center gap-3 text-sm font-mono flex-wrap mb-8"
+>
+  {links.map((link, i) => (
+    <>
+      {i > 0 && <span class="text-neutral-300">/</span>}
+      {link.key === current ? (
+        <span class="text-accent-600 font-medium">{link.label}</span>
+      ) : (
+        <a href={link.href} class="text-neutral-500 hover:text-primary-600 transition-colors duration-200">
+          {link.label}
+        </a>
+      )}
+    </>
+  ))}
+</nav>
