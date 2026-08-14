@@ -8,7 +8,10 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://derekjensen.io',
-  adapter: vercel(),
+  // edgeMiddleware: true deploys src/middleware.ts as real Vercel Edge Middleware,
+  // so it runs in front of every request — including prerendered static pages like
+  // the /audits/ pages, not just on-demand (SSR) routes.
+  adapter: vercel({ edgeMiddleware: true }),
 
   vite: {
     plugins: [tailwindcss()],
@@ -18,7 +21,8 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/tools/prompt-builder') &&
-        !page.includes('/blog/tag/'),
+        !page.includes('/blog/tag/') &&
+        !page.includes('/audits/'),
     }),
   ],
 

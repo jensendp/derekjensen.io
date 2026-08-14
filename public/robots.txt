@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /infographics/
+Disallow: /audits/
 
 Sitemap: https://derekjensen.io/sitemap-index.xml

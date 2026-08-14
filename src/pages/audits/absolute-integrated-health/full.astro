@@ -1,0 +1,439 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AuditNav from '@components/audit/AuditNav.astro';
+
+const base = '/audits/absolute-integrated-health/';
+
+const glanceStats = [
+  { n: '0', l: "working booking options behind the homepage's main button — it leads to a dead event page instead" },
+  { n: '3', l: 'separate live web domains in active use, no shared navigation between them' },
+  { n: '2', l: 'different phone numbers across the website and active ad campaigns' },
+  { n: '15', l: 'Facebook & Instagram ads running right now, two campaign waves' },
+  { n: '0', l: 'pages on the main site with a search-engine description' },
+  { n: '50/100', l: 'mobile speed score — desktop scores 92/100 on the same page' },
+  { n: '0/2', l: "core local searches where the practice appears in Google's map pack" },
+];
+
+const measuredStats = [
+  { n: '15.0s', l: 'mobile load time for main content — Google\'s "good" bar is under 2.5s' },
+  { n: '4.8★', l: 'actual Google rating, 235 reviews — the reputation is earned, the visibility isn\'t' },
+  { n: '3×', l: 'separate public business identities for one practice' },
+  { n: '5→0', l: 'competitors ChatGPT named for chronic pain care near you — zero mention of this practice' },
+];
+
+const strengths = [
+  { title: 'An active, working lead pipeline.', body: 'Ads, CRM, and landing pages already connected end to end — most practices this size are still trying to get here.' },
+  { title: 'A secure, professional hosting foundation.', body: 'WP Engine behind Cloudflare — legitimate and well-supported. Any rebuild sits on the same solid ground.' },
+  { title: 'A genuinely broad service line.', body: 'Chiropractic, pain management, IV/hormone therapy, wound care, and aesthetics under one roof — several revenue lines per future location, not one.' },
+  { title: 'A financing option removing a real barrier.', body: '"Pay over time" on elective/cosmetic services is a proven conversion lever, already live on every page.' },
+  { title: 'A content cadence that\'s already an asset.', body: 'Weekly blog posts on real, searchable topics — the raw material local SEO runs on, just not yet pointed at ranking.' },
+];
+
+interface Finding {
+  n: number;
+  title: string;
+  sev: 'high' | 'watch';
+  what: string;
+  impact: string;
+}
+
+const findings: Finding[] = [
+  {
+    n: 1,
+    title: "The homepage's primary call to action doesn't lead to booking",
+    sev: 'high',
+    what: 'The hero button — the first thing every visitor sees — is "Attend One of Our Upcoming Events." It leads to a page stating "we\'re coordinating our next event," with no date and no working reservation form.',
+    impact: "Likely the single highest-leverage fix in this entire assessment. It's the highest-traffic click on the site — every ad, every search result, every referral ultimately funnels toward it — and it currently spends that attention on a page with no way to convert at all. Full walkthrough, with screenshots, in the UX & Conversion Design assessment.",
+  },
+  {
+    n: 2,
+    title: 'Ad spend is leaking through inconsistent tracking',
+    sev: 'high',
+    what: "A live ad's phone number (630-491-1333) doesn't match the site's (815-782-8440). Some ads point to absoluteintegratedhealthcenter.info, whose homepage 404s.",
+    impact: "Every dollar driving a call to an untracked number can't be attributed back to the ad that earned it — ad reporting is already slightly wrong, steering future budget toward the wrong campaigns.",
+  },
+  {
+    n: 3,
+    title: 'Nearly invisible to local search',
+    sev: 'high',
+    what: 'No meta descriptions, no social preview tags, no structured data telling Google "this is a medical clinic." No SEO plugin configured.',
+    impact: "Local SEO is the closest thing to a free growth channel a multi-location practice has. Right now it's unclaimed — 100% of digital demand is paid-for, an expensive place to stand before markets #2–#9. Not a reputation problem: the 4.8★/235-review profile is strong. This is technical, and technical problems have an end date.",
+  },
+  {
+    n: 4,
+    title: 'A dormant second website undermines trust',
+    sev: 'high',
+    what: 'aihcenters.com — live, indexable, different platform, unrelated headline, no real navigation. Nothing links to it, but it\'s fully reachable.',
+    impact: 'Anyone who finds it — a patient, a landlord doing due diligence, a future franchisee — sees what looks like an abandoned practice sharing the name. As the brand professionalizes, consistency is the product.',
+  },
+  {
+    n: 5,
+    title: 'Not built to become a multi-location site',
+    sev: 'high',
+    what: 'Address, phone, and hours are hand-coded into one homepage. No location-selector pattern, no repeatable template, no CRM structure for multiple locations.',
+    impact: 'This compounds fastest. The cheapest time to design "each new location just works" is before it opens — retrofitting after several locations are live means untangling multiple sets of ad hoc decisions instead of following one plan.',
+  },
+  {
+    n: 6,
+    title: "Worth a compliance check before it's a bigger footprint",
+    sev: 'watch',
+    what: 'Health-intent lead data is collected through Facebook lead forms and GoHighLevel. Worth confirming data agreements (a BAA) are in place if any of it is treated as protected health information.',
+    impact: "Not a confirmed problem — a fifteen-minute conversation worth having now. Compliance debt is a far bigger liability across a multi-entity structure than at one location today.",
+  },
+  {
+    n: 7,
+    title: 'On mobile, the site fails outright — not just "slow"',
+    sev: 'high',
+    what: 'Mobile Performance scores 50/100 with a 15.0s load for main content; the identical page scores 92/100 on desktop with a 1.4s load. This is a mobile-specific problem, and mobile is where nearly all ad traffic lands.',
+    impact: 'Doubly expensive: directly, roughly half of mobile visitors abandon a page slower than 3 seconds, after the click is already paid for; structurally, mobile page speed is a direct Google ranking factor, so this also suppresses the organic ranking in finding #3.',
+  },
+  {
+    n: 8,
+    title: 'Accessibility gaps carry real legal exposure',
+    sev: 'watch',
+    what: 'Concrete WCAG failures: insufficient color contrast, links with no readable name, undersized touch targets, no main content landmark.',
+    impact: 'Medical websites are a well-documented target for ADA accessibility complaints. Fixes overlap heavily with the mobile-performance work above — worth doing as one project.',
+  },
+  {
+    n: 9,
+    title: 'One practice, three public identities',
+    sev: 'high',
+    what: 'Beyond the domains above: "AIH Aesthetics & Wellness" — a separate Google Business Profile, same building, different suite/phone, its own 4.8★/32 reviews — and "Vita Med Naperville," announced as newly launched in an active ad. Nothing ties these together publicly.',
+    impact: 'Every search engine and AI tool has to guess whether these are one business or several, and typically picks one and undersells the rest — a real contributor to the AI-search gap above. This is finding #5 already happening in miniature.',
+  },
+];
+
+const quickWins = [
+  'Standardize the phone number across every ad and page',
+  'Add search descriptions and social preview tags site-wide',
+  'Add LocalBusiness/medical schema markup',
+  'Decide the fate of aihcenters.com — redirect or take down',
+  'Trim the font stack, add image lazy-loading',
+];
+
+const strategic = [
+  'Rebuild the site on a location-ready template',
+  'Stand up a local-SEO program on the existing blog content',
+  'A brand and messaging consistency pass, every property',
+  'A CRM/GoHighLevel governance model for multiple locations',
+  'A short compliance review before the entity structure locks in',
+];
+
+const roadmap = [
+  { num: 1, when: 'Starting now', title: 'Website foundation rebuild', body: "Fix the funnel, trust, and consistency issues (findings 1–4), on a template ready to become the next location's site with a copy-and-edit, not a redo.", now: true },
+  { num: 2, when: 'Next', title: 'Local search foundation', body: 'Schema markup, search descriptions, and a plan to point the existing weekly blog content at ranking locally.' },
+  { num: 3, when: 'Ahead of the next opening', title: 'Multi-location playbook', body: "A repeatable pattern for each new location's page, tracking numbers, and CRM structure — designed once, reused every time." },
+  { num: 4, when: 'Ongoing', title: 'Growth partnership', body: "Ads, automation, and content working together across locations — building on what's already working, not replacing it." },
+];
+
+---
+
+<BaseLayout
+  title="Absolute Integrated Health — Full Assessment"
+  description="The complete findings behind the Executive Brief — strengths, ranked findings, and a phased roadmap, ahead of Absolute Integrated Health's continued expansion."
+  noindex={true}
+>
+  <AuditNav current="full" base={base} />
+
+  <header class="mb-10">
+    <p class="font-mono text-xs tracking-wider uppercase text-accent-600 mb-3">
+      Digital Presence &amp; Growth Readiness Assessment · 2 of 4
+    </p>
+    <h1 class="mb-3">Absolute Integrated Health</h1>
+    <p class="text-lg text-neutral-600 max-w-2xl">
+      The full findings behind the Executive Brief — what's working, what's costing you leads, and a phased path
+      forward. Full test data and query transcripts live in the
+      <a href={`${base}technical`}>Technical Evidence</a> appendix.
+    </p>
+  </header>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Executive Summary</p>
+    <h2 class="mb-4">The foundation is real. It just wasn't built for what's coming.</h2>
+    <p class="text-neutral-700 max-w-2xl">
+      A genuine service line, active paid advertising, a working CRM, and a weekly content cadence — that's more
+      than most local practices this size have running. But the systems holding it together — the website, the
+      domains, the phone numbers ads point to, search visibility — have accumulated the kind of small
+      inconsistencies that are cheap to live with at one location and expensive to inherit across nine.
+    </p>
+    <p class="text-neutral-700 max-w-2xl">
+      None of it requires starting over. The reason to fix it now — before further expansion — is that
+      right now there's one address, one phone number, one brand to make consistent. At three or seven locations,
+      the same cleanup costs three or seven times as much, and mistakes get copied instead of caught.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">At a Glance</p>
+    <h2 class="mb-5">What we found, in numbers</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {glanceStats.map((s) => (
+        <div class="card p-5">
+          <div class="font-mono text-2xl font-semibold text-accent-600 tabular-nums">{s.n}</div>
+          <div class="mt-2 text-sm text-neutral-600 leading-snug">{s.l}</div>
+        </div>
+      ))}
+    </div>
+    <p class="text-xs text-neutral-400 mt-4">
+      Full methodology, raw scores, and query transcripts: see the
+      <a href={`${base}technical`}>Technical Evidence</a> appendix.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Current State</p>
+    <h2 class="mb-4">The digital footprint, mapped</h2>
+    <p class="text-neutral-700 max-w-2xl mb-2">
+      We traced every property a patient, an ad, or a search result could actually land on — more sprawling than a
+      single-location practice needs, and the root of most findings below.
+    </p>
+
+    <figure class="my-6">
+      <div class="card p-5 overflow-x-auto text-neutral-700">
+        <svg viewBox="0 0 860 480" role="img" class="min-w-[720px]" aria-label="Diagram showing that visitors from Meta ads and organic search are routed through inconsistent paths: some ads lead to native Facebook lead forms, some to a GoHighLevel funnel page, one to a domain with no working homepage, while organic visitors land on the main WordPress site — and a separate dormant domain sits unlinked from all of it.">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+            </marker>
+          </defs>
+          <g font-family="var(--font-mono)" font-size="11.5">
+            <rect x="20" y="30" width="180" height="52" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <text x="110" y="52" text-anchor="middle" font-weight="600" font-size="13">Meta Ads</text>
+            <text x="110" y="68" text-anchor="middle" fill="currentColor" opacity="0.6">15 active, Facebook + IG</text>
+
+            <rect x="20" y="380" width="180" height="52" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <text x="110" y="402" text-anchor="middle" font-weight="600" font-size="13">Organic / Search</text>
+            <text x="110" y="418" text-anchor="middle" fill="currentColor" opacity="0.6">Google, direct, referral</text>
+
+            <line x1="200" y1="45" x2="330" y2="45" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <text x="265" y="38" text-anchor="middle" fill="currentColor" opacity="0.65" font-size="10.5">"Get offer"</text>
+            <rect x="330" y="18" width="200" height="52" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <text x="430" y="40" text-anchor="middle" font-weight="600" font-size="13">Native FB Lead Form</text>
+            <text x="430" y="56" text-anchor="middle" fill="currentColor" opacity="0.6">never leaves Facebook</text>
+
+            <line x1="200" y1="65" x2="330" y2="112" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <text x="255" y="100" text-anchor="middle" fill="currentColor" opacity="0.65" font-size="10.5">"Learn more"</text>
+            <rect x="330" y="86" width="200" height="52" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <text x="430" y="108" text-anchor="middle" font-weight="600" font-size="13">media.aihcenters.com</text>
+            <text x="430" y="124" text-anchor="middle" fill="currentColor" opacity="0.6">GoHighLevel funnel page</text>
+
+            <line x1="200" y1="78" x2="330" y2="190" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <text x="235" y="150" text-anchor="middle" fill="currentColor" opacity="0.65" font-size="10.5">image ad click</text>
+            <rect x="330" y="164" width="200" height="52" fill="none" class="stroke-red-500" stroke-width="1.5"/>
+            <text x="430" y="186" text-anchor="middle" font-weight="600" font-size="13" class="fill-red-600">absoluteintegratedhealthcenter.info</text>
+            <text x="430" y="202" text-anchor="middle" class="fill-red-600" opacity="0.85">homepage returns 404 · different phone #</text>
+
+            <line x1="530" y1="112" x2="640" y2="112" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <line x1="530" y1="44" x2="640" y2="90" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+            <rect x="640" y="55" width="200" height="80" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <text x="740" y="82" text-anchor="middle" font-weight="700" font-size="13.5">GoHighLevel</text>
+            <text x="740" y="99" text-anchor="middle" fill="currentColor" opacity="0.6">CRM · automation · booking</text>
+            <text x="740" y="114" text-anchor="middle" fill="currentColor" opacity="0.6">forms &amp; tracking scripts</text>
+
+            <line x1="200" y1="400" x2="330" y2="400" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <rect x="330" y="374" width="200" height="52" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <text x="430" y="396" text-anchor="middle" font-weight="600" font-size="13">Main Website</text>
+            <text x="430" y="412" text-anchor="middle" fill="currentColor" opacity="0.6">absoluteintegratedhealthcenter.com</text>
+
+            <line x1="530" y1="388" x2="640" y2="150" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+            <text x="600" y="270" text-anchor="middle" fill="currentColor" opacity="0.65" font-size="10.5" transform="rotate(-52 600 270)">contact form embed</text>
+
+            <rect x="330" y="444" width="200" height="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="430" y="463" text-anchor="middle" fill="currentColor" opacity="0.6" font-size="11">+ Zenoti booking, Cherry financing</text>
+            <line x1="430" y1="426" x2="430" y2="444" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+
+            <rect x="640" y="230" width="200" height="60" fill="none" class="stroke-amber-600" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="740" y="253" text-anchor="middle" font-weight="600" font-size="13" class="fill-amber-700">aihcenters.com</text>
+            <text x="740" y="269" text-anchor="middle" class="fill-amber-700" opacity="0.9">live, indexable, no links in —</text>
+            <text x="740" y="282" text-anchor="middle" class="fill-amber-700" opacity="0.9">found only by direct guess</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="mt-2 text-xs text-neutral-400 max-w-2xl">
+        Three ways a paid click can resolve today, plus one abandoned property Google can still find.
+      </figcaption>
+    </figure>
+
+    <p class="text-neutral-700 max-w-2xl">
+      In plain terms: one real front door (the main website) and one real back office (GoHighLevel) — but ads point
+      at three or four different side doors, one boarded up, with a second building down the street, lights on, no
+      sign explaining why.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Measured, Not Theoretical</p>
+    <h2 class="mb-4">What Google and AI tools actually see, tested live</h2>
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      Repeatable tests, not opinions — Google's PageSpeed tool, live Google search, and live queries against
+      Perplexity and ChatGPT. Full transcripts in the <a href={`${base}technical`}>Technical Evidence</a> appendix.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      {measuredStats.map((s) => (
+        <div class="card p-5">
+          <div class="font-mono text-2xl font-semibold text-accent-600 tabular-nums">{s.n}</div>
+          <div class="mt-2 text-sm text-neutral-600 leading-snug">{s.l}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="space-y-4 max-w-2xl text-neutral-700">
+      <p>
+        <strong>Local search:</strong> absent from Google's map pack for "chiropractor plainfield il" and "iv
+        therapy plainfield il" — competitors there carry 7–328 reviews, a wide enough range that ranking isn't
+        about reputation. On the IV therapy search, Google auto-generated a broken snippet from raw page text (no
+        meta description exists to use): <em>"16310 S Lincoln Hwy #124 Plainfield, IL 60586. IVIG IV Therapy.
+        Plainfield, IL 60586 815-782-8440."</em> That's the current first impression in search results.
+      </p>
+      <p>
+        <strong>Why speed and ranking are the same problem:</strong> Google ranks sites by their mobile version
+        specifically, and page speed is a direct ranking factor — a 15-second mobile load doesn't just lose
+        visitors, it suppresses whether the page shows up at all.
+      </p>
+      <p>
+        <strong>AI search (AEO):</strong> nothing blocks AI crawlers — robots.txt has no rules against GPTBot,
+        PerplexityBot, or similar. The gap is downstream: Perplexity finds the practice in its place data (4.8★)
+        but named three competitors instead in its written answer. ChatGPT was inconsistent — it named the
+        practice favorably for an IV therapy question, then named five competitors and skipped it entirely for a
+        chronic-pain chiropractor question, despite chronic pain being the practice's own homepage headline. That
+        inconsistency is the signature of a business with no structured content for AI tools to draw a reliable
+        answer from every time.
+      </p>
+      <p>
+        <strong>One encouraging data point:</strong> for a specific question — insurance coverage for IV therapy —
+        the practice ranks #2 organically, ahead of several competitors. Specific, differentiated content already
+        works. The gap is generic category searches and AI-narrated answers.
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">What's Working</p>
+    <h2 class="mb-2">Real assets already in place</h2>
+    <p class="text-neutral-600 max-w-2xl mb-6">
+      Not a rebuild-from-zero situation — the demand-generation engine is genuinely running, which is the hard part
+      most practices never get past.
+    </p>
+    <ul class="space-y-3">
+      {strengths.map((s) => (
+        <li class="flex gap-3 text-sm">
+          <span class="text-green-600 font-semibold shrink-0">+</span>
+          <span><strong class="text-neutral-900">{s.title}</strong> <span class="text-neutral-600">{s.body}</span></span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Findings</p>
+    <h2 class="mb-2">Where it's costing you — ranked by business impact</h2>
+    <p class="text-neutral-600 max-w-2xl mb-6">
+      What each issue costs the business, not how technical it is. A few are quiet, ongoing leaks; others are
+      structural questions worth settling before further expansion. Finding #1 is a funnel and design issue rather than a
+      technical one — it's walked through step by step, with screenshots, in the
+      <a href={`${base}ux`}>UX &amp; Conversion Design</a> assessment.
+    </p>
+    <div class="space-y-3">
+      {findings.map((f) => (
+        <div class:list={['card p-5 border-l-4', f.sev === 'high' ? 'border-l-red-400' : 'border-l-amber-400']}>
+          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1.5">
+            <h3 class="text-base font-semibold text-neutral-900 mb-0">{f.n}. {f.title}</h3>
+            <span
+              class:list={[
+                'font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded whitespace-nowrap',
+                f.sev === 'high' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700',
+              ]}
+            >
+              {f.sev === 'high' ? 'High impact' : 'Flag to verify'}
+            </span>
+          </div>
+          <p class="text-sm text-neutral-600 mb-3">{f.what}</p>
+          <p class="text-sm bg-neutral-100 rounded-md px-4 py-3 mb-0">
+            <span class="block font-mono text-[9px] tracking-wider uppercase text-accent-600 mb-1">Business impact</span>
+            {f.impact}
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Prioritization</p>
+    <h2 class="mb-5">What's fast versus what's foundational</h2>
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div class="card p-6">
+        <h4 class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-1">Quick wins</h4>
+        <p class="text-xs text-neutral-400 mb-4">Days, not weeks — low cost, immediate payoff</p>
+        <ul class="space-y-2.5">
+          {quickWins.map((item) => (
+            <li class="text-sm text-neutral-700 flex gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0 mt-1.5"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="card p-6">
+        <h4 class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-1">Strategic investments</h4>
+        <p class="text-xs text-neutral-400 mb-4">Bigger scope, compounding payoff</p>
+        <ul class="space-y-2.5">
+          {strategic.map((item) => (
+            <li class="text-sm text-neutral-700 flex gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0 mt-1.5"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Recommended Path</p>
+    <h2 class="mb-2">A phased way to get there</h2>
+    <p class="text-neutral-600 max-w-2xl mb-6">
+      None of this needs to happen at once. The sequence starts with what's fastest to prove out and most directly
+      supports opening two more locations this year.
+    </p>
+    <div class="divide-y divide-neutral-200 border-t border-neutral-200">
+      {roadmap.map((p) => (
+        <div class:list={['grid grid-cols-[3rem_1fr] gap-4 py-5', p.now && 'bg-primary-50 -mx-5 px-5 rounded-lg']}>
+          <div class:list={['font-mono text-xl font-semibold', p.now ? 'text-accent-600' : 'text-neutral-300']}>
+            {p.num}
+          </div>
+          <div>
+            <div class="font-mono text-[10px] tracking-wider uppercase text-neutral-400 mb-1">{p.when}</div>
+            <h4 class="text-base font-semibold text-neutral-900 mb-1">{p.title}</h4>
+            <p class="text-sm text-neutral-600 mb-0">{p.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-4">
+    <div class="rounded-lg border border-primary-900 bg-primary-900 text-white p-8 sm:p-10">
+      <p class="font-mono text-xs tracking-wider uppercase text-primary-200 mb-3">Next Step</p>
+      <h2 class="text-white mb-3">A working demo, not just a diagnosis</h2>
+      <p class="text-primary-100 mb-6 max-w-xl">
+        A set of samples showing what a location-ready foundation could actually look like — built to fix the
+        highest-impact items first, so opening each new location is a matter of copying a proven template, not starting
+        over.
+      </p>
+      <a href={`${base}technical`} class="btn bg-accent-500 text-white hover:bg-accent-600">
+        See the Technical Evidence →
+      </a>
+    </div>
+  </section>
+
+  <p class="font-mono text-xs text-neutral-400 mt-10">
+    Findings based on a public review of absoluteintegratedhealthcenter.com, aihcenters.com,
+    media.aihcenters.com, absoluteintegratedhealthcenter.info, the Meta Ad Library, Google PageSpeed Insights, live
+    Google search, Perplexity, and ChatGPT — conducted August 13, 2026. No private systems, accounts, or data were
+    accessed.
+  </p>
+</BaseLayout>

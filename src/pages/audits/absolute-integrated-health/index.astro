@@ -1,0 +1,129 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AuditNav from '@components/audit/AuditNav.astro';
+
+const base = '/audits/absolute-integrated-health/';
+
+const stats = [
+  { n: '0', l: "working booking options behind the homepage's main button — it leads to a dead event page instead" },
+  { n: '50/100', l: 'mobile speed score — desktop scores 92/100 on the identical page' },
+  { n: '0 of 2', l: "core local searches where you appear in Google's map pack" },
+  { n: '3', l: 'separate public identities for one practice, none linked together' },
+  { n: '5→0', l: 'competitors ChatGPT names for chronic pain care near you — you’re not one of them' },
+  { n: '4.8★', l: 'your actual Google rating, 235 reviews — the trust is earned, the visibility isn’t' },
+  { n: '2', l: 'different phone numbers appearing across your own live ad campaigns' },
+];
+
+const findings = [
+  {
+    title: "Your homepage's main button doesn't lead to booking",
+    body: 'The hero CTA every visitor sees first — "Attend One of Our Upcoming Events" — leads to a page with no date and no working reservation form. Likely the single highest-leverage fix in this whole assessment.',
+  },
+  {
+    title: 'Ad spend is leaking through mismatched tracking',
+    body: "A live ad campaign shows a different phone number than your website. Every call to it is a click you paid for and can't measure.",
+  },
+  {
+    title: "You're nearly invisible in local search and AI answers",
+    body: 'No search descriptions, no structured data, absent from the map pack for your core services — while your actual reputation (4.8★, 235 reviews) is strong enough to compete.',
+  },
+  {
+    title: 'A dormant second website is live under your name',
+    body: 'Publicly indexable, unrelated content, no navigation. Anyone doing due diligence on the brand — a landlord, a partner — can stumble onto it.',
+  },
+  {
+    title: "The site isn't built to become a multi-location site",
+    body: "Address, phone, and hours are hardcoded into one homepage. There's no template to copy when the next location opens.",
+  },
+  {
+    title: 'On mobile, the site fails outright — not just "slow"',
+    body: '15 seconds for content to load, versus a 2.5-second bar Google considers acceptable. This is where nearly all your ad traffic lands, and it directly suppresses ranking too.',
+  },
+];
+---
+
+<BaseLayout
+  title="Absolute Integrated Health — Executive Brief"
+  description="A two-minute summary of what's working, what's costing Absolute Integrated Health leads, and the recommended next step ahead of their multi-location expansion."
+  noindex={true}
+>
+  <AuditNav current="brief" base={base} />
+
+  <header class="mb-10 animate-in">
+    <p class="font-mono text-xs tracking-wider uppercase text-accent-600 mb-3">
+      Executive Brief · 1 of 4
+    </p>
+    <h1 class="mb-3">Absolute Integrated Health</h1>
+    <p class="text-lg text-neutral-600 max-w-2xl">
+      Two minutes on what's working, what's costing you leads, and what to do about it — before further expansion.
+    </p>
+  </header>
+
+  <section class="mb-12 animate-in delay-1">
+    <p class="text-xl leading-relaxed text-neutral-800 max-w-2xl">
+      You've already built the hard part — a real service line, active ads, a working CRM. What's underneath hasn't
+      caught up: <strong class="text-accent-700">a "book now" button that doesn't book anything, inconsistent phone
+      numbers, invisible local search rankings, and three separate public identities for one practice.</strong> None
+      of it requires starting over. All of it gets more expensive to fix with every location you add.
+    </p>
+  </section>
+
+  <section class="mb-12 animate-in delay-2">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">The Numbers</p>
+    <h2 class="mb-5">Tested live, not estimated</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {stats.map((s) => (
+        <div class="card p-5">
+          <div class="font-mono text-2xl font-semibold text-accent-600 tabular-nums">{s.n}</div>
+          <div class="mt-2 text-sm text-neutral-600 leading-snug">{s.l}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12 animate-in delay-3">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">What's Costing You</p>
+    <h2 class="mb-5">Six things worth fixing, ranked by impact</h2>
+    <div class="divide-y divide-neutral-200 border-t border-b border-neutral-200">
+      {findings.map((f, i) => (
+        <div class="grid grid-cols-[2rem_1fr] gap-3 py-4">
+          <div class="font-mono text-sm text-neutral-400 pt-0.5">{String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <h3 class="text-base font-semibold text-neutral-900 mb-1">{f.title}</h3>
+            <p class="text-sm text-neutral-600 mb-0">{f.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-6 rounded-lg border-l-4 border-green-500 bg-green-50 px-5 py-4 text-sm text-green-800">
+      Everything above is fixable, most of it quickly. Nothing here means starting over — and the strong review base
+      proves the reputation problem doesn't exist. This is a visibility and consistency problem, which is the cheap
+      kind to solve.
+    </div>
+    <p class="text-sm text-neutral-500 mt-4">
+      The first item is walked through step by step, with screenshots of exactly where visitors get stuck, in the
+      <a href={`${base}ux`}>UX &amp; Conversion Design</a> assessment.
+    </p>
+  </section>
+
+  <section class="mb-4 animate-in delay-4">
+    <div class="rounded-lg border border-primary-900 bg-primary-900 text-white p-8 sm:p-10">
+      <p class="font-mono text-xs tracking-wider uppercase text-primary-200 mb-3">Recommended Next Step</p>
+      <h2 class="text-white mb-3">Start with the website — built location-ready from day one</h2>
+      <p class="text-primary-100 mb-6 max-w-xl">
+        Fix the trust and consistency issues first, on a foundation that's ready to become the next location's site with a
+        copy-and-edit, not a redo. The full assessment walks through the complete findings, the evidence behind each
+        one, and a phased path from here through the next several locations.
+      </p>
+      <a href={`${base}full`} class="btn bg-accent-500 text-white hover:bg-accent-600">
+        Read the Full Assessment →
+      </a>
+    </div>
+  </section>
+
+  <p class="font-mono text-xs text-neutral-400 mt-10">
+    Absolute Integrated Health — Digital Presence &amp; Growth Readiness Assessment · Prepared August 13, 2026
+  </p>
+</BaseLayout>

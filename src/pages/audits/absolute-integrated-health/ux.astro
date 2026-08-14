@@ -1,0 +1,282 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AuditNav from '@components/audit/AuditNav.astro';
+
+const base = '/audits/absolute-integrated-health/';
+
+const ctaMap = [
+  { label: '"Schedule Now"', location: 'Header, every page', destination: 'GoHighLevel lead form (/contact-us/)', note: '' },
+  { label: '"Make an Appointment"', location: 'Teal CTA band, every page', destination: 'Same GoHighLevel lead form', note: 'Identical to Schedule Now' },
+  { label: '"Attend One of Our Upcoming Events"', location: 'Homepage hero — the first CTA a visitor sees', destination: '/workshop-reservation/ — "we\'re coordinating our next event," no date, no form', note: 'Dead end' },
+  { label: '"Book Your Spot Now!"', location: 'Homepage, mid-page', destination: 'Same dead-end workshop page', note: 'Dead end' },
+  { label: '"Offering Medical Weight Loss"', location: 'Footer, every page', destination: 'External Zenoti booking portal — different domain, different design system entirely', note: 'Breaks brand continuity' },
+];
+---
+
+<BaseLayout
+  title="Absolute Integrated Health — UX & Conversion Design"
+  description="How the site's structure, navigation, and visual design help or hurt the patient's path from first visit to booked appointment."
+  noindex={true}
+>
+  <AuditNav current="ux" base={base} />
+
+  <header class="mb-10">
+    <p class="font-mono text-xs tracking-wider uppercase text-accent-600 mb-3">
+      UX &amp; Conversion Design Assessment · 3 of 4
+    </p>
+    <h1 class="mb-3">The Patient Journey, Walked Step by Step</h1>
+    <p class="text-lg text-neutral-600 max-w-2xl">
+      Everything else in this package is measurable — rankings, load times, ad spend. This one is different: it's
+      about whether the site actually walks a nervous, in-pain visitor from "I found this on Google" to "I trust
+      these people enough to book," and where that walk currently breaks down.
+    </p>
+  </header>
+
+  <section class="mb-14">
+    <p class="text-neutral-700 max-w-2xl">
+      A healthcare site's entire job is to move a stranger through four stages: <strong>arrive and orient</strong>,
+      <strong>build enough trust to keep reading</strong>, <strong>find the specific answer to "can you fix my
+      problem"</strong>, and <strong>convert with minimum friction</strong>. Every design and content decision below
+      is judged against that job — not against whether it looks nice in isolation. The site has real strengths in
+      here. It also has a few genuinely surprising breaks, walked through in order below.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Stage 1 — Arrival</p>
+    <h2 class="mb-4">The homepage's main button isn't about booking</h2>
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      A visitor's very first decision point — the hero button, the one thing above the fold asking for a click — is
+      <strong>"Attend One of Our Upcoming Events."</strong> Not "Book a Consultation." Not "Get Relief Today." An
+      event invitation, for someone who in many cases is dealing with real, current pain and looking for the
+      fastest path to help.
+    </p>
+
+    <figure class="mb-6">
+      <img
+        src="/audits/absolute-integrated-health/homepage-cta-cluster.jpg"
+        alt="Homepage hero section showing the 'Attend One of Our Upcoming Events' button as the primary call to action, with no visible appointment-booking CTA above the fold"
+        class="rounded-lg border border-neutral-200 w-full"
+      />
+      <figcaption class="mt-2 text-xs text-neutral-400">
+        The homepage hero — first thing every visitor sees. The only button is an event invitation.
+      </figcaption>
+    </figure>
+
+    <p class="text-neutral-700 max-w-2xl mb-4">Follow that button, and it gets worse:</p>
+
+    <figure class="mb-6">
+      <img
+        src="/audits/absolute-integrated-health/workshop-dead-end.jpg"
+        alt="The Workshop Reservation page, which states 'We're coordinating our next event, so reserve your spot' with no date, calendar, or working reservation form"
+        class="rounded-lg border border-neutral-200 w-full"
+      />
+      <figcaption class="mt-2 text-xs text-neutral-400">
+        Where the hero button leads: no date, no calendar, no working reservation mechanism — just this sentence.
+      </figcaption>
+    </figure>
+
+    <div class="rounded-r-md border-l-4 border-red-400 bg-red-50 px-5 py-4 text-sm text-red-900 max-w-2xl">
+      <strong>Why this matters for revenue:</strong> the hero CTA is the single highest-traffic click on the entire
+      site — it's what every ad, every search result, every referral ultimately funnels toward. Right now it spends
+      that attention on a page with no working conversion mechanism at all. This is likely the single highest-leverage
+      fix in this whole assessment: swapping the hero CTA to a direct booking action could lift conversion
+      immediately, without touching anything else.
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Stage 2 — Building Trust</p>
+    <h2 class="mb-4">Real credibility exists. The site barely uses it.</h2>
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      This is the most fixable category here, because the raw material is genuinely strong — it's just not on the
+      page.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-6 mb-6">
+      <figure>
+        <img
+          src="/audits/absolute-integrated-health/testimonials-thin.jpg"
+          alt="Homepage testimonials carousel showing a single plain-text quote attributed to 'Arnulfo Q.' with no photo, star rating, or service tag, and only three total testimonials in rotation"
+          class="rounded-lg border border-neutral-200 w-full"
+        />
+        <figcaption class="mt-2 text-xs text-neutral-400">
+          The entire on-site social proof: 3 rotating quotes, first name and last initial only, no ratings, no photos.
+        </figcaption>
+      </figure>
+      <figure>
+        <img
+          src="/audits/absolute-integrated-health/staff-wall.jpg"
+          alt="Meet Our Staff page showing a grid of headshots with names and occasional credentials like RN, but no bios, specialties, or descriptions of what each provider does"
+          class="rounded-lg border border-neutral-200 w-full"
+        />
+        <figcaption class="mt-2 text-xs text-neutral-400">
+          15 real providers — RNs, FNPs, APRNs, DCs, MDs — reduced to a photo and a name.
+        </figcaption>
+      </figure>
+    </div>
+
+    <p class="text-neutral-700 max-w-2xl mb-3">
+      The Google Business Profile behind this site carries <strong>4.8 stars across 235 real reviews</strong> — that
+      figure is in the Technical Evidence appendix, and it's a genuinely strong number, better than several
+      competitors currently outranking the practice. None of that trust is visible here. Three unverified-looking
+      quotes are standing in for hundreds of real ones.
+    </p>
+    <p class="text-neutral-700 max-w-2xl mb-0">
+      Same story with the team: a chiropractor-and-RN-and-nurse-practitioner roster this deep is a real
+      differentiator for an "integrated health" positioning — but with no bios or specialties shown, a visitor can't
+      tell who actually treats their specific problem, or why any one provider is qualified to. In healthcare more
+      than almost any other category, "who exactly is going to be treating me" is one of the biggest levers on
+      whether someone books.
+    </p>
+
+    <div class="rounded-r-md border-l-4 border-primary-400 bg-primary-50 px-5 py-4 text-sm text-primary-900 max-w-2xl mt-6">
+      <strong>Why this matters for revenue:</strong> trust is the entire currency of a medical decision. This is
+      the cheapest category to fix in the whole assessment — the reviews already exist, the credentials already
+      exist — it's a display problem, not a substance problem.
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Stage 3 — Finding the Answer</p>
+    <h2 class="mb-4">Service pages are inconsistent — including one real content bug</h2>
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      Individual service pages are where a visitor decides "yes, this place treats my specific problem." Most of
+      them do this reasonably well — a relevant headline, a real stock photo, and (a genuinely good pattern) an FAQ
+      accordion answering common questions. But the Chronic Pain page has a real, live bug:
+    </p>
+
+    <figure class="mb-6">
+      <img
+        src="/audits/absolute-integrated-health/wound-care-bug-zoom.png"
+        alt="Close-up of the Chronic Pain service page's 'Why Choose Absolute Integrated Health' section, which reads 'Revamp Your Wound Care with Our Expert Services' and 'Chronic Wound Care Solutions That Go Beyond the Surface' — wound care copy mistakenly left on the chronic pain page"
+        class="rounded-lg border border-neutral-200 w-full"
+      />
+      <figcaption class="mt-2 text-xs text-neutral-400">
+        This is the Chronic Pain page. This entire section is Wound Care copy — a leftover copy-paste error, live
+        right now.
+      </figcaption>
+    </figure>
+
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      There's also a smaller, stranger issue at the top of every service page — a bare, unstyled search bar sitting
+      above the actual content, matching nothing about the site's design:
+    </p>
+
+    <figure class="mb-6">
+      <img
+        src="/audits/absolute-integrated-health/chronic-pain-top.jpg"
+        alt="Top of the Chronic Pain service page showing an unstyled 'Type to start searching...' search bar with a black Search button, positioned awkwardly above the page's actual headline and content"
+        class="rounded-lg border border-neutral-200 w-full"
+      />
+      <figcaption class="mt-2 text-xs text-neutral-400">
+        A generic, unstyled search widget sits above the headline on service pages — unclear purpose, doesn't match
+        the design system.
+      </figcaption>
+    </figure>
+
+    <div class="rounded-r-md border-l-4 border-red-400 bg-red-50 px-5 py-4 text-sm text-red-900 max-w-2xl">
+      <strong>Why this matters for revenue:</strong> a visitor reading about chronic pain who suddenly hits wound
+      care language reasonably wonders what else on the site isn't being maintained — right at the page whose job
+      is convincing them this practice pays close attention to detail. It's a five-minute fix, but it's costing
+      trust every day it's live.
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Stage 4 — Converting</p>
+    <h2 class="mb-4">Three CTAs, three different experiences, no single path</h2>
+    <p class="text-neutral-700 max-w-2xl mb-6">
+      Every button on the site that sounds like "become a patient" was traced to its actual destination. There
+      isn't one funnel — there are three, and they don't agree with each other:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm border-collapse min-w-[640px]">
+        <thead>
+          <tr class="border-b-2 border-neutral-300">
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Button</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Where</th>
+            <th class="text-left py-2 px-3 font-mono text-[10px] tracking-wider uppercase text-neutral-500">Actually leads to</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ctaMap.map((c) => (
+            <tr class="border-b border-neutral-200 align-top">
+              <td class="py-2.5 px-3 font-medium text-neutral-900">{c.label}</td>
+              <td class="py-2.5 px-3 text-neutral-600">{c.location}</td>
+              <td class="py-2.5 px-3 text-neutral-600">
+                {c.destination}
+                {c.note && <span class="block text-red-600 font-medium mt-0.5">{c.note}</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-neutral-700 max-w-2xl mb-4">
+      The Zenoti handoff is worth seeing directly — it's the one moment a visitor leaves the branded site entirely:
+    </p>
+
+    <figure class="mb-6">
+      <img
+        src="/audits/absolute-integrated-health/zenoti-handoff.jpg"
+        alt="The external Zenoti booking portal, showing a generic third-party interface with different typography and a stock photo 'Refer a Friend' banner, visually unrelated to the main website despite carrying the practice's logo"
+        class="rounded-lg border border-neutral-200 w-full"
+      />
+      <figcaption class="mt-2 text-xs text-neutral-400">
+        Click "Offering Medical Weight Loss" and this is where you land — a generic booking SaaS interface, no
+        relation to the site's design. It also only covers 3 consultation types, none of the clinical services.
+      </figcaption>
+    </figure>
+
+    <div class="rounded-r-md border-l-4 border-red-400 bg-red-50 px-5 py-4 text-sm text-red-900 max-w-2xl">
+      <strong>Why this matters for revenue:</strong> the moment someone decides to convert is the most fragile
+      moment in the entire funnel — any friction, confusion, or "wait, is this still the same company?" hesitation
+      loses bookings that were already won. Right now there's no single, confident answer to "how do I actually book
+      an appointment here" — it depends entirely on which button a visitor happens to click.
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">Structure &amp; Navigation</p>
+    <h2 class="mb-4">The IA treats "integrated health" and "aesthetics" as unequal</h2>
+    <p class="text-neutral-700 max-w-2xl mb-4">
+      The Services page filter buttons are "Integrative Health," "Pain Relief," and "Physical Therapy" — with no
+      category for the medspa/aesthetics line (Botox, fillers, Sculptra, microneedling, vein care) despite those
+      services being fully offered. The footer navigation repeats the same narrower list. A visitor primarily
+      interested in aesthetics has to already know those services exist and dig for them; the site's own structure
+      doesn't present the practice as the comprehensive, one-roof operation it actually is.
+    </p>
+    <p class="text-neutral-700 max-w-2xl mb-0">
+      This pairs with a broader pattern: financing (Cherry), booking (Zenoti), lead capture (GoHighLevel), and event
+      registration (a native WordPress page) are four separate systems bolted on independently, each with its own
+      visual language, none presented as part of one coherent "here's how care works here" story.
+    </p>
+  </section>
+
+  <section class="mb-4">
+    <div class="rounded-lg border border-primary-900 bg-primary-900 text-white p-8 sm:p-10">
+      <p class="font-mono text-xs tracking-wider uppercase text-primary-200 mb-3">What This Means for the Rebuild</p>
+      <h2 class="text-white mb-3">None of this is a redesign for its own sake</h2>
+      <p class="text-primary-100 mb-6 max-w-xl">
+        Every finding above maps to something concrete in the Phase 1 website foundation already scoped in the Full
+        Assessment: one clear hero action, real reviews and provider bios surfaced instead of buried, one
+        consistent booking path, and a service structure that presents the full breadth of care on offer. The goal
+        isn't a prettier site — it's a site whose structure does the work of turning a visitor's trust into a
+        booked appointment.
+      </p>
+      <a href={`${base}full`} class="btn bg-accent-500 text-white hover:bg-accent-600">
+        Back to the Full Assessment →
+      </a>
+    </div>
+  </section>
+
+  <p class="font-mono text-xs text-neutral-400 mt-10">
+    Findings based on a direct walkthrough of absoluteintegratedhealthcenter.com and its linked booking systems,
+    conducted August 14, 2026. Screenshots are unedited captures of the live site.
+  </p>
+</BaseLayout>
