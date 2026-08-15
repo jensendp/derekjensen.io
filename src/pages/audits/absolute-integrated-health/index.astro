@@ -8,38 +8,46 @@ const base = '/audits/absolute-integrated-health/';
 
 const stats = [
   { n: '0', l: "working booking options behind the homepage's main button — it leads to a dead event page instead" },
-  { n: '50/100', l: 'mobile speed score — desktop scores 92/100 on the identical page' },
+  { n: '3', l: 'different "book now" buttons on your site, none of them agreeing on how a patient actually books' },
+  { n: '235', l: 'five-star reviews you\'ve earned — almost none of them visible anywhere on the site itself' },
   { n: '0 of 2', l: "core local searches where you appear in Google's map pack" },
-  { n: '3', l: 'separate public identities for one practice, none linked together' },
+  { n: '4', l: 'public identities for one growing business, none connected to each other' },
   { n: '5→0', l: 'competitors ChatGPT names for chronic pain care near you — you’re not one of them' },
-  { n: '4.8★', l: 'your actual Google rating, 235 reviews — the trust is earned, the visibility isn’t' },
-  { n: '2', l: 'different phone numbers appearing across your own live ad campaigns' },
+  { n: '50/100', l: 'mobile speed score — desktop scores 92/100 on the identical page' },
 ];
 
 const findings = [
   {
-    title: "Your homepage's main button doesn't lead to booking",
-    body: 'The hero CTA every visitor sees first — "Attend One of Our Upcoming Events" — leads to a page with no date and no working reservation form. Likely the single highest-leverage fix in this whole assessment.',
+    title: 'Three different "book now" buttons — only one of them actually works',
+    body: 'The homepage hero, a mid-page banner, and the footer each promise a way to book, and each leads somewhere different: a dead event page, a working lead form, and a completely different-looking third-party booking site that only covers three of your services. There\'s no single answer to "how does a new patient actually book here" — which means some real share of ready-to-book visitors quietly give up mid-click.',
   },
   {
-    title: 'Ad spend is leaking through mismatched tracking',
-    body: "A live ad campaign shows a different phone number than your website. Every call to it is a click you paid for and can't measure.",
+    title: 'A live page is selling the wrong service to patients in pain',
+    body: 'The Chronic Pain page — for someone actively researching relief right now — has Wound Care copy mistakenly pasted into its main trust section. A five-minute fix, but it\'s live today, at exactly the page whose job is convincing a hesitant visitor this practice pays close attention.',
+  },
+  {
+    title: '235 five-star reviews and 15 credentialed providers are nearly invisible on your own site',
+    body: 'That reputation took years and real money to earn, and it\'s barely used: homepage testimonials rotate through 3 unrated quotes with no photos, and your provider roster — RNs, FNPs, DCs — shows a name and a headshot, nothing about who treats what. Trust is the entire currency of a medical decision, and the assets to build it are sitting unused.',
   },
   {
     title: "You're nearly invisible in local search and AI answers",
-    body: 'No search descriptions, no structured data, absent from the map pack for your core services — while your actual reputation (4.8★, 235 reviews) is strong enough to compete.',
+    body: "Zero presence in Google's map pack for your core searches, and AI tools like ChatGPT and Perplexity name competitors with lower ratings ahead of you — or skip you entirely. Not a reputation problem, 4.8 stars is strong; a technical visibility problem, and every day it goes unfixed is demand routed to someone else.",
   },
   {
-    title: 'A dormant second website is live under your name',
-    body: 'Publicly indexable, unrelated content, no navigation. Anyone doing due diligence on the brand — a landlord, a partner — can stumble onto it.',
+    title: 'A full revenue line — aesthetics and medspa — is hidden from the people looking for it',
+    body: "Botox, fillers, Sculptra, microneedling, vein care: real services you fully offer, with no category anywhere in your site's navigation. A visitor specifically interested in aesthetics has to already know these services exist to find them — some real number of them never do, and never book.",
+  },
+  {
+    title: 'Four public identities for one growing business, none connected to each other',
+    body: `A dormant second website still live under your name, a separate Google listing for "AIH Aesthetics & Wellness," a live ad campaign right now for a brand-new "Vita Med Naperville" location with no visible connection back to you, and two different phone numbers appearing across your own ads. Anyone doing due diligence — a patient, a landlord, a future partner — sees a business that looks fragmented, not one that's growing on purpose.`,
   },
   {
     title: "The site isn't built to become a multi-location site",
-    body: "Address, phone, and hours are hardcoded into one homepage. There's no template to copy when the next location opens.",
+    body: "Address, phone, and hours are hardcoded into one homepage, with no template to copy when the next location opens. Right now there's one set of inconsistencies to clean up. At three or seven locations, the same problems get copied and multiplied instead of solved once.",
   },
   {
-    title: 'On mobile, the site fails outright — not just "slow"',
-    body: '15 seconds for content to load, versus a 2.5-second bar Google considers acceptable. This is where nearly all your ad traffic lands, and it directly suppresses ranking too.',
+    title: 'On mobile — where nearly all your ad traffic lands — the site fails outright',
+    body: '15 seconds to load real content, against a 2.5-second bar Google considers acceptable. Roughly half of visitors abandon a page this slow before they ever see your offer, and mobile speed is itself a ranking factor — quietly suppressing the local search problem above it too.',
   },
 ];
 ---
@@ -63,9 +71,11 @@ const findings = [
 
   <section class="mb-12 animate-in delay-1">
     <p class="text-xl leading-relaxed text-neutral-800 max-w-2xl">
-      You've already built the hard part — a real service line, active ads, a working CRM. What's underneath hasn't
-      caught up: <strong class="text-accent-700">a "book now" button that doesn't book anything, inconsistent phone
-      numbers, invisible local search rankings, and three separate public identities for one practice.</strong> None
+      You've already built the hard part — a real service line, active ads, a working CRM, and a 4.8-star
+      reputation built over hundreds of real reviews. What's underneath hasn't caught up, and it's costing you
+      patients you've already paid to reach: <strong class="text-accent-700">booking paths that don't agree with
+      each other, an entire revenue line hidden from the people looking for it, trust you've earned but aren't
+      showing, and four public identities for one growing business that don't connect to each other.</strong> None
       of it requires starting over. All of it gets more expensive to fix with every location you add.
     </p>
   </section>
@@ -85,7 +95,7 @@ const findings = [
 
   <section class="mb-12 animate-in delay-3">
     <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">What's Costing You</p>
-    <h2 class="mb-5">Six things worth fixing, ranked by impact</h2>
+    <h2 class="mb-5">Eight things worth fixing, ranked by impact on new patients and revenue</h2>
     <div class="divide-y divide-neutral-200 border-t border-b border-neutral-200">
       {findings.map((f, i) => (
         <div class="grid grid-cols-[2rem_1fr] gap-3 py-4">
@@ -98,9 +108,10 @@ const findings = [
       ))}
     </div>
     <div class="mt-6 rounded-lg border-l-4 border-green-500 bg-green-50 px-5 py-4 text-sm text-green-800">
-      Everything above is fixable, most of it quickly. Nothing here means starting over — and the strong review base
-      proves the reputation problem doesn't exist. This is a visibility and consistency problem, which is the cheap
-      kind to solve.
+      Every item above is fixable, most of it quickly, and none of it means starting over. The 235 reviews and 4.8
+      rating prove the reputation problem doesn't exist — this is a visibility, consistency, and process problem,
+      which is the cheap kind to solve, and the kind that compounds fastest if it waits until after the next
+      location opens.
     </div>
     <p class="text-sm text-neutral-500 mt-4">
       The first item is walked through step by step, with screenshots of exactly where visitors get stuck, in the
