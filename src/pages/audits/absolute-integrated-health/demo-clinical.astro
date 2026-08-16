@@ -140,12 +140,14 @@ const testimonials = [
         <div class="nav-item-mega">
           <a href="#services" class="nav-mega-trigger">Services</a>
           <div class="mega-panel">
-            {serviceCategories.map((cat) => (
-              <div class="mega-col">
-                <p class="mega-cat">{cat.name}</p>
-                {cat.items.map((item) => <a href="#services">{item}</a>)}
-              </div>
-            ))}
+            <div class="mega-panel-inner">
+              {serviceCategories.map((cat) => (
+                <div class="mega-col">
+                  <p class="mega-cat">{cat.name}</p>
+                  {cat.items.map((item) => <a href="#services">{item}</a>)}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <a href="#team">Our Team</a>
@@ -424,10 +426,24 @@ const testimonials = [
       .nav-mega-trigger { display: inline-flex; align-items: center; }
       .mega-panel {
         position: absolute;
-        top: calc(100% + 0.9rem);
+        top: 100%;
         left: 50%;
-        transform: translateX(-50%) translateY(-8px);
+        transform: translateX(-50%);
         width: min(760px, 88vw);
+        padding-top: 0.9rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.18s ease;
+        z-index: 50;
+      }
+      .nav-item-mega:hover .mega-panel,
+      .nav-item-mega:focus-within .mega-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .mega-panel-inner {
         background: var(--card);
         border: 1px solid var(--line);
         border-radius: 0.6rem;
@@ -436,18 +452,6 @@ const testimonials = [
         display: grid;
         grid-template-columns: repeat(4, minmax(140px, 1fr));
         gap: 1.5rem;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: opacity 0.18s ease, transform 0.18s ease;
-        z-index: 50;
-      }
-      .nav-item-mega:hover .mega-panel,
-      .nav-item-mega:focus-within .mega-panel {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateX(-50%) translateY(0);
       }
       .mega-col { display: flex; flex-direction: column; gap: 0.55rem; }
       .mega-cat {
