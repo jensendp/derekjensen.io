@@ -41,6 +41,8 @@ const intakeOptions = [
   'Not sure yet — I’d like to talk it through',
 ];
 
+const timePreferences = ['Weekday mornings', 'Weekday afternoons', 'Weekday evenings', 'Weekends'];
+
 const serviceCategories = [
   {
     name: 'Pain & Mobility',
@@ -284,21 +286,45 @@ const testimonials = [
           <p class="consult-note">No appointment changes here — for rescheduling, just give us a call at 815-782-8440.</p>
         </div>
         <form class="consult-form" onsubmit="event.preventDefault();">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your full name" />
-          </label>
-          <label>
-            Phone
-            <input type="tel" name="phone" placeholder="(815) 000-0000" />
-          </label>
-          <label>
-            What brings you in today?
-            <select name="reason">
-              {intakeOptions.map((opt) => <option>{opt}</option>)}
-            </select>
-          </label>
-          <button type="submit" class="btn btn-primary btn-block">Send My Request</button>
+          <div class="form-progress" aria-hidden="true">
+            <span class="form-progress-step is-active" data-step-indicator="1">1</span>
+            <span class="form-progress-line"></span>
+            <span class="form-progress-step" data-step-indicator="2">2</span>
+          </div>
+
+          <div class="form-step" data-step="1">
+            <label>
+              What brings you in today?
+              <select name="reason">
+                {intakeOptions.map((opt) => <option>{opt}</option>)}
+              </select>
+            </label>
+            <label>
+              Best time to reach you
+              <div class="chip-group" role="group" aria-label="Preferred time to be contacted">
+                {timePreferences.map((t) => (
+                  <button type="button" class="chip" data-time>{t}</button>
+                ))}
+              </div>
+            </label>
+            <button type="button" class="btn btn-primary btn-block" data-step-next disabled>Continue</button>
+          </div>
+
+          <div class="form-step" data-step="2" hidden>
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your full name" />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="(815) 000-0000" />
+            </label>
+            <div class="form-step-actions">
+              <button type="button" class="btn btn-outline-light" data-step-back>Back</button>
+              <button type="submit" class="btn btn-primary">Send My Request</button>
+            </div>
+          </div>
+
           <p class="form-note">Concept preview — this form isn't connected yet.</p>
         </form>
       </section>
@@ -367,6 +393,37 @@ const testimonials = [
         } else {
           hoursBadge.innerHTML = `<span class="dot dot-closed"></span> Closed now &middot; call to schedule`;
         }
+      }
+
+      // Two-step consultation form: chip selection + step navigation.
+      const consultForm = document.querySelector('.consult-form');
+      if (consultForm) {
+        const formSteps = consultForm.querySelectorAll('.form-step');
+        const progressSteps = consultForm.querySelectorAll('.form-progress-step');
+        const nextBtn = consultForm.querySelector('[data-step-next]');
+        const backBtn = consultForm.querySelector('[data-step-back]');
+
+        function goToFormStep(target) {
+          formSteps.forEach((step) => {
+            step.hidden = step.dataset.step !== String(target);
+          });
+          progressSteps.forEach((indicator) => {
+            const n = Number(indicator.dataset.stepIndicator);
+            indicator.classList.toggle('is-active', n === target);
+            indicator.classList.toggle('is-complete', n < target);
+          });
+        }
+
+        consultForm.querySelectorAll('.chip').forEach((chip) => {
+          chip.addEventListener('click', () => {
+            consultForm.querySelectorAll('.chip').forEach((c) => c.classList.remove('is-selected'));
+            chip.classList.add('is-selected');
+            if (nextBtn) nextBtn.disabled = false;
+          });
+        });
+
+        nextBtn?.addEventListener('click', () => goToFormStep(2));
+        backBtn?.addEventListener('click', () => goToFormStep(1));
       }
 
       // Gentle fade/slide-in on load and scroll. Classes are added here, not in the markup,
@@ -872,6 +929,62 @@ const testimonials = [
       }
       .consult-form select option { color: var(--ink); }
       .form-note { font-size: 0.78rem; opacity: 0.7; margin: 0; text-align: center; }
+
+      .form-progress {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+      }
+      .form-progress-step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        font-weight: 600;
+        flex-shrink: 0;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+      .form-progress-step.is-active {
+        background: var(--terracotta);
+        border-color: var(--terracotta);
+        color: #fff;
+      }
+      .form-progress-step.is-complete {
+        background: transparent;
+        border-color: var(--terracotta);
+        color: var(--terracotta);
+      }
+      .form-progress-line { flex: 1; height: 1.5px; background: rgba(255, 255, 255, 0.25); }
+
+      .form-step { display: flex; flex-direction: column; gap: 1rem; }
+      .form-step[hidden] { display: none; }
+
+      .chip-group { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+      .chip {
+        font-family: inherit;
+        font-size: 0.82rem;
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fdfaf5;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .chip.is-selected { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+
+      .btn-outline-light { border: 1.5px solid rgba(255, 255, 255, 0.35); color: #fdfaf5; background: transparent; }
+      .btn-outline-light:hover { border-color: rgba(255, 255, 255, 0.6); }
+      .form-step-actions { display: flex; gap: 0.9rem; }
+      .form-step-actions .btn { flex: 1; }
+
+      .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
       .site-footer {
         max-width: 1280px;
