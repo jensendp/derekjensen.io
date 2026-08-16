@@ -41,6 +41,25 @@ const intakeOptions = [
   'Not sure yet — I’d like to talk it through',
 ];
 
+const serviceCategories = [
+  {
+    name: 'Pain & Mobility',
+    items: ['Chiropractic Care', 'Chronic Pain', 'Knee Pain', 'Neuropathy Treatment', 'Physical Therapy', 'Spinal Decompression'],
+  },
+  {
+    name: 'IV & Wellness Therapy',
+    items: ['IV Therapy', 'IVIG', 'Hormone Therapy', 'Allergen Testing'],
+  },
+  {
+    name: 'Vein & Wound Care',
+    items: ['Vein Care', 'Wound Care'],
+  },
+  {
+    name: 'Aesthetics & Medspa',
+    items: ['Injectables', 'Facials & Peels', 'Lasers & Microneedling', 'Skin Care'],
+  },
+];
+
 const processSteps = [
   {
     title: 'Consultation',
@@ -118,7 +137,17 @@ const testimonials = [
         <span class="wordmark-mark">Absolute Integrated Health</span>
       </a>
       <nav class="main-nav" aria-label="Primary">
-        <a href="#services">Services</a>
+        <div class="nav-item-mega">
+          <a href="#services" class="nav-mega-trigger">Services</a>
+          <div class="mega-panel">
+            {serviceCategories.map((cat) => (
+              <div class="mega-col">
+                <p class="mega-cat">{cat.name}</p>
+                {cat.items.map((item) => <a href="#services">{item}</a>)}
+              </div>
+            ))}
+          </div>
+        </div>
         <a href="#team">Our Team</a>
         <a href="#request-consultation" class="nav-cta">Schedule Now</a>
       </nav>
@@ -338,7 +367,8 @@ const testimonials = [
       .concept-ribbon a:hover { opacity: 1; }
 
       .site-header {
-        position: relative;
+        position: sticky;
+        top: 0;
         z-index: 100;
         display: flex;
         align-items: center;
@@ -346,6 +376,16 @@ const testimonials = [
         padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
         max-width: 1280px;
         margin: 0 auto;
+        transition: background 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
+      }
+      .site-header.is-scrolled {
+        background: rgba(244, 248, 251, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 12px 30px -20px rgba(18, 59, 94, 0.4);
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+        border-radius: 0 0 0.6rem 0.6rem;
       }
 
       .nav-toggle {
@@ -379,6 +419,48 @@ const testimonials = [
       .main-nav { display: flex; align-items: center; gap: 1.75rem; font-size: 0.92rem; }
       .main-nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
       .main-nav a:hover { color: var(--blue); }
+
+      .nav-item-mega { position: relative; }
+      .nav-mega-trigger { display: inline-flex; align-items: center; }
+      .mega-panel {
+        position: absolute;
+        top: calc(100% + 0.9rem);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        width: min(760px, 88vw);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 0.6rem;
+        box-shadow: 0 28px 50px -24px rgba(18, 59, 94, 0.4);
+        padding: 1.75rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(140px, 1fr));
+        gap: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+        z-index: 50;
+      }
+      .nav-item-mega:hover .mega-panel,
+      .nav-item-mega:focus-within .mega-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .mega-col { display: flex; flex-direction: column; gap: 0.55rem; }
+      .mega-cat {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--blue-deep);
+        margin: 0 0 0.3rem;
+        border-bottom: 2px solid var(--green);
+        padding-bottom: 0.4rem;
+      }
+      .mega-col a { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.4; font-weight: 400; }
+      .mega-col a:hover { color: var(--blue); }
       .nav-cta {
         background: var(--green);
         color: #fff !important;
@@ -737,6 +819,7 @@ const testimonials = [
         .faq-list { grid-template-columns: 1fr; }
         .hero-art { order: -1; max-width: 24rem; margin: 0 auto 1.5rem; }
         .ribbon-links { justify-content: center; width: 100%; }
+        .mega-panel { display: none; }
 
         .nav-toggle { display: flex; }
         .main-nav {
@@ -833,6 +916,25 @@ const testimonials = [
 
         document.querySelectorAll('.reveal, .reveal-group').forEach((el) => io.observe(el));
       }
+
+      // Sticky header: add a background/shadow once scrolled past the top.
+      const siteHeader = document.querySelector('.site-header');
+      let scrollTicking = false;
+      function updateHeaderScrollState() {
+        siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+        scrollTicking = false;
+      }
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!scrollTicking) {
+            requestAnimationFrame(updateHeaderScrollState);
+            scrollTicking = true;
+          }
+        },
+        { passive: true }
+      );
+      updateHeaderScrollState();
     </script>
   </body>
 </html>
