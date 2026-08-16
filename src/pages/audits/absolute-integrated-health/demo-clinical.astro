@@ -114,6 +114,7 @@ const testimonials = [
 
     <header class="site-header">
       <a href="#top" class="wordmark">
+        <img src="/audits/absolute-integrated-health/logo-icon.png" alt="" class="wordmark-icon" />
         <span class="wordmark-mark">Absolute Integrated Health</span>
       </a>
       <nav class="main-nav" aria-label="Primary">
@@ -371,7 +372,8 @@ const testimonials = [
       .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
       .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-      .wordmark { text-decoration: none; }
+      .wordmark { text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+      .wordmark-icon { height: 2.1rem; width: auto; display: block; }
       .wordmark-mark { font-size: 1.15rem; }
 
       .main-nav { display: flex; align-items: center; gap: 1.75rem; font-size: 0.92rem; }
