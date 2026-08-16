@@ -840,6 +840,18 @@ const testimonials = [
 
       .form-step { display: flex; flex-direction: column; gap: 1rem; }
       .form-step[hidden] { display: none; }
+      @media (prefers-reduced-motion: no-preference) {
+        .form-step {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .form-step.is-leaving,
+        .form-step.is-entering {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
 
       .chip-group { display: flex; flex-wrap: wrap; gap: 0.55rem; }
       .chip {
@@ -987,15 +999,35 @@ const testimonials = [
         const nextBtn = consultForm.querySelector('[data-step-next]');
         const backBtn = consultForm.querySelector('[data-step-back]');
 
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         function goToFormStep(target) {
-          formSteps.forEach((step) => {
-            step.hidden = step.dataset.step !== String(target);
-          });
+          const current = Array.from(formSteps).find((s) => !s.hidden);
+          const next = Array.from(formSteps).find((s) => s.dataset.step === String(target));
+
           progressSteps.forEach((indicator) => {
             const n = Number(indicator.dataset.stepIndicator);
             indicator.classList.toggle('is-active', n === target);
             indicator.classList.toggle('is-complete', n < target);
           });
+
+          if (!current || !next || current === next) return;
+
+          if (prefersReducedMotion) {
+            current.hidden = true;
+            next.hidden = false;
+            return;
+          }
+
+          current.classList.add('is-leaving');
+          window.setTimeout(() => {
+            current.hidden = true;
+            current.classList.remove('is-leaving');
+            next.hidden = false;
+            next.classList.add('is-entering');
+            void next.offsetWidth; // force reflow so the entering state registers before transitioning out of it
+            next.classList.remove('is-entering');
+          }, 200);
         }
 
         consultForm.querySelectorAll('.chip').forEach((chip) => {
