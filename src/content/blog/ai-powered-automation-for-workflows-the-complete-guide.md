@@ -229,8 +229,7 @@ This guide is part of a complete series on AI-Powered Automation for Workflows. 
 - [Cost Optimization in Automation](https://derekjensen.io/blog/cost-optimization-in-ai-automation-a-practical-guide)
 - [Real Business Automation Examples](https://derekjensen.io/blog/real-business-ai-automation-examples-guide)
 - [No-Code vs AI Automation](https://derekjensen.io/blog/no-code-vs-ai-automation-which-one-do-you-actually-need)
-
-- Automation Maintenance Guide
+- [Automation Maintenance Guide](https://derekjensen.io/blog/ai-automation-maintenance-guide-for-non-technical-builders)
 
 
 ## Conclusion
