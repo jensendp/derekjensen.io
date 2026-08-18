@@ -1,0 +1,607 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AuditNav from '@components/audit/AuditNav.astro';
+
+const base = '/audits/absolute-integrated-health/';
+
+const inputFields = [
+  { id: 'spend', label: 'Ad spend', prefix: '$', value: 500, hint: null },
+  { id: 'leads', label: 'Leads (clicks)', value: 50, hint: null },
+  { id: 'autoBook', label: 'Booked by AI agent', value: 3, hint: null },
+  { id: 'manualBook', label: 'Booked by staff, next day', value: 0, hint: null },
+  { id: 'showRate', label: 'Show-up rate', suffix: '%', value: 75, hint: 'Medspa benchmark: 60–80%+' },
+  { id: 'closeRate', label: 'Consult→patient rate', suffix: '%', value: 70, hint: 'Benchmark: 50–60% medspa, 60–80% non-surgical' },
+  { id: 'patientValue', label: 'Value per patient', prefix: '$', value: 150, hint: 'No general benchmark — use your real number' },
+];
+
+const diagRows = [
+  { key: 'cpl', label: 'Cost per lead', bench: 'Benchmark: $18–$42' },
+  { key: 'auto', label: 'Auto-booking rate', bench: 'Benchmark: 15–25%' },
+  { key: 'total', label: 'Lead → booked rate', bench: 'Benchmark: 30–40%' },
+  { key: 'show', label: 'Show-up rate', bench: 'Benchmark: 60–80%' },
+  { key: 'close', label: 'Close rate', bench: 'Benchmark: 50–60%' },
+];
+---
+
+<BaseLayout
+  title="Absolute Integrated Health — Funnel Ledger"
+  description="An interactive tool to see where ad-spend dollars turn into booked patients, and which levers move the needle."
+  noindex={true}
+>
+  <AuditNav current="funnel" base={base} />
+
+  <header class="mb-10 animate-in">
+    <p class="font-mono text-xs tracking-wider uppercase text-accent-600 mb-3">
+      Funnel Ledger · Interactive
+    </p>
+    <h1 class="mb-3">Funnel Ledger</h1>
+    <p class="text-lg text-neutral-600 max-w-2xl">
+      Every dollar of ad spend passes through the same set of steps before it becomes a patient. This is
+      where those steps live — plug in real numbers as you learn them, and drag the lever near the bottom
+      to see what closing the biggest gap is actually worth.
+    </p>
+    <p class="text-sm text-neutral-500 mt-3 max-w-2xl">
+      Built from a recent Facebook ad batch: $500 spend, 50 leads, 3 AI-agent bookings. Swap any number
+      below for the real thing whenever you have it — everything on the page recalculates instantly.
+    </p>
+  </header>
+
+  <!-- 01 — Inputs -->
+  <section class="mb-12 animate-in delay-1">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">01 — Inputs</p>
+    <h2 class="mb-2">Your numbers</h2>
+    <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+      The first three are exactly what you described. The rest are reasonable placeholders until we know
+      the real figures — change any of them.
+    </p>
+    <div class="card p-5 sm:p-6">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-6">
+        {inputFields.map((f) => (
+          <div>
+            <label for={f.id} class="block text-sm font-medium text-neutral-700 mb-1.5">{f.label}</label>
+            <div class="flex items-center rounded-md border border-neutral-300 bg-neutral-50 px-3 transition-colors duration-150 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-100">
+              {f.prefix && <span class="font-mono text-sm text-neutral-400">{f.prefix}</span>}
+              <input
+                id={f.id}
+                type="number"
+                min="0"
+                step="1"
+                value={f.value}
+                class="w-full min-w-0 bg-transparent border-0 py-2.5 px-1.5 font-mono font-semibold tabular-nums text-neutral-900 focus:outline-none focus:ring-0"
+              />
+              {f.suffix && <span class="font-mono text-sm text-neutral-400">{f.suffix}</span>}
+            </div>
+            {f.hint && <p class="text-xs text-neutral-400 mt-1.5">{f.hint}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — The Funnel -->
+  <section class="mb-12 animate-in delay-2">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">02 — The Funnel</p>
+    <h2 class="mb-2">Where the batch goes</h2>
+    <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+      Each bar is sized against your <span id="funnel-lead-count" class="font-mono font-semibold text-neutral-800">50</span>
+      leads. The hatched step isn't tracked yet — GoHighLevel can tell you whether a lead opened the
+      scheduling link at all, which would show exactly whether the phone call is the leak or the whole
+      sequence is.
+    </p>
+    <div class="card p-5 sm:p-6">
+      <div class="flex flex-col gap-1">
+        <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
+          <div class="text-sm font-medium text-neutral-600">Leads</div>
+          <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden">
+            <div class="absolute inset-y-0 left-0 rounded-md bg-primary-500" style="width:100%"></div>
+          </div>
+          <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id="fv-leads">50</div>
+        </div>
+        <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
+          <div class="text-sm font-medium text-neutral-600">Opened link</div>
+          <div class="h-7 rounded-md border border-dashed border-neutral-300 funnel-hatch"></div>
+          <div class="font-mono text-xs text-neutral-400 text-right">not tracked</div>
+        </div>
+        <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
+          <div class="text-sm font-medium text-neutral-600">Booked</div>
+          <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden">
+            <div class="absolute inset-y-0 left-0 rounded-md flex overflow-hidden funnel-bar" id="fbar-booked" style="width:6%">
+              <div class="h-full bg-primary-500" id="fseg-auto" style="width:100%"></div>
+              <div class="h-full bg-accent-400 ml-0.5" id="fseg-manual" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id="fv-booked">3 <span class="text-neutral-400 font-normal">6%</span></div>
+        </div>
+        <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
+          <div class="text-sm font-medium text-neutral-600">Showed up</div>
+          <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden">
+            <div class="absolute inset-y-0 left-0 rounded-md bg-primary-500 funnel-bar" id="fbar-showed" style="width:4.5%"></div>
+          </div>
+          <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id="fv-showed">2.3 <span class="text-neutral-400 font-normal">5%</span></div>
+        </div>
+        <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
+          <div class="text-sm font-medium text-neutral-600">Became patient</div>
+          <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden">
+            <div class="absolute inset-y-0 left-0 rounded-md bg-accent-500 funnel-bar" id="fbar-patient" style="width:3.2%"></div>
+          </div>
+          <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id="fv-patient">1.6 <span class="text-neutral-400 font-normal">3%</span></div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-neutral-500 mt-4 pt-4 border-t border-neutral-200">
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-primary-500"></span>AI agent booking</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-accent-400"></span>Staff rescue booking</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-accent-500"></span>Converted patient</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Unit Economics -->
+  <section class="mb-12 animate-in delay-3">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">03 — Unit Economics</p>
+    <h2 class="mb-5">What each dollar is buying</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card p-5">
+        <div class="text-sm text-neutral-600 mb-1">Cost per lead</div>
+        <div class="font-mono text-2xl font-semibold text-neutral-900 tabular-nums" id="s-costPerLead">$10.00</div>
+        <div class="mt-1 text-xs text-neutral-400">Medspa Meta Ads benchmark: $18–$42</div>
+      </div>
+      <div class="card p-5 border-l-4 border-l-accent-400">
+        <div class="text-sm text-neutral-600 mb-1">Cost per booking (AI agent only)</div>
+        <div class="font-mono text-2xl font-semibold text-accent-600 tabular-nums" id="s-costPerBookingAuto">$166.67</div>
+        <div class="mt-1 text-xs text-neutral-400">Before staff rescue the next day</div>
+      </div>
+      <div class="card p-5">
+        <div class="text-sm text-neutral-600 mb-1">Cost per booking (blended)</div>
+        <div class="font-mono text-2xl font-semibold text-neutral-900 tabular-nums" id="s-costPerBookingTotal">$166.67</div>
+        <div class="mt-1 text-xs text-neutral-400">Including staff-recovered bookings</div>
+      </div>
+      <div class="card p-5">
+        <div class="text-sm text-neutral-600 mb-1">Cost per patient</div>
+        <div class="font-mono text-2xl font-semibold text-neutral-900 tabular-nums" id="s-costPerPatient">$312.50</div>
+        <div class="mt-1 text-xs text-neutral-400">After show-up and close rate</div>
+      </div>
+      <div class="card p-5">
+        <div class="text-sm text-neutral-600 mb-1">Revenue on this batch</div>
+        <div class="font-mono text-2xl font-semibold text-neutral-900 tabular-nums" id="s-revenue">$236</div>
+        <div class="mt-1 text-xs text-neutral-400">Patients × value per patient</div>
+      </div>
+      <div class="card p-5">
+        <div class="text-sm text-neutral-600 mb-1">Batch ROI</div>
+        <div class="font-mono text-2xl font-semibold text-neutral-900 tabular-nums" id="s-roi">−53%</div>
+        <div class="mt-1 text-xs text-neutral-400">(Revenue − spend) ÷ spend</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Context -->
+  <section class="mb-12 animate-in delay-4">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">04 — Context</p>
+    <h2 class="mb-2">How this compares to the industry</h2>
+    <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+      Two separate benchmarks, so the gap is measured against the right thing rather than a single vendor
+      claim.
+    </p>
+
+    <div class="card p-5 sm:p-6 mb-4">
+      <h3 class="text-base font-semibold text-neutral-900 mb-1.5">Lead → booked consult, medspa-wide</h3>
+      <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+        Marketing agencies serving medspas consistently report 30–40% of leads booking a consult, with top
+        performers over 60% — and 40–65% when follow-up happens inside 10 minutes. Those are agency
+        benchmark compilations, not peer-reviewed research, but several independent agencies land in the
+        same range.
+      </p>
+      <div class="relative h-10 rounded-md bg-neutral-100 mt-9">
+        <div class="absolute inset-y-0 border-l border-r border-dashed border-primary-400 bg-primary-50 rounded-md" style="left:50%; right:33.3%;"></div>
+        <div class="benchmark-marker" id="bench-marker-total" style="left:10%;">
+          <span class="benchmark-marker-label" id="bench-marker-total-label">Today: 6%</span>
+        </div>
+      </div>
+      <div class="flex justify-between font-mono text-[11px] text-neutral-400 mt-1.5">
+        <span>0%</span><span>15%</span><span>30%</span><span>45%</span><span>60%+</span>
+      </div>
+      <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-neutral-500 mt-3">
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-red-500"></span>Your total booking rate (AI agent + staff rescue)</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm border border-dashed border-primary-400 bg-primary-50"></span>Typical medspa range, all channels combined</span>
+      </div>
+    </div>
+
+    <div class="card p-5 sm:p-6">
+      <h3 class="text-base font-semibold text-neutral-900 mb-1.5">Why the first call underperforms</h3>
+      <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+        TNS's own survey puts the number at <strong class="text-neutral-800">75% of people who say they'll
+        never answer an unknown number</strong>; Hiya's 2024 State of the Call report found
+        <strong class="text-neutral-800">46% of calls from unidentified numbers go unanswered even when
+        the caller is a legitimate business</strong>. Against that, inbound/warm-lead phone conversion (not
+        cold outreach — leads who already clicked and were sent a link) typically runs 15–25%.
+      </p>
+      <div class="relative h-10 rounded-md bg-neutral-100 mt-9">
+        <div class="absolute inset-y-0 border-l border-r border-dashed border-primary-400 bg-primary-50 rounded-md" style="left:37.5%; right:37.5%;"></div>
+        <div class="benchmark-marker" id="bench-marker" style="left:6%;">
+          <span class="benchmark-marker-label">Today: 6%</span>
+        </div>
+      </div>
+      <div class="flex justify-between font-mono text-[11px] text-neutral-400 mt-1.5">
+        <span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%+</span>
+      </div>
+      <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-neutral-500 mt-3">
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-red-500"></span>Your current AI-agent booking rate</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm border border-dashed border-primary-400 bg-primary-50"></span>Typical warm-inbound phone range</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — Diagnosis -->
+  <section class="mb-12 animate-in delay-4">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">05 — Diagnosis</p>
+    <h2 class="mb-2">Where to focus</h2>
+    <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+      Each stage below, checked against the benchmark bands from the Context section. This is a plain
+      comparison against fixed ranges, not a model — five numbers checked against five ranges, nothing
+      inferred. It recalculates as you edit the inputs above.
+    </p>
+    <div class="card p-5 sm:p-6">
+      <div class="rounded-r-md border-l-4 border-red-400 bg-red-50 px-5 py-4 text-sm text-red-900 mb-6">
+        <p class="font-mono text-[11px] tracking-wider uppercase text-red-600 mb-1" id="diag-callout-label">Biggest confirmed gap</p>
+        <p class="text-base font-semibold text-red-900 mb-1" id="diag-callout-value">—</p>
+        <p class="text-red-800 mb-0" id="diag-callout-note">—</p>
+      </div>
+      <div class="divide-y divide-neutral-200">
+        {diagRows.map((r) => (
+          <div class="grid grid-cols-[1fr_84px_150px_130px] items-center gap-3 sm:gap-4 py-3">
+            <div class="text-sm font-medium text-neutral-700">{r.label}</div>
+            <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id={`diag-${r.key}-value`}>—</div>
+            <div class="font-mono text-xs text-neutral-400 text-right whitespace-nowrap">{r.bench}</div>
+            <div class="text-right">
+              <span class="inline-block font-mono text-[10px] px-2 py-0.5 rounded whitespace-nowrap" id={`diag-${r.key}-status`}>—</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — Levers -->
+  <section class="mb-4 animate-in delay-4">
+    <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">06 — Levers</p>
+    <h2 class="mb-2">Drag the lever</h2>
+    <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+      This models one change: more of the leads answering (or responding to) that first automated
+      outreach, instead of falling to the next-day manual rescue. Spend and lead count stay fixed at
+      what's above.
+    </p>
+    <div class="card p-5 sm:p-6">
+      <div class="mb-6">
+        <div class="flex justify-between items-baseline mb-2">
+          <label for="leverRate" class="text-sm font-medium text-neutral-700">Auto-booking rate</label>
+          <span class="font-mono text-xl font-semibold text-primary-700" id="leverVal">6%</span>
+        </div>
+        <input type="range" id="leverRate" min="0" max="40" step="1" value="6" class="lever-slider" />
+      </div>
+      <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4 bg-neutral-50 rounded-md px-4 sm:px-5 py-4 mb-6">
+        <div>
+          <div class="text-xs text-neutral-400 mb-1">Today</div>
+          <div class="font-mono text-lg font-semibold tabular-nums text-neutral-900" id="lv-before-bookings">3 bookings</div>
+          <div class="font-mono text-xs text-neutral-500" id="lv-before-cost">$166.67 / booking</div>
+        </div>
+        <div class="text-neutral-300 text-lg">→</div>
+        <div>
+          <div class="text-xs text-neutral-400 mb-1">At this rate</div>
+          <div class="font-mono text-lg font-semibold tabular-nums text-green-700" id="lv-after-bookings">3 bookings</div>
+          <div class="font-mono text-xs text-neutral-500" id="lv-after-cost">$166.67 / booking</div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 mb-6">
+        <div class="grid grid-cols-[auto_1fr] gap-3 items-start">
+          <span class="font-mono text-[10px] tracking-wide uppercase text-green-700 bg-neutral-50 border border-neutral-200 px-1.5 py-0.5 rounded whitespace-nowrap mt-0.5">cheap</span>
+          <p class="text-sm text-neutral-600 mb-0"><strong class="text-neutral-900">Branded caller ID</strong> — register the outbound number so it displays "Absolute Integrated Health" instead of a bare digit string. Directly attacks the 75% never-answer-unknown-numbers rate.</p>
+        </div>
+        <div class="grid grid-cols-[auto_1fr] gap-3 items-start">
+          <span class="font-mono text-[10px] tracking-wide uppercase text-green-700 bg-neutral-50 border border-neutral-200 px-1.5 py-0.5 rounded whitespace-nowrap mt-0.5">cheap</span>
+          <p class="text-sm text-neutral-600 mb-0"><strong class="text-neutral-900">Text before (or instead of) calling</strong> — a text lands even when a call wouldn't be answered, and can carry the scheduling link itself.</p>
+        </div>
+      </div>
+      <button type="button" id="resetLever" class="btn btn-secondary">Reset lever to today's rate</button>
+    </div>
+  </section>
+
+  <p class="font-mono text-xs text-neutral-400 mt-10">
+    Sources: TNS unknown-number survey; Hiya 2024 State of the Call report; medspa &amp; chiropractic
+    marketing benchmark compilations (Practice Growth Co., The Leading Practice, GHL Chiropractor
+    Snapshot). Agency benchmark figures are industry compilations, not peer-reviewed research —
+    directionally reliable, not exact. Show-up and close-rate defaults are set to the low end of published
+    medspa benchmarks, not guesses.
+  </p>
+</BaseLayout>
+
+<style>
+  .funnel-hatch {
+    background-image: repeating-linear-gradient(
+      135deg,
+      var(--color-neutral-200) 0,
+      var(--color-neutral-200) 1.5px,
+      transparent 1.5px,
+      transparent 8px
+    );
+  }
+
+  .funnel-bar {
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .benchmark-marker {
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 56px;
+    background: var(--color-red-500, #ef4444);
+    border-radius: 2px;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .benchmark-marker-label {
+    position: absolute;
+    top: -26px;
+    left: 0;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-red-600, #dc2626);
+    white-space: nowrap;
+  }
+
+  .lever-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 4px;
+    background: linear-gradient(
+      to right,
+      var(--color-primary-500) 0%,
+      var(--color-primary-500) var(--fill, 15%),
+      var(--color-neutral-200) var(--fill, 15%),
+      var(--color-neutral-200) 100%
+    );
+    outline: none;
+  }
+
+  .lever-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--color-primary-500);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+  }
+
+  .lever-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--color-primary-500);
+    cursor: pointer;
+  }
+
+  .lever-slider:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px var(--color-primary-100);
+  }
+
+  @media (max-width: 480px) {
+    .grid-cols-\[1fr_84px_150px_130px\] {
+      grid-template-columns: 1fr auto;
+      row-gap: 4px;
+    }
+  }
+</style>
+
+<script>
+  function $(id: string) {
+    return document.getElementById(id) as HTMLInputElement;
+  }
+  function num(id: string) {
+    const v = parseFloat($(id).value);
+    return isNaN(v) ? 0 : v;
+  }
+  function money(n: number) {
+    if (!isFinite(n)) return '—';
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function pct(n: number, digits?: number) {
+    if (!isFinite(n)) return '—';
+    return n.toFixed(digits === undefined ? 0 : digits) + '%';
+  }
+
+  const inputIds = ['spend', 'leads', 'autoBook', 'manualBook', 'showRate', 'closeRate', 'patientValue'];
+
+  function setText(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  function setHtml(id: string, html: string) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  }
+  function setWidth(id: string, pctVal: number) {
+    const el = document.getElementById(id) as HTMLElement | null;
+    if (el) el.style.width = Math.max(0, Math.min(pctVal, 100)) + '%';
+  }
+  function setLeft(id: string, pctVal: number) {
+    const el = document.getElementById(id) as HTMLElement | null;
+    if (el) el.style.left = Math.max(0, Math.min(pctVal, 100)) + '%';
+  }
+
+  function calc() {
+    const spend = num('spend');
+    const leads = Math.max(num('leads'), 0.0001);
+    const autoBook = num('autoBook');
+    const manualBook = num('manualBook');
+    const showRate = num('showRate') / 100;
+    const closeRate = num('closeRate') / 100;
+    const patientValue = num('patientValue');
+
+    const totalBooked = autoBook + manualBook;
+    const costPerLead = spend / leads;
+    const costPerBookingAuto = autoBook > 0 ? spend / autoBook : NaN;
+    const costPerBookingTotal = totalBooked > 0 ? spend / totalBooked : NaN;
+    const showedUp = totalBooked * showRate;
+    const patients = showedUp * closeRate;
+    const costPerPatient = patients > 0 ? spend / patients : NaN;
+    const revenue = patients * patientValue;
+    const roi = spend > 0 ? ((revenue - spend) / spend) * 100 : NaN;
+
+    const bookedPct = (totalBooked / leads) * 100;
+    const autoPct = leads > 0 ? (autoBook / leads) * 100 : 0;
+    const manualShareOfBooked = totalBooked > 0 ? (manualBook / totalBooked) * 100 : 0;
+    const showedPct = (showedUp / leads) * 100;
+    const patientPct = (patients / leads) * 100;
+
+    setText('fv-leads', leads.toLocaleString('en-US'));
+    setText('funnel-lead-count', leads.toLocaleString('en-US', { maximumFractionDigits: 0 }));
+
+    setWidth('fbar-booked', bookedPct);
+    setWidth('fseg-auto', totalBooked > 0 ? 100 - manualShareOfBooked : 100);
+    setWidth('fseg-manual', manualShareOfBooked);
+    setHtml(
+      'fv-booked',
+      totalBooked.toLocaleString('en-US', { maximumFractionDigits: 1 }) +
+        ' <span class="text-neutral-400 font-normal">' +
+        pct(bookedPct) +
+        '</span>'
+    );
+
+    setWidth('fbar-showed', showedPct);
+    setHtml(
+      'fv-showed',
+      showedUp.toLocaleString('en-US', { maximumFractionDigits: 1 }) +
+        ' <span class="text-neutral-400 font-normal">' +
+        pct(showedPct) +
+        '</span>'
+    );
+
+    setWidth('fbar-patient', patientPct);
+    setHtml(
+      'fv-patient',
+      patients.toLocaleString('en-US', { maximumFractionDigits: 1 }) +
+        ' <span class="text-neutral-400 font-normal">' +
+        pct(patientPct) +
+        '</span>'
+    );
+
+    setLeft('bench-marker-total', Math.min(bookedPct / 60 * 100, 100));
+    setText('bench-marker-total-label', 'Today: ' + pct(bookedPct, 1));
+
+    setText('s-costPerLead', money(costPerLead));
+    setText('s-costPerBookingAuto', money(costPerBookingAuto));
+    setText('s-costPerBookingTotal', money(costPerBookingTotal));
+    setText('s-costPerPatient', money(costPerPatient));
+    setText('s-revenue', '$' + Math.round(revenue).toLocaleString('en-US'));
+    setText('s-roi', (roi >= 0 ? '+' : '−') + Math.abs(roi).toFixed(0) + '%');
+
+    updateLever(spend, leads, autoBook, costPerBookingAuto);
+    updateDiagnosis(costPerLead, autoPct, bookedPct, showRate * 100, closeRate * 100);
+  }
+
+  function updateLever(spend: number, leads: number, autoBookToday: number, costTodayAuto: number) {
+    const rate = num('leverRate');
+    setText('leverVal', rate + '%');
+    $('leverRate').style.setProperty('--fill', (rate / 40) * 100 + '%');
+
+    setText('lv-before-bookings', autoBookToday.toLocaleString('en-US', { maximumFractionDigits: 1 }) + ' bookings');
+    setText('lv-before-cost', (isFinite(costTodayAuto) ? money(costTodayAuto) : '—') + ' / booking');
+
+    const afterBookings = leads * (rate / 100);
+    const afterCost = afterBookings > 0 ? spend / afterBookings : NaN;
+    setText('lv-after-bookings', afterBookings.toLocaleString('en-US', { maximumFractionDigits: 1 }) + ' bookings');
+    setText('lv-after-cost', (isFinite(afterCost) ? money(afterCost) : '—') + ' / booking');
+
+    setLeft('bench-marker', Math.min((rate / 40) * 100, 100));
+    const label = document.querySelector('#bench-marker .benchmark-marker-label');
+    if (label) label.textContent = (rate === 6 ? 'Today: ' : '') + rate + '%';
+  }
+
+  // Plain threshold comparison against the benchmark bands shown in the Context
+  // section above — no inference, just value-vs-range per stage.
+  function classify(value: number, low: number, high: number, direction: 'higher' | 'lower') {
+    if (direction === 'lower') {
+      if (value > high) return { good: false, shortfall: ((value - high) / high) * 100 };
+      return { good: true, shortfall: 0 };
+    }
+    if (value < low) return { good: false, shortfall: ((low - value) / low) * 100 };
+    return { good: true, shortfall: 0 };
+  }
+
+  function setStatusPill(id: string, good: boolean) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = good ? 'On track' : 'Needs attention';
+    el.className =
+      'inline-block font-mono text-[10px] px-2 py-0.5 rounded whitespace-nowrap ' +
+      (good ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100');
+  }
+
+  function updateDiagnosis(costPerLead: number, autoPct: number, bookedPct: number, showPct: number, closePct: number) {
+    const stages: {
+      key: string;
+      label: string;
+      value: number;
+      low: number;
+      high: number;
+      direction: 'higher' | 'lower';
+      confirmed: boolean;
+      display: string;
+    }[] = [
+      { key: 'cpl', label: 'Cost per lead', value: costPerLead, low: 18, high: 42, direction: 'lower', confirmed: true, display: money(costPerLead) },
+      { key: 'auto', label: 'Auto-booking rate', value: autoPct, low: 15, high: 25, direction: 'higher', confirmed: true, display: pct(autoPct, 1) },
+      { key: 'total', label: 'Lead → booked rate', value: bookedPct, low: 30, high: 40, direction: 'higher', confirmed: true, display: pct(bookedPct, 1) },
+      { key: 'show', label: 'Show-up rate', value: showPct, low: 60, high: 80, direction: 'higher', confirmed: false, display: pct(showPct, 0) },
+      { key: 'close', label: 'Close rate', value: closePct, low: 50, high: 60, direction: 'higher', confirmed: false, display: pct(closePct, 0) },
+    ];
+
+    let worstConfirmed: { s: (typeof stages)[number]; result: { good: boolean; shortfall: number } } | null = null;
+    let worstAny: { s: (typeof stages)[number]; result: { good: boolean; shortfall: number } } | null = null;
+
+    stages.forEach((s) => {
+      const result = classify(s.value, s.low, s.high, s.direction);
+      setText('diag-' + s.key + '-value', s.display);
+      setStatusPill('diag-' + s.key + '-status', result.good);
+      if (!result.good) {
+        if (!worstAny || result.shortfall > worstAny.result.shortfall) worstAny = { s, result };
+        if (s.confirmed && (!worstConfirmed || result.shortfall > worstConfirmed.result.shortfall)) worstConfirmed = { s, result };
+      }
+    });
+
+    const pick = worstConfirmed || worstAny;
+    if (!pick) {
+      setText('diag-callout-label', 'No flagged gaps');
+      setText('diag-callout-value', 'Every stage is at or above its benchmark');
+      setText(
+        'diag-callout-note',
+        'Nothing below the ranges shown in Context — worth double-checking the estimated inputs once real numbers exist.'
+      );
+    } else {
+      const p = pick as { s: (typeof stages)[number]; result: { good: boolean; shortfall: number } };
+      setText('diag-callout-label', p.s.confirmed ? 'Biggest confirmed gap' : 'Biggest estimated gap (unconfirmed input)');
+      setText('diag-callout-value', p.s.label);
+      const benchText =
+        p.s.direction === 'lower'
+          ? 'above the $' + p.s.high + ' benchmark'
+          : 'below the ' + p.s.low + '–' + p.s.high + '% benchmark';
+      setText('diag-callout-note', p.s.display + ', ' + benchText + ' — a ' + Math.round(p.result.shortfall) + '% shortfall.');
+    }
+  }
+
+  inputIds.forEach((id) => $(id).addEventListener('input', calc));
+  $('leverRate').addEventListener('input', calc);
+  document.getElementById('resetLever')?.addEventListener('click', () => {
+    $('leverRate').value = String((num('autoBook') / Math.max(num('leads'), 1)) * 100);
+    calc();
+  });
+
+  calc();
+</script>
