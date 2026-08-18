@@ -9,6 +9,8 @@ const base = '/audits/absolute-integrated-health/';
 const inputFields = [
   { id: 'spend', label: 'Ad spend', prefix: '$', value: 500, hint: null },
   { id: 'leads', label: 'Leads (clicks)', value: 50, hint: null },
+  { id: 'openedLink', label: 'Opened link (email)', value: 0, hint: 'Healthcare email benchmark: 20–35% — Apple MPP inflates opens' },
+  { id: 'linkBook', label: 'Booked via link (no call)', value: 0, hint: 'Not tracked yet — separate from AI-agent call bookings' },
   { id: 'autoBook', label: 'Booked by AI agent', value: 3, hint: null },
   { id: 'manualBook', label: 'Booked by staff, next day', value: 0, hint: null },
   { id: 'showRate', label: 'Show-up rate', suffix: '%', value: 75, hint: 'Medspa benchmark: 60–80%+' },
@@ -18,6 +20,7 @@ const inputFields = [
 
 const diagRows = [
   { key: 'cpl', label: 'Cost per lead', bench: 'Benchmark: $18–$42' },
+  { key: 'opened', label: 'Opened link (email)', bench: 'Benchmark: 20–35%' },
   { key: 'auto', label: 'Auto-booking rate', bench: 'Benchmark: 15–25%' },
   { key: 'total', label: 'Lead → booked rate', bench: 'Benchmark: 30–40%' },
   { key: 'show', label: 'Show-up rate', bench: 'Benchmark: 60–80%' },
@@ -53,8 +56,9 @@ const diagRows = [
     <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">01 — Inputs</p>
     <h2 class="mb-2">Your numbers</h2>
     <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
-      The first three are exactly what you described. The rest are reasonable placeholders until we know
-      the real figures — change any of them.
+      Ad spend, leads, and AI-agent bookings are exactly what you described. Everything else — link opens,
+      link bookings, staff-rescue bookings, and every rate below — is a placeholder until we know the real
+      figures. Change any of them.
     </p>
     <div class="card p-5 sm:p-6">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-6">
@@ -86,9 +90,9 @@ const diagRows = [
     <h2 class="mb-2">Where the batch goes</h2>
     <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
       Each bar is sized against your <span id="funnel-lead-count" class="font-mono font-semibold text-neutral-800">50</span>
-      leads. The hatched step isn't tracked yet — GoHighLevel can tell you whether a lead opened the
-      scheduling link at all, which would show exactly whether the phone call is the leak or the whole
-      sequence is.
+      leads. The scheduling link currently goes out by email only — no text yet. "Opened link" stays
+      hatched until you enter a real open count above — once it's tracked, this shows exactly whether the
+      phone call is the leak, the email itself, or the whole sequence.
     </p>
     <div class="card p-5 sm:p-6">
       <div class="flex flex-col gap-1">
@@ -101,14 +105,18 @@ const diagRows = [
         </div>
         <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
           <div class="text-sm font-medium text-neutral-600">Opened link</div>
-          <div class="h-7 rounded-md border border-dashed border-neutral-300 funnel-hatch"></div>
-          <div class="font-mono text-xs text-neutral-400 text-right">not tracked</div>
+          <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden" id="ftrack-opened">
+            <div class="absolute inset-0 border border-dashed border-neutral-300 rounded-md funnel-hatch" id="fhatch-opened"></div>
+            <div class="absolute inset-y-0 left-0 rounded-md bg-primary-300 funnel-bar" id="fbar-opened" style="width:0%"></div>
+          </div>
+          <div class="font-mono text-sm font-semibold tabular-nums text-neutral-900 text-right" id="fv-opened">not tracked</div>
         </div>
         <div class="grid grid-cols-[110px_1fr_100px] sm:grid-cols-[140px_1fr_120px] items-center gap-3 sm:gap-4 py-2.5">
           <div class="text-sm font-medium text-neutral-600">Booked</div>
           <div class="h-7 rounded-md bg-neutral-100 relative overflow-hidden">
             <div class="absolute inset-y-0 left-0 rounded-md flex overflow-hidden funnel-bar" id="fbar-booked" style="width:6%">
               <div class="h-full bg-primary-500" id="fseg-auto" style="width:100%"></div>
+              <div class="h-full bg-violet-400 ml-0.5" id="fseg-link" style="width:0%"></div>
               <div class="h-full bg-accent-400 ml-0.5" id="fseg-manual" style="width:0%"></div>
             </div>
           </div>
@@ -131,6 +139,7 @@ const diagRows = [
       </div>
       <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-neutral-500 mt-4 pt-4 border-t border-neutral-200">
         <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-primary-500"></span>AI agent booking</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-violet-400"></span>Booked via link (no call)</span>
         <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-accent-400"></span>Staff rescue booking</span>
         <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-accent-500"></span>Converted patient</span>
       </div>
@@ -151,6 +160,11 @@ const diagRows = [
         <div class="text-sm text-neutral-600 mb-1">Cost per booking (AI agent only)</div>
         <div class="font-mono text-2xl font-semibold text-accent-600 tabular-nums" id="s-costPerBookingAuto">$166.67</div>
         <div class="mt-1 text-xs text-neutral-400">Before staff rescue the next day</div>
+      </div>
+      <div class="card p-5 border-l-4 border-l-violet-400">
+        <div class="text-sm text-neutral-600 mb-1">Cost per booking (via link)</div>
+        <div class="font-mono text-2xl font-semibold text-violet-600 tabular-nums" id="s-costPerBookingLink">—</div>
+        <div class="mt-1 text-xs text-neutral-400">Booked with no call at all</div>
       </div>
       <div class="card p-5">
         <div class="text-sm text-neutral-600 mb-1">Cost per booking (blended)</div>
@@ -180,9 +194,34 @@ const diagRows = [
     <p class="font-mono text-xs tracking-wider uppercase text-primary-600 mb-4">04 — Context</p>
     <h2 class="mb-2">How this compares to the industry</h2>
     <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
-      Two separate benchmarks, so the gap is measured against the right thing rather than a single vendor
-      claim.
+      Three separate benchmarks, so each gap is measured against the right thing rather than a single
+      vendor claim.
     </p>
+
+    <div class="card p-5 sm:p-6 mb-4">
+      <h3 class="text-base font-semibold text-neutral-900 mb-1.5">Email open rate — the untracked first step</h3>
+      <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
+        The scheduling link goes out by email only right now. Healthcare is the highest-performing vertical
+        for email opens — Klaviyo's 2026 cross-industry benchmark is 31%, and healthcare specifically runs
+        higher, commonly cited around 34%. One real caveat: Apple Mail Privacy Protection auto-opens a large
+        share of emails and inflates reported opens by roughly 15–20 points industry-wide, so treat the
+        headline number as directional, not a hard target — a real open rate anywhere below ~20% is a
+        genuine flag even after accounting for that inflation.
+      </p>
+      <div class="relative h-10 rounded-md bg-neutral-100 mt-9">
+        <div class="absolute inset-y-0 border-l border-r border-dashed border-primary-400 bg-primary-50 rounded-md" style="left:40%; right:30%;"></div>
+        <div class="benchmark-marker" id="bench-marker-opened" style="left:0%;">
+          <span class="benchmark-marker-label" id="bench-marker-opened-label">Not tracked</span>
+        </div>
+      </div>
+      <div class="flex justify-between font-mono text-[11px] text-neutral-400 mt-1.5">
+        <span>0%</span><span>12.5%</span><span>25%</span><span>37.5%</span><span>50%+</span>
+      </div>
+      <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-neutral-500 mt-3">
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-red-500"></span>Your email open rate</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm border border-dashed border-primary-400 bg-primary-50"></span>Typical healthcare email range</span>
+      </div>
+    </div>
 
     <div class="card p-5 sm:p-6 mb-4">
       <h3 class="text-base font-semibold text-neutral-900 mb-1.5">Lead → booked consult, medspa-wide</h3>
@@ -238,8 +277,9 @@ const diagRows = [
     <h2 class="mb-2">Where to focus</h2>
     <p class="text-sm text-neutral-600 mb-5 max-w-2xl">
       Each stage below, checked against the benchmark bands from the Context section. This is a plain
-      comparison against fixed ranges, not a model — five numbers checked against five ranges, nothing
-      inferred. It recalculates as you edit the inputs above.
+      comparison against fixed ranges, not a model — every number here is checked against a published
+      range, nothing inferred. It recalculates as you edit the inputs above. Email open rate stays
+      ungraded until you enter a real count — a blank field isn't a measured failure.
     </p>
     <div class="card p-5 sm:p-6">
       <div class="rounded-r-md border-l-4 border-red-400 bg-red-50 px-5 py-4 text-sm text-red-900 mb-6">
@@ -299,7 +339,7 @@ const diagRows = [
         </div>
         <div class="grid grid-cols-[auto_1fr] gap-3 items-start">
           <span class="font-mono text-[10px] tracking-wide uppercase text-green-700 bg-neutral-50 border border-neutral-200 px-1.5 py-0.5 rounded whitespace-nowrap mt-0.5">cheap</span>
-          <p class="text-sm text-neutral-600 mb-0"><strong class="text-neutral-900">Text before (or instead of) calling</strong> — a text lands even when a call wouldn't be answered, and can carry the scheduling link itself.</p>
+          <p class="text-sm text-neutral-600 mb-0"><strong class="text-neutral-900">Add text — the link only goes out by email today</strong> — healthcare SMS click-through runs 20%+ industry-wide, well above what a hard-to-measure email open rate delivers, and a text lands even when a call wouldn't be answered.</p>
         </div>
       </div>
       <button type="button" id="resetLever" class="btn btn-secondary">Reset lever to today's rate</button>
@@ -307,11 +347,13 @@ const diagRows = [
   </section>
 
   <p class="font-mono text-xs text-neutral-400 mt-10">
-    Sources: TNS unknown-number survey; Hiya 2024 State of the Call report; medspa &amp; chiropractic
-    marketing benchmark compilations (Practice Growth Co., The Leading Practice, GHL Chiropractor
-    Snapshot). Agency benchmark figures are industry compilations, not peer-reviewed research —
-    directionally reliable, not exact. Show-up and close-rate defaults are set to the low end of published
-    medspa benchmarks, not guesses.
+    Sources: TNS unknown-number survey; Hiya 2024 State of the Call report; Klaviyo 2026 email marketing
+    benchmarks; healthcare SMS click-through benchmark compilations; medspa &amp; chiropractic marketing
+    benchmark compilations (Practice Growth Co., The Leading Practice, GHL Chiropractor Snapshot). Agency
+    and platform benchmark figures are industry compilations, not peer-reviewed research — directionally
+    reliable, not exact. Email open-rate figures are further complicated by Apple Mail Privacy Protection,
+    which inflates reported opens industry-wide. Show-up and close-rate defaults are set to the low end of
+    published medspa benchmarks, not guesses.
   </p>
 </BaseLayout>
 
@@ -417,7 +459,7 @@ const diagRows = [
     return n.toFixed(digits === undefined ? 0 : digits) + '%';
   }
 
-  const inputIds = ['spend', 'leads', 'autoBook', 'manualBook', 'showRate', 'closeRate', 'patientValue'];
+  const inputIds = ['spend', 'leads', 'openedLink', 'linkBook', 'autoBook', 'manualBook', 'showRate', 'closeRate', 'patientValue'];
 
   function setText(id: string, text: string) {
     const el = document.getElementById(id);
@@ -439,15 +481,18 @@ const diagRows = [
   function calc() {
     const spend = num('spend');
     const leads = Math.max(num('leads'), 0.0001);
+    const openedLink = num('openedLink');
+    const linkBook = num('linkBook');
     const autoBook = num('autoBook');
     const manualBook = num('manualBook');
     const showRate = num('showRate') / 100;
     const closeRate = num('closeRate') / 100;
     const patientValue = num('patientValue');
 
-    const totalBooked = autoBook + manualBook;
+    const totalBooked = autoBook + linkBook + manualBook;
     const costPerLead = spend / leads;
     const costPerBookingAuto = autoBook > 0 ? spend / autoBook : NaN;
+    const costPerBookingLink = linkBook > 0 ? spend / linkBook : NaN;
     const costPerBookingTotal = totalBooked > 0 ? spend / totalBooked : NaN;
     const showedUp = totalBooked * showRate;
     const patients = showedUp * closeRate;
@@ -457,15 +502,43 @@ const diagRows = [
 
     const bookedPct = (totalBooked / leads) * 100;
     const autoPct = leads > 0 ? (autoBook / leads) * 100 : 0;
+    const openedLinkPct = leads > 0 ? (openedLink / leads) * 100 : 0;
+    const linkShareOfBooked = totalBooked > 0 ? (linkBook / totalBooked) * 100 : 0;
     const manualShareOfBooked = totalBooked > 0 ? (manualBook / totalBooked) * 100 : 0;
+    const autoShareOfBooked = totalBooked > 0 ? 100 - linkShareOfBooked - manualShareOfBooked : 100;
     const showedPct = (showedUp / leads) * 100;
     const patientPct = (patients / leads) * 100;
 
     setText('fv-leads', leads.toLocaleString('en-US'));
     setText('funnel-lead-count', leads.toLocaleString('en-US', { maximumFractionDigits: 0 }));
 
+    // "Opened link" stays a hatched placeholder until a real number is entered.
+    const openedLinkEl = document.getElementById('fhatch-opened');
+    if (openedLinkEl) (openedLinkEl as HTMLElement).style.display = openedLink > 0 ? 'none' : '';
+    setWidth('fbar-opened', openedLink > 0 ? openedLinkPct : 0);
+    if (openedLink > 0) {
+      setHtml(
+        'fv-opened',
+        openedLink.toLocaleString('en-US') +
+          ' <span class="text-neutral-400 font-normal">' +
+          pct(openedLinkPct, 1) +
+          '</span>'
+      );
+    } else {
+      setText('fv-opened', 'not tracked');
+    }
+
+    if (openedLink > 0) {
+      setLeft('bench-marker-opened', Math.min((openedLinkPct / 50) * 100, 100));
+      setText('bench-marker-opened-label', 'Today: ' + pct(openedLinkPct, 1));
+    } else {
+      setLeft('bench-marker-opened', 0);
+      setText('bench-marker-opened-label', 'Not tracked');
+    }
+
     setWidth('fbar-booked', bookedPct);
-    setWidth('fseg-auto', totalBooked > 0 ? 100 - manualShareOfBooked : 100);
+    setWidth('fseg-auto', autoShareOfBooked);
+    setWidth('fseg-link', linkShareOfBooked);
     setWidth('fseg-manual', manualShareOfBooked);
     setHtml(
       'fv-booked',
@@ -498,13 +571,14 @@ const diagRows = [
 
     setText('s-costPerLead', money(costPerLead));
     setText('s-costPerBookingAuto', money(costPerBookingAuto));
+    setText('s-costPerBookingLink', money(costPerBookingLink));
     setText('s-costPerBookingTotal', money(costPerBookingTotal));
     setText('s-costPerPatient', money(costPerPatient));
     setText('s-revenue', '$' + Math.round(revenue).toLocaleString('en-US'));
     setText('s-roi', (roi >= 0 ? '+' : '−') + Math.abs(roi).toFixed(0) + '%');
 
     updateLever(spend, leads, autoBook, costPerBookingAuto);
-    updateDiagnosis(costPerLead, autoPct, bookedPct, showRate * 100, closeRate * 100);
+    updateDiagnosis(costPerLead, openedLink, openedLinkPct, autoPct, bookedPct, showRate * 100, closeRate * 100);
   }
 
   function updateLever(spend: number, leads: number, autoBookToday: number, costTodayAuto: number) {
@@ -545,7 +619,32 @@ const diagRows = [
       (good ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100');
   }
 
-  function updateDiagnosis(costPerLead: number, autoPct: number, bookedPct: number, showPct: number, closePct: number) {
+  function setStatusPillUnknown(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.className = 'inline-block font-mono text-[10px] px-2 py-0.5 rounded whitespace-nowrap text-neutral-500 bg-neutral-100';
+  }
+
+  function updateDiagnosis(
+    costPerLead: number,
+    openedLink: number,
+    openedLinkPct: number,
+    autoPct: number,
+    bookedPct: number,
+    showPct: number,
+    closePct: number
+  ) {
+    // "Opened link" has no real measurement yet (openedLink === 0 is the input's
+    // untouched default, not an observed 0% open rate) — it's excluded from
+    // grading until a real number is entered, same as the funnel bar's hatch.
+    if (openedLink > 0) {
+      setText('diag-opened-value', pct(openedLinkPct, 1));
+    } else {
+      setText('diag-opened-value', 'not tracked');
+      setStatusPillUnknown('diag-opened-status', 'Not tracked');
+    }
+
     const stages: {
       key: string;
       label: string;
@@ -562,6 +661,19 @@ const diagRows = [
       { key: 'show', label: 'Show-up rate', value: showPct, low: 60, high: 80, direction: 'higher', confirmed: false, display: pct(showPct, 0) },
       { key: 'close', label: 'Close rate', value: closePct, low: 50, high: 60, direction: 'higher', confirmed: false, display: pct(closePct, 0) },
     ];
+
+    if (openedLink > 0) {
+      stages.unshift({
+        key: 'opened',
+        label: 'Opened link (email)',
+        value: openedLinkPct,
+        low: 20,
+        high: 35,
+        direction: 'higher',
+        confirmed: true,
+        display: pct(openedLinkPct, 1),
+      });
+    }
 
     let worstConfirmed: { s: (typeof stages)[number]; result: { good: boolean; shortfall: number } } | null = null;
     let worstAny: { s: (typeof stages)[number]; result: { good: boolean; shortfall: number } } | null = null;
