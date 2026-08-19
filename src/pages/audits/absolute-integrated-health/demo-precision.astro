@@ -1,0 +1,1123 @@
+---
+export const prerender = false;
+
+const services = [
+  {
+    name: 'Chiropractic Care',
+    line: 'Hands-on adjustment and mobility work for the pain that’s been slowing you down.',
+  },
+  {
+    name: 'Pain Management',
+    line: 'A plan built around your body, not a prescription pad — for pain that hasn’t responded to anything else.',
+  },
+  {
+    name: 'IV & Hormone Therapy',
+    line: 'Targeted support for energy, recovery, and balance, administered in-office by our clinical team.',
+  },
+  {
+    name: 'Wound Care',
+    line: 'Specialized treatment for wounds that need more attention than a standard visit provides.',
+  },
+  {
+    name: 'Aesthetics & Wellness',
+    line: 'Skin, body, and confidence — treatments designed around how you actually want to feel.',
+  },
+];
+
+const team = [
+  { name: 'Dr. James Nakis', role: 'Chiropractor', credential: 'DC', photo: '/audits/absolute-integrated-health/staff-jim.jpg' },
+  { name: 'Alyssa Fleischauer', role: 'RN', credential: 'RN', photo: '/audits/absolute-integrated-health/staff-alyssa.jpg' },
+  { name: 'Cynthia Clark-Zurawski', role: 'FNP, APRN', credential: 'FNP, APRN', photo: '/audits/absolute-integrated-health/staff-cynthia.webp' },
+  { name: 'Andrew Nakis', role: 'Care Team', credential: null, photo: '/audits/absolute-integrated-health/staff-andrew.jpg' },
+  { name: 'Monica Galik', role: 'Care Team', credential: null, photo: '/audits/absolute-integrated-health/staff-monica.webp' },
+  { name: 'Jay Zurawski', role: 'RN', credential: 'RN', photo: '/audits/absolute-integrated-health/staff-jay.jpg' },
+];
+
+const credentialBadges = [
+  'Licensed Chiropractic Care (DC)',
+  'RN & APRN-Led Clinical Team',
+  '15 Credentialed Providers',
+  '4.8★ · 235 Google Reviews',
+];
+
+const intakeOptions = [
+  'Chronic or ongoing pain',
+  'IV or hormone therapy',
+  'Aesthetics & wellness',
+  'Wound care',
+  'Not sure yet — I’d like to talk it through',
+];
+
+const timePreferences = ['Weekday mornings', 'Weekday afternoons', 'Weekday evenings', 'Weekends'];
+
+const serviceCategories = [
+  {
+    name: 'Pain & Mobility',
+    line: 'Chiropractic care, chronic and acute pain, physical therapy, and spinal decompression.',
+    items: ['Chiropractic Care', 'Chronic Pain', 'Knee Pain', 'Neuropathy Treatment', 'Physical Therapy', 'Spinal Decompression'],
+  },
+  {
+    name: 'IV & Wellness Therapy',
+    line: 'IV nutrient therapy, IVIG, hormone therapy, and allergen testing, administered in-office.',
+    items: ['IV Therapy', 'IVIG', 'Hormone Therapy', 'Allergen Testing'],
+  },
+  {
+    name: 'Vein & Wound Care',
+    line: 'Specialized treatment for venous conditions and wounds that need more than a standard visit.',
+    items: ['Vein Care', 'Wound Care'],
+  },
+  {
+    name: 'Aesthetics & Medspa',
+    line: 'Injectables, facials, laser treatments, and skin care from a clinical team you already trust.',
+    items: ['Injectables', 'Facials & Peels', 'Lasers & Microneedling', 'Skin Care'],
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Consultation',
+    body: 'Tell us what’s going on and what you’re hoping to fix — no assumptions, just a real conversation.',
+  },
+  {
+    title: 'Assessment',
+    body: 'Our team examines you in person and builds a plan around your body, not a generic protocol.',
+  },
+  {
+    title: 'Personalized Plan',
+    body: 'Start treatment the same day when appropriate, with follow-ups scheduled around your life.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you accept insurance?',
+    a: 'We work with most major insurance plans, and offer 0% APR financing for services that aren’t covered.',
+  },
+  {
+    q: 'What should I bring to my first visit?',
+    a: 'Just a photo ID and your insurance card, if you have one — we’ll handle the rest during your consultation.',
+  },
+  {
+    q: 'Do I need a referral?',
+    a: 'No referral is required for a chiropractic or wellness consultation.',
+  },
+  {
+    q: 'Can I walk in, or do I need an appointment?',
+    a: 'We recommend requesting a consultation ahead of time so we can prepare for your visit — call 815-782-8440 for same-day availability.',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Friendly greeting, caring staff, to professional workforce. Your experience and well being is paramount in here. You’ll be leaving with a healed body and a smile on your face. I will recommend to family and friends.',
+    name: 'Arnulfo Q.',
+  },
+  {
+    quote: 'Not just another chiropractor. They treat the whole body. Trusted innovative procedures. Friendly helpful staff. Give ’em a try. I’ve been seeing them for 20+ years.',
+    name: 'Tim V.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Absolute Integrated Health — Concept Preview (Precision)</title>
+    <meta name="description" content="A third concept preview of a rebuilt Absolute Integrated Health homepage, in a calm clinical-precision direction, prepared by Derek Jensen." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Absolute Integrated Health — Concept Preview (Precision)" />
+    <meta property="og:description" content="A calm, clinical-precision concept preview of a rebuilt Absolute Integrated Health homepage, prepared by Derek Jensen." />
+    <meta property="og:image" content="/audits/absolute-integrated-health/og-precision.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Absolute Integrated Health — Concept Preview (Precision)" />
+    <meta name="twitter:description" content="A calm, clinical-precision concept preview of a rebuilt Absolute Integrated Health homepage, prepared by Derek Jensen." />
+    <meta name="twitter:image" content="/audits/absolute-integrated-health/og-precision.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="concept-ribbon">
+      <span>Concept preview (precision direction) for Absolute Integrated Health — built by Derek Jensen, not a live site</span>
+      <span class="ribbon-links">
+        <a href="/audits/absolute-integrated-health/demo">Warm concept →</a>
+        <a href="/audits/absolute-integrated-health/demo-clinical">Clinical concept →</a>
+        <a href="/audits/absolute-integrated-health/">← Back to the assessment</a>
+      </span>
+    </div>
+
+    <header class="site-header">
+      <a href="#top" class="wordmark">
+        <span class="wordmark-mark">Absolute Integrated Health</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <div class="nav-item-mega">
+          <a href="#services" class="nav-mega-trigger">Services</a>
+          <div class="mega-panel">
+            <div class="mega-panel-inner">
+              {serviceCategories.map((cat) => (
+                <div class="mega-col">
+                  <p class="mega-cat">{cat.name}</p>
+                  {cat.items.map((item) => <a href="#services">{item}</a>)}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <a href="#team">Our Team</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="tel:8157828440" class="btn btn-ghost btn-nav">815-782-8440</a>
+        <a href="#request-consultation" class="btn btn-primary btn-nav">Request a Consultation</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-photo" role="img" aria-label="A patient and a member of our clinical team sharing a reassuring moment during a visit">
+          <img src="/audits/absolute-integrated-health/hero-precision.jpg" alt="" />
+        </div>
+        <div class="hero-inner">
+          <p class="eyebrow">Plainfield, IL · Chiropractic &amp; Integrative Health</p>
+          <h1>Care that starts with a conversation, not a form.</h1>
+          <p class="hero-sub">
+            Chiropractic, pain management, IV therapy, and aesthetics under one roof — one path
+            in: request a consultation, and a real person on our team calls you back.
+          </p>
+          <div class="hero-actions">
+            <a href="#request-consultation" class="btn btn-primary btn-lg">Request a Consultation</a>
+            <a href="tel:8157828440" class="btn btn-ghost btn-lg btn-ghost-on-dark">815-782-8440</a>
+          </div>
+          <p class="hours-badge" id="hours-badge"></p>
+        </div>
+      </section>
+
+      <section class="credential-strip" aria-label="Practice credentials">
+        {credentialBadges.map((c) => (
+          <span class="pill-tag">
+            <svg class="pill-tag-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8.5L6.2 11.7L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {c}
+          </span>
+        ))}
+      </section>
+
+      <section id="services" class="categories">
+        <p class="section-eyebrow">What we treat</p>
+        <h2>One practice, four ways in</h2>
+        <p class="section-sub">Every path starts the same way — a consultation, not a booking form.</p>
+        <div class="category-grid">
+          {serviceCategories.map((cat) => (
+            <div class="category-card">
+              <h3>{cat.name}</h3>
+              <p class="category-line">{cat.line}</p>
+              <ul class="category-items">
+                {cat.items.slice(0, 4).map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="intake-plan">
+        <p class="section-eyebrow">How a visit becomes a plan</p>
+        <h2>From what you tell us, to a plan built around you</h2>
+        <div class="intake-cards">
+          <div class="doc-card doc-card-before">
+            <span class="pill-tag pill-tag-doc"><svg class="pill-tag-icon" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5L6.2 11.7L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg> Intake note</span>
+            <p class="doc-handwritten">
+              Lower back pain, on and off for 3 months.<br />
+              Can't lift my kids without it flaring up.
+            </p>
+          </div>
+          <div class="doc-card doc-card-after">
+            <span class="pill-tag pill-tag-doc"><svg class="pill-tag-icon" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5L6.2 11.7L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg> Care plan</span>
+            <p class="doc-typed-label">Personalized Plan</p>
+            <p class="doc-typed">Chiropractic care + physical therapy, twice weekly. Reassessed in 30 days.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="team">
+        <p class="section-eyebrow">Who you'll meet</p>
+        <h2>A care team, not a call center</h2>
+        <p class="section-sub">The people who'll actually be in the room with you — not a stock photo.</p>
+        <div class="team-grid">
+          {team.map((t) => (
+            <div class="team-card">
+              <img src={t.photo} alt={t.name} />
+              <p class="team-name">{t.name}</p>
+              <p class="team-role">{t.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <p class="section-eyebrow">In their words</p>
+        <h2>235 reviews, 4.8 stars — here's a couple</h2>
+        <div class="testimonial-grid">
+          {testimonials.map((t) => (
+            <blockquote class="testimonial-card">
+              <p class="testimonial-mark" aria-hidden="true">&#8220;</p>
+              <p class="testimonial-quote">{t.quote}</p>
+              <cite>&mdash; {t.name}, Google review</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <section class="process">
+        <p class="section-eyebrow">How it starts</p>
+        <h2>What to expect at your first visit</h2>
+        <div class="process-grid">
+          {processSteps.map((s, i) => (
+            <div class="process-step">
+              <div class="process-num">{i + 1}</div>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="faq" class="faq">
+        <p class="section-eyebrow">Before you book</p>
+        <h2>Common questions</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}<span class="faq-icon" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section id="request-consultation" class="consult">
+        <div class="consult-copy">
+          <p class="section-eyebrow">Get started</p>
+          <h2>Request a consultation</h2>
+          <p>
+            One form, one path — no separate booking systems to choose between. Tell us
+            what brings you in, and our team will reach out to get you on the schedule.
+          </p>
+          <p class="consult-note">No appointment changes here — for rescheduling, just give us a call at 815-782-8440.</p>
+        </div>
+        <form class="consult-form" onsubmit="event.preventDefault();">
+          <div class="form-progress" aria-hidden="true">
+            <span class="form-progress-step is-active" data-step-indicator="1">1</span>
+            <span class="form-progress-line"></span>
+            <span class="form-progress-step" data-step-indicator="2">2</span>
+          </div>
+
+          <div class="form-step" data-step="1">
+            <label>
+              What brings you in today?
+              <select name="reason">
+                {intakeOptions.map((opt) => <option>{opt}</option>)}
+              </select>
+            </label>
+            <label>
+              Best time to reach you
+              <div class="chip-group" role="group" aria-label="Preferred time to be contacted">
+                {timePreferences.map((t) => (
+                  <button type="button" class="chip" data-time>{t}</button>
+                ))}
+              </div>
+            </label>
+            <button type="button" class="btn btn-primary btn-block" data-step-next disabled>Continue</button>
+          </div>
+
+          <div class="form-step" data-step="2" hidden>
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your full name" />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="(815) 000-0000" />
+            </label>
+            <div class="form-step-actions">
+              <button type="button" class="btn btn-outline" data-step-back>Back</button>
+              <button type="submit" class="btn btn-primary">Send My Request</button>
+            </div>
+          </div>
+
+          <p class="form-note">Concept preview — this form isn't connected yet.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="wordmark-mark footer-wordmark">Absolute Integrated Health</p>
+        <p>16310 S Lincoln Hwy #124, Plainfield, IL 60586</p>
+        <p>815-782-8440</p>
+      </div>
+      <p class="footer-credit">
+        Design concept by <a href="https://derekjensen.io">Derek Jensen</a> — built to show what's
+        possible, not the final site.
+      </p>
+    </footer>
+
+    <div class="sticky-cta">
+      <a href="#request-consultation" class="btn btn-primary btn-block">Request a Consultation</a>
+    </div>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      if (navToggle && mainNav) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = mainNav.classList.toggle('is-open');
+          navToggle.classList.toggle('is-open', isOpen);
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+        mainNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mainNav.classList.remove('is-open');
+            navToggle.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Open menu');
+          });
+        });
+      }
+
+      // Real hours: Mon–Thu 9–6:30, Fri 9–12, closed Sat/Sun.
+      const weekHours = [
+        null,
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 17 * 60 },
+        { open: 9 * 60, close: 18 * 60 + 30 },
+        { open: 9 * 60, close: 12 * 60 },
+        null,
+      ];
+      function formatClock(mins) {
+        let h = Math.floor(mins / 60);
+        const m = mins % 60;
+        const ampm = h >= 12 ? 'pm' : 'am';
+        h = h % 12 || 12;
+        return m === 0 ? `${h}${ampm}` : `${h}:${String(m).padStart(2, '0')}${ampm}`;
+      }
+      const hoursBadge = document.getElementById('hours-badge');
+      if (hoursBadge) {
+        const now = new Date();
+        const today = weekHours[now.getDay()];
+        const minutesNow = now.getHours() * 60 + now.getMinutes();
+        if (today && minutesNow >= today.open && minutesNow < today.close) {
+          hoursBadge.innerHTML = `<span class="dot dot-open"></span> Open now &middot; closes ${formatClock(today.close)}`;
+        } else {
+          hoursBadge.innerHTML = `<span class="dot dot-closed"></span> Closed now &middot; call to schedule`;
+        }
+      }
+
+      // Two-step consultation form: chip selection + step navigation.
+      const consultForm = document.querySelector('.consult-form');
+      if (consultForm) {
+        const formSteps = consultForm.querySelectorAll('.form-step');
+        const progressSteps = consultForm.querySelectorAll('.form-progress-step');
+        const nextBtn = consultForm.querySelector('[data-step-next]');
+        const backBtn = consultForm.querySelector('[data-step-back]');
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function goToFormStep(target) {
+          const current = Array.from(formSteps).find((s) => !s.hidden);
+          const next = Array.from(formSteps).find((s) => s.dataset.step === String(target));
+
+          progressSteps.forEach((indicator) => {
+            const n = Number(indicator.dataset.stepIndicator);
+            indicator.classList.toggle('is-active', n === target);
+            indicator.classList.toggle('is-complete', n < target);
+          });
+
+          if (!current || !next || current === next) return;
+
+          if (prefersReducedMotion) {
+            current.hidden = true;
+            next.hidden = false;
+            return;
+          }
+
+          current.classList.add('is-leaving');
+          window.setTimeout(() => {
+            current.hidden = true;
+            current.classList.remove('is-leaving');
+            next.hidden = false;
+            next.classList.add('is-entering');
+            void next.offsetWidth; // force reflow so the entering state registers before transitioning out of it
+            next.classList.remove('is-entering');
+          }, 200);
+        }
+
+        consultForm.querySelectorAll('.chip').forEach((chip) => {
+          chip.addEventListener('click', () => {
+            consultForm.querySelectorAll('.chip').forEach((c) => c.classList.remove('is-selected'));
+            chip.classList.add('is-selected');
+            if (nextBtn) nextBtn.disabled = false;
+          });
+        });
+
+        nextBtn?.addEventListener('click', () => goToFormStep(2));
+        backBtn?.addEventListener('click', () => goToFormStep(1));
+      }
+
+      // Gentle fade/slide-in on load and scroll. Classes are added here, not in the markup,
+      // so content stays fully visible if JS never runs. Respects prefers-reduced-motion.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const singleSelectors = '.hero-inner, .credential-strip, .intake-cards, .consult-copy, .consult-form';
+        const groupSelectors = '.category-grid, .team-grid, .testimonial-grid, .process-grid, .faq-list';
+
+        document.querySelectorAll(singleSelectors).forEach((el) => el.classList.add('reveal'));
+        document.querySelectorAll(groupSelectors).forEach((el) => el.classList.add('reveal-group'));
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        document.querySelectorAll('.reveal, .reveal-group').forEach((el) => io.observe(el));
+      }
+
+      // Sticky header: add a background/shadow once scrolled past the top.
+      const siteHeader = document.querySelector('.site-header');
+      let scrollTicking = false;
+      function updateHeaderScrollState() {
+        siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+        scrollTicking = false;
+      }
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!scrollTicking) {
+            requestAnimationFrame(updateHeaderScrollState);
+            scrollTicking = true;
+          }
+        },
+        { passive: true }
+      );
+      updateHeaderScrollState();
+    </script>
+
+    <style>
+      :root {
+        --obsidian: #070709;
+        --paper: #ffffff;
+        --cloud: #f5f5f5;
+        --sky-tint: #d7e6f5;
+        --charcoal: #60606c;
+        --slate: #8b8b8b;
+        --ink: #151515;
+        --surgical-blue: #2597d0;
+        --sky-gradient: linear-gradient(180deg, #779bc1 0%, #9abfda 58%, #cbdcec 100%);
+        --hairline: #bebecc;
+        --shadow-btn: 0 1px 2px rgba(36, 36, 40, 0.1), 0 3px 3px rgba(36, 36, 40, 0.09), 0 6px 4px rgba(36, 36, 40, 0.05), 0 11px 4px rgba(36, 36, 40, 0.01);
+        --shadow-card: 0 17px 37px rgba(16, 55, 132, 0.03), 0 67px 67px rgba(16, 55, 132, 0.03), 0 150px 90px rgba(16, 55, 132, 0.02);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background: var(--paper);
+        color: var(--obsidian);
+        font-family: 'Inter', system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      h1, h2, h3, .wordmark-mark {
+        font-family: 'Inter Tight', system-ui, sans-serif;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      .concept-ribbon {
+        background: var(--obsidian);
+        color: #fff;
+        font-size: 0.76rem;
+        padding: 0.55rem 1.25rem;
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+      .ribbon-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+      .concept-ribbon a { color: #fff; opacity: 0.8; text-decoration: none; }
+      .concept-ribbon a:hover { opacity: 1; }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.4rem clamp(1.25rem, 5vw, 4rem);
+        max-width: 1280px;
+        margin: 0 auto;
+        background: var(--paper);
+        transition: box-shadow 0.25s ease, padding 0.25s ease;
+      }
+      .site-header.is-scrolled {
+        box-shadow: 0 1px 0 var(--hairline);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      .nav-toggle {
+        display: none;
+        position: relative;
+        z-index: 101;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--obsidian);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+      .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .wordmark { text-decoration: none; }
+      .wordmark-mark { font-size: 1.15rem; letter-spacing: -0.02em; }
+
+      .main-nav { display: flex; align-items: center; gap: 1.75rem; font-size: 0.92rem; }
+      .main-nav a { color: var(--obsidian); text-decoration: none; }
+      .main-nav a:hover { color: var(--surgical-blue); }
+
+      .nav-item-mega { position: relative; }
+      .nav-mega-trigger { display: inline-flex; align-items: center; }
+      .mega-panel {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(760px, 88vw);
+        padding-top: 0.9rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.18s ease;
+        z-index: 50;
+      }
+      .nav-item-mega:hover .mega-panel,
+      .nav-item-mega:focus-within .mega-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .mega-panel-inner {
+        background: var(--paper);
+        border: 1px solid var(--hairline);
+        border-radius: 18px;
+        box-shadow: var(--shadow-card);
+        padding: 1.75rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(140px, 1fr));
+        gap: 1.5rem;
+      }
+      .mega-col { display: flex; flex-direction: column; gap: 0.55rem; }
+      .mega-cat {
+        font-family: 'Inter Tight', sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--surgical-blue);
+        margin: 0 0 0.3rem;
+      }
+      .mega-col a { font-size: 0.85rem; color: var(--charcoal); line-height: 1.4; }
+      .mega-col a:hover { color: var(--obsidian); }
+
+      .nav-actions { display: flex; align-items: center; gap: 0.6rem; }
+      .btn-nav { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+
+      main { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 4rem); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.6rem;
+        border-radius: 100px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.92rem;
+        letter-spacing: -0.01em;
+        border: none;
+        cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+      }
+      .btn-lg { padding: 1rem 2rem; font-size: 0.98rem; }
+      .btn-primary { background: var(--obsidian); color: #fff; box-shadow: var(--shadow-btn); }
+      .btn-primary:hover { background: #1a1a1e; }
+      .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+      .btn-ghost { background: transparent; border: 1px solid var(--hairline); color: var(--obsidian); }
+      .btn-ghost:hover { border-color: var(--obsidian); }
+      .btn-ghost-on-dark { border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+      .btn-ghost-on-dark:hover { border-color: #fff; }
+      .btn-outline { background: transparent; border: 1px solid var(--hairline); color: var(--obsidian); }
+      .btn-outline:hover { border-color: var(--obsidian); }
+      .btn-block { width: 100%; }
+
+      /* Pill tag / chip — the source's signature small component */
+      .pill-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.85rem;
+        border-radius: 100px;
+        border: 1px solid var(--hairline);
+        background: var(--paper);
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--obsidian);
+        white-space: nowrap;
+      }
+      .pill-tag-icon { color: var(--surgical-blue); flex-shrink: 0; }
+      .pill-tag-sm { padding: 0.15rem 0.55rem; font-size: 0.68rem; margin-left: 0.4rem; color: var(--charcoal); }
+      .pill-tag-doc { margin-bottom: 0.6rem; }
+
+      /* Hero — the sole atmospheric color moment, per the source's rules */
+      .hero {
+        position: relative;
+        margin: 0 clamp(-1.25rem, -5vw, -4rem) 0;
+        padding: 0;
+        overflow: hidden;
+        min-height: clamp(26rem, 62vh, 40rem);
+        display: flex;
+        align-items: flex-end;
+      }
+      .hero-photo { position: absolute; inset: 0; z-index: 0; }
+      .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+      .hero-photo::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(119, 155, 193, 0.35) 0%, rgba(154, 191, 218, 0.55) 45%, rgba(7, 7, 9, 0.82) 100%);
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem) clamp(2.5rem, 5vw, 3.5rem);
+      }
+      .eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 600;
+        margin: 0 0 0.9rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.3rem, 4.6vw, 3.8rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: #fff;
+        margin: 0 0 1.1rem;
+        max-width: 24ch;
+      }
+      .hero-sub {
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 1.05rem;
+        max-width: 34rem;
+        margin: 0 0 1.9rem;
+      }
+      .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+      .hours-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+      }
+      .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+      .dot-open { background: #4ade80; }
+      .dot-closed { background: var(--slate); }
+
+      /* Credential strip — Subbio-inspired trust mechanism */
+      .credential-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1.75rem 0 0.5rem;
+      }
+
+      .section-eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--surgical-blue);
+        font-weight: 700;
+        margin: 0 0 0.75rem;
+      }
+      .categories, .intake-plan, .team, .testimonials, .process, .faq, .consult {
+        padding: clamp(3rem, 7vw, 5rem) 0;
+        text-align: center;
+      }
+      .categories h2, .intake-plan h2, .team h2, .testimonials h2, .process h2, .faq h2 {
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        letter-spacing: -0.03em;
+      }
+      .section-sub { color: var(--charcoal); max-width: 40rem; margin: 0.75rem auto 0; }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        text-align: left;
+      }
+      .category-card {
+        background: var(--paper);
+        border: 1px solid var(--hairline);
+        border-radius: 24px;
+        box-shadow: var(--shadow-card);
+        padding: clamp(1.75rem, 3vw, 2.5rem);
+      }
+      .category-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+      .category-line { color: var(--charcoal); font-size: 0.95rem; margin: 0 0 1.1rem; }
+      .category-items { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .category-items li {
+        font-size: 0.82rem;
+        color: var(--obsidian);
+        background: var(--cloud);
+        border-radius: 100px;
+        padding: 0.35rem 0.8rem;
+      }
+
+      /* Before/After-inspired intake→plan cards */
+      .intake-cards {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        margin-top: 2.75rem;
+      }
+      .doc-card {
+        background: var(--paper);
+        border-radius: 18px;
+        box-shadow: var(--shadow-card);
+        padding: 1.75rem 2rem;
+        width: min(22rem, 90vw);
+        text-align: left;
+      }
+      .doc-card-before { transform: rotate(-2.5deg); }
+      .doc-card-after { transform: rotate(2deg); }
+      .doc-handwritten {
+        font-family: 'Caveat', cursive;
+        font-size: 1.5rem;
+        line-height: 1.35;
+        color: var(--ink);
+        margin: 0;
+      }
+      .doc-typed-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0 0 0.35rem; }
+      .doc-typed { color: var(--charcoal); font-size: 0.95rem; margin: 0; }
+
+      .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.75rem;
+        margin-top: 2.5rem;
+      }
+      .team-card { flex: 1 1 160px; max-width: 200px; }
+      .team-card img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 18px;
+        margin-bottom: 0.9rem;
+        box-shadow: var(--shadow-card);
+      }
+      .team-name { font-weight: 600; font-size: 0.95rem; margin: 0 0 0.2rem; }
+      .team-role { color: var(--charcoal); font-size: 0.82rem; margin: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        text-align: left;
+      }
+      .testimonial-card {
+        background: var(--cloud);
+        border-radius: 18px;
+        padding: 2rem;
+        margin: 0;
+      }
+      .testimonial-mark { font-size: 2.5rem; color: var(--surgical-blue); line-height: 1; margin: 0 0 0.5rem; font-family: Georgia, serif; }
+      .testimonial-quote { color: var(--ink); font-size: 0.98rem; line-height: 1.55; margin: 0 0 1rem; }
+      .testimonial-card cite { font-size: 0.85rem; color: var(--charcoal); font-style: normal; }
+
+      .process-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.75rem;
+        margin-top: 2.5rem;
+      }
+      .process-step {
+        flex: 1 1 220px;
+        max-width: 280px;
+        text-align: left;
+        background: var(--paper);
+        border: 1px solid var(--hairline);
+        border-radius: 18px;
+        padding: 1.75rem;
+      }
+      .process-num {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100px;
+        background: var(--obsidian);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      .process-step h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+      .process-step p { color: var(--charcoal); font-size: 0.9rem; margin: 0; }
+
+      .faq-list {
+        display: grid;
+        gap: 1rem;
+        max-width: 42rem;
+        margin: 2.5rem auto 0;
+        text-align: left;
+      }
+      .faq-item {
+        border: 1px solid var(--hairline);
+        border-radius: 18px;
+        padding: 1.1rem 1.4rem;
+        background: var(--paper);
+      }
+      .faq-item summary {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-icon {
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 50%;
+        border: 1px solid var(--hairline);
+        position: relative;
+        flex-shrink: 0;
+      }
+      .faq-icon::before, .faq-icon::after {
+        content: '';
+        position: absolute;
+        background: var(--obsidian);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .faq-icon::before { width: 8px; height: 1.5px; }
+      .faq-icon::after { width: 1.5px; height: 8px; transition: opacity 0.15s ease; }
+      .faq-item[open] .faq-icon::after { opacity: 0; }
+      .faq-item p { color: var(--charcoal); font-size: 0.92rem; margin: 0.75rem 0 0; }
+
+      .consult {
+        background: var(--cloud);
+        border-radius: 32px;
+        margin: clamp(3rem, 7vw, 5rem) 0;
+        padding: clamp(2.5rem, 6vw, 4rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+        text-align: left;
+      }
+      .consult-copy p { color: var(--charcoal); }
+      .consult-note { font-size: 0.85rem; }
+      .consult-form {
+        background: var(--paper);
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: var(--shadow-card);
+      }
+      .form-progress { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+      .form-progress-step {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 100px;
+        border: 1px solid var(--hairline);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--slate);
+      }
+      .form-progress-step.is-active { border-color: var(--obsidian); color: var(--obsidian); }
+      .form-progress-step.is-complete { background: var(--obsidian); border-color: var(--obsidian); color: #fff; }
+      .form-progress-line { flex: 1; height: 1px; background: var(--hairline); }
+
+      .consult-form label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.1rem; }
+      .consult-form select,
+      .consult-form input {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        border: 1px solid var(--hairline);
+        font-size: 0.92rem;
+        font-family: inherit;
+        color: var(--obsidian);
+        background: var(--paper);
+      }
+      .chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+      .chip {
+        padding: 0.5rem 0.9rem;
+        border-radius: 100px;
+        border: 1px solid var(--hairline);
+        background: var(--paper);
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--obsidian);
+        cursor: pointer;
+      }
+      .chip.is-selected { background: var(--obsidian); border-color: var(--obsidian); color: #fff; }
+      .form-step-actions { display: flex; gap: 0.75rem; }
+      .form-step-actions .btn { flex: 1; }
+      .form-note { font-size: 0.78rem; color: var(--slate); text-align: center; margin: 1rem 0 0; }
+
+      .form-step { transition: opacity 0.2s ease, transform 0.2s ease; }
+      .form-step[hidden] { display: none; }
+      .form-step.is-leaving { opacity: 0; transform: translateY(6px); }
+      .form-step.is-entering { opacity: 0; transform: translateY(6px); }
+
+      .site-footer {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 3rem clamp(1.25rem, 5vw, 4rem) 6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        border-top: 1px solid var(--hairline);
+      }
+      .site-footer p { margin: 0.2rem 0; color: var(--charcoal); font-size: 0.88rem; }
+      .footer-wordmark { color: var(--obsidian); font-size: 1.05rem; margin-bottom: 0.4rem; }
+      .footer-credit { max-width: 22rem; text-align: right; font-size: 0.8rem; }
+      .footer-credit a { color: var(--surgical-blue); }
+
+      .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--hairline);
+        display: none;
+      }
+
+      /* Reveal-on-scroll — progressive enhancement only, see script above */
+      @media (prefers-reduced-motion: no-preference) {
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.is-visible { opacity: 1; transform: none; }
+        .reveal-group > * { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal-group.is-visible > * { opacity: 1; transform: none; }
+        .reveal-group.is-visible > *:nth-child(2) { transition-delay: 0.06s; }
+        .reveal-group.is-visible > *:nth-child(3) { transition-delay: 0.12s; }
+        .reveal-group.is-visible > *:nth-child(4) { transition-delay: 0.18s; }
+        .reveal-group.is-visible > *:nth-child(5) { transition-delay: 0.24s; }
+        .reveal-group.is-visible > *:nth-child(6) { transition-delay: 0.3s; }
+      }
+
+      @media (max-width: 880px) {
+        .nav-actions .btn-nav.btn-ghost { display: none; }
+        .main-nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--paper);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2rem;
+          font-size: 1.2rem;
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+          z-index: 99;
+        }
+        .main-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+        .mega-panel { display: none; }
+        .nav-toggle { display: flex; }
+        .ribbon-links { justify-content: center; width: 100%; }
+        .category-grid, .testimonial-grid { grid-template-columns: 1fr; }
+        .consult { grid-template-columns: 1fr; }
+        .sticky-cta { display: block; }
+        main { padding-bottom: 5rem; }
+        .hero { margin-left: -1.25rem; margin-right: -1.25rem; }
+      }
+    </style>
+  </body>
+</html>

@@ -128,7 +128,8 @@ const testimonials = [
     <div class="concept-ribbon">
       <span>Concept preview (warm direction) for Absolute Integrated Health — built by Derek Jensen, not a live site</span>
       <span class="ribbon-links">
-        <a href="/audits/absolute-integrated-health/demo-clinical">View the clinical concept →</a>
+        <a href="/audits/absolute-integrated-health/demo-clinical">Clinical concept →</a>
+        <a href="/audits/absolute-integrated-health/demo-precision">Precision concept →</a>
         <a href="/audits/absolute-integrated-health/">← Back to the assessment</a>
       </span>
     </div>
@@ -510,6 +511,7 @@ const testimonials = [
 
       body {
         margin: 0;
+        overflow-x: hidden;
         background: var(--bg);
         color: var(--ink);
         font-family: 'Manrope', system-ui, sans-serif;
@@ -534,7 +536,7 @@ const testimonials = [
         justify-content: center;
         text-align: center;
       }
-      .ribbon-links { display: flex; gap: 1.25rem; }
+      .ribbon-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
       .concept-ribbon a { color: #f2ece2; opacity: 0.85; }
       .concept-ribbon a:hover { opacity: 1; }
 
@@ -562,6 +564,8 @@ const testimonials = [
 
       .nav-toggle {
         display: none;
+        position: relative;
+        z-index: 101;
         flex-direction: column;
         justify-content: center;
         gap: 5px;
@@ -865,10 +869,8 @@ const testimonials = [
 
       .faq { margin-bottom: clamp(3rem, 6vw, 6rem); }
       .faq-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 3rem;
-        margin-top: 2rem;
+        max-width: 42rem;
+        margin: 2rem auto 0;
       }
       .faq-item {
         border-bottom: 1px solid var(--line);
@@ -1058,7 +1060,6 @@ const testimonials = [
       @media (max-width: 880px) {
         .hero, .consult { grid-template-columns: 1fr; }
         .trust-strip { grid-template-columns: 1fr; }
-        .faq-list { grid-template-columns: 1fr; }
         .hero-art { order: -1; max-width: 20rem; margin: 0 auto; }
         .ribbon-links { justify-content: center; width: 100%; }
         .mega-panel { display: none; }
