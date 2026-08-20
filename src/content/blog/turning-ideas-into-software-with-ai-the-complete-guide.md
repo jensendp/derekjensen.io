@@ -192,8 +192,8 @@ Think of AI as a really fast, really helpful teammate. It does what you ask. But
 This guide is part of a complete series on Turning Ideas into Software with AI. Here's what we cover:
 
 - [Validating Ideas Without Code](https://derekjensen.io/blog/validating-ideas-without-code-using-ai-guide)
+- [Turning Ideas into MVPs with AI](https://derekjensen.io/blog/turning-ideas-into-mvps-with-ai-no-code-needed)
 
-- Turning Ideas into MVPs with AI
 - Idea Selection Frameworks
 - Rapid Prototyping with AI
 - Building Before Overthinking
