@@ -194,8 +194,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Validating Ideas Without Code](https://derekjensen.io/blog/validating-ideas-without-code-using-ai-guide)
 - [Turning Ideas into MVPs with AI](https://derekjensen.io/blog/turning-ideas-into-mvps-with-ai-no-code-needed)
 - [Idea Selection Frameworks](https://derekjensen.io/blog/idea-selection-frameworks-for-ai-builders-pick-ship)
+- [Rapid Prototyping with AI](https://derekjensen.io/blog/rapid-prototyping-with-ai-a-non-technical-guide)
 
-- Rapid Prototyping with AI
 - Building Before Overthinking
 - Avoiding Idea Paralysis
 - Mapping Features Without Engineering
