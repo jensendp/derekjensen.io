@@ -195,8 +195,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Turning Ideas into MVPs with AI](https://derekjensen.io/blog/turning-ideas-into-mvps-with-ai-no-code-needed)
 - [Idea Selection Frameworks](https://derekjensen.io/blog/idea-selection-frameworks-for-ai-builders-pick-ship)
 - [Rapid Prototyping with AI](https://derekjensen.io/blog/rapid-prototyping-with-ai-a-non-technical-guide)
+- [Building Before Overthinking](https://derekjensen.io/blog/building-before-overthinking-with-ai-a-practical-guide)
 
-- Building Before Overthinking
 - Avoiding Idea Paralysis
 - Mapping Features Without Engineering
 - User Feedback Loops Early
