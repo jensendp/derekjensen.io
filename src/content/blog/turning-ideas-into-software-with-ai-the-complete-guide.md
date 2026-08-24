@@ -196,8 +196,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Idea Selection Frameworks](https://derekjensen.io/blog/idea-selection-frameworks-for-ai-builders-pick-ship)
 - [Rapid Prototyping with AI](https://derekjensen.io/blog/rapid-prototyping-with-ai-a-non-technical-guide)
 - [Building Before Overthinking](https://derekjensen.io/blog/building-before-overthinking-with-ai-a-practical-guide)
+- [Avoiding Idea Paralysis](https://derekjensen.io/blog/avoiding-idea-paralysis-when-building-with-ai-guide)
 
-- Avoiding Idea Paralysis
 - Mapping Features Without Engineering
 - User Feedback Loops Early
 - From Concept to Clickable Product
