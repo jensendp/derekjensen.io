@@ -198,8 +198,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Building Before Overthinking](https://derekjensen.io/blog/building-before-overthinking-with-ai-a-practical-guide)
 - [Avoiding Idea Paralysis](https://derekjensen.io/blog/avoiding-idea-paralysis-when-building-with-ai-guide)
 - [Mapping Features Without Engineering](https://derekjensen.io/blog/mapping-features-without-engineering-ai-simple-guide)
+- [User Feedback Loops Early](https://derekjensen.io/blog/user-feedback-loops-early-stage-ai-product-guide)
 
-- User Feedback Loops Early
 - From Concept to Clickable Product
 - Idea to Landing Page Workflow
 - Prioritizing Features with AI
