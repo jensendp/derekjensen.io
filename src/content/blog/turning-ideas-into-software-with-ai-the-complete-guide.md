@@ -201,8 +201,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [User Feedback Loops Early](https://derekjensen.io/blog/user-feedback-loops-early-stage-ai-product-guide)
 - [From Concept to Clickable Product](https://derekjensen.io/blog/from-concept-to-clickable-product-with-ai-guide)
 - [Idea to Landing Page Workflow](https://derekjensen.io/blog/idea-to-landing-page-workflow-with-ai-guide)
+- [Prioritizing Features with AI](https://derekjensen.io/blog/prioritizing-features-with-ai-a-non-technical-guide)
 
-- Prioritizing Features with AI
 - Avoiding Overbuilding
 - Creating Product Specs with AI
 - Testing Demand Quickly
