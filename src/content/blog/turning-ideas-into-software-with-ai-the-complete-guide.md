@@ -204,8 +204,8 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Prioritizing Features with AI](https://derekjensen.io/blog/prioritizing-features-with-ai-a-non-technical-guide)
 - [Avoiding Overbuilding](https://derekjensen.io/blog/avoiding-overbuilding-ai-products-a-non-technical-guide)
 - [Creating Product Specs with AI](https://derekjensen.io/blog/creating-product-specs-with-ai-a-non-technical-guide)
+- [Testing Demand Quickly](https://derekjensen.io/blog/testing-product-demand-quickly-with-ai-guide)
 
-- Testing Demand Quickly
 - Iterating Based on Feedback
 - Idea to Revenue Pipeline
 - Solo Founder Product Strategy
