@@ -205,10 +205,10 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Avoiding Overbuilding](https://derekjensen.io/blog/avoiding-overbuilding-ai-products-a-non-technical-guide)
 - [Creating Product Specs with AI](https://derekjensen.io/blog/creating-product-specs-with-ai-a-non-technical-guide)
 - [Testing Demand Quickly](https://derekjensen.io/blog/testing-product-demand-quickly-with-ai-guide)
+- [Solo Founder Product Strategy](https://derekjensen.io/blog/solo-founder-product-strategy-with-ai-guide)
 
 - Iterating Based on Feedback
 - Idea to Revenue Pipeline
-- Solo Founder Product Strategy
 - Common Idea-to-Product Failures
 - Speed vs Quality Tradeoffs
 - Shipping Your First Product
