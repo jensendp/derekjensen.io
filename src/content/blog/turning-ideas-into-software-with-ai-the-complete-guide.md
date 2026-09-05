@@ -206,10 +206,10 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Creating Product Specs with AI](https://derekjensen.io/blog/creating-product-specs-with-ai-a-non-technical-guide)
 - [Testing Demand Quickly](https://derekjensen.io/blog/testing-product-demand-quickly-with-ai-guide)
 - [Solo Founder Product Strategy](https://derekjensen.io/blog/solo-founder-product-strategy-with-ai-guide)
+- [Common Idea-to-Product Failures](https://derekjensen.io/blog/common-idea-to-product-failures-with-ai-and-how-to-avoid-them)
 
 - Iterating Based on Feedback
 - Idea to Revenue Pipeline
-- Common Idea-to-Product Failures
 - Speed vs Quality Tradeoffs
 - Shipping Your First Product
 
