@@ -208,10 +208,10 @@ This guide is part of a complete series on Turning Ideas into Software with AI. 
 - [Solo Founder Product Strategy](https://derekjensen.io/blog/solo-founder-product-strategy-with-ai-guide)
 - [Common Idea-to-Product Failures](https://derekjensen.io/blog/common-idea-to-product-failures-with-ai-and-how-to-avoid-them)
 - [Speed vs Quality Tradeoffs](https://derekjensen.io/blog/speed-vs-quality-tradeoffs-in-ai-products-guide)
+- [Shipping Your First Product](https://derekjensen.io/blog/shipping-your-first-ai-built-product-a-non-technical-guide)
 
 - Iterating Based on Feedback
 - Idea to Revenue Pipeline
-- Shipping Your First Product
 
 
 ## Conclusion
