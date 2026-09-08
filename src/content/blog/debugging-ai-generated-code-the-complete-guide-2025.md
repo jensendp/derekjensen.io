@@ -162,7 +162,8 @@ You're not just fixing bugs. You're becoming a builder.
 
 This guide is part of a complete series on Debugging and Fixing AI-Generated Code. Here's what we cover:
 
-- Why AI-Generated Code Breaks
+- [Why AI-Generated Code Breaks](https://derekjensen.io/blog/why-ai-generated-code-breaks-and-how-to-fix-it)
+
 - How to Read Errors Without Coding Experience
 - Common Error Types Explained Simply
 - Fixing Syntax Errors Step-by-Step
@@ -182,6 +183,7 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - Tools That Help Debug Faster
 - Debugging Without Understanding Everything
 - Building Confidence in Fixing Code
+
 
 ## Conclusion
 
