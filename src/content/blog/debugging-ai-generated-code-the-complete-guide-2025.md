@@ -165,8 +165,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Why AI-Generated Code Breaks](https://derekjensen.io/blog/why-ai-generated-code-breaks-and-how-to-fix-it)
 - [How to Read Errors Without Coding Experience](https://derekjensen.io/blog/how-to-read-code-errors-without-coding-experience)
 - [Common Error Types Explained Simply](https://derekjensen.io/blog/common-code-error-types-explained-simply-guide)
+- [Fixing Syntax Errors Step-by-Step](https://derekjensen.io/blog/fixing-syntax-errors-step-by-step-with-ai-guide)
 
-- Fixing Syntax Errors Step-by-Step
 - Debugging Logic Errors from AI
 - How to Ask AI to Fix Its Own Code
 - Iterative Debugging Workflows
