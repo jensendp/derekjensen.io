@@ -168,8 +168,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Fixing Syntax Errors Step-by-Step](https://derekjensen.io/blog/fixing-syntax-errors-step-by-step-with-ai-guide)
 - [Debugging Logic Errors from AI](https://derekjensen.io/blog/debugging-logic-errors-from-ai-generated-code-guide)
 - [How to Ask AI to Fix Its Own Code](https://derekjensen.io/blog/how-to-ask-ai-to-fix-its-own-code-guide)
+- [Iterative Debugging Workflows](https://derekjensen.io/blog/iterative-debugging-workflows-with-ai-a-practical-guide)
 
-- Iterative Debugging Workflows
 - When to Restart vs Fix Code
 - Using Logs to Diagnose Problems
 - Debugging Frontend Issues
