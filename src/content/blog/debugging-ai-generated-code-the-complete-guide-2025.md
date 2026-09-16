@@ -170,8 +170,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [How to Ask AI to Fix Its Own Code](https://derekjensen.io/blog/how-to-ask-ai-to-fix-its-own-code-guide)
 - [Iterative Debugging Workflows](https://derekjensen.io/blog/iterative-debugging-workflows-with-ai-a-practical-guide)
 - [When to Restart vs Fix Code](https://derekjensen.io/blog/when-to-restart-vs-fix-ai-generated-code-guide)
+- [Using Logs to Diagnose Problems](https://derekjensen.io/blog/using-logs-to-diagnose-ai-code-problems-guide)
 
-- Using Logs to Diagnose Problems
 - Debugging Frontend Issues
 - Debugging Backend Failures
 - Fixing Broken Integrations
