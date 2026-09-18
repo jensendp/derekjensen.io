@@ -172,8 +172,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [When to Restart vs Fix Code](https://derekjensen.io/blog/when-to-restart-vs-fix-ai-generated-code-guide)
 - [Using Logs to Diagnose Problems](https://derekjensen.io/blog/using-logs-to-diagnose-ai-code-problems-guide)
 - [Debugging Frontend Issues](https://derekjensen.io/blog/debugging-frontend-issues-in-ai-generated-code)
+- [Debugging Backend Failures](https://derekjensen.io/blog/debugging-backend-failures-in-ai-generated-code)
 
-- Debugging Backend Failures
 - Fixing Broken Integrations
 - Handling Dependency Issues
 - Version Conflicts Explained
