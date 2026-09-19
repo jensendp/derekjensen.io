@@ -173,8 +173,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Using Logs to Diagnose Problems](https://derekjensen.io/blog/using-logs-to-diagnose-ai-code-problems-guide)
 - [Debugging Frontend Issues](https://derekjensen.io/blog/debugging-frontend-issues-in-ai-generated-code)
 - [Debugging Backend Failures](https://derekjensen.io/blog/debugging-backend-failures-in-ai-generated-code)
+- [Fixing Broken Integrations](https://derekjensen.io/blog/fixing-broken-integrations-in-ai-built-apps-guide)
 
-- Fixing Broken Integrations
 - Handling Dependency Issues
 - Version Conflicts Explained
 - Debugging Deployment Failures
