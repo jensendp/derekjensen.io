@@ -177,8 +177,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Handling Dependency Issues](https://derekjensen.io/blog/handling-dependency-issues-in-ai-code-guide)
 - [Version Conflicts Explained](https://derekjensen.io/blog/version-conflicts-in-ai-generated-code-explained)
 - [Debugging Deployment Failures](https://derekjensen.io/blog/debugging-deployment-failures-ai-apps-a-non-dev-guide)
+- [Simplifying Broken Code](https://derekjensen.io/blog/simplifying-broken-ai-generated-code-a-non-coders-guide)
 
-- Simplifying Broken Code
 - Avoiding Infinite Debug Loops
 - Tools That Help Debug Faster
 - Debugging Without Understanding Everything
