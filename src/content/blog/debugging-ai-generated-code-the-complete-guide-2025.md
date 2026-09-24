@@ -178,8 +178,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Version Conflicts Explained](https://derekjensen.io/blog/version-conflicts-in-ai-generated-code-explained)
 - [Debugging Deployment Failures](https://derekjensen.io/blog/debugging-deployment-failures-ai-apps-a-non-dev-guide)
 - [Simplifying Broken Code](https://derekjensen.io/blog/simplifying-broken-ai-generated-code-a-non-coders-guide)
+- [Avoiding Infinite Debug Loops](https://derekjensen.io/blog/avoiding-infinite-debug-loops-with-ai-guide)
 
-- Avoiding Infinite Debug Loops
 - Tools That Help Debug Faster
 - Debugging Without Understanding Everything
 - Building Confidence in Fixing Code
