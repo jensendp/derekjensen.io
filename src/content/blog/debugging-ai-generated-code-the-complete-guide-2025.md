@@ -180,8 +180,8 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Simplifying Broken Code](https://derekjensen.io/blog/simplifying-broken-ai-generated-code-a-non-coders-guide)
 - [Avoiding Infinite Debug Loops](https://derekjensen.io/blog/avoiding-infinite-debug-loops-with-ai-guide)
 - [Tools That Help Debug Faster](https://derekjensen.io/blog/tools-that-help-debug-ai-code-faster-guide)
+- [Debugging Without Understanding Everything](https://derekjensen.io/blog/debugging-ai-code-without-understanding-everything)
 
-- Debugging Without Understanding Everything
 - Building Confidence in Fixing Code
 
 
