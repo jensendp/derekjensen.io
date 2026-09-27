@@ -181,8 +181,7 @@ This guide is part of a complete series on Debugging and Fixing AI-Generated Cod
 - [Avoiding Infinite Debug Loops](https://derekjensen.io/blog/avoiding-infinite-debug-loops-with-ai-guide)
 - [Tools That Help Debug Faster](https://derekjensen.io/blog/tools-that-help-debug-ai-code-faster-guide)
 - [Debugging Without Understanding Everything](https://derekjensen.io/blog/debugging-ai-code-without-understanding-everything)
-
-- Building Confidence in Fixing Code
+- [Building Confidence in Fixing Code](https://derekjensen.io/blog/building-confidence-fixing-ai-generated-code)
 
 
 ## Conclusion
