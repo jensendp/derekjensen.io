@@ -1,6 +1,6 @@
 ---
-title: "Shipping Your First AI Built Product: A Non-Technical Guide"
-description: "Shipping your first AI built product feels overwhelming. This step-by-step guide helps non-technical builders go from idea to live product without wasting time or money."
+title: "How to Ship an AI-Built Product: Step-by-Step for Non-Coders"
+description: "Built something with AI and not sure how to launch it? Follow this step-by-step guide: define 'done', pick one tool stack, fix breakages, and go live."
 pubDate: '2026-09-07T12:02:15'
 tags: ["AI product development","non-technical builders","ship with AI","AI tools for beginners"]
 author: "Derek Jensen"
