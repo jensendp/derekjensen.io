@@ -197,8 +197,8 @@ Give me a clear recommendation with reasoning.
 This guide is part of a complete series on No-Code vs AI Coding: When to Use Each. Here's what we cover:
 
 - [What Is No-Code vs AI Coding](https://derekjensen.io/blog/what-is-no-code-vs-ai-coding-a-simple-breakdown)
+- [Key Differences Explained](https://derekjensen.io/blog/key-differences-no-code-vs-ai-coding-guide)
 
-- Key Differences Explained
 - When No-Code Is the Better Choice
 - When AI Coding Wins
 - Hybrid Approach (Best of Both)
