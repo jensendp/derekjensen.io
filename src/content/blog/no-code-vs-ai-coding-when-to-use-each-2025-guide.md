@@ -199,9 +199,9 @@ This guide is part of a complete series on No-Code vs AI Coding: When to Use Eac
 - [What Is No-Code vs AI Coding](https://derekjensen.io/blog/what-is-no-code-vs-ai-coding-a-simple-breakdown)
 - [Key Differences Explained](https://derekjensen.io/blog/key-differences-no-code-vs-ai-coding-guide)
 - [When No-Code Is the Better Choice](https://derekjensen.io/blog/when-no-code-is-better-than-ai-coding-guide)
+- [Hybrid Approach (Best of Both)](https://derekjensen.io/blog/hybrid-no-code-and-ai-coding-approach-how-to-use-both)
 
 - When AI Coding Wins
-- Hybrid Approach (Best of Both)
 - Cost Comparison: No-Code vs AI
 - Speed Comparison
 - Flexibility and Limitations
