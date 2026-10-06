@@ -203,9 +203,9 @@ This guide is part of a complete series on No-Code vs AI Coding: When to Use Eac
 - [Cost Comparison: No-Code vs AI](https://derekjensen.io/blog/cost-comparison-no-code-vs-ai-coding-guide)
 - [Speed Comparison](https://derekjensen.io/blog/speed-comparison-no-code-vs-ai-coding-data)
 - [Flexibility and Limitations](https://derekjensen.io/blog/flexibility-limitations-no-code-vs-ai-coding)
+- [Scalability Differences](https://derekjensen.io/blog/scalability-differences-no-code-vs-ai-coding)
 
 - When AI Coding Wins
-- Scalability Differences
 - Maintenance Considerations
 - Learning Curve Comparison
 - Tool Lock-In Risks
