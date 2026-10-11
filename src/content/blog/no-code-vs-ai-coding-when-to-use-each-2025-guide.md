@@ -208,9 +208,9 @@ This guide is part of a complete series on No-Code vs AI Coding: When to Use Eac
 - [Learning Curve Comparison](https://derekjensen.io/blog/learning-curve-no-code-vs-ai-coding-honest-comparison)
 - [Tool Lock-In Risks](https://derekjensen.io/blog/tool-lock-in-risks-no-code-vs-ai-what-to-know-in)
 - [Customization Tradeoffs](https://derekjensen.io/blog/customization-tradeoffs-no-code-vs-ai-coding-explained)
+- [Real Project Comparisons](https://derekjensen.io/blog/real-project-comparisons-no-code-vs-ai-coding)
 
 - When AI Coding Wins
-- Real Project Comparisons
 - Switching from No-Code to AI
 - Avoiding Overengineering
 - Decision Framework for Builders
