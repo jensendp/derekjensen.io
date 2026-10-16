@@ -213,9 +213,9 @@ This guide is part of a complete series on No-Code vs AI Coding: When to Use Eac
 - [Avoiding Overengineering](https://derekjensen.io/blog/avoiding-overengineering-with-ai-coding-guide)
 - [Decision Framework for Builders](https://derekjensen.io/blog/decision-framework-no-code-vs-ai-coding-guide)
 - [Case Studies: No-Code vs AI](https://derekjensen.io/blog/case-studies-no-code-vs-ai-coding-real-builder-results)
+- [Common Mistakes Choosing Tools](https://derekjensen.io/blog/common-mistakes-choosing-no-code-vs-ai-tools)
 
 - When AI Coding Wins
-- Common Mistakes Choosing Tools
 - Future of No-Code vs AI
 
 
