@@ -209,7 +209,8 @@ You built the product. Now your job is to protect what you built and grow it car
 
 This guide is part of a complete series on Building SaaS Products with AI. Here's what we cover:
 
-- What Makes a SaaS Product
+- [What Makes a SaaS Product](https://derekjensen.io/blog/what-makes-a-saas-product-a-simple-guide-for)
+
 - Building Your First AI SaaS
 - Choosing the Right SaaS Idea
 - MVP Features for SaaS
@@ -229,6 +230,7 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - SaaS Analytics Basics
 - Launching Your SaaS Publicly
 - Growing to First 100 Users
+
 
 ## Conclusion
 
