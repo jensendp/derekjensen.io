@@ -213,8 +213,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Building Your First AI SaaS](https://derekjensen.io/blog/building-your-first-ai-saas-product-no-code-needed)
 - [Choosing the Right SaaS Idea](https://derekjensen.io/blog/choosing-the-right-saas-idea-with-ai-guide)
 - [MVP Features for SaaS](https://derekjensen.io/blog/mvp-features-for-ai-built-saas-what-to-keep-cut)
+- [Subscription Models Explained](https://derekjensen.io/blog/subscription-models-explained-for-saas-builders)
 
-- Subscription Models Explained
 - User Authentication Basics
 - Building Billing Systems
 - Creating Multi-User Apps
