@@ -214,8 +214,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Choosing the Right SaaS Idea](https://derekjensen.io/blog/choosing-the-right-saas-idea-with-ai-guide)
 - [MVP Features for SaaS](https://derekjensen.io/blog/mvp-features-for-ai-built-saas-what-to-keep-cut)
 - [Subscription Models Explained](https://derekjensen.io/blog/subscription-models-explained-for-saas-builders)
+- [User Authentication Basics](https://derekjensen.io/blog/user-authentication-basics-for-ai-saas-guide)
 
-- User Authentication Basics
 - Building Billing Systems
 - Creating Multi-User Apps
 - SaaS Dashboard Design
