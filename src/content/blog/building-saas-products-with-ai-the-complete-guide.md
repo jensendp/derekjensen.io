@@ -217,8 +217,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [User Authentication Basics](https://derekjensen.io/blog/user-authentication-basics-for-ai-saas-guide)
 - [Building Billing Systems](https://derekjensen.io/blog/building-billing-systems-for-ai-saas-guide)
 - [Creating Multi-User Apps](https://derekjensen.io/blog/creating-multi-user-apps-with-ai-a-non-technical-guide)
+- [SaaS Dashboard Design](https://derekjensen.io/blog/saas-dashboard-design-with-ai-a-non-technical-guide)
 
-- SaaS Dashboard Design
 - Handling User Data
 - Managing SaaS Infrastructure
 - Deploying Your SaaS
