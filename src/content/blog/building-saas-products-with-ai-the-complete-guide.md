@@ -218,8 +218,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Building Billing Systems](https://derekjensen.io/blog/building-billing-systems-for-ai-saas-guide)
 - [Creating Multi-User Apps](https://derekjensen.io/blog/creating-multi-user-apps-with-ai-a-non-technical-guide)
 - [SaaS Dashboard Design](https://derekjensen.io/blog/saas-dashboard-design-with-ai-a-non-technical-guide)
+- [Handling User Data](https://derekjensen.io/blog/handling-user-data-in-ai-built-saas-guide)
 
-- Handling User Data
 - Managing SaaS Infrastructure
 - Deploying Your SaaS
 - Pricing Strategies for SaaS
