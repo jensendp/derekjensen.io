@@ -219,8 +219,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Creating Multi-User Apps](https://derekjensen.io/blog/creating-multi-user-apps-with-ai-a-non-technical-guide)
 - [SaaS Dashboard Design](https://derekjensen.io/blog/saas-dashboard-design-with-ai-a-non-technical-guide)
 - [Handling User Data](https://derekjensen.io/blog/handling-user-data-in-ai-built-saas-guide)
+- [Managing SaaS Infrastructure](https://derekjensen.io/blog/managing-saas-infrastructure-for-ai-built-apps)
 
-- Managing SaaS Infrastructure
 - Deploying Your SaaS
 - Pricing Strategies for SaaS
 - Reducing Churn Early
