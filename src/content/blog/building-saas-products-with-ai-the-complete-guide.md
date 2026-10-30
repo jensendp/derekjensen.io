@@ -221,8 +221,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Handling User Data](https://derekjensen.io/blog/handling-user-data-in-ai-built-saas-guide)
 - [Managing SaaS Infrastructure](https://derekjensen.io/blog/managing-saas-infrastructure-for-ai-built-apps)
 - [Deploying Your SaaS](https://derekjensen.io/blog/deploying-ai-built-saas-product-my-simple-launch-guide)
+- [Pricing Strategies for SaaS](https://derekjensen.io/blog/pricing-strategies-for-ai-built-saas-guide)
 
-- Pricing Strategies for SaaS
 - Reducing Churn Early
 - Adding Features Over Time
 - Scaling SaaS Products
