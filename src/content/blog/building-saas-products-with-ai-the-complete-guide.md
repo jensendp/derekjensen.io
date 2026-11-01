@@ -223,8 +223,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Deploying Your SaaS](https://derekjensen.io/blog/deploying-ai-built-saas-product-my-simple-launch-guide)
 - [Pricing Strategies for SaaS](https://derekjensen.io/blog/pricing-strategies-for-ai-built-saas-guide)
 - [Reducing Churn Early](https://derekjensen.io/blog/reducing-churn-early-in-ai-saas-a-solo-builders-guide)
+- [Adding Features Over Time](https://derekjensen.io/blog/adding-features-over-time-to-ai-saas-a-solo-builder-guide)
 
-- Adding Features Over Time
 - Scaling SaaS Products
 - Customer Support Systems
 - SaaS Analytics Basics
