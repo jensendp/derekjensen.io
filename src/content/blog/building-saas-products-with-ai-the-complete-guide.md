@@ -225,8 +225,8 @@ This guide is part of a complete series on Building SaaS Products with AI. Here'
 - [Reducing Churn Early](https://derekjensen.io/blog/reducing-churn-early-in-ai-saas-a-solo-builders-guide)
 - [Adding Features Over Time](https://derekjensen.io/blog/adding-features-over-time-to-ai-saas-a-solo-builder-guide)
 - [Scaling SaaS Products](https://derekjensen.io/blog/scaling-ai-built-saas-products-a-solo-builders-guide)
+- [Customer Support Systems](https://derekjensen.io/blog/customer-support-systems-for-ai-saas-guide)
 
-- Customer Support Systems
 - SaaS Analytics Basics
 - Launching Your SaaS Publicly
 - Growing to First 100 Users
