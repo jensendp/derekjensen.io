@@ -1,83 +1,72 @@
 ---
 title: "How to Build a Desktop AI Companion Without Writing Code"
-description: "Desktop AI companions like Claude Desktop Buddy are trending. Learn how to build your own AI assistant app this weekend — no coding experience needed."
+description: "Build your own desktop AI companion in a weekend with Cursor, Electron or Tauri, and an AI API. No coding experience needed. Prompts included."
 pubDate: 2026-04-24
 tags: ["desktop AI companion","no-code AI app","Claude Desktop Buddy","weekend AI project"]
 author: "Derek Jensen"
+updatedDate: '2026-11-10T09:00:00'
 draft: false
 heroImage: "https://images.unsplash.com/photo-1619597455322-4fbbd820250a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfGFsbHx8fHx8fHx8fDE3NzcwMzQ3NDd8&ixlib=rb-4.1.0&q=80&w=1080"
 ---
 
-AI isn't just living in your browser anymore. A new wave of desktop AI companion apps — like the trending Claude Desktop Buddy on Product Hunt — are putting smart, always-available assistants right on your computer's home screen. The best part? You don't need to be a software engineer to build one yourself. This post breaks down exactly what desktop AI companions are, why they're taking off, and how you can build your own in a single weekend using no-code and low-code tools. Whether you've never touched a line of code or you're just getting started, this roadmap will get you from zero to a working AI assistant on your desktop.
+A desktop AI companion is a small app that sits on your computer and lets you talk to an AI without opening a browser. You can build one over a weekend without writing the code yourself. Describe what you want in plain English to a tool like Cursor, connect the app to an AI API, and package the result as an installable program.
 
-## What Is a Desktop AI Companion (and Why Is Everyone Talking About Them)?
+This guide explains what desktop AI companions are, compares the no-code and low-code routes, and walks through a three-step weekend plan with prompts you can copy.
 
-A desktop AI companion is a standalone app that lives right on your computer. You can talk to it, ask it questions, or hand it tasks — all without opening a browser. Think of it like having a smart assistant sitting on your desktop, ready whenever you need it.
+## What Is a Desktop AI Companion?
 
-You've probably seen apps like Claude Desktop Buddy trending on Product Hunt lately. These aren't just browser chatbots with a new coat of paint. They're real desktop applications that feel like part of your computer.
+A desktop AI companion is a standalone app that runs on your computer. You can talk to it, ask it questions, or hand it tasks without opening a browser. Claude Desktop Buddy is one example of the idea. Unlike a browser chatbot, these are real desktop applications that feel like part of your computer.
 
-So why do people prefer them over chatting with AI in a browser tab?
+People choose them over a browser tab for three reasons:
 
-A few big reasons:
+- Speed. Click the app and start talking. There's no login page to find and no site to load.
+- Always-on access. The companion sits in your taskbar or dock and works with your browser closed.
+- Deeper integration. A desktop app can reach your files, your clipboard, and other tools on your machine. A browser tab runs in a sandbox and mostly can't.
 
-- **Speed.** Click the app and start talking. No logging in, no navigating to a website, no waiting for a page to load.
-- **Always-on access.** Your companion is right there in your taskbar or dock. It's available even when your browser is closed.
-- **Deeper integration.** Desktop apps can interact with your files, your clipboard, and other tools on your computer in ways a browser tab simply can't.
+You don't need a computer science degree to build one, and you don't need to know what an API is yet. If you're brand new to building with AI, start with [How to Build With AI: A Beginner's Guide for Non-Engineers](https://derekjensen.io/blog/how-to-build-with-ai-a-beginners-guide-for-non-engineers).
 
-That last point is the real game-changer. A browser chatbot lives in a sandbox. A desktop companion lives where you actually work.
+## Why Now Is a Good Time to Build One
 
-Here's the exciting part — you can **build a desktop AI companion** yourself. You don't need a computer science degree. You don't even need to know what an API is yet. The tools available today make this surprisingly doable, and the rest of this post will show you exactly how. If you're brand new to building with AI, you might want to start with [How to Build With AI: A Beginner's Guide for Non-Engineers](https://derekjensen.io/blog/how-to-build-with-ai-a-beginners-guide-for-non-engineers) first.
+A year or two ago this project would have been out of reach for most non-programmers. Three things changed.
 
-## Why Now Is the Perfect Time to Build a Desktop AI Companion
+AI APIs are cheap and easy to get. OpenAI, Anthropic, and Google all offer APIs you can plug into your own apps. You sign up, get an API key, and start making calls in minutes. Personal projects often cost cents per day.
 
-A year ago, this kind of project would have been out of reach for most people. Not anymore. Three big things have changed.
+AI coding tools write the code. Cursor, Bolt, and Replit let you describe what you want in plain English and generate the code for you. You need clear ideas and a willingness to experiment, not years of programming experience.
 
-**AI APIs are cheap and easy to get.** OpenAI, Anthropic, and Google all offer APIs that let you plug AI brains into your own apps. You can sign up, grab an API key, and start making calls in minutes. Costs for personal projects? Often just pennies a day.
+Niche companions are underbuilt. The large AI companies focus on general-purpose chatbots. Few people are building a desktop companion for recipe planning, journaling, or managing freelance projects, so there's room to solve a specific problem for a specific group.
 
-**New tools do the heavy lifting for you.** This is the game-changer. Tools like Cursor, Bolt, and Replit let you describe what you want in plain English, and they write the code. You don't need years of programming experience. You need clear ideas and a willingness to experiment.
+> **Tip:** If you're worried about API costs, read [How to Track AI Costs: Token Counting Guide for Beginners](https://derekjensen.io/blog/how-to-track-ai-costs-token-counting-guide-for-beginners). Tracking token usage from day one helps you avoid surprise bills.
 
-**The space is wide open.** Big tech companies are focused on general-purpose chatbots. They're not building niche desktop companions for recipe planning, journaling, or managing freelance projects. That's your lane. If you build a desktop AI companion right now, you're early. You can solve a specific problem for a specific group of people before anyone else does.
+## No-Code vs. Low-Code: Which Path to Pick
 
-> **Tip:** If you're worried about API costs adding up, check out [How to Track AI Costs: Token Counting Guide for Beginners](https://derekjensen.io/blog/how-to-track-ai-costs-token-counting-guide-for-beginners). Tracking your token usage from day one will help you avoid surprise bills and keep your project sustainable.
+There are two ways to build a desktop AI companion.
 
-The window won't stay this open forever. But this weekend? It's all yours.
+No-code means visual builders and tools that generate a whole app from a description. Bolt and Replit's agent mode fall into this group. You describe the app in plain English and the tool builds it.
 
-## The Two Main Approaches: No-Code vs. Low-Code
-
-Before you start, it helps to know there are two paths you can take.
-
-**No-code** means using visual builders and drag-and-drop tools. Think of it like assembling LEGO blocks. You pick pieces, snap them together, and get a working result. Tools like Bolt and Replit's agent mode fall into this camp. You describe what you want in plain English, and they generate a working app for you.
-
-**Low-code** means you'll touch some code — but not much. An AI assistant like Cursor writes most of it for you. You're more of a director telling the AI what to build, then tweaking small things when needed.
-
-So which path should you pick to build a desktop AI companion?
+Low-code means you touch some code, but not much. An AI assistant like Cursor writes most of it. You direct it and tweak small things when needed.
 
 | | **No-Code** | **Low-Code** |
 |---|---|---|
-| **Best for** | Complete beginners who want the fastest win | Builders who want more control and customization |
+| **Best for** | Complete beginners who want the fastest first result | Builders who want more control |
 | **Tools** | Bolt, Replit Agent Mode | Cursor + Electron or Tauri |
-| **Learning curve** | Minimal — describe what you want in plain English | Small — you'll read and tweak some generated code |
-| **Customization** | Limited to what the platform supports | High — local file access, system tray, custom features |
-| **Typical result** | Working prototype (70-80% of the way) | Polished app you'd use daily |
-| **Time to first result** | 1-2 hours | 3-5 hours |
+| **Learning curve** | Minimal: describe what you want in plain English | Small: you'll read and adjust some generated code |
+| **Customization** | Limited to what the platform supports | High: local file access, system tray, custom features |
+| **Typical result** | A working prototype | A more polished app you could use daily |
+| **Time to first result (rough estimate)** | A couple of hours | A few hours |
 
-**Go no-code if** you've never built anything before and want the fastest win possible. You'll get a working prototype quickly, but you'll have less control over how the app looks and behaves under the hood.
+Choose no-code if you've never built anything and want a working prototype quickly. You'll have less control over how the app looks and behaves.
 
-**Go low-code if** you want more flexibility and don't mind a small learning curve. You'll be able to customize more and build features that no-code tools can't always handle — like reading local files or running in your system tray.
+Choose low-code if you want features that no-code tools struggle with, such as reading local files or running in the system tray, and you can accept a short learning curve.
 
-Here's the honest truth: no-code can get you 70-80% of the way there. Low-code gets you closer to a polished app you'd actually want to use every day. Either path works. Pick the one that matches your comfort level right now. For a broader look at the no-code landscape, check out the [Best AI Tools for Non-Developers: 2025 Guide](https://derekjensen.io/blog/best-ai-tools-for-non-developers-2025-guide).
+Either path works, so pick the one that matches your comfort level. For a wider look at no-code options, see the [Best AI Tools for Non-Developers: 2025 Guide](https://derekjensen.io/blog/best-ai-tools-for-non-developers-2025-guide).
 
-## Approach 1: Build a Desktop AI Companion With Electron and an AI API
+## Approach 1: Build With Electron and an AI API
 
-Let's start with Electron. In simple terms, Electron lets you turn a web page into a real desktop app. You know Slack? Discord? VS Code? They're all built with Electron. It's been around for years, and it's one of the most proven ways to build a desktop AI companion.
+Electron turns a web page into a desktop app. Slack, Discord, and VS Code are all built with it. It has been around for years and has plenty of tutorials.
 
-Here's the basic idea. You create a simple chat interface — a text box and a place for responses. Then you connect that interface to an AI API like Claude or GPT. When you type a message, your app sends it to the API. The API sends back a smart response. That's your companion "thinking."
+The structure is simple. You create a chat interface, which is a text box and a place for responses, and connect it to an AI API such as Claude or GPT. When you type a message, the app sends it to the API and shows the reply.
 
-Now here's the exciting part. You don't have to write this code yourself.
-
-Open Cursor or ChatGPT and describe what you want in plain English. Something like: "Build me an Electron app with a chat window that sends messages to the Anthropic Claude API and displays the responses." These tools will generate the code for you. You copy it into the right files, hit run, and you've got a working app.
-
-Here's an example of the kind of prompt you'd paste into Cursor to kick things off:
+You don't have to write that code. Open Cursor or ChatGPT and describe the app, then copy the generated code into the right files and run it. This prompt is a good starting point for Cursor:
 
 ```
 Build me an Electron app with the following:
@@ -85,7 +74,8 @@ Build me an Electron app with the following:
 1. A simple chat window with a text input at the bottom and a scrollable
    message area above it.
 2. When the user types a message and presses Enter, send it to the
-   Anthropic Claude API (model: claude-sonnet-4-20250514).
+   Anthropic Claude API (use a current Claude model ID from Anthropic's
+   documentation, for example claude-sonnet-5-5).
 3. Display the AI's response in the message area as a new chat bubble.
 4. Store the API key in a .env file so it's not hard-coded.
 5. Use a clean, minimal dark theme for the UI.
@@ -94,41 +84,27 @@ Please scaffold the full project structure including package.json,
 main.js, preload.js, and index.html.
 ```
 
-Will it be perfect on the first try? Probably not. But you'll have something real on your screen — and you can keep refining it from there.
+The first version probably won't be right. You'll still have a working app on screen to refine with follow-up prompts.
 
-> **Warning:** Never hard-code your API key directly into your app's source code. Always use a `.env` file or environment variable. If you accidentally share your code with the key embedded, anyone could use your API account and rack up charges. Cursor will usually do this correctly if you ask — but always double-check.
+> **Warning:** Never hard-code your API key in the app's source code. Use a `.env` file or an environment variable. If you share code with the key embedded, anyone can use your API account and run up charges. Cursor usually handles this correctly when you ask, but check.
 
-## Use Tauri With Cursor for a Faster, Lighter Desktop AI Companion
+## Approach 2: Build With Tauri and Cursor
 
-Electron works great, but it has a downside — the apps it creates are big and can feel slow. That's where Tauri comes in.
+Electron apps tend to be large and can feel slow. Tauri does the same basic job with much smaller apps that use less memory, often a fraction of the size of an Electron build.
 
-Tauri is a newer tool that does the same basic job as Electron. It turns your idea into a real desktop app. But Tauri apps are *much* smaller and use less memory on your computer. We're talking 10MB instead of 200MB. Your computer will thank you.
+Pair Tauri with Cursor, a code editor with AI built in. Open Cursor, start a new Tauri project, and say something like: "Create a simple chat interface that sends messages to the Anthropic API and displays the responses." Cursor generates the files. You test, ask follow-up questions, and keep building. This is [vibe coding](https://derekjensen.io/blog/what-is-vibe-coding-a-guide-for-non-engineers-2025): describing what you want and letting the AI handle the implementation.
 
-The magic happens when you pair Tauri with Cursor. Cursor is a code editor with AI built right in. You type what you want in plain English, and it writes the code for you. Want a chat window that talks to Claude? Just describe it. Cursor handles the rest.
+Choose Electron if you want more tutorials and community support. Choose Tauri if you want a lighter, faster app and can accept a newer ecosystem.
 
-Here's what that looks like in practice. You open Cursor, start a new Tauri project, and say something like: "Create a simple chat interface that sends messages to the Anthropic API and displays the responses." Cursor generates the files you need. You tweak, ask follow-up questions, and keep building. This is essentially [vibe coding](https://derekjensen.io/blog/what-is-vibe-coding-a-guide-for-non-engineers-2025) — describing what you want and letting AI handle the implementation.
+## Your Weekend Roadmap: Build a Desktop AI Companion in 3 Steps
 
-So which should you pick when you build a desktop AI companion? Choose Electron if you want more tutorials and community support. Choose Tauri if you want a faster, cleaner app and don't mind a slightly newer ecosystem.
+**Step 1, Saturday morning: set up your tools.** Install [Cursor](https://www.cursor.com), which has a free tier. Then get an API key from [Anthropic](https://console.anthropic.com/) or [OpenAI](https://platform.openai.com/). The key is what lets your app talk to the AI. Open Cursor and tell it: *"Create a new Tauri app with a simple chat interface."* It scaffolds the project and you follow the prompts.
 
-Either way, you're building something real.
+**Step 2, Saturday afternoon: build the chat interface.** Ask Cursor to connect the chat window to your AI API. For example: *"When the user types a message and hits send, send it to the Claude API and display the response."* Then test it by typing a message and watching the reply come back.
 
-## Your Weekend Project Roadmap: Build a Desktop AI Companion in 3 Steps
+**Step 3, Sunday: add personality and package it.** Write a system prompt that gives your companion a name, a tone, and a purpose. Then tell Cursor: *"Package this as a desktop app I can share."* Tauri bundles everything into an installable file.
 
-Here's the fun part. Let's break your weekend into three chunks so you can actually build a desktop AI companion from scratch.
-
-**Step 1 — Saturday Morning: Set Up Your Tools**
-
-Download and install [Cursor](https://www.cursor.com) (it's free to start). Then head to [Anthropic](https://console.anthropic.com/) or [OpenAI](https://platform.openai.com/) and grab an API key. This is what lets your app talk to the AI. Once that's done, open Cursor and tell it: *"Create a new Tauri app with a simple chat interface."* It'll scaffold the whole project for you. Just follow the prompts.
-
-**Step 2 — Saturday Afternoon: Build the Chat Interface**
-
-Now ask Cursor to connect your chat window to your AI API. You might say: *"When the user types a message and hits send, send it to the Claude API and display the response."* Test it. Type something. Watch your companion respond. That first reply feels like magic.
-
-**Step 3 — Sunday: Add Personality and Package It**
-
-This is where it gets personal. Write a system prompt that gives your companion a name, a tone, and a purpose. Maybe it's a friendly writing coach. Then tell Cursor: *"Package this as a desktop app I can share."* Tauri will bundle everything into a clean, installable file.
-
-Here's an example system prompt you can use as a starting point — paste it into your app's code where the AI messages are configured:
+Here's a system prompt to start from. Paste it where your app configures the AI's messages:
 
 ```
 You are Luna, a friendly and encouraging writing coach who lives on the
@@ -137,7 +113,7 @@ user's desktop.
 Rules:
 - Keep responses under 3 sentences unless the user asks for more detail.
 - Always end with a specific, actionable suggestion or question.
-- Use a warm, conversational tone — like a supportive friend, not a
+- Use a warm, conversational tone, like a supportive friend, not a
   professor.
 - If the user pastes in text, give feedback on clarity and tone first,
   then grammar only if asked.
@@ -147,46 +123,34 @@ Your goal is to help the user write more clearly and confidently, one
 message at a time.
 ```
 
-That's it. One weekend. One working AI companion sitting on your desktop.
+## How to Make Your Companion Useful
 
-## Tips to Make Your Desktop AI Companion Actually Useful
+An app only matters if you keep opening it. Three changes help.
 
-Here's the truth: the coolest app in the world doesn't matter if it doesn't actually help you. So once you build a desktop AI companion, make it worth opening every day.
+Give it one job. A writing buddy that drafts emails, a research assistant that summarizes articles, or a daily planner for your morning will each feel more useful than a general-purpose chatbot.
 
-**Give it one clear job.** Don't try to make it do everything. Pick a focus. Maybe it's a writing buddy that helps you draft emails. A research assistant that summarizes articles. A daily planner that walks you through your morning. A companion with a specific purpose will always feel more useful than one that tries to be a general-purpose chatbot.
+Shape its personality with a system prompt. A system prompt is a set of instructions the AI reads before the conversation starts, such as "You're a productivity coach who keeps answers short and asks follow-up questions." Vague prompts produce vague answers. For help writing clearer ones, see [5 Prompting Mistakes That Are Costing You Hours of Build Time](https://derekjensen.io/blog/be-smart-with-chatgpt-5-prompting-mistakes-that-are-costing-you-hours-of-build-time).
 
-**Shape its personality with system prompts.** System prompts are instructions you give the AI before the conversation starts. They're like a backstory. You might say, "You're a friendly productivity coach who keeps answers short and asks follow-up questions." This is what makes it feel like *your* assistant instead of a generic one. Getting this right matters — if your prompts are vague, your companion's answers will be too. For more on writing clear, effective prompts, see [5 Prompting Mistakes That Are Costing You Hours of Build Time](https://derekjensen.io/blog/be-smart-with-chatgpt-5-prompting-mistakes-that-are-costing-you-hours-of-build-time).
+Give it context. Decide what information the companion can access. It might read your clipboard so you can paste text and get feedback, or pull from a folder of notes. The more relevant the context, the more useful the answers.
 
-**Feed it context to make it smarter.** Think about what information your companion could access. Maybe it reads your clipboard so you can paste in text and get instant feedback. Maybe it pulls from a folder of notes. The more relevant context you give it, the more useful its answers become.
+> **Tip:** Once the companion works, add a notification that tells you when a long response is ready. It helps when the app is minimized. [Build a Simple Notification System That Tells You When Your AI Is Done Working](https://derekjensen.io/blog/build-a-simple-notification-system-that-tells-you-when-your-ai-is-done-working) shows how.
 
-> **Tip:** Once your companion is working, try adding a simple notification so you know when a long response is ready. This is especially helpful if you minimize the app while waiting. You can learn how in [Build a Simple Notification System That Tells You When Your AI Is Done Working](https://derekjensen.io/blog/build-a-simple-notification-system-that-tells-you-when-your-ai-is-done-working).
+## What to Do Next
 
-Small tweaks like these are what turn a weekend project into something you actually rely on.
+If you can describe what you want in plain English, you can build a desktop AI companion. Choose Electron for the larger pool of tutorials or Tauri for a lighter app, and let Cursor or ChatGPT write the code.
 
-## Conclusion
-
-Desktop AI companions aren't a passing fad. They're a real shift in how people interact with AI — faster, more personal, and always within reach on your computer. And the tools to build them are sitting right in front of you.
-
-Here's what I want you to take away from this post: you don't need a computer science degree. You don't need anyone's permission. If you can describe what you want in plain English, you have enough skill to build a desktop AI companion this weekend.
-
-Pick the approach that feels right for you. Electron if you want something familiar and well-documented. Tauri if you want something fast and lightweight. Either way, let Cursor or ChatGPT do the heavy lifting on the code side.
-
-Then block off a Saturday and Sunday. That's it. By Sunday evening, you'll have a working AI assistant sitting on your desktop that you built yourself. Not downloaded. Not borrowed. Yours.
-
-The space is early. The ideas are wide open. Maybe you build a writing buddy. Maybe a meal planner. Maybe something nobody has thought of yet.
-
-Stop waiting for the perfect time. Open Cursor, grab an API key, and start building. Your first version doesn't need to be perfect — it just needs to exist.
+Block off a weekend, get an API key, and start with the Step 1 prompt above. The first version only needs to run. You can refine it afterward.
 
 ## FAQ
 
-**Do I need to know how to code to build a desktop AI companion?**
+### Do I need to know how to code to build a desktop AI companion?
 
-Nope! That's the whole point. Tools like Cursor and ChatGPT can generate the code for you. You describe what you want in plain English — things like "add a text box where I can type questions" — and the AI writes the code. You're the director. The AI is the builder. You don't need to understand every line it writes. You just need to know what you want your app to do.
+No. Tools like Cursor and ChatGPT generate the code from plain-English descriptions, such as "add a text box where I can type questions." You act as the director and the AI writes the code. You don't need to understand every line, but you do need to know what you want the app to do.
 
-**How much does it cost to run a desktop AI companion?**
+### How much does it cost to run a desktop AI companion?
 
-Way less than you'd think. Most AI APIs charge based on how much you use them. For a personal project, that usually means a few cents per day. Sometimes less. You'll need an API key from a provider like OpenAI or Anthropic. Most offer free credits when you sign up, so you can start experimenting without spending a dime.
+Most AI APIs charge by usage. For personal use that is often a few cents per day, though it depends on the model and how much you chat. You need an API key from a provider like OpenAI or Anthropic. Some providers offer free credits for new accounts, so check their current pricing pages before you start.
 
-**Can I share my desktop AI companion with other people?**
+### Can I share my desktop AI companion with other people?
 
-Yes! Both Electron and Tauri let you package your app into a downloadable file. Your friends, coworkers, or anyone else can install it on their own computer — just like any other desktop app. So once you build a desktop AI companion that works for you, sharing it is surprisingly simple. You could even post it on Product Hunt and see what happens.
+Yes. Both Electron and Tauri can package your app into a downloadable installer, so friends or coworkers can install it like any other desktop app. If you share it, keep your own API key out of the build. Each user needs their own key, or you need a server that holds the key and charges for usage.
