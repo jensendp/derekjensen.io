@@ -65,6 +65,7 @@
       if (res.ok) {
         form.classList.add('hidden');
         success.classList.remove('hidden');
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', { form_location: 'blog_post_signup' });
       } else {
         const data = await res.json();
         error.textContent = data.error || 'Something went wrong. Please try again.';

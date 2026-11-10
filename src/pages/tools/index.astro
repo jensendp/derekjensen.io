@@ -135,6 +135,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       if (res.ok) {
         form.classList.add('hidden');
         success.classList.remove('hidden');
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', { form_location: 'tools_page_signup' });
       } else {
         const data = await res.json();
         error.textContent = data.error || 'Something went wrong. Please try again.';

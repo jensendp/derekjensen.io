@@ -219,6 +219,7 @@ const WEBHOOK_URL = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL || '';
       if (response.ok) {
         form.classList.add('hidden');
         successState.classList.remove('hidden');
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', { form_location: 'contact_form' });
       } else {
         throw new Error('Failed to send message');
       }
